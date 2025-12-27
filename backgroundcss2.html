@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Background Properties Demo</title>
+<style>
+
+    body {
+
+        background-color: #f7f9fc; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+
+    h2 {
+        text-align: center;
+        color: #007bff; /* Primary blue for title */
+        font-size: 2rem;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+    p {
+        text-align: center;
+        color: white;
+        font-size: 1.2rem;
+        background-color: rgba(44, 62, 80, 0.85);
+        padding: 8px;
+        margin: 0;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+
+    .container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .box {
+        width: 300px; 
+        height: 300px; 
+        border: 5px solid #2c3e50; 
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+
+
+    
+
+    .with-bg {
+        background-color: #ffffff;
+        background-image: url("../../images/back3.png");
+        background-size: cover; 
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+
+    .repeat-bg {
+        background-color: #ffffff;
+
+        background-image: url("../../images/dash5.jpg"); 
+        background-size: 150px; 
+        background-repeat: repeat;
+        background-position: top left;
+    }
+    
+
+    .without-bg {
+     
+        background-image: url('../../images/dash3.jpg'); 
+     
+        background-color: #e0e0e0;
+    }
+
+</style>
+</head>
+<body>
+    <h2>CSS Background Properties Demo</h2>
+    
+    <div class="container">
+        <div class="box with-bg">
+            <p>Background-size: cover; No-repeat</p>
+        </div>
+        
+        <div class="box repeat-bg">
+            <p>Background-repeat: repeat; Size: 150px</p>
+        </div>
+        
+        <div class="box without-bg">
+            <p>Default properties (repeat, size: auto)</p>
+        </div>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reflection</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        body{
+            background-color: rgb(61, 58, 58);
+            /* background: url("1\ \(1\).jpg"); */
+            background-size: cover;
+        }
+     .text-image{
+        font-size: 8rem;text-align: center;
+        font-weight: 900;
+        margin-top: 00px;
+        -webkit-text-stroke:2px red;
+        text-transform: uppercase;
+        background-image: url("../images/clip.jpg");
+        background-size: cover;
+        background-position: center;
+        --webkit-background-clip:text;
+        background-clip: text;
+        color: transparent;
+        /* box-shadow: 0 20px 35px rgb(0, 0, 0); */
+        -webkit-box-reflect:below 5px linear-gradient(to bottom, transparent,rgba(0, 0, 255, 0.781))
+     }
+     hr{
+       border: 1px solid rgb(255, 0, 0);
+       box-shadow: 0 2px 1px rgb(60, 10, 240),0 5px 10px rgb(4, 158, 235);
+     }
+    </style>
+</head>
+<body>
+<h1 class="text-image">reflection</h1>
+<hr>
+<!-- <img src="1 (1).jpg" alt=""> -->
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+</head>
+<body>
+    <h1>Guess the Number!</h1>
+    <p>We have selected a random number between 1 and 100. Try to guess it!</p>
+    <p id="limit"></p>
+    <input type="number" id="guessInput" min="1" max="100">
+    <button id="submitGuess">Submit Guess</button>
+    <p id="message"></p>
+
+    <script src="script.js"></script>
+    <script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1; // Generates a random number between 1 and 100
+        let attempts = 0;
+ 
+        const guessInput = document.getElementById('guessInput');
+        const submitGuessButton = document.getElementById('submitGuess');
+        const messageDisplay = document.getElementById('message');
+        const limitDisplay = document.getElementById('limit');
+        
+        submitGuessButton.addEventListener('click', checkGuess);
+        
+        function checkGuess() {
+            let attemptsleft=7-attempts;
+            const userGuess = parseInt(guessInput.value);
+        
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                messageDisplay.textContent = "Please enter a valid number between 1 and 100.";
+                return;
+            }
+        
+            attempts++;
+        
+            if (userGuess === randomNumber) {
+                messageDisplay.textContent = `Congratulations! You guessed the number ${randomNumber} in ${attempts} attempts!`;
+                submitGuessButton.disabled = true; // Disable the button after a correct guess
+            } else if (userGuess < randomNumber) {
+                messageDisplay.textContent = userGuess+" is too low! Try a higher number.";
+                messageDisplay.style.fontSize="26px";
+            } else {
+                messageDisplay.textContent = userGuess+" is too high! Try a lower number.";
+                messageDisplay.style.fontSize="26px";
+            }
+        limitDisplay.textContent="The number of attempt left "+attemptsleft;
+           limitDisplay.style.fontSize="26px";
+           guessInput.value = ''; // Clear the input field
+            guessInput.focus(); // Keep focus on the input field
+        }
+        if(attempts>7){
+            alert("Game over! Please try again....");
+        }
+        </script>
+</body>
+</html>

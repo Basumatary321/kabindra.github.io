@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled HTML Page</title>
+    
+    <style>
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #34495e; 
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+
+        h1 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: #1abc9c; 
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-align: justify; 
+            padding: 10px 0;
+        }
+
+        h2 + p br {
+            display: none; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to HTML</h1>
+        <p> 
+            HTML stands for HyperText Markup Language. It is used to design web pages using a markup language.HTML is a
+            combination of Hypertext and Markup language. Hypertext defines the link between web pages. A markup language is
+            used to define the text document within the tag which defines the structure of web pages. 
+        </p>
+        
+        <h2>Second Paragraph Using Line Break (CSS neutralized)</h2>
+        <p> 
+            HTML stands for Hypertext Markup Language. <br> It is used to design web pages using a markup <br> language.HTML
+            is a combination of Hypertext <br> and Markup language. Hypertext defines the <br> link between web pages. A
+            markup language <br> is used to define the text document within the <br> tag which defines the structure of web
+            pages. 
+        </p>
+    </div>
+</body>
+</html>

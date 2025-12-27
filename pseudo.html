@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Chapter 15: CSS Pseudo Classes & Transitions</title>
+<style>
+    body{
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        flex-direction: column;
+        background-color: white;
+    }
+.box {cursor: progress;
+width: 500px; height: 500px;text-align: center;padding-top: 60px;
+background-color: lightgray;
+transition: background-color 0.5s ease, transform 0.5s ease;
+margin-bottom: 20px; }
+
+.box:hover {
+ background-color: orange;
+ transform: scale(1.1);
+}
+</style>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+<h1>Chapter 15: CSS Pseudo Classes</h1>
+<h2>Pseudo-Classes</h2>
+<h2>CSS Transitions and Hover Effects</h2>
+<p>Hover the box below to see a transition effect:</p>
+<div class="box">Hover Me</div>
+</body>
+</html>

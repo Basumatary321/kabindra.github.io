@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+ <style>
+ 
+body {
+  
+    background-color: #f4f7f6;  
+    color: #333;  
+    font-family: 'Helvetica Neue', Arial, sans-serif;  
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+ 
+header {
+    background-color: #007bff; 
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+ 
+.container {
+    padding: 40px 20px;
+    max-width: 800px; 
+    margin: 40px auto;  
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    flex-grow: 1; 
+}
+
+ 
+.links {
+    margin-top: 30px;
+}
+
+.links p {
+    margin-bottom: 5px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 10px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth hover effect */
+}
+
+ 
+.primary {
+    background-color: #007bff;  
+    color: white;
+    border: 2px solid #007bff;
+}
+
+.primary:hover {
+    background-color: #0056b3;   
+    transform: translateY(-2px); 
+}
+ 
+.secondary {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.secondary:hover {
+    background-color: #e9ecef; 
+    color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+
+ </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to our Home Page!</h1>
+    </header>
+    <main class="container">
+        <p>This is the main page of our website.</p>
+        
+        <section class="links">
+            <p>Click the link below to learn more about us:</p>
+            <a href="about.html" class="button primary">About Us Page</a>
+            
+            <p>You can also visit our</p>
+            <a href="contact.html" class="button secondary">Contact Page</a>
+        </section>
+    </main>
+</body>
+</html>

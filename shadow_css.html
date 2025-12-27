@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Box Shadow Examples</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+padding: 40px;
+background: #f0f0f0;
+}
+.box {
+width: 200px;
+height: 100px;
+margin: 30px;
+padding: 20px;
+background: white;
+border: 1px solid #ccc;
+text-align: center;
+display: inline-block;
+}
+.shadow1 {
+box-shadow: 15px 15px 10px greenyellow;
+}
+.shadow2 {
+box-shadow: 0px 10px 15px grey;
+}
+.shadow3 {
+box-shadow: 1px 1px 20px 10px gold; /* red glow */
+}
+.shadow4 {
+box-shadow: inset 0px 0px 10px grey; /* inner shadow */
+}
+</style>
+</head>
+<body>
+<h2>CSS Box Shadow Examples</h2>
+<div class="box shadow1">Basic Shadow</div>
+<div class="box shadow2">Soft Shadow</div>
+<div class="box shadow3">Color Glow</div>
+<div class="box shadow4">Inset Shadow</div>
+</body>
+</html>
