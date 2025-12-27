@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+    }
+    div{
+        align-self: center;
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+        border-radius: 50%;
+        background: conic-gradient(at center, rgb(255, 0, 0),orange,yellow,green,blue,indigo,violet,red);
+transition: 0.5s linear;
+animation: spinn 1s linear infinite;
+/* animation-direction: alternate; */
+    }
+    div:hover{
+        transform: scale(1.2);
+    } 
+    @keyframes spinn{
+        from{transform: rotate(0deg);}
+        to{transform: rotate(360deg);}
+    }
+</style>
+
+</head>
+<body>
+    <div></div>
+</body>
+</html>

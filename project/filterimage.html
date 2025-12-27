@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Filter and Download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            margin: 10px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            width: 90%;
+            border: 1px solid #0099cc;
+            background-color: #e6f7ff;
+            padding: 10px;
+            flex-wrap: wrap;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: left;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid black;
+            min-width: 280px;
+            max-width: 350px;
+            height: fit-content;
+        }
+
+        .controls > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px dashed #555;
+        }
+        
+        .controls > div:last-child {
+            border-bottom: none;
+        }
+        
+        .controls label {
+            min-width: 100px;
+        }
+
+        input[type=range] {
+            width: 150px;
+            cursor: grab;
+        }
+
+        .canvasbox {
+            margin: 8px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            min-width: 500px;
+            min-height: 305px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #111;
+        }
+
+        canvas {
+            width: 500px;
+            height: 305px;
+            max-width: 100%;
+            max-height: 100%;
+            background-color: rgb(2, 16, 29);
+        }
+        
+        fieldset {
+            border: 1px solid black;
+            background-color: #f8f8f8;
+            height: 305px; /* Matched height to canvasbox for alignment */
+            max-width: 200px;
+            margin: 8px;
+            padding: 10px;
+            text-align: left;
+            overflow: auto;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        #htmlCode, #cssCode {
+            white-space: pre-wrap; /* Preserve formatting */
+            color: #008080; /* Teal/blue color for code */
+        }
+        
+        .code-title {
+            color: #ff4500; /* Orange-red for titles */
+            font-weight: bold;
+        }
+
+        #downloadBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>🎨 Image Filter and Live Code Generator</h2>
+
+    <input type="file" id="upload" accept="image/*" style="margin-bottom: 15px;">
+
+    <div class="container">
+        <div class="controls">
+            <div> 
+                <label for="brightness">Brightness</label>
+                <input type="range" id="brightness" min="0" max="300" value="100"> 
+            </div>
+            <div> 
+                <label for="grayscale">Grayscale</label>
+                <input type="range" id="grayscale" min="0" max="100" value="0"> 
+            </div>
+            <div>
+                <label for="blur">Blur (px)</label>
+                <input type="range" id="blur" min="0" max="20" value="0"> 
+            </div>
+            <div>
+                <label for="contrast">Contrast</label>
+                <input type="range" id="contrast" min="0" max="200" value="100">
+            </div>
+            <div>
+                <label for="hue-rotate">Hue-Rotate (°)</label>
+                <input type="range" id="hue-rotate" min="0" max="360" value="0">
+            </div>
+            <div>
+                <label for="invert">Invert</label>
+                <input type="range" id="invert" min="0" max="100" value="0">
+            </div>
+            <div>
+                <label for="opacity">Opacity</label>
+                <input type="range" id="opacity" min="0" max="100" value="100">
+            </div>
+            <div>
+                <label for="saturate">Saturate</label>
+                <input type="range" id="saturate" min="0" max="500" value="100">
+            </div>
+            <div>
+                <label for="sepia">Sepia</label>
+                <input type="range" id="sepia" min="0" max="100" value="0">
+            </div>
+        </div>
+
+        <div class="canvasbox">
+            <canvas id="canvas"></canvas>
+        </div>
+        
+        <fieldset>
+            <legend>HTML</legend>
+            <div id="htmlCode"></div>
+        </fieldset>
+        <fieldset>
+            <legend>CSS</legend>
+            <div id="cssCode"></div>
+        </fieldset>
+    </div>
+    
+    <button id="downloadBtn">Download Filtered Image</button>
+
+    <script>
+        const upload = document.getElementById('upload');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const htmlCodeDiv = document.getElementById('htmlCode');
+        const cssCodeDiv = document.getElementById('cssCode');
+        
+        // Filter Controls
+        const brightness = document.getElementById('brightness');
+        const grayscale = document.getElementById('grayscale');
+        const blur = document.getElementById('blur');
+        const contrast = document.getElementById('contrast');
+        const hueRotate = document.getElementById('hue-rotate');
+        const invert = document.getElementById('invert');
+        const opacity = document.getElementById('opacity');
+        const saturate = document.getElementById('saturate');
+        const sepia = document.getElementById('sepia');
+        
+        const filterControls = [
+            brightness, grayscale, blur, contrast, hueRotate, invert, opacity, saturate, sepia
+        ];
+
+        let img = new Image();
+        let imageFileName = '';
+
+        upload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                imageFileName = file.name;
+                const reader = new FileReader();
+                reader.onload = function (evt) {
+                    img.src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            canvas.style.width = '500px'; 
+            canvas.style.height = '305px';
+            drawImage();
+        };
+        
+        // Function to update the HTML and CSS code blocks
+        function updateCodeDisplay(filterString) {
+            // HTML Simulation
+            htmlCodeDiv.innerHTML = `<span class="code-title">&lt;!-- Your image element --&gt;</span>\n&lt;img src="${imageFileName || 'path/to/image.jpg'}" class="filtered-img" /&gt;`;
+
+            // CSS Code
+            cssCodeDiv.innerHTML = `<span class="code-title">.filtered-img {</span>\n  filter: ${filterString.trim().replace(/\s+/g, ' ')};\n}`;
+        }
+
+        function drawImage() {
+            if (!img.src) {
+                // Initial state or no image loaded
+                const defaultFilter = 'none';
+                updateCodeDisplay(defaultFilter);
+                return;
+            }
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Build the complete CSS filter string
+            const filterString = `
+                brightness(${brightness.value}%)
+                grayscale(${grayscale.value}%)
+                blur(${blur.value}px)
+                contrast(${contrast.value}%)
+                hue-rotate(${hueRotate.value}deg)
+                invert(${invert.value}%)
+                opacity(${opacity.value}%)
+                saturate(${saturate.value}%)
+                sepia(${sepia.value}%)
+            `;
+
+            ctx.filter = filterString;
+
+            // Draw the filtered image
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            
+            // Update the live code display
+            updateCodeDisplay(filterString);
+        }
+
+        // Update canvas and code display when *any* filter changes
+        filterControls.forEach(input => {
+            if (input) {
+                input.addEventListener('input', drawImage);
+            }
+        });
+
+        // Initialize code display on load
+        drawImage();
+
+        // Download filtered image
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            const link = document.createElement('a');
+            link.download = 'filtered-image.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+    </script>
+
+</body>
+
+</html>

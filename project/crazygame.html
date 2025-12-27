@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictor Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="timer-section">
+            Time remaining: <span id="timer">00:10</span>s
+        </div>
+
+        <div class="number-grid" id="numberGrid">
+            </div>
+
+        <div class="result-box" id="resultDisplay">
+            Waiting for next round...
+        </div>
+
+        <div class="controls">
+            <div class="option-row">
+                <button class="btn big" onclick="selectOption('Big')">Big</button>
+                <button class="btn small" onclick="selectOption('Small')">Small</button>
+            </div>
+            <div class="option-row">
+                <button class="btn red" onclick="selectOption('Red')">Red</button>
+                <button class="btn green" onclick="selectOption('Green')">Green</button>
+            </div>
+        </div>
+
+        <button class="go-btn" id="goBtn" onclick="submitGuess()">GO</button>
+        
+        <p id="selectionText">Selection: None</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

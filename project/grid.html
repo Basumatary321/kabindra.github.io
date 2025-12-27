@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "lefta main righta"
+                "footer footer footer";
+        }
+
+        #header {
+            grid-area: header;
+        }
+
+        #footer {
+            grid-area: footer;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        #main {
+            grid-area: main;
+            background-color: aquamarine;
+            padding: 10px;
+        }
+
+        #left {
+            grid-area: lefta;
+        }
+
+        #right {
+            grid-area: righta;
+        }
+
+        #header,
+        #footer {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        aside {
+            width: 150px;
+            background-color: rgb(170, 165, 159);
+            margin: 0 5px;
+            border-radius: 0 20px 20px 0;
+            padding: 10px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header id="header">this is the header</header>
+        <main id="main">fsfsdfsdfdsfds</main>
+        <aside id="left">left</aside>
+        <aside id="right">right</aside>
+        <footer id="footer">footer</footer>
+    </div>
+</body>
+
+</html>

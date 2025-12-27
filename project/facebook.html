@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>facebook</title>
+    <link rel="stylesheet" href="facebook.css">
+</head>
+
+<body>
+    <div class="row res">
+        <div class="fb-form res">
+            <div class="card">
+                <h1>facebook</h1>
+                <p>Connect with friends and the world </p>
+                <p> around you on Facebook.</p>
+            </div>
+            <form action="#" id="loginForm">
+                <input type="text" id="username" placeholder="ID or Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <div class="fb-submit">
+                    <button type="submit" class="login">Login</button>
+                    <p id="errorMessage" class="error-message"></p>
+                    <a href="#" class="forgot" title="
+                    Userid:user
+Passwrod:password123">Forgot password? ( hint <img src="hint.png" alt="" height="18px"> )</a>
+                </div>
+                <hr>
+                <div class="button">
+                    <a href="#">Create new account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const correctid="user";
+            const correctpass="password123";
+            if (usernameInput === correctid && passwordInput === correctpass) {
+                errorMessage.textContent = "Login Successful!";
+                 errorMessage.style.display = 'block';
+                errorMessage.style.color = 'green';
+                errorMessage.style.fontSize = '16px';
+          
+    
+            } else if(usernameInput===correctid&&passwordInput!=correctpass){
+            errorMessage.textContent = "Invalid Password";
+                errorMessage.style.display = 'block';
+                errorMessage.style.color = 'red';
+                errorMessage.style.fontSize = '16px';
+        }else if(usernameInput!=correctid&&passwordInput===correctpass){
+            errorMessage.textContent = "Invalid ID";
+                errorMessage.style.display = 'block';
+                errorMessage.style.color = 'red';
+                errorMessage.style.fontSize = '16px';
+        }
+            else {
+                errorMessage.textContent = "Invalid ID and Password";
+                errorMessage.style.display = 'block';
+                errorMessage.style.color = 'red';
+                errorMessage.style.fontSize = '16px';
+            }
+        });</script>
+</body>
+
+</html>
