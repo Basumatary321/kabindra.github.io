@@ -11,12 +11,12 @@ color:#e6eef6;font-family:Arial,Segoe UI,sans-serif">
   </p>
 
   <p>
-    <a href="#" style="background:#06b6d4;color:#031024;
+    <a href="https://basumatary321.github.io/kabindra.github.io/" style="background:#06b6d4;color:#031024;
     padding:8px 14px;border-radius:8px;
     text-decoration:none;font-weight:bold">
-      View on GitHub
+      View on GitHub 
     </a>
-     <a>Update:December 2025</a>
+     <a> Last Update:December 2025</a>
   </p>
 
   <hr style="border:0;border-top:1px solid #1f2937;margin:20px 0">
