@@ -5,13 +5,16 @@
      font-family: Arial, sans-serif;
  }
 
- body {
-     background-color: #ddd;
- }
+ html, body { height: 100%; }
+body {
+    background-color: #ddd;
+    min-height: 100%;
+}
 
  /* GRID LAYOUT */
  .container {
-     height: 100vh;
+     height: 100%;
+     min-height: 100vh;
      display: grid;
      grid-template-columns: 260px 1fr;
      grid-template-rows: auto 1fr 60px;
@@ -76,6 +79,7 @@
      background: #f0f0f0;
      padding: 10px;
      min-width: max-content;
+     height: 100%; /* ensure sidebar fills the layout height */
      overflow-y: auto;
      border-right: 2px solid #ccc;
  }
@@ -198,6 +202,7 @@
      background: #eee;
      padding: 10px;
      border-right: 2px solid #ccc;
+     height: 100%; /* fill available height */
      overflow-y: auto;
      /* enable scrolling for long lists */
      /* Firefox */
@@ -231,6 +236,9 @@
 
  /* Ensure the reflection and spacing are reasonable on small screens */
 @media (max-width: 600px) {
+    /* prevent horizontal scroll while sidebar is off-canvas */
+    html, body, .container { overflow-x: hidden; }
+
     .container {
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr auto;
@@ -247,18 +255,21 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 100vh;
-        width: 260px;
-        max-width: 85%;
+        bottom: 0; /* stretch to bottom of viewport */
+        height: auto; /* allow top/bottom to determine height */
+        width: 85%; /* cover most of screen on mobile */
+        max-width: 320px;
         background: #f0f0f0;
-        padding: 12px;
-        transform: translateX(-110%);
-        transition: transform 0.28s ease;
-        z-index: 2000;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+        padding: 12px 14px 20px; /* extra bottom padding so last items aren't hidden */
+        transform: translateX(-100%); /* fully hidden */
+        transition: transform 0.28s ease, left 0.28s ease;
+        z-index: 11000; /* above overlay */
+        box-shadow: 2px 0 20px rgba(0,0,0,0.18);
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
     }
 
+    /* visible state */
     aside.open {
         transform: translateX(0);
     }
@@ -276,7 +287,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.2s ease;
-        z-index: 1500;
+        z-index: 10000; /* below sidebar but above main */
     }
 
     .overlay.show {
