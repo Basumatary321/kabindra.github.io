@@ -1,0 +1,257 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: Arial, sans-serif;
+ }
+
+ body {
+     background-color: #ddd;
+ }
+
+ /* GRID LAYOUT */
+ .container {
+     height: 100vh;
+     display: grid;
+     grid-template-columns: 260px 1fr;
+     grid-template-rows: auto 1fr 60px;
+     /* header is now auto-sized to allow taller responsive header */
+     grid-template-areas:
+         "header header"
+         "sidebar main"
+         "footer footer";
+ }
+
+ /* HEADER */
+ header {
+     grid-area: header;
+     background: linear-gradient(to top, black, black 10%, blue);
+     color: #fff;
+     text-align: center;
+     margin-bottom: 10px;
+     min-height: 15vh;
+     /* provides room for reflection */
+     padding: 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     overflow: visible;
+ }
+
+ header h2 {
+     margin: 0;
+     font-weight: 700;
+     line-height: 1;
+     font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+     /* responsive text */
+     -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(236, 43, 43, 0.682));
+ }
+
+ header h2 span {
+    display: inline-block;
+     font-weight: 700;
+     line-height: 1;
+     cursor: pointer;
+     font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+     transform: rotate(0deg);
+     transition: 0.8s linear ease;
+ }
+
+ header h2 span:nth-child(even):hover {
+    color: orangered;
+     font-size: larger;
+     transform: rotate(45deg);
+ }
+ header h2 span:nth-child(odd):hover {
+    color: rgb(72, 255, 0);
+     font-size: larger;
+     transform: rotate(-45deg);
+ }
+
+
+ /* SIDEBAR */
+ aside {
+     grid-area: sidebar;
+     background: #f0f0f0;
+     padding: 10px;
+     min-width: max-content;
+     overflow-y: auto;
+     border-right: 2px solid #ccc;
+ }
+
+ aside h3 {
+     margin: 10px 0;
+     background: #444;
+     color: white;
+     padding: 6px;
+     font-size: 14px;
+ }
+
+ .project-list {
+     list-style: none;
+     margin-bottom: 15px;
+ }
+
+ .project-list a {
+     display: block;
+     padding: 6px;
+     margin: 4px 0;
+     background: #ddd;
+     color: #000;
+     text-decoration: none;
+     border-radius: 4px;
+     cursor: pointer;
+ }
+
+ .project-list a:hover {
+     background: #bbb;
+ }
+
+ .project-list a.active {
+     background: #3cb371;
+     color: white;
+ }
+
+ /* MAIN */
+ main {
+     grid-area: main;
+     background: #ddd;
+     padding: 0 10px;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .top-bar {
+     background: #555555;
+     padding: 8px;
+     color: rgb(53, 4, 248);
+     font-weight: bold;
+     display: flex;
+     color: white;
+     justify-content: space-between;
+     align-items: center;
+     border-radius: 5px;
+
+ }
+
+ #pagetitle {
+     font-size: 18px;
+     color: white;
+     -webkit-box-reflect: below -7px linear-gradient(transparent, rgba(236, 43, 43, 0.425));
+ }
+
+ #openTab {
+     padding: 6px 14px;
+     border: none;
+     border-radius: 20px;
+     background: #2e8b57;
+     color: white;
+     cursor: pointer;
+ }
+
+ #openTab:hover {
+     background: #1e6b3f;
+ }
+
+ iframe {
+     margin-top: 10px;
+     width: 100%;
+     height: 100%;
+     border: none;
+     /* background:rgba(71, 251, 230, 0.399); */
+     background: url("images/not_found.jpg");
+     background-size: cover;
+     border-radius: 6px;
+ }
+
+ /* FOOTER */
+ footer {
+     grid-area: footer;
+     background: linear-gradient(to bottom, #646363, rgb(37, 37, 37));
+     color: white;
+     text-align: center;
+     height: max-content;
+     position: fixed;
+     bottom: 0;
+     width: 100%;
+     padding: 5px 0;
+     /* line-height:20px; */
+ }
+
+ /* SIDEBAR */
+ .sidebar {
+     grid-area: sidebar;
+     background: #eee;
+     padding: 10px;
+     border-right: 2px solid #ccc;
+     overflow-y: auto;
+     /* enable scrolling for long lists */
+     /* Firefox */
+     scrollbar-width: thin;
+     scrollbar-color: #f04b8a #eee;
+     /* thumb color then track color */
+ }
+
+ /* WebKit (Chrome, Edge, Safari) */
+ .sidebar::-webkit-scrollbar {
+     width: 12px;
+ }
+
+ .sidebar::-webkit-scrollbar-track {
+     background: #f0f0f0;
+     border-radius: 10px;
+ }
+
+ .sidebar::-webkit-scrollbar-thumb {
+     /* background: #3cb371;  */
+     background: linear-gradient(to top, blue, rgb(5, 251, 5));
+
+     border-radius: 10px;
+     border: 3px solid #f0f0f0;
+     /* creates padding effect */
+ }
+
+ .sidebar::-webkit-scrollbar-thumb:hover {
+     background: #2e8b57;
+ }
+
+ /* Ensure the reflection and spacing are reasonable on small screens */
+ @media (max-width: 600px) {
+     header {
+         padding: 1px 0;
+         min-height: 8vh;
+         /* override desktop min-height to reduce header height */
+         /* height: auto; */
+         align-items: center;
+         justify-content: center;
+     }
+
+     header h2 {
+         padding: 0;
+         margin: 0;
+         font-size: clamp(0.95rem, 4.5vw, 1.4rem);
+         -webkit-box-reflect: none;
+         /* remove reflection on small screens to save space */
+     }
+
+     .project-list a {
+         font-size: 7px;
+         /* slightly smaller text for sidebar links */
+     }
+
+     aside {
+         padding: 1px;
+         width: max-content;
+     }
+
+     main {
+         width: 100%;
+     }
+
+     aside h3 {
+         font-size: 10px;
+         /* slightly smaller sidebar headings */
+         padding: 2px;
+     }
+ }
