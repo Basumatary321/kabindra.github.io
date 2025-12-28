@@ -1,111 +1,84 @@
-🧑‍💻 Web Development Practical Project Set
-📌 About This Repository
+  <div style="max-width:980px;margin:auto;padding:24px;
+background:#0b1220;border-radius:16px;
+color:#e6eef6;font-family:Arial,Segoe UI,sans-serif">
 
-This repository contains a collection of practical web development projects created for students to practice and improve their skills in HTML, CSS, and JavaScript through hands-on learning.
+  <h1 style="margin-top:0;color:#06b6d4">
+    ⭐ Practical HTML, CSS & JavaScript Project Set
+  </h1>
 
-These projects are suitable for beginners and intermediate-level students and are designed to build real-world web design confidence.
+  <p style="color:#9aa4b2">
+    Beginner & Intermediate level projects for students to practice real-world frontend development.
+  </p>
 
-🎯 Who Is This For?
+  <p>
+    <a href="#" style="background:#06b6d4;color:#031024;
+    padding:8px 14px;border-radius:8px;
+    text-decoration:none;font-weight:bold">
+      View on GitHub
+    </a>
+     <a>Update:December 2025</a>
+  </p>
 
-✔ Computer institute students
-✔ Beginners learning web development
-✔ Students preparing for projects & practical exams
-✔ Self-learners practicing HTML, CSS & JavaScript
+  <hr style="border:0;border-top:1px solid #1f2937;margin:20px 0">
 
-🛠 Technologies Used
+  <h2>📌 About this repository</h2>
+  <p style="color:#9aa4b2">
+    A curated collection of small practical projects for hands-on learning.
+    Students are encouraged to modify and understand the code instead of copying.
+  </p>
 
-HTML5
+  <h2>🛠 Technologies Used</h2>
+  <ul>
+    <li>HTML5</li>
+    <li>CSS3</li>
+    <li>JavaScript (Vanilla)</li>
+    <li>GitHub Pages</li>
+  </ul>
 
-CSS3
+  <h2>📂 Project Structure</h2>
+  <pre style="background:#031026;padding:12px;border-radius:10px;color:#cfeff8">
+/techno_it_web_projects
+├── images/
+├── project/
+├── index.html
+├── style.css
+└── script.js
+  </pre>
 
-JavaScript (Basic)
+  <h2>📚 Project List</h2>
 
-GitHub Pages (for live hosting)
+  <ul>
+    <li>Personal Profile Webpage</li>
+    <li>Student Registration Form</li>
+    <li>Simple Login Page (UI)</li>
+    <li>Institute / College Homepage</li>
+    <li>Contact Us Page</li>
+    <li>Image Gallery</li>
+    <li>Calculator (JavaScript)</li>
+    <li>Responsive Layout</li>
+    <li>To-Do List App</li>
+    <li>Attendance Tracker (Frontend)</li>
+    <li>Quiz Application</li>
+    <li>Portfolio Website</li>
+    <li>Digital Clock</li>
+    <li>Animated Landing Page</li>
+  </ul>
 
-📂 Project Structure
+  <h2>🎯 Learning Outcomes</h2>
+  <ul>
+    <li>Real-world website structure</li>
+    <li>Responsive design skills</li>
+    <li>JavaScript DOM manipulation</li>
+    <li>Frontend confidence</li>
+  </ul>
 
-Each project is organized in a separate folder:
+  <hr style="border:0;border-top:1px solid #1f2937;margin:20px 0">
 
-/project-name
-   ├── index.html
-   ├── style.css
-   ├── script.js
-   └── assets/
+  <p style="font-size:13px;color:#9aa4b2">
+    Made with ❤️ for students • <strong>Techno IT Computer Institute</strong><br>
+    License: <code>CC BY-NC-SA</code><br>
+     Developer:Kabindra Basumatary
+  </p>
 
-📚 Project List
-🔰 Beginner Level Projects
+</div>
 
-Personal Profile Webpage
-
-Student Registration Form
-
-Simple Login Page (UI only)
-
-College / Institute Homepage
-
-Contact Us Page
-
-Image Gallery using CSS
-
-Simple Calculator (JS)
-
-⚙️ Intermediate Level Projects
-
-Responsive Website Layout
-
-To-Do List Application
-
-Attendance Tracker (Frontend)
-
-Quiz Application
-
-Portfolio Website
-
-Digital Clock
-
-Landing Page with Animations
-
-📝 Instructions for Students
-
-Open each project folder
-
-Read the project requirement
-
-Write your own code
-
-Modify the design and logic
-
-Test the project in a browser
-
-Upload your work to GitHub (optional)
-
-📌 Tip: Do not copy blindly. Try to understand every line of code.
-
-🌐 Live Demo
-
-Live preview available using GitHub Pages:
-👉 (Add your GitHub Pages link here)
-
-📈 Learning Outcomes
-
-By completing these projects, students will:
-
-Understand real-world website structure
-
-Improve HTML & CSS layout skills
-
-Learn basic JavaScript logic
-
-Build confidence in frontend development
-
-Prepare for advanced web technologies
-
-🏫 Created For
-
-Techno IT Computer Education
-Practical-based learning for future developers
-
-📩 Feedback & Suggestions
-
-Students are encouraged to suggest improvements and ideas for new projects.# kabindra.github.io
-Beginner-friendly practical web projects with step-by-step exercises for learning HTML, CSS, and JavaScript
