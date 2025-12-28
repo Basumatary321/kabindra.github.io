@@ -14,7 +14,7 @@ color:#e6eef6;font-family:Arial,Segoe UI,sans-serif">
     <a href="https://basumatary321.github.io/kabindra.github.io/" style="background:#06b6d4;color:#031024;
     padding:8px 14px;border-radius:8px;
     text-decoration:none;font-weight:bold">
-      View on GitHub 
+      View on GitHub live host
     </a>
      <a> Last Update:December 2025</a>
   </p>
