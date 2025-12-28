@@ -81,3 +81,49 @@ openTab.addEventListener("click", () => {
   // Delay start slightly to allow layout to stabilize
   setTimeout(() => requestAnimationFrame(step), 100);
 })();
+
+/* Mobile sidebar toggle */
+(function(){
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('overlay');
+
+  if (!sidebar || !menuToggle || !overlay) return;
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    overlay.setAttribute('aria-hidden','false');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden','true');
+  }
+
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (sidebar.classList.contains('open')) {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  });
+
+  overlay.addEventListener('click', closeSidebar);
+
+n  // Close when clicking a link in mobile
+  document.querySelectorAll('.project-list a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.innerWidth <= 600) closeSidebar();
+    });
+  });
+
+  // Close on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 600) closeSidebar();
+  });
+
+n})();

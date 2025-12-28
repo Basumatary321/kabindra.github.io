@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Student Practice Projects</title>
 
 <link rel="stylesheet" href="style.css">
@@ -102,6 +103,7 @@
 <main>
 
 <div class="top-bar">
+    <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <img src="images/logo1.png" alt="" height="35px">
     <span id="pageTitle">Select a project</span>
     <button id="openTab">Open in New Tab</button>
@@ -121,6 +123,7 @@
 
 </div>
 
+<div id="overlay" class="overlay" aria-hidden="true"></div>
 <script src="script.js"></script>
 
 </body>
