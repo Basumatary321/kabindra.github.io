@@ -5,114 +5,177 @@
     <meta charset="UTF-8">
     <title>Image Filter and Download</title>
     <style>
+        :root{
+            --bg:#0f1720;
+            --panel:#0b1220;
+            --muted:#9aa6b2;
+            --accent:#2bd4ff;
+            --accent-2:#cac3e7;
+            --glass: rgba(255,255,255,0.04);
+        }
+        html,body{height:100%;}
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 0;
-            background-color: #f0f0f0;
+            margin:0;
+            font-family: Inter,Segoe UI,Arial,sans-serif;
+            background: linear-gradient(180deg,#123067 0%, #081726 60%);
+            color: #e6eef6;
+            -webkit-font-smoothing:antialiased;
+            padding:18px;
         }
 
-        .container {
-            margin: 10px auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: flex-start;
-            width: 90%;
-            border: 1px solid #0099cc;
-            background-color: #e6f7ff;
-            padding: 10px;
-            flex-wrap: wrap;
+        h2{margin:6px 0 16px 0;font-weight:600;text-align:center}
+
+        .container{
+            width:100%;
+            max-width:1200px;
+            margin:0 auto;
+            display:grid;
+            grid-template-columns: 1fr 380px;
+            gap:18px;
+            align-items:start;
         }
 
-        .controls {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            text-align: left;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            margin: 8px;
-            border: 1px solid black;
-            min-width: 280px;
-            max-width: 350px;
-            height: fit-content;
+        /* Left: Preview & toolbar */
+        .editor-panel{
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius: 10px;
+            padding:14px;
+            box-shadow: 0 6px 30px rgba(2,6,23,0.8);
         }
 
-        .controls > div {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-            border-bottom: 1px dashed #555;
+        .toolbar{
+            display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap
         }
-        
-        .controls > div:last-child {
-            border-bottom: none;
+        .preset{background:var(--glass);border:1px solid rgba(255,255,255,0.04);padding:6px 10px;border-radius:8px;cursor:pointer;color:var(--muted)}
+        .preset.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021022;border:1px solid rgba(255,255,255,0.06)}
+        .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+        .btn.warn{border-color:#ff8b6a;color:#ffb9a6}
+
+        .preview-wrap{
+            position:relative;
+            border-radius:8px;
+            overflow:hidden;
+            background:#021018;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border:1px solid rgba(255,255,255,0.03);
+            min-height:420px;
+            z-index:4;
         }
-        
-        .controls label {
-            min-width: 100px;
+        .preview-canvas{
+            max-width:100%;
+            height:auto;
+            display:block;
+            max-height: calc(100vh - 220px);
+            object-fit: contain;
         }
 
-        input[type=range] {
-            width: 150px;
-            cursor: grab;
+        /* Stick/Fixed behaviour for larger screens: keep preview visible while controls scroll */
+        @media (min-width:901px){
+            /* Make the editor panel and controls equal height */
+            .container{ align-items:stretch; }
+
+            .editor-panel{
+                height: calc(100vh - 36px);
+                display:flex;
+                flex-direction:column;
+            }
+
+            .preview-wrap{
+                /* stretch to fill available vertical space inside .editor-panel */
+                position:sticky;
+                top:18px;
+                align-self:stretch;
+                flex:1 1 auto;
+                min-height:0; /* allow flex children to shrink correctly */
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                overflow:hidden;
+            }
+
+            .preview-canvas{
+                /* ensure canvas uses available height while preserving aspect */
+                max-height:100%;
+                max-width:100%;
+                width:auto;
+                height:auto;
+                object-fit:contain;
+                display:block;
+            }
+
+            .controls{
+                max-height: calc(100vh - 36px);
+                overflow:auto;
+                padding-right:8px; /* allow room for scrollbar */
+                display:flex;
+                flex-direction:column;
+            }
+
+            /* make code area sit at the bottom of editor and be scrollable if needed */
+            .code-area{ overflow:auto; max-height:92px }
         }
 
-        .canvasbox {
-            margin: 8px;
-            border: 4px solid #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            min-width: 500px;
-            min-height: 305px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #111;
+        .compare-toggle{position:absolute;left:12px;top:12px;background:rgba(0,0,0,0.45);padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:8px;align-items:center}
+
+        /* Controls on the right */
+        .controls{
+            background:var(--panel);
+            border-radius:10px;
+            padding:14px;
+            border:1px solid rgba(255,255,255,0.03);
+            height:fit-content;
+        }
+        .controls h3{margin:0 0 8px 0;font-size:14px;color:#cfe9ff}
+        .group{margin-bottom:12px;padding:8px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+
+        /* Desktop: custom, colorful scrollbar (thin & modern) */
+        @media (min-width:901px){
+            .controls{
+                max-height: calc(100vh - 36px);
+                overflow:auto;
+                padding-right:8px;
+                scrollbar-width: thin; /* firefox */
+                scrollbar-color: rgba(124,92,255,0.95) rgba(255,255,255,0.02);
+            }
+
+            /* WebKit browsers */
+            .controls::-webkit-scrollbar{width:10px;height:10px}
+            .controls::-webkit-scrollbar-track{background:transparent}
+            .controls::-webkit-scrollbar-thumb{
+                background: linear-gradient(180deg,var(--accent),var(--accent-2));
+                border-radius:999px;
+                border: 2px solid rgba(2,6,10,0.25);
+            }
+            .controls::-webkit-scrollbar-thumb:hover{filter:brightness(0.95) saturate(1.2)}
+
+            /* Optional: hidden scrollbar mode (add class .hide-scrollbar to aside.controls to hide) */
+            .controls.hide-scrollbar{ scrollbar-width: none; -ms-overflow-style:none; }
+            .controls.hide-scrollbar::-webkit-scrollbar{ display:none }
         }
 
-        canvas {
-            width: 500px;
-            height: 305px;
-            max-width: 100%;
-            max-height: 100%;
-            background-color: rgb(2, 16, 29);
+        /* Mobile: revert to natural flow (no scrollbar styling) */
+        @media (max-width:900px){
+            .controls{max-height:none;overflow:visible;padding-bottom:16px}
         }
-        
-        fieldset {
-            border: 1px solid black;
-            background-color: #f8f8f8;
-            height: 305px; /* Matched height to canvasbox for alignment */
-            max-width: 200px;
-            margin: 8px;
-            padding: 10px;
-            text-align: left;
-            overflow: auto;
-            font-family: monospace;
-            font-size: 14px;
-        }
+        label{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin-bottom:6px}
+        .value{font-variant-numeric:tabular-nums;color:#fff;margin-left:10px;font-weight:600}
+        input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:6px;background:linear-gradient(90deg,#223, #334);outline:none}
 
-        #htmlCode, #cssCode {
-            white-space: pre-wrap; /* Preserve formatting */
-            color: #008080; /* Teal/blue color for code */
-        }
-        
-        .code-title {
-            color: #ff4500; /* Orange-red for titles */
-            font-weight: bold;
-        }
+        .row{display:flex;gap:8px}
+        .row .small{flex:0 0 48%}
 
-        #downloadBtn {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-top: 20px;
+        .meta{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:8px}
+
+        .code-area{margin-top:12px;background:#03101a;padding:10px;border-radius:8px;color:#7fd2ff;font-family:monospace;font-size:13px}
+
+        /* small screens */
+        @media (max-width:900px){
+            .container{grid-template-columns:1fr}
+            .preview-wrap{min-height:260px;position:relative}
+            .preview-canvas{max-height:60vh;width:100%}
+            .controls{max-height:none;overflow:visible;padding-bottom:16px}
         }
     </style>
 </head>
@@ -121,167 +184,429 @@
 
     <h2>🎨 Image Filter and Live Code Generator</h2>
 
-    <input type="file" id="upload" accept="image/*" style="margin-bottom: 15px;">
-
     <div class="container">
-        <div class="controls">
-            <div> 
-                <label for="brightness">Brightness</label>
-                <input type="range" id="brightness" min="0" max="300" value="100"> 
+        <div class="editor-panel">
+            <div class="toolbar">
+                <input type="file" id="upload" accept="image/*" class="btn" style="padding:6px 10px">
+                <div class="preset primary" id="preset-auto">Auto Enhance</div>
+                <div class="preset" id="preset-vintage">Vintage</div>
+                <div class="preset" id="preset-bw">B&amp;W</div>
+                <button class="btn" id="undoBtn" title="Undo (Ctrl+Z)">Undo</button>
+                <button class="btn warn" id="resetBtn" title="Reset">Reset</button>
+                <button class="btn" id="downloadBtn" style="margin-left:auto">Download</button>
             </div>
-            <div> 
-                <label for="grayscale">Grayscale</label>
-                <input type="range" id="grayscale" min="0" max="100" value="0"> 
+
+            <div class="preview-wrap">
+                <div class="compare-toggle"><label style="font-size:13px;color:var(--muted)">Compare <input type="checkbox" id="compareOriginal" style="margin-left:8px"></label></div>
+                <canvas id="canvas" class="preview-canvas"></canvas>
             </div>
-            <div>
-                <label for="blur">Blur (px)</label>
-                <input type="range" id="blur" min="0" max="20" value="0"> 
+
+            <div class="meta" style="margin-top:10px">
+                <div style="color:var(--muted)">Zoom: <span id="zoomVal" class="value">100%</span></div>
+                <div style="color:var(--muted)">Rotate: <span id="rotateVal" class="value">0°</span></div>
             </div>
-            <div>
-                <label for="contrast">Contrast</label>
-                <input type="range" id="contrast" min="0" max="200" value="100">
-            </div>
-            <div>
-                <label for="hue-rotate">Hue-Rotate (°)</label>
-                <input type="range" id="hue-rotate" min="0" max="360" value="0">
-            </div>
-            <div>
-                <label for="invert">Invert</label>
-                <input type="range" id="invert" min="0" max="100" value="0">
-            </div>
-            <div>
-                <label for="opacity">Opacity</label>
-                <input type="range" id="opacity" min="0" max="100" value="100">
-            </div>
-            <div>
-                <label for="saturate">Saturate</label>
-                <input type="range" id="saturate" min="0" max="500" value="100">
-            </div>
-            <div>
-                <label for="sepia">Sepia</label>
-                <input type="range" id="sepia" min="0" max="100" value="0">
-            </div>
+
+            <div class="code-area" id="cssCode">/* Live CSS filter will appear here */</div>
         </div>
 
-        <div class="canvasbox">
-            <canvas id="canvas"></canvas>
-        </div>
-        
-        <fieldset>
-            <legend>HTML</legend>
-            <div id="htmlCode"></div>
-        </fieldset>
-        <fieldset>
-            <legend>CSS</legend>
-            <div id="cssCode"></div>
-        </fieldset>
+        <aside class="controls">
+            <h3>Basic</h3>
+            <div class="group">
+                <label>Exposure <span id="exposureVal" class="value">0</span></label>
+                <input type="range" id="exposure" min="-100" max="100" value="0">
+
+                <label>Contrast <span id="contrastVal" class="value">100%</span></label>
+                <input type="range" id="contrast" min="0" max="200" value="100">
+
+                <label>Saturation <span id="saturateVal" class="value">100%</span></label>
+                <input type="range" id="saturate" min="0" max="300" value="100">
+
+                <label>Brightness <span id="brightnessVal" class="value">100%</span></label>
+                <input type="range" id="brightness" min="0" max="300" value="100">
+            </div>
+
+            <h3>Color</h3>
+            <div class="group">
+                <label>Warmth <span id="warmthVal" class="value">0</span></label>
+                <input type="range" id="warmth" min="-100" max="100" value="0">
+
+                <label>Hue <span id="hueVal" class="value">0°</span></label>
+                <input type="range" id="hue-rotate" min="0" max="360" value="0">
+
+                <label>Tint <span id="tintVal" class="value">0</span></label>
+                <input type="range" id="tint" min="-100" max="100" value="0">
+            </div>
+
+            <h3>Effects</h3>
+            <div class="group">
+                <label>Sharpen <span id="sharpenVal" class="value">0</span></label>
+                <input type="range" id="sharpen" min="0" max="100" value="0">
+
+                <label>Vignette <span id="vignetteVal" class="value">0</span></label>
+                <input type="range" id="vignette" min="0" max="100" value="0">
+
+                <label>Grain <span id="grainVal" class="value">0</span></label>
+                <input type="range" id="grain" min="0" max="100" value="0">
+
+                <label>Blur <span id="blurVal" class="value">0px</span></label>
+                <input type="range" id="blur" min="0" max="20" value="0">
+            </div>
+
+            <h3>Transform</h3>
+            <div class="group">
+                <div class="row">
+                    <button class="btn" id="rotateLeft">⟲</button>
+                    <button class="btn" id="rotateRight">⟲</button>
+                    <button class="btn" id="flipH">Flip H</button>
+                    <button class="btn" id="flipV">Flip V</button>
+                </div>
+
+                <label>Zoom <span id="zoomValRight" class="value">100%</span></label>
+                <input type="range" id="zoom" min="10" max="300" value="100">
+            </div>
+
+        </aside>
     </div>
-    
-    <button id="downloadBtn">Download Filtered Image</button>
 
     <script>
+        // Elements
         const upload = document.getElementById('upload');
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        const htmlCodeDiv = document.getElementById('htmlCode');
         const cssCodeDiv = document.getElementById('cssCode');
-        
-        // Filter Controls
-        const brightness = document.getElementById('brightness');
-        const grayscale = document.getElementById('grayscale');
-        const blur = document.getElementById('blur');
+
+        // Buttons & controls
+        const downloadBtn = document.getElementById('downloadBtn');
+        const undoBtn = document.getElementById('undoBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const compareOriginal = document.getElementById('compareOriginal');
+
+        // Basic
+        const exposure = document.getElementById('exposure');
         const contrast = document.getElementById('contrast');
-        const hueRotate = document.getElementById('hue-rotate');
-        const invert = document.getElementById('invert');
-        const opacity = document.getElementById('opacity');
         const saturate = document.getElementById('saturate');
-        const sepia = document.getElementById('sepia');
-        
-        const filterControls = [
-            brightness, grayscale, blur, contrast, hueRotate, invert, opacity, saturate, sepia
+        const brightness = document.getElementById('brightness');
+
+        // Color
+        const warmth = document.getElementById('warmth');
+        const hueRotate = document.getElementById('hue-rotate');
+        const tint = document.getElementById('tint');
+
+        // Effects
+        const sharpen = document.getElementById('sharpen');
+        const vignette = document.getElementById('vignette');
+        const grain = document.getElementById('grain');
+        const blur = document.getElementById('blur');
+
+        // Transform
+        const rotateLeft = document.getElementById('rotateLeft');
+        const rotateRight = document.getElementById('rotateRight');
+        const flipH = document.getElementById('flipH');
+        const flipV = document.getElementById('flipV');
+        const zoom = document.getElementById('zoom');
+
+        // UI value displays
+        const exposureVal = document.getElementById('exposureVal');
+        const contrastVal = document.getElementById('contrastVal');
+        const saturateVal = document.getElementById('saturateVal');
+        const brightnessVal = document.getElementById('brightnessVal');
+        const warmthVal = document.getElementById('warmthVal');
+        const hueVal = document.getElementById('hueVal');
+        const tintVal = document.getElementById('tintVal');
+        const sharpenVal = document.getElementById('sharpenVal');
+        const vignetteVal = document.getElementById('vignetteVal');
+        const grainVal = document.getElementById('grainVal');
+        const blurVal = document.getElementById('blurVal');
+        const zoomVal = document.getElementById('zoomVal');
+        const zoomValRight = document.getElementById('zoomValRight');
+        const rotateVal = document.getElementById('rotateVal');
+
+        // Presets
+        document.getElementById('preset-auto').addEventListener('click',()=>applyPreset('auto'))
+        document.getElementById('preset-vintage').addEventListener('click',()=>applyPreset('vintage'))
+        document.getElementById('preset-bw').addEventListener('click',()=>applyPreset('bw'))
+
+        // State
+        let img = new Image();
+        let originalImageDataURL = '';
+        let transform = { rotate:0, flipH:false, flipV:false, scale:1 };
+
+        // History (store parameter snapshots)
+        const history = [];
+        let historyPos = -1;
+
+        // Default params
+        const params = {
+            exposure:0, contrast:100, saturate:100, brightness:100,
+            warmth:0, hue:0, tint:0,
+            sharpen:0, vignette:0, grain:0, blur:0
+        };
+
+        // Load file
+        upload.addEventListener('change', (e)=>{
+            const f = e.target.files[0];
+            if(!f)return;
+            const reader = new FileReader();
+            reader.onload = (ev)=>{
+                img = new Image();
+                img.onload = ()=>{
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
+                    originalImageDataURL = img.src;
+                    transform = {rotate:0,flipH:false,flipV:false,scale:1};
+                    pushHistory();
+                    drawImage();
+                };
+                img.src = ev.target.result;
+            }
+            reader.readAsDataURL(f);
+        });
+
+        // Utility: update UI numbers
+        function updateUI(){
+            exposureVal.textContent = params.exposure;
+            contrastVal.textContent = params.contrast+"%";
+            saturateVal.textContent = params.saturate+"%";
+            brightnessVal.textContent = params.brightness+"%";
+            warmthVal.textContent = params.warmth;
+            hueVal.textContent = params.hue+"°";
+            tintVal.textContent = params.tint;
+            sharpenVal.textContent = params.sharpen;
+            vignetteVal.textContent = params.vignette;
+            grainVal.textContent = params.grain;
+            blurVal.textContent = params.blur+"px";
+            zoomVal.textContent = Math.round(transform.scale*100)+"%";
+            zoomValRight.textContent = Math.round(transform.scale*100)+"%";
+            rotateVal.textContent = transform.rotate+"°";
+        }
+
+        // Hook sliders
+        const sliders = [
+            {el:exposure, key:'exposure'},
+            {el:contrast, key:'contrast'},
+            {el:saturate, key:'saturate'},
+            {el:brightness, key:'brightness'},
+            {el:warmth, key:'warmth'},
+            {el:hueRotate, key:'hue'},
+            {el:tint, key:'tint'},
+            {el:sharpen, key:'sharpen'},
+            {el:vignette, key:'vignette'},
+            {el:grain, key:'grain'},
+            {el:blur, key:'blur'},
+            {el:zoom, key:'zoom'}
         ];
 
-        let img = new Image();
-        let imageFileName = '';
-
-        upload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                imageFileName = file.name;
-                const reader = new FileReader();
-                reader.onload = function (evt) {
-                    img.src = evt.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
+        sliders.forEach(s=>{
+            if(!s.el) return;
+            s.el.addEventListener('input',(e)=>{
+                if(s.key==='zoom'){
+                    transform.scale = (Number(e.target.value))/100;
+                } else if(s.key==='hue'){
+                    params.hue = Number(e.target.value);
+                } else if(s.key==='zoom'){
+                    // handled
+                } else {
+                    params[s.key] = Number(e.target.value);
+                }
+                updateUI();
+                drawImage();
+            });
+            // push history on change (when user releases)
+            s.el.addEventListener('change', ()=>{ pushHistory(); });
         });
 
-        img.onload = function () {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            canvas.style.width = '500px'; 
-            canvas.style.height = '305px';
-            drawImage();
-        };
-        
-        // Function to update the HTML and CSS code blocks
-        function updateCodeDisplay(filterString) {
-            // HTML Simulation
-            htmlCodeDiv.innerHTML = `<span class="code-title">&lt;!-- Your image element --&gt;</span>\n&lt;img src="${imageFileName || 'path/to/image.jpg'}" class="filtered-img" /&gt;`;
+        // Transform buttons
+        rotateLeft.addEventListener('click',()=>{ transform.rotate = (transform.rotate-90)%360; updateUI(); pushHistory(); drawImage(); });
+        rotateRight.addEventListener('click',()=>{ transform.rotate = (transform.rotate+90)%360; updateUI(); pushHistory(); drawImage(); });
+        flipH.addEventListener('click',()=>{ transform.flipH = !transform.flipH; pushHistory(); drawImage(); updateUI(); });
+        flipV.addEventListener('click',()=>{ transform.flipV = !transform.flipV; pushHistory(); drawImage(); updateUI(); });
 
-            // CSS Code
-            cssCodeDiv.innerHTML = `<span class="code-title">.filtered-img {</span>\n  filter: ${filterString.trim().replace(/\s+/g, ' ')};\n}`;
+        // Undo / Reset
+        undoBtn.addEventListener('click', undo);
+        resetBtn.addEventListener('click', ()=>{ resetAll(); pushHistory(); drawImage(); });
+        document.addEventListener('keydown',(e)=>{ if((e.ctrlKey || e.metaKey) && e.key === 'z'){ e.preventDefault(); undo(); } if(e.key === 'r'){ resetAll(); pushHistory(); drawImage(); } });
+
+        // Compare original
+        compareOriginal.addEventListener('change', ()=>{ drawImage(); });
+
+        // Presets
+        function applyPreset(name){
+            if(name==='auto'){
+                params.exposure = 6; params.contrast = 110; params.saturate = 115; params.brightness = 105; params.warmth = 6; params.vignette = 6; params.sharpen = 8;
+            } else if(name==='vintage'){
+                params.exposure = -4; params.contrast = 95; params.saturate = 85; params.brightness = 98; params.warmth = 18; params.tint = 10; params.vignette = 14; params.grain = 18;
+            } else if(name==='bw'){
+                params.exposure = 0; params.contrast = 120; params.saturate = 0; params.brightness = 100; params.sharpen = 6; params.vignette = 8;
+            }
+            // Update sliders visually
+            for(const s of sliders){ if(!s.el) continue; if(s.key==='hue'){ s.el.value = params.hue; } else if(s.key!=='zoom') { s.el.value = params[s.key] ?? s.el.value; } }
+            updateUI(); pushHistory(); drawImage();
         }
 
-        function drawImage() {
-            if (!img.src) {
-                // Initial state or no image loaded
-                const defaultFilter = 'none';
-                updateCodeDisplay(defaultFilter);
-                return;
-            }
-            
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Build the complete CSS filter string
-            const filterString = `
-                brightness(${brightness.value}%)
-                grayscale(${grayscale.value}%)
-                blur(${blur.value}px)
-                contrast(${contrast.value}%)
-                hue-rotate(${hueRotate.value}deg)
-                invert(${invert.value}%)
-                opacity(${opacity.value}%)
-                saturate(${saturate.value}%)
-                sepia(${sepia.value}%)
-            `;
-
-            ctx.filter = filterString;
-
-            // Draw the filtered image
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            
-            // Update the live code display
-            updateCodeDisplay(filterString);
+        // Push history snapshot
+        function pushHistory(){
+            const snapshot = { params: JSON.parse(JSON.stringify(params)), transform: {...transform} };
+            // truncate forward history if any
+            history.splice(historyPos+1);
+            history.push(snapshot);
+            historyPos = history.length-1;
+            // limit
+            if(history.length>30) history.shift(); if(historyPos>history.length-1) historyPos = history.length-1;
         }
 
-        // Update canvas and code display when *any* filter changes
-        filterControls.forEach(input => {
-            if (input) {
-                input.addEventListener('input', drawImage);
+        function undo(){
+            if(historyPos>0){ historyPos--; const s = history[historyPos]; Object.assign(params,s.params); Object.assign(transform,s.transform); // update sliders
+                for(const s2 of sliders){ if(!s2.el) continue; if(s2.key==='hue'){ s2.el.value = params.hue; } else if(s2.key!=='zoom'){ s2.el.value = params[s2.key] ?? s2.el.value; } }
+                if(document.getElementById('zoom')) document.getElementById('zoom').value = Math.round(transform.scale*100);
+                updateUI(); drawImage(); }
+        }
+
+        function resetAll(){
+            Object.assign(params,{exposure:0, contrast:100, saturate:100, brightness:100, warmth:0, hue:0, tint:0, sharpen:0, vignette:0, grain:0, blur:0});
+            transform = {rotate:0,flipH:false,flipV:false,scale:1};
+            // reset sliders
+            for(const s of sliders){ if(!s.el) continue; if(s.key==='zoom'){ s.el.value = 100; } else if(s.key==='hue'){ s.el.value = 0; } else { s.el.value = params[s.key] ?? s.el.value; } }
+            updateUI();
+        }
+
+        // Main draw pipeline
+        function drawImage(){
+            if(!img || !img.src) return;
+            // Prepare offscreen canvas same size as image
+            const off = document.createElement('canvas');
+            off.width = img.naturalWidth; off.height = img.naturalHeight;
+            const offCtx = off.getContext('2d');
+
+            // Build CSS filters for properties that can use ctx.filter
+            const cssFilter = `brightness(${params.brightness}%) contrast(${params.contrast}%) saturate(${params.saturate}%) hue-rotate(${params.hue}deg) blur(${params.blur}px)`;
+            offCtx.filter = cssFilter;
+            offCtx.drawImage(img,0,0,off.width,off.height);
+
+            // Pixel operations: warmth, tint, sharpen
+            let imgData = offCtx.getImageData(0,0,off.width,off.height);
+            if(params.warmth !== 0 || params.tint !== 0){ warmTintAdjust(imgData, params.warmth, params.tint); offCtx.putImageData(imgData,0,0); imgData = offCtx.getImageData(0,0,off.width,off.height);} 
+            if(params.sharpen > 0){ imgData = sharpenImage(imgData, params.sharpen); offCtx.putImageData(imgData,0,0); }
+
+            // Now render to visible canvas with transform and overlays
+            ctx.save();
+            // Resize canvas display size to match natural scaled by transform.scale but keep pixel size for download
+            canvas.width = off.width;
+            canvas.height = off.height;
+
+            // Clear
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            // Apply transforms: center, rotate, flip, scale
+            ctx.translate(canvas.width/2, canvas.height/2);
+            ctx.rotate(transform.rotate * Math.PI/180);
+            ctx.scale(transform.flipH ? -transform.scale : transform.scale, transform.flipV ? -transform.scale : transform.scale);
+            ctx.drawImage(off, -off.width/2, -off.height/2);
+            ctx.restore();
+
+            // Vignette
+            if(params.vignette>0){ applyVignette(params.vignette); }
+            // Grain
+            if(params.grain>0){ applyGrain(params.grain); }
+
+            // If compare original toggled, draw original (no filters) on top with 50% width or simply show original as overlay
+            if(compareOriginal.checked){ ctx.save(); ctx.globalAlpha=0.98; ctx.drawImage(img,0,0,canvas.width/2,canvas.height); ctx.restore(); }
+
+            // Update live CSS text
+            cssCodeDiv.textContent = `filter: ${cssFilter}${params.sharpen>0? ' /* +sharpen */':''}${params.vignette? ' /* +vignette */':''}`;
+        }
+
+        // Warmth and tint color shift
+        function warmTintAdjust(imageData, warmthAmt, tintAmt){
+            const d = imageData.data; const n = d.length;
+            // warmthAmt in [-100,100], map to channel scaling
+            const w = warmthAmt/100; const t = tintAmt/100;
+            for(let i=0;i<n;i+=4){
+                let r = d[i], g = d[i+1], b = d[i+2];
+                // warmth: increase red+green, reduce blue for positive warmth
+                r = clamp(r + w*40);
+                g = clamp(g + w*18);
+                b = clamp(b - w*30);
+                // tint: push magenta (reduce green) or green
+                r = clamp(r + t*8);
+                g = clamp(g - t*12);
+                d[i]=r; d[i+1]=g; d[i+2]=b;
             }
+        }
+
+        // Simple sharpen via a 3x3 kernel, amount 0-100
+        function sharpenImage(imageData, amount){
+            const w = imageData.width, h = imageData.height;
+            const src = imageData.data;
+            const dst = new Uint8ClampedArray(src.length);
+            // kernel base
+            const k0 = -1, k1 = -1, k2 = -1, kCenter = 9;
+            const strength = amount/25; // scale
+            for(let y=0;y<h;y++){
+                for(let x=0;x<w;x++){
+                    for(let c=0;c<3;c++){
+                        const i = (y*w + x)*4 + c;
+                        // sample surrounding
+                        const top = (Math.max(y-1,0)*w + x)*4 + c;
+                        const bottom = (Math.min(y+1,h-1)*w + x)*4 + c;
+                        const left = (y*w + Math.max(x-1,0))*4 + c;
+                        const right = (y*w + Math.min(x+1,w-1))*4 + c;
+                        const topLeft = (Math.max(y-1,0)*w + Math.max(x-1,0))*4 + c;
+                        const topRight = (Math.max(y-1,0)*w + Math.min(x+1,w-1))*4 + c;
+                        const bottomLeft = (Math.min(y+1,h-1)*w + Math.max(x-1,0))*4 + c;
+                        const bottomRight = (Math.min(y+1,h-1)*w + Math.min(x+1,w-1))*4 + c;
+                        const center = src[i];
+                        const neigh = (src[top]+src[bottom]+src[left]+src[right]+src[topLeft]+src[topRight]+src[bottomLeft]+src[bottomRight])/8;
+                        const val = clamp(center*(1+strength) - neigh*(strength));
+                        dst[i] = val;
+                    }
+                    dst[(y*w + x)*4 + 3] = src[(y*w + x)*4 + 3];
+                }
+            }
+            const out = new ImageData(dst, w, h);
+            return out;
+        }
+
+        function applyVignette(strength){
+            const w = canvas.width, h = canvas.height; 
+            const gx = ctx.createRadialGradient(w/2,h/2,Math.min(w,h)/4, w/2,h/2, Math.max(w,h)/1.2);
+            const alpha = (strength/100)*0.9;
+            gx.addColorStop(0, 'rgba(0,0,0,0)');
+            gx.addColorStop(1, `rgba(2,6,10,${alpha})`);
+            ctx.save();
+            ctx.globalCompositeOperation = 'multiply';
+            ctx.fillStyle = gx;
+            ctx.fillRect(0,0,w,h);
+            ctx.restore();
+        }
+
+        function applyGrain(amount){
+            const w = canvas.width, h = canvas.height;
+            const gcanvas = document.createElement('canvas'); gcanvas.width = w; gcanvas.height = h;
+            const gctx = gcanvas.getContext('2d');
+            const imgd = gctx.createImageData(w,h);
+            const d = imgd.data;
+            const strength = amount/100;
+            for(let i=0;i<d.length;i+=4){
+                const v = (Math.random()*255 - 128)*strength + 127; // subtle
+                d[i]=d[i+1]=d[i+2]=v;
+                d[i+3]=Math.round(30*strength);
+            }
+            gctx.putImageData(imgd,0,0);
+            ctx.save(); ctx.globalAlpha = 0.08 * strength; ctx.drawImage(gcanvas,0,0); ctx.restore();
+        }
+
+        function clamp(v){ return Math.max(0, Math.min(255, Math.round(v))); }
+
+        // Download
+        downloadBtn.addEventListener('click', ()=>{
+            const link = document.createElement('a'); link.download = 'edited.png'; link.href = canvas.toDataURL('image/png'); link.click();
         });
 
-        // Initialize code display on load
-        drawImage();
+        // Initial UI update
+        updateUI();
 
-        // Download filtered image
-        document.getElementById('downloadBtn').addEventListener('click', function () {
-            const link = document.createElement('a');
-            link.download = 'filtered-image.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        });
+        // Small UX: attach default event triggers to draw even before file is replaced
+        // If user toggles controls with no image, we simply do nothing until an image is loaded.
     </script>
 
 </body>

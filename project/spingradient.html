@@ -5,34 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <style>
+    :root{
+      --bg-dark: #020203;
+      --panel-size: 460px;
+      --gap: 28px;
+      --speed-1: 0.5s;
+      --speed-2: 7.1s;
+    }
+
     body{
         display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at 10% 10%, rgba(255,80,180,0.03), transparent 10%), linear-gradient(180deg,#000 0%, #05050a 100%);
+        color: #fff;
+        min-height: 100vh;
+        padding: 48px 18px;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    .wrap{
+      width: 92%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+    }
+
+    header{
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    header h1{ margin:0; font-size:1.35rem; letter-spacing:-0.2px }
+    header p{ margin:4px 0 0; opacity:0.8; font-size:0.95rem; color:#dcdcdc }
+
+    .shapes {
+        display: flex;
+        gap: var(--gap);
         align-items: center;
         justify-content: center;
-        background-color: black;
+        width: 100%;
     }
-    div{
-        align-self: center;
-        width: 500px;
-        height: 500px;
-        border: 1px solid black;
+
+    .card {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+
+    .shape {
+        position: relative;
+        width: var(--panel-size);
+        height: var(--panel-size);
         border-radius: 50%;
-        background: conic-gradient(at center, rgb(255, 0, 0),orange,yellow,green,blue,indigo,violet,red);
-transition: 0.5s linear;
-animation: spinn 1s linear infinite;
-/* animation-direction: alternate; */
+        overflow: hidden;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.7), inset 0 -20px 60px rgba(0,0,0,0.25);
+        flex-shrink: 0;
+        cursor: default;
+        transform: translateZ(0);
     }
-    div:hover{
-        transform: scale(1.2);
-    } 
-    @keyframes spinn{
-        from{transform: rotate(0deg);}
-        to{transform: rotate(360deg);}
+
+    /* spinning gradient + soft ring */
+    .shape .core{
+      position: absolute; inset:0; border-radius:inherit;
+      background: conic-gradient(from 0deg at 50% 50%, #ff0033, #ff8a00, #ffd600, #2ecc71, #3498db, #6f42c1, #ff0033);
+      animation: spin var(--speed-1) linear infinite;
+      will-change: transform;
+      z-index:1;
+    }
+
+    /* glow ring using pseudo-element */
+    .shape::after{
+      content:''; position:absolute; inset:-6px; border-radius:inherit; z-index:0;
+      background: conic-gradient(120deg, rgba(255,255,255,0.06), rgba(255,255,255,0.00)); filter: blur(10px); opacity:0.55;
+      pointer-events:none;
+    }
+
+
+
+    /* second spinner style */
+    .shape.second .core{ animation-duration: var(--speed-2); filter: hue-rotate(40deg) saturate(1.05) contrast(1.02); }
+
+    /* subtle tilt effect on hover */
+    .shape:hover{ transform: translateY(-6px) scale(1.02); transition: transform 260ms cubic-bezier(.2,.9,.2,1); }
+
+    /* captions */
+    .caption{ font-size:0.9rem; color: rgba(255,255,255,0.9); padding:6px 12px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+
+    @keyframes spin{ from{ transform: rotate(0deg) } to{ transform: rotate(360deg) } }
+
+    /* responsive */
+    @media (max-width:960px){
+      :root{ --panel-size: 360px }
+    }
+    @media (max-width:680px){
+      :root{ --panel-size: 82vw }
+      .shapes{ flex-direction: column; gap:18px }
     }
 </style>
 
 </head>
 <body>
-    <div></div>
+  <div class="wrap">
+    <header>
+      <h1>Spinning Gradient Duo</h1>
+    </header>
+
+    <div class="shapes">
+      <div class="card">
+        <div class="shape first">
+          <div class="core"></div>
+        </div>
+        <div class="caption">Speed: fast • direction: normal</div>
+      </div>
+
+      <div class="card">
+        <div class="shape second">
+          <div class="core"></div>
+        </div>
+        <div class="caption">Speed: slow • direction: normal</div>
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>
