@@ -1,114 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mouse Run Button</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            background-color: pink;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: row;
-            padding: 0;
-            text-align: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouse Run Button</title>
 
-        .title {
-            justify-self: center;
-            top: 50%;
-            right: 40%;
-            text-align: center;
-            font-size: 4rem;
-            color: #ff0080;
-            animation: glow 1s ease infinite;
-            animation-direction: alternate;
-        }
-        @keyframes glow{
-           to{
-            
-                font-size: 5rem;
-            
-           }
-        }
+<style>
+*{
+    box-sizing: border-box;
+}
 
-        .run-btn {
-            position: absolute;
-            padding: 12px 25px;
-            font-size: 3rem;
-            left: 40%;
-            top: 60%;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s ease;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-        }
+body {
+    margin: 0;
+    background-color: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    text-align: center;
+}
 
-        #btn-yes {
-            position: absolute;
-            padding: 12px 25px;
-            font-size: 3rem;
-            left: 50%;
-            top: 60%;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-        }
+/* Title */
+.title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #ff0080;
+    animation: glow 1s ease infinite alternate;
+    margin-bottom: 40px;
+}
 
-        .run-btn:hover {
-            transform: scale(1.1);
-        }
-        @media only screen and (max-width: 768px) {
-         #btn-yes {top: 70%;}
-           .run-btn{top: 70%; left: 20%;}
- }
-    </style>
+@keyframes glow {
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* Buttons */
+button {
+    padding: 12px 24px;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* YES button */
+#btn-yes {
+    background: #28a745;
+    margin-top: 20px;
+}
+
+/* NO button */
+.run-btn {
+    background: #007bff;
+    position: absolute;
+}
+
+/* Hover effect (desktop only) */
+@media (hover:hover) {
+    .run-btn:hover {
+        transform: scale(1.1);
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <h2 class="title">Do You Love Me?❤</h2>
-    <button id="btn" class="run-btn">NO</button>
-    <button id="btn-yes" class="btn"
-     onclick="alert('Thank You For Loving Me🥰😍')">YES</button>
+<h2 class="title">Do You Love Me? ❤️</h2>
 
-    <script>
-    const btn = document.getElementById("btn");
+<button id="btn" class="run-btn">NO</button>
 
-    function moveButton() {
-        let maxX = window.innerWidth - btn.offsetWidth;
-        let maxY = window.innerHeight - btn.offsetHeight;
+<button id="btn-yes"
+onclick="alert('Thank You For Loving Me 🥰')">YES</button>
 
-        let newX = Math.random() * maxX;
-        let newY = Math.random() * maxY;
+<script>
+const btn = document.getElementById("btn");
 
-        btn.style.left = newX + "px";
-        btn.style.top = newY + "px";
-    }
+function moveButton() {
+    const padding = 20;
 
-    // Desktop hover
-    btn.addEventListener("mouseover", moveButton);
+    const maxX = window.innerWidth - btn.offsetWidth - padding;
+    const maxY = window.innerHeight - btn.offsetHeight - padding;
 
-    // Desktop click
-    btn.addEventListener("click", moveButton);
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
 
-    // Mobile touch
-    btn.addEventListener("touchstart", moveButton);
+    btn.style.left = newX + "px";
+    btn.style.top = newY + "px";
+}
+
+// Desktop
+btn.addEventListener("mouseover", moveButton);
+btn.addEventListener("click", moveButton);
+
+// Mobile
+btn.addEventListener("touchstart", moveButton);
 </script>
 
 </body>
-
 </html>

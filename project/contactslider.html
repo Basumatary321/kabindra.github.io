@@ -1,88 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phone Number Slider</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    .output {
-      font-size: 1.5rem;
-      margin-top: 10px;
-      color: #333;
-    }
-    input[type="range"] {
-      width: 100%;
-      margin: 20px 0;
-    }
-    .buttons {
-      margin-top: 10px;display: none;
-    }
-    .buttons button {
-      font-size: 1rem;
-      padding: 10px 15px;
-      margin: 5px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Number Slider</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #ffffff;
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.output {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    margin-top: 15px;
+    text-align: center;
+}
+
+#phoneNumber {
+    display: inline-block;
+    margin-top: 5px;
+    color: red;
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 6px 10px;
+    border-radius: 6px;
+    word-break: break-all;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 25px 0;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.buttons button {
+    font-size: 0.9rem;
+    padding: 10px;
+    cursor: pointer;
+}
+</style>
 </head>
+
 <body>
-  <h1>Phone Number Slider</h1>
-  <label for="phoneSlider">Adjust the slider to set your phone number:</label>
-  <input 
-    type="range" 
-    id="phoneSlider" 
-    min="4000000000" 
-    max="9999999999" 
-    value="7000000000" 
-    step="1" 
-    oninput="updatePhoneNumber(this.value)">
-  <div class="output">
-    Selected Phone Number: <span id="phoneNumber" style="color: red;font-weight: bold;
-    border: 1px solid black;padding: 5px;border-radius: 5px;
-    ">+91 0123456789</span>
-  </div>
 
-  <div class="buttons">
-    <!-- Buttons for smooth increment/decrement -->
-    <button onclick="adjustRange(-1)">Decrease (-1)</button>
-    <button onclick="adjustRange(1)">Increase (+1)</button>
-    
-    <!-- Buttons for large adjustments -->
-    <button onclick="adjustRange(-100)">Decrease (-100)</button>
-    <button onclick="adjustRange(100)">Increase (+100)</button>
-    
-    <button onclick="adjustRange(-500)">Decrease (-500)</button>
-    <button onclick="adjustRange(500)">Increase (+500)</button>
-    
-    <button onclick="adjustRange(-1000)">Decrease (-1000)</button>
-    <button onclick="adjustRange(1000)">Increase (+1000)</button>
-  </div>
+<h1>Phone Number Slider</h1>
 
-  <script>
-    const slider = document.getElementById('phoneSlider');
-    const phoneNumberDisplay = document.getElementById('phoneNumber');
+<label for="phoneSlider">Adjust the slider to set your phone number:</label>
 
-    // Update the displayed phone number
-    function updatePhoneNumber(value) {
-      phoneNumberDisplay.textContent ="+91 "+ value;
-    }
+<input
+    type="range"
+    id="phoneSlider"
+    min="4000000000"
+    max="9999999999"
+    value="7000000000"
+    step="1">
 
-    // Adjust the range slider value using buttons
-    function adjustRange(step) {
-      let currentValue = parseInt(slider.value);
-      let newValue = currentValue + step;
+<div class="output">
+    Selected Phone Number:
+    <br>
+    <span id="phoneNumber">+91 7000000000</span>
+</div>
 
-      // Ensure the value stays within the defined range
-      if (newValue >= parseInt(slider.min) && newValue <= parseInt(slider.max)) {
-        slider.value = newValue;
-        updatePhoneNumber(newValue);
-      }
-    }
-  </script>
+<div class="buttons">
+    <button onclick="adjustRange(-1)">−1</button>
+    <button onclick="adjustRange(1)">+1</button>
+
+    <button onclick="adjustRange(-100)">−100</button>
+    <button onclick="adjustRange(100)">+100</button>
+
+    <button onclick="adjustRange(-500)">−500</button>
+    <button onclick="adjustRange(500)">+500</button>
+
+    <button onclick="adjustRange(-1000)">−1000</button>
+    <button onclick="adjustRange(1000)">+1000</button>
+</div>
+
+<script>
+const slider = document.getElementById("phoneSlider");
+const phoneNumberDisplay = document.getElementById("phoneNumber");
+
+function updatePhoneNumber(value) {
+    phoneNumberDisplay.textContent = "+91 " + value;
+}
+
+// Slider movement
+slider.addEventListener("input", () => {
+    updatePhoneNumber(slider.value);
+});
+
+// Button adjustments (safe BigInt handling)
+function adjustRange(step) {
+    let current = BigInt(slider.value);
+    let newValue = current + BigInt(step);
+
+    const min = BigInt(slider.min);
+    const max = BigInt(slider.max);
+
+    if (newValue < min) newValue = min;
+    if (newValue > max) newValue = max;
+
+    slider.value = newValue.toString();
+    updatePhoneNumber(slider.value);
+}
+
+// Initial value
+updatePhoneNumber(slider.value);
+</script>
+
 </body>
 </html>
