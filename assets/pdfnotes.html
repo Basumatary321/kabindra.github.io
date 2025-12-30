@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PDF Notes Sharing</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+    }
+
+    /* Layout */
+    .app {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 260px;
+        background: #0f172a;
+        color: white;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar h2 {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+    .note {
+        padding: 10px;
+        margin-bottom: 8px;
+        background: #1e293b;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .note:hover {
+        background: #334155;
+    }
+
+    /* Main */
+    .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Top bar */
+    .topbar {
+        background: #e6e20b8a;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .left-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .menu-btn {
+        display: none;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .topbar h3 {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .topbar a {
+        text-decoration: none;
+        background: #2563eb;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    iframe {
+        flex: 1;
+        width: 100%;
+        border: none;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            transform: translateX(-100%);
+            z-index: 1000;
+        }
+
+        .sidebar.show {
+            transform: translateX(0);
+        }
+
+        .menu-btn {
+            display: block;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <img src="../images/logo1.png"  height="50px">
+        <h2>📘 Notes</h2>
+
+        <div class="note" onclick="openPDF('Computer Fundamentals','1J9v6kAbM-5b_zs55dNyzhLwvbjpu9NU-')">
+            Computer Fundamentals
+        </div>
+
+        <div class="note" onclick="openPDF('HTML Notes','1xL4pI5nkCtGTm_5Izb_8y6_nfqOK12Tq')">
+            HTML Notes
+        </div>
+
+        <div class="note" onclick="openPDF('CSS Notes','1SPxPOJJaqpO_VhO7p4Wxi-S_cZvw5Wyg')">
+            CSS Notes
+        </div>
+        <div class="note" onclick="openPDF('CSS Notes','12u5wHu1lf9mS4mQ7C_4wxPvehhm3DI-3')">
+            Excel-1 Notes
+        </div>
+        <div class="note" onclick="openPDF('CSS Notes','12u5wHu1lf9mS4mQ7C_4wxPvehhm3DI-3')">
+            Excel-2 Notes
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="left-top">
+                <span class="menu-btn" onclick="toggleSidebar()">☰</span>
+                <h3 id="title">Select a note</h3>
+            </div>
+
+            <a id="download" href="#" target="_blank" style="display:none;">
+                ⬇ Download
+            </a>
+        </div>
+
+        <!-- Viewer -->
+        <iframe id="viewer"></iframe>
+
+    </div>
+
+</div>
+
+<script>
+    function openPDF(title, fileId) {
+        document.getElementById("title").textContent = title;
+
+        document.getElementById("viewer").src =
+            `https://drive.google.com/file/d/${fileId}/preview`;
+
+        const d = document.getElementById("download");
+        d.href = `https://drive.google.com/uc?export=download&id=${fileId}`;
+        d.style.display = "inline-block";
+
+        // close sidebar on mobile after click
+        document.getElementById("sidebar").classList.remove("show");
+    }
+
+    function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("show");
+    }
+</script>
+
+</body>
+</html>
