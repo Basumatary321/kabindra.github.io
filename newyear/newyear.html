@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 🎉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+body{
+    height:100vh;
+    background:linear-gradient(120deg,#0f2027,#203a43,#2c5364);
+    color:#fff;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.container{
+    z-index:2;
+    padding:20px;
+}
+h1{
+    font-size:3.2rem;
+    animation:glow 2s infinite alternate;
+}
+h2{
+    font-size:1.6rem;
+    margin:10px 0 20px;
+    opacity:.9;
+}
+p{
+    max-width:650px;
+    margin:auto;
+    font-size:1.1rem;
+    line-height:1.6;
+}
+
+/* Countdown */
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:25px 0;
+    flex-wrap:wrap;
+}
+.time-box{
+    background:rgba(255,255,255,.15);
+    padding:15px 20px;
+    border-radius:12px;
+    min-width:90px;
+}
+.time-box span{
+    font-size:2rem;
+    font-weight:bold;
+}
+.time-box small{
+    font-size:.9rem;
+    opacity:.8;
+}
+
+.btn{
+    margin-top:20px;
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    font-size:1.1rem;
+    background:#ffcc00;
+    color:#000;
+    cursor:pointer;
+    transition:.3s;
+}
+.btn:hover{
+    background:#fff;
+    transform:scale(1.05);
+}
+
+/* Confetti */
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    top:-10px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #ffcc00; }
+    to{ text-shadow:0 0 30px #ff6600; }
+}
+
+footer{
+    position:absolute;
+    bottom:15px;
+    font-size:.9rem;
+    opacity:.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 id="title">🎉 Happy New Year 🎉</h1>
+    <h2 id="subtitle">Countdown to a New Beginning</h2>
+
+    <div class="countdown" id="countdown">
+        <div class="time-box">
+            <span id="days">00</span>
+            <small>Days</small>
+        </div>
+        <div class="time-box">
+            <span id="hours">00</span>
+            <small>Hours</small>
+        </div>
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <small>Minutes</small>
+        </div>
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <small>Seconds</small>
+        </div>
+    </div>
+
+    <p id="message">
+        A fresh year is coming with new hopes, new goals, and new opportunities.
+        Let’s welcome it with positivity and dedication.
+    </p>
+
+    <button class="btn" onclick="showWish()">🎆 Surprise</button>
+</div>
+
+
+
+<script>
+function showWish(){
+    alert("✨ Wishing you success, happiness & growth in the coming year! ✨");
+}
+
+/* AUTO YEAR COUNTDOWN */
+const currentYear = new Date().getFullYear();
+const nextYear = currentYear + 1;
+const newYearDate = new Date(`January 1, ${nextYear} 00:00:00`).getTime();
+
+const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = newYearDate - now;
+
+    if(diff <= 0){
+        clearInterval(timer);
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("title").innerText = `🎉 Happy New Year ${nextYear} 🎉`;
+        document.getElementById("subtitle").innerText = "Welcome to a Brand New Year ✨";
+        document.getElementById("message").innerText =
+        `May ${nextYear} bring success, happiness, good health and endless learning opportunities. Keep growing and keep shining! 🌟`;
+        return;
+    }
+
+    document.getElementById("days").innerText =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("hours").innerText =
+        Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById("minutes").innerText =
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById("seconds").innerText =
+        Math.floor((diff % (1000 * 60)) / 1000);
+},1000);
+
+/* CONFETTI */
+const colors = ["#ffcc00","#ff4444","#44ff44","#44aaff","#ff66ff"];
+for(let i=0;i<120;i++){
+    const confetti=document.createElement("div");
+    confetti.className="confetti";
+    document.body.appendChild(confetti);
+
+    confetti.style.left=Math.random()*100+"vw";
+    confetti.style.background=colors[Math.floor(Math.random()*colors.length)];
+    confetti.style.animationDuration=(Math.random()*3+2)+"s";
+    confetti.style.opacity=Math.random();
+    confetti.style.width=confetti.style.height=(Math.random()*8+6)+"px";
+}
+</script>
+
+</body>
+</html>
