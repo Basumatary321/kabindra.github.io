@@ -3,130 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROJECTS GALLERY</title>
-    <link rel="stylesheet" href="project.css"> 
-    <style>
-         /* The container stays fixed on the screen */
-         .left {
-            position: fixed;
-            top: 10%;
-            left: 7%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            pointer-events: none; /* Allows clicking through the star to content below */
-        }
-        .right{
-            position: fixed;
-            top: 10%;
-            right: 0;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            pointer-events: none;
-        }
-        hr{height: 2px;border-radius: 50%;}
-        .star {
-            width: 100px;
-            height: 100px;
-            fill: gold;
-            filter: drop-shadow(0 0 10px rgba(238, 5, 5, 0.911));
-            /* smooth out the rotation slightly */
-            transition: transform 0.1s linear; 
-        }
-        @media(max-width: 768px){
-               .star{
-                width: 50px;height: 50px;
-               }
-        }
-    </style>
+    <title>Student Project Gallery</title>
+    <link rel="stylesheet" href="project.css">
 </head>
 <body>
-      <h1>STUDENT PROJECTS: HTML & CSS BASICS</h1>
 
-      <div class="star-wrapper left">
-        <svg id="star-svg" viewBox="0 0 100 100" class="star">
-            <polygon points="50,5 61,35 95,35 67,57 77,90 50,70 23,90 33,57 5,35 39,35" />
-        </svg>
-    </div>
-      <div class="star-wrapper right">
-        <svg id="star-svg2" viewBox="0 0 100 100" class="star">
-            <polygon points="50,5 61,35 95,35 67,57 77,90 50,70 23,90 33,57 5,35 39,35" />
-        </svg>
-    </div>
+    <div class="star-wrapper left"><svg id="star-svg" viewBox="0 0 100 100" class="star"><polygon points="50,5 61,35 95,35 67,57 77,90 50,70 23,90 33,57 5,35 39,35" /></svg></div>
+    <div class="star-wrapper right"><svg id="star-svg2" viewBox="0 0 100 100" class="star"><polygon points="50,5 61,35 95,35 67,57 77,90 50,70 23,90 33,57 5,35 39,35" /></svg></div>
 
-    <div id="htmlCssGrid" class="project-grid">  
-    
-        <table id="htmlCssTable">
-            <tr><td class="hidden-header">Description</td><td>Link</td><td>Type</td></tr>
-            <tr><td>Heading</td><td><a href="heading.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Paragraph</td><td><a href="paragraph.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Paragraph with css</td><td><a href="paragraph2.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>background image with html</td><td><a href="background.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>background image with CSS</td><td><a href="backgroundimagecss.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>background image with CSS2</td><td><a href="backgroundcss2.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Horizontal line tag</td><td><a href="horizontal.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Font tag</td><td><a href="font.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Unordered List</td><td><a href="unorderedlist.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Unordered List with css</td><td><a href="unorderlist2.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Ordered List</td><td><a href="orderedlist.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Ordered List with css</td><td><a href="orderlist2.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Difinition List</td><td><a href="difinitionlist.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Colspan and Rowspan </td><td><a href="colrowspan.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Image Gallary </td><td><a href="imagegallary.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Border CSS</td><td><a href="cssborder.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Border top/buttom/right/left </td><td><a href="cssborder2.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Border radius </td><td><a href="radius.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Margin And Padding</td><td><a href="marginandpadding.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Box Shadow CSS</td><td><a href="shadow_css.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>students profile CSS</td><td><a href="studentprocss.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Iframe PROJECTS</td><td><a href="home.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Iframe PROJECTS with CSS</td><td><a href="home2.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Anchor tag project</td><td><a href="index.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Anchor tag project with css</td><td><a href="anchortagpro.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Linear Gradient css</td><td><a href="lineargradient.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Radial Gradient Css</td><td><a href="radialgradient.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Conic Gradient Css</td><td><a href="conicgradient.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Pseudo-Classes</td><td><a href="pseudo.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Ball Animation with Marquee Tag</td><td><a href="ball.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Facebook Login Page</td><td><a href="facebook.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Tribute to APJ Abdul Kalam</td><td><a href="tribute.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Marquee with image scrolling </td><td><a href="marqueeimage.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Google with font tag </td><td><a href="fontgoogle.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Legend tag and fieldset form </td><td><a href="legend.html" target="_blank">Link</a><hr></td><td>HTML</td></tr>
-            <tr><td>Legend tag and fieldset form with css </td><td><a href="legendwithcss.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Hover task </td><td><a href="hovertask.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Hover task-2 </td><td><a href="hover.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-            <tr><td>Toggle Bar</td><td><a href="togle.html" target="_blank">Link</a><hr></td><td>HTML+CSS</td></tr>
-        </table>
-    </div>
+    <header>
+        <h1>Project Library</h1>
+        <p>Explore my journey through Web Development</p>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="HTML">HTML</button>
+            <button class="filter-btn" data-filter="CSS">CSS</button>
+            <button class="filter-btn" data-filter="JS">JavaScript</button>
+        </div>
+    </header>
 
-    <h1 align="center">STUDENT PROJECTS: JAVASCRIPT & ADVANCED CSS</h1>
-    
-    <div id="javascriptGrid" class="project-grid">
-        <table id="javascriptTable">
-            <tr><td class="hidden-header">Description</td><td>Link</td><td>Type</td></tr>
+    <div id="mainGrid" class="project-grid">
+        </div>
 
-            <tr><td>Login ID and Password-1</td><td><a href="loginwithjavascript1.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript</td></tr>
-            <tr><td>Login ID and Password-with css</td><td><a href="loginwithjavasript2.html" target="_blank">Link</a><hr></td><td>HTML+CSS+JavaScript</td></tr>
-            <tr><td>Login ID and Password-with css (advanced)</td><td><a href="loginwithjavasript2.html" target="_blank">Link</a><hr></td><td>HTML+CSS+JavaScript++</td></tr>
-            <tr><td>Random Number Guessing Game</td><td><a href="guess1.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript</td></tr>
-            <tr><td>Random Number Guessing Game Pro</td><td><a href="guess2.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript</td></tr>
-            <tr><td>Random Number Guessing Game Pro Max</td><td><a href="guess3.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Facebook with JavaScript </td><td><a href="facebook.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Do You Love Me??</td><td><a href="Do You Love me.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Contact Slider</td><td><a href="contactslider.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Contact Slider Pro</td><td><a href="contactsliderpro.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Font Size Increase slider</td><td><a href="fontsizeincrease.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Smokey Cursor</td><td><a href="smokycurson.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Neon Cursor</td><td><a href="neoncursor.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Filter image with css</td><td><a href="filterimage.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>BackgroundColor change on keydown</td><td><a href="onkeyupdown.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>BackgroundColor change on keydown pro</td><td><a href="changebackgroundonkeydown.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-            <tr><td>Reptile dragon</td><td><a href="reptile.html" target="_blank">Link</a><hr></td><td>HTML+JavaScript+CSS</td></tr>
-        </table>
-    </div>
-    <a href="../index.html">New project design</a>
+    <table id="htmlCssTable" style="display:none;">
+        <tr><td>Heading</td><td><a href="heading.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Paragraph</td><td><a href="paragraph.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Paragraph with CSS</td><td><a href="paragraph2.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Background Image (HTML)</td><td><a href="background.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Background Image with CSS</td><td><a href="backgroundimagecss.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Background Image with CSS 2</td><td><a href="backgroundcss2.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Horizontal Line</td><td><a href="horizontal.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Font Tag HTML</td><td><a href="font.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Unordered List</td><td><a href="unorderedlist.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Unordered List with CSS</td><td><a href="unorderlist2.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Ordered List</td><td><a href="orderedlist.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Ordered List with CSS</td><td><a href="orderlist2.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Definition List</td><td><a href="difinitionlist.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Col and Row Span</td><td><a href="colrowspan.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Image Gallery</td><td><a href="imagegallary.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>CSS Border</td><td><a href="cssborder.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>CSS Border Pro</td><td><a href="cssborder2.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Border Radius</td><td><a href="radius.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Margin and Padding</td><td><a href="marginandpadding.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Box Shadow</td><td><a href="shadow_css.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Student Profile CSS</td><td><a href="studentprocss.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Iframe Project</td><td><a href="home.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Iframe Project + CSS</td><td><a href="home2.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Anchor Tag Project</td><td><a href="anchortag.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Anchor Tag Project with CSS</td><td><a href="anchortagpro.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Linear Gradient</td><td><a href="lineargradient.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Radial Gradient</td><td><a href="radialgradient.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Conic Gradient</td><td><a href="conicgradient.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Pseudo Elements</td><td><a href="pseudo.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Ball Animation</td><td><a href="ball.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Facebook Login UI</td><td><a href="facebook.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Tribute to APJ Abdul Kalam</td><td><a href="tribute.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Marquee Image Scrolling</td><td><a href="marqueeimage.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Google with Font Tag</td><td><a href="fontgoogle.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Legend Project</td><td><a href="legend.html">Link</a></td><td>HTML</td></tr>
+        <tr><td>Legend Project with CSS</td><td><a href="legendwithcss.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Hover Task</td><td><a href="hovertask.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Hover Task 2</td><td><a href="hover.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Toggle Bar</td><td><a href="togle.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Gradient Spin</td><td><a href="spingradient.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Reflected Text</td><td><a href="textreflect2.html">Link</a></td><td>HTML+CSS</td></tr>
+        <tr><td>Reflected Text Two</td><td><a href="textreflectcss.html">Link</a></td><td>HTML+CSS</td></tr>
+    </table>
+
+    <table id="javascriptTable" style="display:none;">
+        <tr><td>Login JS</td><td><a href="loginwithjavascript1.html">Link</a></td><td>JS</td></tr>
+        <tr><td>Login JS with CSS</td><td><a href="loginwithjavasript2.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Guess Game</td><td><a href="guess1.html">Link</a></td><td>JS</td></tr>
+        <tr><td>Guess Game Pro</td><td><a href="guess2.html">Link</a></td><td>JS</td></tr>
+        <tr><td>Guess Game Pro Max</td><td><a href="guess3.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Facebook JS Login</td><td><a href="facebook.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Do You Love me?</td><td><a href="Do You Love me.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Contact Slider</td><td><a href="contactslider.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Contact Slider Pro</td><td><a href="contactsliderpro.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Font Size Slider</td><td><a href="fontsizeincrease.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Neon Cursor</td><td><a href="neoncursor.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Smokey Cursor</td><td><a href="smokycurson.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Filter Image</td><td><a href="filterimage.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>OnKey Up Down</td><td><a href="onkeyupdown.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>OnKey Up Down Pro</td><td><a href="changebackgroundonkeydown.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Keydown Background</td><td><a href="changebackgroundonkeydown.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Reptile Dragon</td><td><a href="reptile.html">Link</a></td><td>JS+CSS</td></tr>
+        <tr><td>Crazy Game</td><td><a href="crazygame.html">Link</a></td><td>JS+CSS</td></tr>
+    </table>
+
     <script src="project.js"></script>
-    <script src="spin.js"></script>
 </body>
-
 </html>

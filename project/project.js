@@ -1,109 +1,86 @@
-function createTagSpans(typeString) {
-    // Split the string by common separators (+, comma, or space)
-    const types = typeString.toUpperCase().split(/[+\s,]/g)
-                           .map(t => t.trim())
-                           .filter(t => t.length > 0)
-                           .map(t => t.replace(/\+\+$/, '')); // Remove trailing ++ from the advanced project
+ /**
+ * 1. Data Processing
+ */
+function initializeGallery() {
+    const mainGrid = document.getElementById('mainGrid');
+    const tables = ['htmlCssTable', 'javascriptTable'];
 
-    let tagsHtml = '';
-    
-    // Loop through each technology and create a span
-    types.forEach(tag => {
-        let tagClass = 'misc-tag'; // Default/Fallback class
-        let tagName = tag;
+    tables.forEach(tableId => {
+        const table = document.getElementById(tableId);
+        if (!table) return;
 
-        if (tag.includes('HTML')) {
-            tagClass = 'html-tag';
-            tagName = 'HTML';
-        } else if (tag.includes('CSS')) {
-            tagClass = 'css-tag';
-            tagName = 'CSS';
-        } else if (tag.includes('JAVASCRIPT') || tag.includes('JS')) {
-            tagClass = 'javascript-tag';
-            tagName = 'JS';
-        } 
-        
-        // Construct the HTML for the individual tag span
-        tagsHtml += `<span class="${tagClass}">${tagName}</span>`;
+        const rows = Array.from(table.querySelectorAll('tr'));
+        rows.forEach(row => {
+            const name = row.cells[0].textContent;
+            const link = row.cells[1].querySelector('a').href;
+            const rawType = row.cells[2].textContent.toUpperCase();
+
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            // Assign filtering classes
+            if (rawType.includes('HTML')) card.classList.add('cat-html');
+            if (rawType.includes('CSS')) card.classList.add('cat-css');
+            if (rawType.includes('JS') || rawType.includes('JAVASCRIPT')) card.classList.add('cat-js');
+
+            // Generate Tag HTML
+            const types = rawType.split(/[+\s,]/g).filter(t => t.length > 0);
+            let tagsHtml = '<div class="tag-box">';
+            types.forEach(t => {
+                let label = t === 'JAVASCRIPT' ? 'JS' : t;
+                let cls = `tag-${label.toLowerCase()}`;
+                tagsHtml += `<span class="tag ${cls}">${label}</span>`;
+            });
+            tagsHtml += '</div>';
+
+            card.innerHTML = `
+                <div class="card-title">${name}</div>
+                ${tagsHtml}
+                <a href="${link}" target="_blank" class="view-link">View Project</a>
+            `;
+            mainGrid.appendChild(card);
+        });
     });
-    
-    // Wrap the spans in the container div for alignment/spacing (using 'tag-box' class)
-    return `<div class="tag-box">${tagsHtml}</div>`;
 }
 
 /**
- * 1. Transform Table Rows to Grid Cards
+ * 2. Filtering Logic
  */
-function renderAsCards(tableId, gridId) {
-    const table = document.getElementById(tableId);
-    const grid = document.getElementById(gridId);
-    if (!table || !grid) return;
+function setupFilters() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
 
-    const rows = Array.from(table.querySelectorAll('tr:not(:first-child)'));
-    const fragment = document.createDocumentFragment();
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // UI Toggle
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-    rows.forEach(row => {
-        const description = row.cells[0].textContent.trim();
-        const linkHtml = row.cells[1].innerHTML.trim();
-        const type = row.cells[2].textContent.trim();
-        
-        // Generate the HTML with separate, styled spans
-        const tagsHtml = createTagSpans(type);
+            const filter = btn.getAttribute('data-filter').toLowerCase();
 
-        const card = document.createElement('div');
-        card.classList.add('project-card');
-
-        // Build the inner HTML for the card
-        card.innerHTML = `
-            <div class="description">${description}</div>
-            <div class="link-container">${linkHtml}</div>
-            <div class="type-container">${tagsHtml}</div>
-        `;
-
-        card._originalRow = row;
-        fragment.appendChild(card);
+            cards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'flex';
+                } else if (card.classList.contains(`cat-${filter}`)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     });
-
-    // Replace the original table content with the new card view
-    grid.innerHTML = '';
-    grid.appendChild(fragment);
-    // Hide the original table
-    table.style.display = 'none'; 
 }
 
 /**
- * 2. Sorting Logic (Retained)
+ * 3. Star Rotation
  */
-function sortCards(gridId) {
-    const grid = document.getElementById(gridId);
-    if (!grid) return;
+window.addEventListener('scroll', () => {
+    const val = window.scrollY * 0.3;
+    document.getElementById('star-svg').style.transform = `rotate(${val}deg)`;
+    document.getElementById('star-svg2').style.transform = `rotate(-${val}deg)`;
+});
 
-    const cards = Array.from(grid.querySelectorAll('.project-card')); 
-
-    cards.sort((cardA, cardB) => {
-        const descA = cardA.querySelector('.description').textContent.trim().toUpperCase();
-        const descB = cardB.querySelector('.description').textContent.trim().toUpperCase();
-
-        if (descA < descB) {
-            return -1;
-        }
-        if (descA > descB) {
-            return 1;
-        }
-        return 0;
-    });
-
-    cards.forEach(card => grid.appendChild(card));
-}
-
-
-// Execute both sorting and rendering functions on page load
 document.addEventListener('DOMContentLoaded', () => {
-    // Render them as cards
-    renderAsCards('htmlCssTable', 'htmlCssGrid');
-    renderAsCards('javascriptTable', 'javascriptGrid');
-    
-    // Re-run sort after rendering to handle the actual card elements
-    sortCards('htmlCssGrid');
-    sortCards('javascriptGrid');
+    initializeGallery();
+    setupFilters();
 });
