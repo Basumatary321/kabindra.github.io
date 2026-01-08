@@ -1,12 +1,20 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>computer notes</title>
+    <title>Student Practice Projects</title>
     <link rel="stylesheet" href="../style.css">
     <style>
+        body{
+            cursor: url("../../c2.png"),auto;
+            cursor: url("../../c2.png"),text;
+            cursor: url("../../c2.png"),pointer;
+            cursor: url("../../c2.png"),default;
+            cursor: url("../../c2.png"),hand;
+
+        }
         /* Ensuring the list looks clean when toggled */
         #excel,#cs {
             list-style-type: none;
@@ -26,6 +34,7 @@
             text-decoration: none;
             border-radius: 4px;
             cursor: pointer;
+            cursor: url("../../c2.png"),pointer;
             font-size: 16px;
         }
         .toggle-btn:hover {
@@ -39,6 +48,7 @@
         #cs li a{
             text-transform: capitalize;
         }
+        .opentab{cursor: pointer;cursor: url("../../c2.png"),pointer;}
         @media (max-width: 600px){
             .toggle-btn{font-size: 12px;}
         }
@@ -104,7 +114,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://drive.google.com/file/d/1bM8kqrbqZaUPRAIeDB2tle-GkQGyvwjm/preview">
+                    <a href="https://drive.google.com/file/d/1bM8kqrbqZaUPRAIeDB2tle-GkQGyvwjm/">
                         Tally Prime Notes PDF
                     </a>
                 </li>
@@ -275,8 +285,8 @@
             <div class="top-bar">
                 <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
                 <img src="../images/logo1.png" alt="" height="35px">
-                <span id="pageTitle">Select a Notes</span>
-                <button id="openTab">Open in New Tab</button>
+                <span id="pageTitle">Select  a Notes</span>
+                <button id="openTab" class="opentab">Open in New Tab</button>
             </div>
             <iframe id="viewer" name="display"></iframe>
         </main>
@@ -286,7 +296,7 @@
             <div class="quicklink" style="color: black;">
                 <strong>Quick link:</strong>
                 <a href="../index.html" target="_self" style="text-decoration: none;color: rgb(5, 209, 5);">|
-                    Web Projects</a>
+                    Projects</a>
                 <div class="quicklink">
                     <a href="project/allprojectsbackbone.html" style="text-decoration: none;color: rgb(250, 8, 68);">|
                         visit old version</a>
@@ -302,13 +312,4 @@
 
 </body>
 
-
 </html>
-
-
-
-
-
-
-
-
