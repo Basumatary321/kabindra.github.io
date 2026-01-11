@@ -38,6 +38,7 @@ color:#e6eef6;font-family:Arial,Segoe UI,sans-serif">
   <h2>📂 Project Structure</h2>
   <pre style="background:#031026;padding:12px;border-radius:10px;color:#cfeff8">
 /techno_it_web_projects
+├── assets/
 ├── images/
 ├── project/
 ├── index.html
