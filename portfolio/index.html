@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabindra | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+       /* --- Improved Project Grid --- */
+.project-grid {
+    display: grid;
+    /* This creates 4 columns on desktop by default */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent);
+}
+
+/* Image Container */
+.project-img {
+    width: 100%;
+    height: 180px;
+    background: #252a34;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-placeholder {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Info Container (Below Image) */
+.project-info {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.project-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-white);
+}
+
+.project-info p {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.view-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+.view-link:hover {
+    letter-spacing: 1px;
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Tablet Mode: 2 Projects per row */
+@media (max-width: 1024px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile Mode: 1 Project per row */
+@media (max-width: 600px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card {
+        max-width: 400px;
+        margin: 0 auto; /* Center cards on mobile */
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">K</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Kabindra</h1>
+            <div class="typewriter">
+        I am a <span class="typewriter-text"></span><span class="cursor">|</span>
+    </div>
+            <p class="description">
+                I have high level experience in web design,<br>
+                development knowledge and producing quality work
+            </p>
+            <a href="#about" class="btn-main">
+                <i class="fa-regular fa-user"></i> More About me!
+            </a>
+        </div>
+
+        <div class="hero-footer">
+            <div class="contact-item">
+                <i class="fab fa-facebook-messenger"></i>
+                <div><span>Messenger</span>
+                    <p>basumataryYkabind</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-whatsapp"></i>
+                <div><span>Whatsapp</span>
+                    <p>+91 6000537626</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fa-regular fa-envelope"></i>
+                <div><span>Email</span>
+                    <p>kabindrabasumatary123@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">My Intro</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>10+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-card">
+                <h3>60+</h3>
+                <p>Completed Projects</p>
+            </div>
+            <div class="stat-card">
+                <h3>24/7</h3>
+                <p>Support Online</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <h2 class="section-title">My Abilities</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-info"><span>HTML</span><span>90%</span></div>
+                <div class="progress-bg">
+                    <div class="progress-fill" data-width="90%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-info"><span>CSS</span><span>80%</span></div>
+                <div class="progress-bg">
+                    <div class="progress-fill" data-width="80%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-info"><span>Javascript</span><span>60%</span></div>
+                <div class="progress-bg">
+                    <div class="progress-fill" data-width="60%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-info"><span>SQL</span><span>50%</span></div>
+                <div class="progress-bg">
+                    <div class="progress-fill" data-width="50%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-info"><span>C/Phyton</span><span>50%</span></div>
+                <div class="progress-bg">
+                    <div class="progress-fill" data-width="50%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="work" class="container">
+        <h2 class="section-title">Recent Works</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <!-- <img src="../imageproject.jpg" alt="Project 1">  -->
+                    <div class="img-placeholder"><img src="../images/technodashboard.png" alt=""></div> </div>
+                <div class="project-info">
+                    <h3>Institute Management</h3>
+                    <p>Techno IT Dashboard is a modern institute management system designed to manage students, courses, attendance, and applications from a single admin panel. It features an interactive, responsive UI with real-time statistics, seat tracking, and application monitoring.</p>
+                    <a href="../images/technodashboard.png" class="view-link" target="_blank">View Demo</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <div class="img-placeholder"><img src="../images/portfolioposter.png" alt=""></div>
+                </div>
+                <div class="project-info">
+                    <h3>Portfolio Site</h3>
+                    <p>Personal Portfolio Website is a modern, dark-themed personal branding website designed to showcase my skills, projects, and professional profile</p>
+                    <a href="../images/portfolioposter.png" class="view-link" target="_blank">View Demo</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <div class="img-placeholder"><img src="../images/notesshare.png" alt=""></div>
+                </div>
+                <div class="project-info">
+                    <h3>Notes Sharing Page</h3>
+                    <p>Techno IT Notes Sharing Page is a web-based 
+                        learning resource platform designed to provide 
+                        students with easy access to computer course 
+                        notes in PDF format. It features organized 
+                        subject-wise navigation, an embedded PDF viewer,
+                         and responsive
+                         design for smooth reading across devices.</p>
+                    <a href="https://basumatary321.github.io/kabindra.github.io/assets/index.html" class="view-link" target="_blank">View Demo</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <div class="img-placeholder"><img src="../images/project.jpg" alt=""></div>
+                </div>
+                <div class="project-info">
+                    <h3>Practicle Project/Task</h3>
+                    <p>Analytical dashboard with complex data visualization.</p>
+                    <a href="https://basumatary321.github.io/kabindra.github.io/" class="view-link" target="_blank">View Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-flex">
+            <div>
+                <p>Feel free to reach out for collaborations or inquiries!</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <textarea rows="5" placeholder="Message"></textarea>
+                <button type="submit" class="btn-main">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>Kabindra_Basumatary. All rights reserved</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
