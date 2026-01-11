@@ -1,0 +1,98 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Image Gallery</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+}
+
+h2{
+    text-align:center;
+    padding:20px 0;
+}
+
+/* Gallery container */
+.gallery{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:15px;
+}
+
+/* Each image box */
+.gallery a{
+    display:block;
+    height:200px;        /* SAME HEIGHT */
+    border-radius:10px;
+    overflow:hidden;
+}
+
+/* Image */
+.gallery img{
+    width:100%;          /* SAME WIDTH */
+    height:100%;
+    object-fit:cover;
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.1);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .gallery{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h2>Image Gallery</h2>
+
+<div class="gallery">
+
+    <a href="../images/car.jpg" target="_blank">
+        <img src="../images/car.jpg">
+    </a>
+
+    <a href="../images/img1.jpg" target="_blank">
+        <img src="../images/img1.jpg">
+    </a>
+
+    <a href="../images/flower.jpg" target="_blank">
+        <img src="../images/flower.jpg">
+    </a>
+
+    <a href="../images/sunset.jpg" target="_blank">
+        <img src="../images/sunset.jpg">
+    </a>
+
+    <a href="../images/rashmika.jpg" target="_blank">
+        <img src="../images/rashmika.jpg">
+    </a>
+
+    <a href="../images/project.jpg" target="_blank">
+        <img src="../images/project.jpg">
+    </a>
+
+    <a href="../images/technology.jpg" target="_blank">
+        <img src="../images/technology.jpg">
+    </a>
+
+    <a href="../images/classroom2.jpg" target="_blank">
+        <img src="../images/classroom2.jpg">
+    </a>
+
+</div>
+
+</body>
+</html>
