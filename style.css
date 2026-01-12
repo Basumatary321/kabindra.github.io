@@ -258,7 +258,7 @@ body {
         left: 0;
         bottom: 0; /* stretch to bottom of viewport */
         height: auto; /* allow top/bottom to determine height */
-        width: 85%; /* cover most of screen on mobile */
+        width: 100%; /* cover most of screen on mobile */
         max-width: 320px;
         background: #f0f0f0;
         padding: 12px 14px 20px; /* extra bottom padding so last items aren't hidden */
@@ -369,4 +369,5 @@ body {
         text-decoration: none;
         border-radius: 6px;
     }
+
 }
