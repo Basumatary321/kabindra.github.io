@@ -207,7 +207,7 @@ body {
      /* enable scrolling for long lists */
      /* Firefox */
      scrollbar-width: thin;
-     scrollbar-color: #f04b8a #eee;
+     scrollbar-color: #f04b8a #fffdfd;
      /* thumb color then track color */
  }
 
@@ -217,7 +217,7 @@ body {
  }
 
  .sidebar::-webkit-scrollbar-track {
-     background: #f0f0f0;
+     /* background: #f0f0f0; */
      border-radius: 10px;
  }
 
@@ -253,7 +253,8 @@ body {
     aside {
         display: block;
         position: fixed;
-        top: 0;
+        top: 140px;
+        border-radius: 10px;
         left: 0;
         bottom: 0; /* stretch to bottom of viewport */
         height: auto; /* allow top/bottom to determine height */
@@ -283,7 +284,11 @@ body {
     .overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0,0,0,0.45);
+        /* background: rgba(0,0,0,0.45); */
+        backdrop-filter: blur(4px);
+         /* blur effect */
+         background: rgba(255, 255, 255, 0.25);
+         /* light translucent background */
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.2s ease;
@@ -323,7 +328,7 @@ body {
     iframe{height: 100%; margin: 0; padding: 0;}
 
     aside h3 {
-        font-size: 12px;
+        font-size: 14px;
         padding: 4px;
     }
 
