@@ -177,7 +177,7 @@ body {
      height: 100%;
      border: none;
      /* background:rgba(71, 251, 230, 0.399); */
-     background: url("images/not_found.jpg");
+     background: url("images/animated logo.gif");
      background-size: cover;
 
  }
@@ -371,3 +371,4 @@ body {
     }
 
 }
+
