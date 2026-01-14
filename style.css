@@ -178,8 +178,9 @@ body {
      border: none;
      /* background:rgba(71, 251, 230, 0.399); */
      background: url("images/animated logo.gif");
-     background-size: cover;
+     background-size: 40% auto;
       background-possition: center;
+      background-repeat:no-repeat;
 
  }
 
@@ -254,16 +255,16 @@ body {
     aside {
         display: block;
         position: fixed;
-        top: 140px;
-        border-radius: 10px;
-        left: 0;
+        top: 130px;
+     
+        left: 10px;
         bottom: 0; /* stretch to bottom of viewport */
         height: auto; /* allow top/bottom to determine height */
         width: 100%; /* cover most of screen on mobile */
         max-width: 320px;
         background: #f0f0f0;
         padding: 12px 14px 20px; /* extra bottom padding so last items aren't hidden */
-        transform: translateX(-100%); /* fully hidden */
+        transform: translateX(-110%); /* fully hidden */
         transition: transform 0.28s ease, left 0.28s ease;
         z-index: 11000; /* above overlay */
         box-shadow: 2px 0 20px rgba(0,0,0,0.18);
@@ -286,7 +287,7 @@ body {
         position: fixed;
         inset: 0;
         /* background: rgba(0,0,0,0.45); */
-        backdrop-filter: blur(4px);
+        backdrop-filter: blur(0.5px);
          /* blur effect */
          background: rgba(255, 255, 255, 0.25);
          /* light translucent background */
@@ -372,5 +373,6 @@ body {
     }
 
 }
+
 
 
