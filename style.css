@@ -255,7 +255,7 @@ body {
     aside {
         display: block;
         position: fixed;
-        top: 130px;
+        top: 140px;
      
         left: 10px;
         bottom: 0; /* stretch to bottom of viewport */
@@ -373,6 +373,7 @@ body {
     }
 
 }
+
 
 
 
