@@ -130,7 +130,8 @@ body {
  }
 
  .top-bar {
-     background: #555555;
+     /* background: #555555; */
+      background: #1c1c1c;
      padding: 8px;
      color: rgb(53, 4, 248);
      font-weight: bold;
