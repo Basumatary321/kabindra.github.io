@@ -176,7 +176,7 @@ body {
      width: 100%;
      height: 100%;
      border: none;
-     background:rgba(183, 185, 185, 0.399);
+     /* background:rgba(183, 185, 185, 0.399); */
     /* background: url("images/animated\ logo.gif"); */
      background-size: 40% auto;
       background-position: center;
@@ -188,10 +188,10 @@ body {
  }
 @keyframes skelton{
     0%{
-        background-color:#686767 ;
-    }
-    100%{
-        background-color: #aaa;
+        /* background-color:#686767 ; */
+        background: linear-gradient(to top, black 5%, white);
+        /* background-color: #aaa; */
+          /* background: linear-gradient(to top, white, black); */
         
     }
 }
