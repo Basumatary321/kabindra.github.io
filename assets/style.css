@@ -28,9 +28,14 @@ body {
  /* HEADER */
  header {
      grid-area: header;
-     background: linear-gradient(to top, black, black 10%, blue);
-     color: #fff;
+     background: url("../images/headeraronai.png"), 
+     linear-gradient(to top,rgb(255, 255, 255),rgb(3, 3, 88), rgb(255, 255, 255)80%);
+     background-size: contain;
+     background-repeat: no-repeat;
+     /* background: linear-gradient(to top, black, black 10%, rgb(5, 5, 218)); */
+     color: #ffffff;
      text-align: center;
+     text-shadow: 0 0 5px rgb(64, 0, 255);
      margin-bottom: 10px;
      min-height: 15vh;
      /* provides room for reflection */
@@ -56,10 +61,12 @@ body {
      font-weight: 700;
      line-height: 1;
      cursor: pointer;
-     cursor: url("../c2.png"),pointer;
+     cursor: url("../images/cursor/animatedcursson2.png"),pointer;
      font-size: clamp(1.5rem, 3.5vw, 3.5rem);
      transform: rotate(0deg);
-     transition: 0.8s linear ease;
+     transition: 0.8s linear ease-in-out;
+     transition-timing-function:cubic-bezier(0, 2, 0, 0);
+    transition-behavior: alternate;
  }
 
  header h2 span:nth-child(even):hover {
@@ -87,10 +94,11 @@ body {
 
  aside h3 {
      margin: 10px 0;
-     background: #444;
+  background: #0E21A0;
      color: white;
      padding: 6px;
      font-size: 16px;
+     margin: 0;
  }
 
  .project-list {
@@ -259,18 +267,22 @@ body {
     }
 
     /* Sidebar becomes an off-canvas panel instead of hidden */
-    aside {
+      .top-bar{
+       position: relative;
+       z-index: 11100;
+    }
+   aside {
         display: block;
         position: fixed;
-        top: 0;
-        left: 0;
+        top: 145px;
+        left: 10px;
         bottom: 0; /* stretch to bottom of viewport */
-        height: 100%; /* allow top/bottom to determine height */
-        width: 85%; /* cover most of screen on mobile */
+        height: auto; /* allow top/bottom to determine height */
+        width: 100%; /* cover most of screen on mobile */
         max-width: 320px;
         background: #f0f0f0;
         padding: 12px 14px 20px; /* extra bottom padding so last items aren't hidden */
-        transform: translateX(-100%); /* fully hidden */
+        transform: translateX(-110%); /* fully hidden */
         transition: transform 0.28s ease, left 0.28s ease;
         z-index: 11000; /* above overlay */
         box-shadow: 2px 0 20px rgba(0,0,0,0.18);
