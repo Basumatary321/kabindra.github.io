@@ -64,6 +64,8 @@ body {
      font-size: clamp(1.5rem, 3.5vw, 3.5rem);
      transform: rotate(0deg);
      transition: 0.8s linear ease;
+      cursor: pointer;
+      cursor: url("../images/cursor/animatedcursson2.png"), pointer;
  }
 
  header h2 span:nth-child(even):hover {
