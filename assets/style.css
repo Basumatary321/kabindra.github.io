@@ -28,8 +28,8 @@ body {
  /* HEADER */
  header {
      grid-area: header;
-      background: url("../images/headeraronai.png"),
-      linear-gradient(to top, black, black 10%, rgba(0, 0, 255, 0.401));
+      background: url("../images/cursor/header-01.svg"),
+      linear-gradient(to top, rgb(219, 219, 219), rgb(255, 255, 255) , rgba(31, 57, 251, 0.681));
      color: #fff;
      /* background: url("../images/headeraronai.png"), 
      linear-gradient(to top,rgb(255, 255, 255),rgb(3, 3, 88), rgb(255, 255, 255)80%); */
