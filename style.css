@@ -28,7 +28,12 @@ body {
  /* HEADER */
  header {
      grid-area: header;
-     background: linear-gradient(to top, black, black 10%, blue);
+    /* ← SVG color comes from here */
+      background:
+          url("images/cursor/header-01.svg"),
+          linear-gradient(to top, black, black 10%, blue);
+      background-size: contain;
+      background-repeat: no-repeat;
      color: #fff;
      text-align: center;
      margin-bottom: 10px;
@@ -76,7 +81,8 @@ body {
  /* SIDEBAR */
  aside {
      grid-area: sidebar;
-     background: #f0f0f0;
+     /* background: #f0f0f0; */
+          background: #1c1c1c;
      padding: 10px;
      min-width: max-content;
      height: 100%; /* ensure sidebar fills the layout height */
@@ -211,6 +217,12 @@ body {
      /* line-height:20px; */
  }
 
+.quicklink a{
+    margin: 0 6px;
+    color: rgb(0, 246, 53);
+    text-decoration: none;
+    font-weight: bold;
+}
  /* SIDEBAR */
  .sidebar {
      grid-area: sidebar;
@@ -273,7 +285,6 @@ body {
         display: block;
         position: fixed;
         top: 145px;
-     
         left: 10px;
         bottom: 0; /* stretch to bottom of viewport */
         height: auto; /* allow top/bottom to determine height */
