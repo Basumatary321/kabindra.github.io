@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .calculator-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stat {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .stat span {
+      color: #007bff;
+      display: block;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculator-card">
+    <h2>Age Calculator</h2>
+    <input type="datetime-local" id="birthdate">
+    <div id="results" class="results-grid">
+      <div class="stat">Years: <span id="years">-</span></div>
+      <div class="stat">Months: <span id="months">-</span></div>
+      <div class="stat">Weeks: <span id="weeks">-</span></div>
+      <div class="stat">Days: <span id="days">-</span></div>
+      <div class="stat">Hours: <span id="hours">-</span></div>
+      <div class="stat">Minutes: <span id="minutes">-</span></div>
+      <div class="stat">Seconds: <span id="seconds">-</span></div>
+    </div>
+  </div>
+  <script>
+    const birthInput = document.getElementById('birthdate');
+
+function updateAge() {
+    const birthDate = new Date(birthInput.value);
+    const now = new Date();
+
+    if (isNaN(birthDate)) return;
+
+    const diff = now - birthDate; // Difference in milliseconds
+
+    // Calculations
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    
+    // Accurate Year/Month Calculation
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = (years * 12) + (now.getMonth() - birthDate.getMonth());
+    
+    // Adjust years if the birthday hasn't happened yet this year
+    const m = now.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < birthDate.getDate())) {
+        years--;
+    }
+
+    // Update DOM
+    document.getElementById('years').innerText = years.toLocaleString();
+    document.getElementById('months').innerText = months.toLocaleString();
+    document.getElementById('weeks').innerText = weeks.toLocaleString();
+    document.getElementById('days').innerText = days.toLocaleString();
+    document.getElementById('hours').innerText = hours.toLocaleString();
+    document.getElementById('minutes').innerText = minutes.toLocaleString();
+    document.getElementById('seconds').innerText = seconds.toLocaleString();
+}
+
+// Refresh every second
+setInterval(updateAge, 1000);
+birthInput.addEventListener('change', updateAge);
+  </script>
+</body>
+
+</html>
