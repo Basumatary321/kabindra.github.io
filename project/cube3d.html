@@ -1,0 +1,134 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(#ef600e,
+             #2635de, #091c97,#0c0303);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-repeat: no-repeat;
+             
+        }
+        
+        .loader {
+            perspective: 300px;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            padding: 100px;
+            margin: 0 auto;
+           
+         
+        }
+        
+        .cube {
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            animation: rotate 6s linear infinite; 
+            transition: width 0.8s, height 1s;
+            position: relative;
+            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader:hover{
+           transform: scale(2);
+           transition: 0.7s ease-in-out;
+        }
+        
+        .face {
+            position: absolute;
+            object-fit: cover;
+            width: 100px;
+            height: 100px;
+            opacity: 0.9;
+            border: 2px solid #fff;
+            color: #fff;
+            border-width: 1px;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 1000px rgb(237, 235, 235);
+        }
+        
+        .face img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .face:nth-child(1) {
+            transform: rotateX(90deg) translateZ(50px);
+        }
+        
+        .face:nth-child(2) {
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+        
+        .face:nth-child(3) {
+            transform: translateZ(50px);
+        }
+        
+        .face:nth-child(4) {
+            transform: rotateY(90deg) translateZ(50px);
+        }
+        
+        .face:nth-child(5) {
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+        
+        .face:nth-child(6) {
+            transform: rotateY(180deg) translateZ(50px);
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+        p{
+            color: white;
+            size: 30px;
+             
+        }
+        h1{
+            color: wheat;
+            
+        }
+        #kabin{
+            background-color: #e6dfda;
+            position:absolute;
+
+
+        }
+    </style>
+</head>
+<body>
+ 
+ 
+
+    <div class="loader" id="division">
+        <div class="cube">
+            <div class="face"><img src="../images/car.jpg" alt="iamg"></div>
+            <div class="face"><img src="../images/sunset.jpg" alt="img"></div>
+            <div class="face"><img src="../images/project.jpg" alt="img"></div>
+            <div class="face"><img src="../images/flower.jpg" alt="img"></div>
+            <div class="face"><img src="../images/img3.jpg" alt="img"></div>
+            <div class="face"><img src="../images/technology.jpg" alt="img"></div>
+        </div>
+    </div><br>
+   
+    
+</body>
+</html>
