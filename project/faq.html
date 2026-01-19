@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Design</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            color: #1a1a1a;
+        }
+
+        .faq-wrapper {
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        /* FAQ Box Styling */
+        details {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            padding: 15px 20px;
+            background-color: #fff;
+        }
+
+        /* The Clickable Header */
+        summary {
+            list-style: none; /* Hide default Chrome/Safari arrow */
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Hide default arrow for Firefox */
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Custom Arrow Toggle */
+        summary::before {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 7px solid #000; /* Right pointing triangle */
+            margin-right: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        /* Rotate arrow when open */
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        /* Content Area */
+        .content {
+            margin-top: 15px;
+            padding-left: 19px;
+            line-height: 1.6;
+            color: #4a4a4a;
+            font-size: 0.95rem;
+        }
+
+        /* Hover effect for a better UI feel */
+        details:hover {
+            border-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="faq-wrapper">
+        <h1>Frequently Asked Questions</h1>
+
+        <details open>
+            <summary>What is this website about?</summary>
+            <div class="content">
+                This website provides tutorials, tips, and resources for web development beginners.
+            </div>
+        </details>
+
+        <details>
+            <summary>Do I need to pay to access the content?</summary>
+            <div class="content">
+                No, our core library is completely free to use.
+            </div>
+        </details>
+
+        <details open>
+            <summary>Can I suggest a tutorial topic?</summary>
+            <div class="content">
+                Yes! We welcome suggestions. Please use our contact form to send your ideas.
+            </div>
+        </details>
+
+        <details>
+            <summary>Do you offer certificates?</summary>
+            <div class="content">
+                We currently do not offer certificates, but we are looking into it for the future!
+            </div>
+        </details>
+    </div>
+
+</body>
+</html>
