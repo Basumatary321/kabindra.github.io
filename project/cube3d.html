@@ -1,134 +1,218 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>3D Image Cube - Techno IT</title>
     <style>
+        /* --- GLOBAL STYLES --- */
         body {
-            background: linear-gradient(#ef600e,
-             #2635de, #091c97,#0c0303);
+            background: linear-gradient(#ef600e, #2635de, #091c97, #0c0303);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden; /* Prevents scrollbars during animation */
             background-repeat: no-repeat;
-             
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        .loader {
-            perspective: 300px;
-            width: 100px;
-            height: 100px;
-            align-items: center;
-            padding: 100px;
-            margin: 0 auto;
-           
-         
-        }
-        
-        .cube {
-            width: 100px;
-            height: 100px;
-            transform-style: preserve-3d;
-            animation: rotate 6s linear infinite; 
-            transition: width 0.8s, height 1s;
-            position: relative;
-            box-sizing: border-box;
+
+        /* --- WARNING OVERLAY --- */
+        #warning-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+
+        .warning-box {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ef600e;
+            text-align: center;
+            max-width: 450px;
+            box-shadow: 0 0 30px rgba(239, 96, 14, 0.4);
+            color: white;
+        }
+
+        .warning-box h2 {
+            color: #ef600e;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .warning-box p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .btn-proceed { background: #ef600e; color: white; }
+        .btn-proceed:hover { background: #ff7b2e; transform: translateY(-2px); }
+
+        .btn-exit { background: #444; color: white; }
+        .btn-exit:hover { background: #555; }
+
+        /* --- 3D CUBE SECTION --- */
+        .loader {
+            perspective: 1000px; /* Increased perspective for better depth */
+            width: 200px;
+            height: 200px;
+            display: none; /* Hidden until warning is cleared */
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .cube {
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: rotate 8s linear infinite; 
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* Hover effect to zoom in */
+        .loader:hover .cube {
+            animation-play-state: paused; /* Pause rotation on hover */
         }
         
-        .loader:hover{
-           transform: scale(2);
-           transition: 0.7s ease-in-out;
+        .loader:hover {
+            transform: scale(1.5);
+            transition: transform 0.8s ease-in-out;
         }
-        
+
         .face {
             position: absolute;
-            object-fit: cover;
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             opacity: 0.9;
-            border: 2px solid #fff;
-            color: #fff;
-            border-width: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
             box-sizing: border-box;
-            box-shadow: 0px 0px 1000px rgb(237, 235, 235);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            background: #000; /* fallback */
         }
-        
+
         .face img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
-        
-        .face:nth-child(1) {
-            transform: rotateX(90deg) translateZ(50px);
-        }
-        
-        .face:nth-child(2) {
-            transform: rotateX(-90deg) translateZ(50px);
-        }
-        
-        .face:nth-child(3) {
-            transform: translateZ(50px);
-        }
-        
-        .face:nth-child(4) {
-            transform: rotateY(90deg) translateZ(50px);
-        }
-        
-        .face:nth-child(5) {
-            transform: rotateY(-90deg) translateZ(50px);
-        }
-        
-        .face:nth-child(6) {
-            transform: rotateY(180deg) translateZ(50px);
-        }
-        
+
+        /* 3D Face Positions */
+        /* Translation is 100px (half of cube size 200px) */
+        .face:nth-child(1) { transform: rotateX(90deg) translateZ(100px); }
+        .face:nth-child(2) { transform: rotateX(-90deg) translateZ(100px); }
+        .face:nth-child(3) { transform: translateZ(100px); }
+        .face:nth-child(4) { transform: rotateY(90deg) translateZ(100px); }
+        .face:nth-child(5) { transform: rotateY(-90deg) translateZ(100px); }
+        .face:nth-child(6) { transform: rotateY(180deg) translateZ(100px); }
+
         @keyframes rotate {
-            0% {
-                transform: rotateX(0deg) rotateY(0deg);
-            }
-            100% {
-                transform: rotateX(360deg) rotateY(360deg);
-            }
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
         }
-        p{
-            color: white;
-            size: 30px;
-             
-        }
-        h1{
-            color: wheat;
-            
-        }
-        #kabin{
-            background-color: #e6dfda;
-            position:absolute;
 
-
+        /* Text overlay for branding */
+        .brand-text {
+            position: absolute;
+            bottom: 50px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            display: none;
         }
+
     </style>
 </head>
 <body>
- 
- 
 
-    <div class="loader" id="division">
-        <div class="cube">
-            <div class="face"><img src="../images/car.jpg" alt="iamg"></div>
-            <div class="face"><img src="../images/sunset.jpg" alt="img"></div>
-            <div class="face"><img src="../images/project.jpg" alt="img"></div>
-            <div class="face"><img src="../images/flower.jpg" alt="img"></div>
-            <div class="face"><img src="../images/img3.jpg" alt="img"></div>
-            <div class="face"><img src="../images/technology.jpg" alt="img"></div>
+    <div id="warning-overlay">
+        <div class="warning-box">
+            <h2>⚠️ GRAPHICS WARNING</h2>
+            <p>
+                This experience requires <b>Hardware Acceleration</b>. 
+                A high-performance device is recommended for smooth 3D rendering. 
+            </p>
+            <div class="btn-container">
+                <button class="btn btn-proceed" onclick="startExperience()">Start Experience</button>
+                <button class="btn btn-exit" onclick="exitPage()">Exit</button>
+            </div>
         </div>
-    </div><br>
-   
+    </div>
+
+    <div class="loader" id="main-content">
+        <div class="cube">
+            <div class="face"><img src="../images/car.jpg" alt="car"></div>
+            <div class="face"><img src="../images/sunset.jpg" alt="sunset"></div>
+            <div class="face"><img src="../images/project.jpg" alt="project"></div>
+            <div class="face"><img src="../images/flower.jpg" alt="flower"></div>
+            <div class="face"><img src="../images/img3.jpg" alt="tech"></div>
+            <div class="face"><img src="../images/technology.jpg" alt="future"></div>
+        </div>
+    </div>
+
+    <div class="brand-text" id="footer-text">TECHNO IT 3D ENGINE</div>
+
     
+
+    <script>
+        function startExperience() {
+            const overlay = document.getElementById('warning-overlay');
+            const content = document.getElementById('main-content');
+            const footer = document.getElementById('footer-text');
+
+            // Fade out overlay
+            overlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                
+                // Show content with a fade-in effect
+                content.style.display = 'block';
+                footer.style.display = 'block';
+                
+                // Small delay to trigger opacity transition
+                setTimeout(() => {
+                    content.style.opacity = '1';
+                }, 50);
+            }, 600);
+        }
+
+        function exitPage() {
+            if (confirm("Close this window?")) {
+                window.close();
+                // Fallback if window.close() is blocked by browser
+                document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20%;'>You may now close this tab.</h1>";
+            }
+        }
+    </script>
 </body>
 </html>
