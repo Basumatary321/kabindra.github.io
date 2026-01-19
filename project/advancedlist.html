@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+    body{
+        background-color: white;
+    }
+      /* Container styling */
+.list-container {
+  font-family: sans-serif;
+  line-height: 1.6;
+  color: #333;
+  padding: 20px;
+}
+
+/* Base list styling */
+.nested-list, .nested-list ul {
+  list-style-type: none; /* Remove default bullets */
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid #ddd; /* Visual vertical line */
+}
+
+/* Styling the list items */
+.nested-list li {
+  margin: 10px 0;
+  position: relative;
+}
+
+/* Adding custom bullets using pseudo-elements */
+.nested-list li::before {
+  content: "•";
+  color: #007bff; /* Blue bullet */
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em;
+  font-size: 24px;
+}
+
+/* Change bullet style for the second level */
+.nested-list ul li::before {
+  content: "○";
+  color: #6c757d;
+}
+
+/* Change bullet style for the third level */
+.nested-list ul ul li::before {
+  content: "▪";
+  color: #28a745;
+}
+   </style>
+ </head>
+ <body>
+    <h1>Advanced Nested List</h1>
+   <div class="list-container">
+  <ul class="nested-list">
+    <li>Project Planning
+      <ul>
+        <li>Define Scope</li>
+        <li>Identify Stakeholders</li>
+        <li>Risk Assessment
+          <ul>
+            <li>Internal Risks</li>
+            <li>External Risks</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Development Phase
+      <ul>
+        <li>Frontend Architecture</li>
+        <li>Backend Integration</li>
+      </ul>
+    </li>
+    <li>Deployment</li>
+  </ul>
+</div>
+ </body>
+ </html>
