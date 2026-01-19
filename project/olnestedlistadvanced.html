@@ -1,0 +1,96 @@
+  <!DOCTYPE html>
+<html>
+<head>
+<style>
+  body{
+    background-color: rgb(255, 255, 255);
+  }
+  .handbook-container {
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+    line-height: 1.6;
+  }
+
+  /* 1. Reset the counter at the top level */
+  ol.nested-list {
+    counter-reset: section;
+    list-style-type: none; /* Hide default numbers */
+    padding-left: 0;
+  }
+
+  /* 2. Increment counter for every list item */
+  ol.nested-list li {
+    counter-increment: section;
+    margin: 10px 0;
+  }
+
+  /* 3. Create the number label (e.g., 1., 1.1., 1.1.1.) */
+  ol.nested-list li::before {
+    /* This gathers all parent counters and joins them with a dot */
+    content: counters(section, ".") " "; 
+    font-weight: bold;
+    color: #0099ff;
+    margin-right: 10px;
+  }
+
+  /* 4. Indent nested levels and reset their local counters */
+  ol.nested-list ol {
+    counter-reset: section;
+    list-style-type: none;
+    padding-left: 30px;
+    border-left: 2px solid #00ccff;
+    margin-top: 5px;
+  }
+
+  /* Visual polish for top-level items */
+  ol.nested-list > li {
+    font-size: 1.1em;
+    font-weight: 600;
+    border-bottom: 1px solid #eaebeb;
+    padding-bottom: 5px;
+  }
+
+  /* Style for deeper nested items to be lighter */
+  ol.nested-list ol li {
+    font-size: 0.95em;
+    font-weight: normal;
+  }
+</style>
+</head>
+<body>
+
+<div class="handbook-container">
+  <h2>Corporate Operations Manual</h2>
+  <ol class="nested-list">
+    <li>Onboarding Process
+      <ol>
+        <li>Documentation
+          <ol>
+            <li>Signed Employment Contract</li>
+            <li>Tax Identification Forms</li>
+            <li>Direct Deposit Setup</li>
+          </ol>
+        </li>
+        <li>IT Provisioning
+          <ol>
+            <li>Hardware Allocation</li>
+            <li>Software Licenses</li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li>Communication Protocols
+      <ol>
+        <li>Internal Messaging (Slack/Teams)</li>
+        <li>External Client Correspondence</li>
+        <li>Emergency Contacts</li>
+      </ol>
+    </li>
+    <li>Performance Reviews</li>
+  </ol>
+</div>
+
+</body>
+</html>
