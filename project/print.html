@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forminputprint</title>
+    <link rel="stylesheet" href="form.css">
+    <style>
+        /* General Reset */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Form Styling */
+#userInput {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+#userInput p {
+    margin: 10px 0 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+#userInput input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+}
+
+#hint {
+    display: none;
+    color: #007bff;
+    font-size: 12px;
+    margin-top: -5px;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#formbuttom[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}
+
+#formbuttom[type="reset"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+#rbutton {
+    margin-top: 20px;
+}
+
+#pvss { background-color: #007bff; color: white; display: none; }
+#pvs { background-color: #6c757d; color: white; display: none; }
+
+/* ID CARD DESIGN (The Result Section) */
+#result {
+    display: none; /* Hidden until submit */
+    width: 400px;
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+#rightprofile {
+    text-align: center;
+}
+
+#rightprofile h2 {
+    background: #333;
+    color: white;
+    margin: -20px -20px 20px -20px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#originalimg {
+    display: block;
+    margin: 0 auto 15px;
+    border: 3px solid #eee;
+    border-radius: 8px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+
+.detailsN p {
+    margin: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 4px;
+}
+
+hr {
+    border: 0;
+    border-top: 2px solid #333;
+    margin: 15px 0;
+}
+
+/* Print Specific Styling */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #result, #result * {
+        visibility: visible;
+    }
+    #result {
+        position: absolute;
+        left: 50%;
+        top: 20%;
+        transform: translateX(-50%);
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+}
+    </style>
+</head>
+
+
+<body>
+    <section id="result">
+       <div id="rightprofile"><h2>USER ID CARD</h2>
+        <p id="email">Email ID:<br>____________________</p>
+        <p id="dob">DOB:______________</p>
+        </div>
+        <img src="#" alt="" height="20%" width="25%" id="originalimg" alt="Profile photo not found">
+        <hr>
+
+        <!-- adressssssssssssssssssssssssssss -->
+        <div class="detailsN">
+            <p id="name">Name: ____________________</p>
+            <p id="fname">Fathers Name: ____________________</p>
+            <p id="mname">Mothers Name: ____________________</p>
+            <p id="add">Address/Vill: ____________________</p>
+            <p id="phn">Phone No:________________</p>
+        </div>
+    </section><br>
+    <div id="rbutton"><button id="pvss" onclick="wprint()">Print</button>
+        <button id="pvs" type="button" onclick="prev()">Previous</button>
+    </div> 
+    <!-- end of print form -->
+
+    <!-- user input -->
+    <div id="header">WELCOME TO MY FORM DESIGN</div>
+    <form id="userInput" onsubmit="return subform()">
+       
+       <div> 
+        <p>User Name</p><input type="text" required id="iname"placeholder="Type Your Full Name"><p id="hint">Whats Your Name?</p>
+       
+       <p>Date of Birth</p> <input type="date" id="idob">
+
+       <p>Fathers Name</p> <input type="text"required id="ifname"placeholder="Type Your Fathers Name">
+
+       <p>Mothers Name</p> <input type="text"required id="imname"placeholder="Type Your Mothers Name">
+
+       <p>Adress Name</p> <input type="text"required id="iadd"placeholder="Type Your Adress">
+
+       <p>Phone no</p> <input type="number"required id="iphn"placeholder="Type Your Phone No">
+
+       <p>Email Id</p> <input type="email"required id="iemail"placeholder="Type Your Email ID">
+
+       <p title="jpg file only">Upload Passport Photo</p> <input type="file" accept=".jpg" id="img" >
+    
+
+       <br><br><button id="formbuttom" type="submit">submit</button>                     <button id="formbuttom" type="reset" >reset</button></div>
+    
+    </form>
+
+
+<!-- end of input form -->
+
+
+    <!-- scripttttttttttttttttttttt -->
+    <script>
+  // Function to handle form submission and generate the ID card
+function subform() {
+    // 1. Capture all input values into unique variables
+    const userName = document.getElementById("iname").value;
+    const father = document.getElementById("ifname").value;
+    const mother = document.getElementById("imname").value;
+    const address = document.getElementById("iadd").value;
+    const phone = document.getElementById("iphn").value;
+    const email = document.getElementById("iemail").value;
+    const dob = document.getElementById("idob").value;
+    
+    // 2. Handle the Profile Photo
+    const imgInput = document.getElementById("img");
+    const idCardPhoto = document.getElementById("originalimg");
+    
+    if (imgInput.files && imgInput.files[0]) {
+        // Create a temporary URL for the uploaded file
+        idCardPhoto.src = URL.createObjectURL(imgInput.files[0]);
+    }
+
+    // 3. Confirm with User
+    const isSure = window.confirm("Are you sure you want to generate this ID card?");
+    
+    if (isSure) {
+        // Hide Form and Header
+        document.getElementById("userInput").style.display = "none";
+        document.getElementById("header").style.display = "none";
+
+        // Show ID Card and Control Buttons
+        document.getElementById("result").style.display = "block";
+        document.getElementById("pvss").style.display = "inline-block";
+        document.getElementById("pvs").style.display = "inline-block";
+
+        // Inject data into the ID Card
+        document.getElementById("name").innerHTML = "<b>Name:</b> " + userName;
+        document.getElementById("fname").innerHTML = "<b>Father's Name:</b> " + father;
+        document.getElementById("mname").innerHTML = "<b>Mother's Name:</b> " + mother;
+        document.getElementById("add").innerHTML = "<b>Address/Vill:</b> " + address;
+        document.getElementById("phn").innerHTML = "<b>Phone No:</b> " + phone;
+        document.getElementById("email").innerHTML = "Email ID:<br>" + email;
+        document.getElementById("dob").innerHTML = "DOB: " + dob;
+    }
+    
+    return false; // Prevents page reload
+}
+
+// Function to handle the Print action
+function wprint() {
+    window.print();
+}
+
+// Function to go back to the editing screen
+function prev() {
+    document.getElementById("userInput").style.display = "block";
+    document.getElementById("header").style.display = "block";
+    
+    document.getElementById("result").style.display = "none";
+    document.getElementById("pvss").style.display = "none";
+    document.getElementById("pvs").style.display = "none";
+}
+
+// Field Validation & Visual Hints (Focus/Blur events)
+const nameField = document.getElementById("iname");
+const hintText = document.getElementById("hint");
+
+nameField.onfocus = function() {
+    hintText.style.display = "block";
+    this.style.border = "2px solid #007bff";
+};
+
+nameField.onblur = function() {
+    hintText.style.display = "none";
+    if (this.value === "") {
+        this.style.border = "2px solid red";
+    } else {
+        this.style.border = "1px solid #ccc";
+    }
+};
+
+// Cookie Logic: Welcome message and Session Tracking
+window.onload = function() {
+    const cookieData = document.cookie;
+    
+    if (cookieData.includes("user=")) {
+        const parts = cookieData.split("; ");
+        const userPart = parts.find(row => row.startsWith("user=")).split("=")[1];
+        const timePart = parts.find(row => row.startsWith("time=")).split("=")[1];
+        
+        alert("Welcome back " + userPart + "\nLast Registered: " + timePart);
+    } else {
+        const visitorName = window.prompt("What is your name?");
+        
+        if (visitorName === "" || visitorName === null) {
+            alert("Name is required to proceed.");
+            location.reload();
+        } else {
+            const now = new Date();
+            const timeString = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+            
+            // Set cookies for 1 hour
+            document.cookie = "user=" + visitorName + "; max-age=3600; path=/";
+            document.cookie = "time=" + timeString + "; max-age=3600; path=/";
+        }
+    }
+};
+    </script>
+</body>
+</html>
