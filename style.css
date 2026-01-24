@@ -214,16 +214,27 @@ body {
      height: max-content;
      position: fixed;
      bottom: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;gap: 5px;
      width: 100%;
      padding: 5px 0;
      /* line-height:20px; */
  }
-
+.quicklink{
+    background-color: #cecbcb2a;
+    padding: 5px;
+    border-radius: 10px;
+    width: max-content;    
+    font-family:cursive;
+}
 .quicklink a{
     margin: 0 6px;
-    color: rgb(0, 246, 53);
+    color: green;
     text-decoration: none;
-    font-weight: bold;
+    font-family:cursive;
+    /* font-weight: bold; */
 }
  /* SIDEBAR */
  .sidebar {
