@@ -20,15 +20,18 @@
         /* Center container */
         .row {
             display: flex;
-            justify-content: center;
-            align-items: center;
+           align-items: center;
             min-height: 100vh;
             padding: 20px;
         }
 
         .fb-form {
             width: 100%;
-            max-width: 400px;
+            max-width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;gap: 20px;
         }
 
         /* Facebook text section */
@@ -122,6 +125,9 @@
 
             .card p {
                 font-size: 16px;
+            }
+            .fb-form{
+                flex-direction: column;
             }
 
             form {
