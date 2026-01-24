@@ -346,6 +346,7 @@ body {
     header {
         padding: 6px 8px;
         min-height: 8vh;
+        background-size: 160%;
         align-items: center;
         justify-content: center;
     }
