@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration Form</title>
-    <link rel="stylesheet" href="styles.css"> 
     <style>
 :root{
     --bg-start: #f973a4; /* warm pink */
@@ -19,7 +18,7 @@
 
 /* Page */
 body{
-    background: linear-gradient(180deg,var(--bg-start),var(--bg-end));
+    /* background: linear-gradient(180deg,var(--bg-start),var(--bg-end)); */
     min-height:100vh;
     margin:0;
     padding:28px;
@@ -40,7 +39,7 @@ h1{
     font-size:1.5rem;
     color:#fff;
     background: linear-gradient(90deg,var(--accent),var(--accent-2));
-    border-radius:12px;
+    /* border-radius:12px; */
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     text-align:center;
 }
@@ -262,8 +261,9 @@ input[type="submit"]:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px
         </fieldset>
 
         <div class="form-actions">
-            <input type="checkbox" id="terms" required>
+            <div><input type="checkbox" id="terms" required>
             <label for="terms" class="agreement-label">I agree to the **Terms and Conditions**</label>
+        </div>
             <input type="submit" value="Submit Form">
         </div>
 

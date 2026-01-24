@@ -12,48 +12,113 @@
 
 <body bgcolor="white">
     <h1>Student Form</h1>
-    <form action="#">
+    <form action="#" class="form-container">
         <fieldset>
             <legend>Personal Details</legend>
-            <label for="name">Name</label><input type="text" placeholder="Write Your Name"><br><br>
-            <label for="name">Father/Guardian's Name</label><input type="text" placeholder="Fathers Name"><br><br>
-            <label for="name">Date of Births</label><input type="date"><br><br>
-            <label for="name">Gender</label>
-            <input type="radio">Male
-            <input type="radio">Female
-            <input type="radio">Others<br><br>
-            <label for="name">Email</label><input type="email" placeholder="example@gmail.com"><br><br>
-            <label for="name">Phone</label><input type="number" placeholder="+9123456789"><br><br>
-            <label for="name">Address</label><textarea name="" id="" rows="3" cols="40"></textarea><br><br>
-            <label for="name">Upload Photo</label><input type="file"><br>
-        </fieldset><br>
+            <div class="form-group">
+                <label for="full-name">Name:</label>
+                <input type="text" id="full-name" placeholder="Write Your Name">
+            </div>
+            <div class="form-group">
+                <label for="guardian-name">Father/Guardian's Name:</label>
+                <input type="text" id="guardian-name" placeholder="Father's Name">
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob">
+            </div>
+            
+            <div class="form-group gender-group">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="other-gender" name="gender" value="other">
+                <label for="other-gender">Other</label>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="example@gmail.com">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" placeholder="+9123456789">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" rows="3" cols="40" placeholder="Street, City, State"></textarea>
+            </div>
+            <div class="form-group file-upload-group">
+                <label for="photo">Upload Photo:</label>
+                <input type="file" id="photo" accept="image/*">
+            </div>
+        </fieldset>
+<br>
         <fieldset>
             <legend>Education Qualification</legend>
-            <label>Highest Qualification</label><input type="text" placeholder="Eg:HS/BA/BSC/MA/MSC"><br><br>
-            <label>Institute/Board/University</label><input type="text" placeholder="eg:Bodoland University"><br><br>
-            <label>Year of Passing <input type="text"><br><br>
-                <label for="">Percentage/CGPA:</label><input type="text"><br><br>
-                <label for="">Other Qualification</label><input type="text">
+            <div class="form-group">
+                <label for="qualification">Highest Qualification:</label>
+                <input type="text" id="qualification" placeholder="Eg: HS/BA/BSc/MA/MSc">
+            </div>
+            <div class="form-group">
+                <label for="institute">Institute/Board/University:</label>
+                <input type="text" id="institute" placeholder="Eg: Bodoland University">
+            </div>
+            <div class="form-group">
+                <label for="passing-year">Year of Passing:</label>
+                <input type="number" id="passing-year" placeholder="YYYY">
+            </div>
+            <div class="form-group">
+                <label for="cgpa">Percentage/CGPA:</label>
+                <input type="text" id="cgpa" placeholder="Eg: 85% or 9.0">
+            </div>
+            <div class="form-group">
+                <label for="other-qual">Other Qualification:</label>
+                <input type="text" id="other-qual" placeholder="Any extra certifications">
+            </div>
         </fieldset>
-
+<br>
         <fieldset>
             <legend>Bank Details</legend>
-            <label for="">Account Holder Name:</label><input type="number"><br><br>
-            <label for="">Account Number</label><input type="number"><br><br>
-            <label for="">Bank Name</label><input type="number"><br><br>
-            <label for="">Branch</label><input type="number"><br><br>
-            <label for="">IFSC Code:</label><input type="number"><br><br>
-            <label for="">Account Type : Saving/Current/Other</label>
-            <select name="bank" id="">
-                <option value="">--Select--</option>
-                <option value="">Saving</option>
-                <option value="">Current</option>
-                <option value="">Other</option>
-            </select>
+            <div class="form-group">
+                <label for="acc-holder">Account Holder Name:</label>
+                <input type="text" id="acc-holder" placeholder="Name on Bank Account">
+            </div>
+            <div class="form-group">
+                <label for="acc-number">Account Number:</label>
+                <input type="text" id="acc-number" pattern="\d+" placeholder="12-digit number">
+            </div>
+            <div class="form-group">
+                <label for="bank-name">Bank Name:</label>
+                <input type="text" id="bank-name" placeholder="Eg: State Bank of India">
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch:</label>
+                <input type="text" id="branch" placeholder="City/Branch Name">
+            </div>
+            <div class="form-group">
+                <label for="ifsc">IFSC Code:</label>
+                <input type="text" id="ifsc" pattern="[A-Za-z]{4}\d{6}[0-9]" placeholder="Eg: ABCD0001234">
+            </div>
+            <div class="form-group">
+                <label for="acc-type">Account Type:</label>
+                <select id="acc-type" name="bank-account-type">
+                    <option value="">--Select--</option>
+                    <option value="saving">Saving</option>
+                    <option value="current">Current</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
         </fieldset>
-
-        <input type="checkbox"><label for="">I agree to the Terms and Conditions</label> <br><br>
-        <input type="submit" value="Submit">
+<br>
+        <div class="form-actions">
+            <div><input type="checkbox" id="terms" required>
+            <label for="terms" class="agreement-label">I agree to the **Terms and Conditions**</label>
+        </div>
+            <input type="submit" value="Submit Form">
+        </div>
 
     </form>
 </body>
