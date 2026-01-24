@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Complex Table</title>
+
+<style>
+*{
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background:#eef2f7;
+  padding:20px;
+}
+
+/* ============================ */
+/* SCROLL CONTAINER (IMPORTANT) */
+/* ============================ */
+.table-container{
+  width:100%;
+  overflow-x:auto;
+  border-radius:10px;
+}
+
+/* scrollbar (optional but nice) */
+.table-container::-webkit-scrollbar{
+  height:10px;
+}
+.table-container::-webkit-scrollbar-track{
+  background:#ddd;
+  border-radius:10px;
+}
+.table-container::-webkit-scrollbar-thumb{
+  background:#888;
+  border-radius:10px;
+}
+
+/* ============================ */
+/* TABLE */
+/* ============================ */
+table{
+  width:100%;
+  min-width:1100px; /* forces overflow on small screens */
+  border-spacing:0;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* caption */
+caption{
+  background:#0a4d91;
+  color:#fff;
+  padding:15px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* header */
+thead th{
+  /* background:linear-gradient(to right,#667db6,#0082c8); */
+  background-color: #444446;
+  color:#fff;
+  padding:10px;
+  border:1px solid #ddd;
+  text-transform:uppercase;
+}
+
+thead tr:nth-child(2) th{
+  background:#7a7b7c;
+}
+thead tr:nth-child(3) th{
+  background:#aaaaaa;
+}
+
+/* body */
+tbody td, tfoot td{
+  padding:10px;
+  border:1px solid #ddd;
+  text-align:center;
+}
+
+/* zebra rows */
+tbody tr:nth-child(even){
+  background:#f7f9fc;
+}
+
+/* hover */
+tbody tr:hover{
+  background:#e1f2ff;
+}
+
+/* topper highlight */
+.topper{
+  background:#fff6d5;
+  font-weight:bold;
+}
+
+/* fail row */
+.fail-row{
+  background:#ffecec;
+}
+
+/* result styles */
+.pass{
+  color:#27ae60;
+  font-weight:bold;
+}
+.fail{
+  color:#e74c3c;
+  font-weight:bold;
+}
+
+/* footer */
+tfoot td{
+  background:#f1f1f1;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="table-container">
+<table>
+
+<caption>Techno IT Computer Institute – Examination Report</caption>
+
+<thead>
+<tr>
+  <th rowspan="3">Sl No</th>
+  <th rowspan="3">Student Name</th>
+  <th rowspan="3">Course</th>
+  <th colspan="4">Marks</th>
+  <th rowspan="3">Result</th>
+</tr>
+<tr>
+  <th colspan="2">Theory</th>
+  <th colspan="2">Practical</th>
+</tr>
+<tr>
+  <th>Max</th>
+  <th>Obt</th>
+  <th>Max</th>
+  <th>Obt</th>
+</tr>
+</thead>
+
+<tbody>
+<tr class="topper">
+  <td rowspan="2">1</td>
+  <td rowspan="2">Amit Das</td>
+  <td>Web Design</td>
+  <td>50</td>
+  <td>48</td>
+  <td>50</td>
+  <td>45</td>
+  <td class="pass">Pass</td>
+</tr>
+<tr>
+  <td>JavaScript</td>
+  <td>50</td>
+  <td>47</td>
+  <td>50</td>
+  <td>46</td>
+  <td class="pass">Pass</td>
+</tr>
+
+<tr>
+  <td rowspan="2">2</td>
+  <td rowspan="2">Rina Basumatary</td>
+  <td>C Programming</td>
+  <td>50</td>
+  <td>35</td>
+  <td>50</td>
+  <td>30</td>
+  <td class="pass">Pass</td>
+</tr>
+<tr class="fail-row">
+  <td>Tally</td>
+  <td>50</td>
+  <td>18</td>
+  <td>50</td>
+  <td>16</td>
+  <td class="fail">Fail</td>
+</tr>
+
+<tr class="fail-row">
+  <td rowspan="2">3</td>
+  <td rowspan="2">Puja Sharma</td>
+  <td>Web Design</td>
+  <td>50</td>
+  <td>20</td>
+  <td>50</td>
+  <td>15</td>
+  <td class="fail">Fail</td>
+</tr>
+<tr class="fail-row">
+  <td>JavaScript</td>
+  <td>50</td>
+  <td>22</td>
+  <td>50</td>
+  <td>18</td>
+  <td class="fail">Fail</td>
+</tr>
+</tbody>
+
+<tfoot>
+<tr>
+  <td colspan="3">Note</td>
+  <td colspan="5">Minimum 40% required separately in Theory and Practical</td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+</body>
+</html>

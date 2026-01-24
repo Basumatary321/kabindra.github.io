@@ -13,9 +13,31 @@
             margin-left: 10px;
         }
 
+        /* ============================= */
+        /* SCROLL CONTAINER (IMPORTANT) */
+        /* ============================= */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        /* optional scrollbar styling */
+        .table-container::-webkit-scrollbar {
+            height: 10px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #ddd;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
         table {
             width: 90%;
-            margin: 20px auto;
+            min-width: 900px; /* forces scroll on mobile */
+            margin: auto;
             border-collapse: collapse;
             background: #fff;
         }
@@ -47,7 +69,7 @@
             background: #ffc107;
             font-weight: bold;
             writing-mode: vertical-rl;
-            text-orientation:upright;
+            text-orientation: upright;
         }
 
         /* Day column */
@@ -61,6 +83,7 @@
 
 <h2>Class Timetable</h2>
 
+<div class="table-container">
 <table>
     <tr>
         <th colspan="7" class="title">Class 1 to 10 - Weekly Timetable</th>
@@ -121,6 +144,7 @@
         <td>Computer</td>
     </tr>
 </table>
+</div>
 
 </body>
 </html>
