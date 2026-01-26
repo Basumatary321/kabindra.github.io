@@ -149,7 +149,7 @@
 
   .top-bar {
       /* background: #555555; */
-      background: #1c1c1c;
+          background: #333333;
       padding: 8px;
       color: rgb(53, 4, 248);
       font-weight: bold;
@@ -212,25 +212,35 @@
   }
 
   /* FOOTER */
-  footer {
-      grid-area: footer;
-      background: linear-gradient(to bottom, #646363, rgb(37, 37, 37));
-      color: white;
-      text-align: center;
-      height: max-content;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 5px 0;
-      cursor: pointer;
-      cursor: url("../c2.png"), pointer;
-      /* line-height:20px; */
-  }
+ footer {
+     grid-area: footer;
+     background: linear-gradient(to bottom, #111111, rgb(37, 37, 37));
+     color: white;
+     text-align: center;
+     height: max-content;
+     position: fixed;
+     bottom: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;gap: 5px;
+     width: 100%;
+     padding: 5px 0;
+     /* line-height:20px; */
+ }
+  .quicklink{
+    background-color: #cecbcb2a;
+    padding: 5px;
+    border-radius: 10px;
+    width: max-content;    
+    font-family:cursive;
+}
 .quicklink a{
     margin: 0 6px;
-    color: rgb(0, 246, 53);
+    color: rgb(5, 169, 5);
     text-decoration: none;
-    font-weight: bold;
+    font-family:'Lucida Console', monospace;
+    /* font-weight: bold; */
 }
   /* SIDEBAR */
   .sidebar {
