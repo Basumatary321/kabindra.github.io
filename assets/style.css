@@ -362,12 +362,13 @@
           visibility: visible;
       }
 
-      header {
-          padding: 6px 8px;
-          min-height: 8vh;
-          align-items: center;
-          justify-content: center;
-      }
+     header {
+        padding: 6px 8px;
+        min-height: 8vh;
+        background-size: 160%;
+        align-items: center;
+        justify-content: center;
+     }
 
       header h2 {
           padding: 0;
@@ -453,4 +454,5 @@
           border-radius: 6px;
 
       }
+
   }
