@@ -231,7 +231,7 @@ body {
     font-family:cursive;
 }
 .quicklink a{
-    margin: 0 6px;
+    margin: 0 4px;
     color: rgb(5, 169, 5);
     text-decoration: none;
      font-family:'Lucida Console', monospace;
@@ -416,6 +416,7 @@ body {
     }
 
 }
+
 
 
 
