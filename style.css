@@ -136,7 +136,7 @@ body {
 
  .top-bar {
      /* background: #555555; */
-        background: #1c1c1c;
+        background: #333333;
      padding: 8px;
      color: rgb(53, 4, 248);
      font-weight: bold;
@@ -208,7 +208,8 @@ body {
  /* FOOTER */
  footer {
      grid-area: footer;
-     background: linear-gradient(to bottom, #111111, rgb(37, 37, 37));
+     /* background: linear-gradient(to bottom, #111111, rgb(37, 37, 37)); */
+     background-color: #333333;
      color: white;
      text-align: center;
      height: max-content;
@@ -231,9 +232,9 @@ body {
 }
 .quicklink a{
     margin: 0 6px;
-    color: green;
+    color: rgb(5, 169, 5);
     text-decoration: none;
-    font-family:cursive;
+     font-family:'Lucida Console', monospace;
     /* font-weight: bold; */
 }
  /* SIDEBAR */
