@@ -57,7 +57,7 @@
       font-weight: 700;
       line-height: 1;
       color: #ffffff;
-      text-shadow: 0 0 5px rgb(64, 0, 255);
+      text-shadow: 0 0 5px rgb(5, 8, 233);
       font-size: clamp(1.5rem, 3.5vw, 3.5rem);
       /* responsive text */
       -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(236, 43, 43, 0.682));
@@ -214,7 +214,8 @@
   /* FOOTER */
  footer {
      grid-area: footer;
-     background: linear-gradient(to bottom, #111111, rgb(37, 37, 37));
+     /* background: linear-gradient(to bottom, #111111, rgb(37, 37, 37)); */
+        background-color: #333333;
      color: white;
      text-align: center;
      height: max-content;
