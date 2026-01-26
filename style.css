@@ -136,7 +136,7 @@ body {
 
  .top-bar {
      /* background: #555555; */
-        background: #333333;
+        background: #1c1c1c;
      padding: 8px;
      color: rgb(53, 4, 248);
      font-weight: bold;
@@ -231,9 +231,9 @@ body {
 }
 .quicklink a{
     margin: 0 6px;
-    color: rgb(5, 169, 5);
+    color: green;
     text-decoration: none;
-     font-family:'Lucida Console', monospace;
+    font-family:cursive;
     /* font-weight: bold; */
 }
  /* SIDEBAR */
