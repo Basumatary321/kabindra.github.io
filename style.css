@@ -135,18 +135,18 @@ body {
  }
 
  .top-bar {
-     /* background: #555555; */
-        background: #333333;
-     padding: 8px;
-     color: rgb(53, 4, 248);
-     font-weight: bold;
-     display: flex;
-     color: white;
-     justify-content: space-between;
-     align-items: center;
-     border-radius: 5px;
+      /* background: #555555; */
+          background: #333333;
+      padding: 8px;
+      color: rgb(53, 4, 248);
+      font-weight: bold;
+      display: flex;
+      color: white;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
 
- }
+  }
 
  /* Mobile menu toggle (hidden on desktop) */
  .menu-toggle {
@@ -160,7 +160,7 @@ body {
      border-radius: 6px;
  }
  .menu-toggle:focus { outline: 2px solid rgba(255,255,255,0.25); }
-
+.menu-toggle a, .menu-toggle a img{margin: 0; padding: 0;}
  #pagetitle {
      font-size: 18px;
      color: white;
