@@ -308,14 +308,9 @@
             }
 
             .hero {
-                /* background: var(--bg-dark); */
-                /* text-align: center; */
                 background-size: contain;
                 background-position: 9px 55px;
-                /* justify-content: top; */
-                padding-top: 100px;
                 padding-bottom: 50px;
-                align-items: stretch;
                 background-repeat: no-repeat;
             }
 
