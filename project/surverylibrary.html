@@ -1,0 +1,204 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Library User Satisfaction Survey</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #ede7f6;
+    margin: 0;
+    padding: 15px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.header {
+    background: #673ab7;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 6px 0;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 8px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #f3f3f3;
+}
+
+button {
+    background: #673ab7;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px auto;
+    display: block;
+}
+
+button:hover {
+    background: #512da8;
+}
+
+.note {
+    font-size: 12px;
+    color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<form onsubmit="return validateForm()">
+
+<div class="container">
+
+<div class="header">
+    <h2>Library User Satisfaction Survey</h2>
+    <p>Your feedback helps us improve library services.</p>
+</div>
+
+<div class="card">
+    <h3>1. You are *</h3>
+    <label><input type="radio" name="user" required> Student</label>
+    <label><input type="radio" name="user"> Teacher</label>
+    <label><input type="radio" name="user"> Researcher</label>
+    <label><input type="radio" name="user"> General Public</label>
+</div>
+
+<div class="card">
+    <h3>2. How often do you visit the library? *</h3>
+    <label><input type="radio" name="visit" required> Daily</label>
+    <label><input type="radio" name="visit"> Weekly</label>
+    <label><input type="radio" name="visit"> Monthly</label>
+    <label><input type="radio" name="visit"> Occasionally</label>
+</div>
+
+<div class="card">
+    <h3>3. How long do you usually stay in the library? *</h3>
+    <label><input type="radio" name="time" required> Less than 1 hour</label>
+    <label><input type="radio" name="time"> 1–2 hours</label>
+    <label><input type="radio" name="time"> 2–4 hours</label>
+    <label><input type="radio" name="time"> More than 4 hours</label>
+</div>  
+
+<div class="card">
+    <h3>4. Resources you use most *</h3>
+    <label><input type="checkbox" required> Books</label>
+    <label><input type="checkbox"> Digital resources</label>
+    <label><input type="checkbox"> Internet / Computers</label>
+    <label><input type="checkbox"> Study space</label>
+</div>
+
+<div class="card">
+    <h3>5. Satisfaction with Library Services *</h3>
+    <p class="note">👉 Scroll horizontally on mobile</p>
+
+    <div class="table-wrapper">
+    <table>
+        <tr>
+            <th>Service</th>
+            <th>Very Satisfied</th>
+            <th>Satisfied</th>
+            <th>Neutral</th>
+            <th>Unsatisfied</th>
+            <th>Very Unsatisfied</th>
+        </tr>
+        <tr>
+            <td>Availability of books</td>
+            <td><input type="radio" name="books" required></td>
+            <td><input type="radio" name="books"></td>
+            <td><input type="radio" name="books"></td>
+            <td><input type="radio" name="books"></td>
+            <td><input type="radio" name="books"></td>
+        </tr>
+        <tr>
+            <td>Cleanliness</td>
+            <td><input type="radio" name="clean" required></td>
+            <td><input type="radio" name="clean"></td>
+            <td><input type="radio" name="clean"></td>
+            <td><input type="radio" name="clean"></td>
+            <td><input type="radio" name="clean"></td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+<div class="card">
+    <h3>6. Are you aware of library online services?</h3>
+    <label><input type="radio" name="online"> Yes</label>
+    <label><input type="radio" name="online"> No</label>
+</div>
+<div class="card">
+    <h3>7. What improvements would you like?</h3>
+    <label><input type="checkbox"> More books</label>
+    <label><input type="checkbox"> Longer opening hours</label>
+    <label><input type="checkbox"> Better internet</label>
+    <label><input type="checkbox"> More study space</label>
+    <label><input type="checkbox"> More digital resources</label>
+</div>
+<div class="card">
+    <h3>8. Suggestions / Comments</h3>
+    <textarea placeholder="Write your feedback..."></textarea>
+</div>
+
+<button type="submit">Submit</button>
+
+</div>
+</form>
+
+<script>
+function validateForm() {
+    alert("Thank you! Your response has been recorded.");
+    return true;
+}
+</script>
+
+</body>
+</html>
