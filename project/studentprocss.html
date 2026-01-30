@@ -1,117 +1,107 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>Techno IT Student Profile</title>
-   <style>
-    body {
-    background-color: black;
-    background-image: radial-gradient (circle, white 1px, transparent 2px);
-    background-size: 20px 20px;
-}
-
-.container {
-    width: 90%;
-    max-width: 900px;
-    margin: 20px auto;
-    background: whitesmoke;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px gray;
-}
-
-h1,
-h2 {
-    color: #2c3e50;
-    text-align: center;
-}
-
-.profile-img {
-    display: block;
-    margin: 10px auto;
-    width: 120px;
-
-
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid #4CAF50;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-table,
-th,
-td {
-    border: 1px solid #ddd;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-td,
-th {
-    padding: 10px;
-    text-align: center;
-}
-
-form {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="file"],
-textarea,
-select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 6px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-marquee {
-    font-weight: bold;
-
-
-    color: #d35400;
-    margin-bottom: 10px;
-}
-   </style>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        body {
+            background-color: black;
+            background-image: radial-gradient(circle, white 1px, transparent 2px);
+            background-size: 20px 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            background: whitesmoke;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1,
+        h2 {
+            color: #0f78e0;
+            text-align: center;
+        }
+        .profile-img {
+            display: block;
+            margin: 10px auto;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #1e22f9;
+            box-shadow: 0 0 40px #55e6fa;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            border-bottom: 2px solid blue;
+            padding-left: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td,
+        th {
+            padding: 10px;
+            text-align: center;
+        }
+        form {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        label {
+            border-left: 4px solid rgb(244, 0, 0);
+            padding-left: 5px;
+        }
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .gender {
+            width: max-content;
+        }
+        .submit {
+            background-color: #1621fc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit:hover {
+            background-color: #04b65a;
+        }
+        marquee {
+            color: #d35400;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <marquee>🌟 Welcome to Techno IT Computer Institute Student Portal 🌟</marquee>
-        <h1>Student Profile Page</h1> 
-        <img src="../images/rashmika.jpg" alt="Profile Picture" class="profile-img">
+        <h1>Student Profile Page</h1>
+        <img src="/images/rashmika.jpg" alt="Profile Picture" class="profile-img">
 
         <h2>Basic Information</h2>
         <p><strong>Name:</strong> Write Your Name</p>
@@ -143,28 +133,34 @@ marquee {
         </table>
 
         <h2>Contact Form</h2>
-        <form> <label>Full Name:</label> <input type="text" placeholder="Enter your name">
+        <form>
+            <label>Full Name:</label>
+            <input type="text" placeholder="Enter your name">
 
-            <label>Email:</label> <input type="email" placeholder="example@gmail.com">
+            <label>Email:</label>
+            <input type="email" placeholder="example@gmail.com">
 
+            <label>Upload Photo:</label>
+            <input type="file">
 
-            28 TECHNO IT KOKRAJHAR
+            <label>Gender:</label><br>
+            <input type="radio" name="gender" class="gender"> Male
+            <input type="radio" name="gender" class="gender"> Female <br><br>
 
-            <label>Upload Photo:</label> <input type="file">
-
-            <label>Gender:</label><br> <input type="radio" name="gender"> Male <input type="radio" name="gender"> Female
-            <br><br>
-
-            <label>Select Course:</label> <select>
+            <label>Select Course:</label>
+            <select>
                 <option>--Select Course--</option>
                 <option>ADCA</option>
                 <option>PGDCA</option>
                 <option>MS Office</option>
-            </select> <label>Write about yourself:</label> <textarea rows="4"></textarea> <input type="submit"
-                value="Submit">
+            </select>
+            <label>Write about yourself:</label>
+            <textarea rows="4"></textarea>
+            <input type="submit" value="Submit" class="submit">
         </form>
-        <h2>Our Location</h2> <iframe src="https://maps.google.com/maps?q=kokrajhar&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            width="100%" height="200" style="border:1px solid #333;"></iframe>
+        <h2>Our Location</h2>
+        <iframe src="https://maps.google.com/maps?q=kokrajhar&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
+            height="200" style="border:1px solid #333;"></iframe>
         <hr>
         <p style="text-align:center;">© 2025 Techno IT Computer Institute</p>
     </div>
