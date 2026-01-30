@@ -1,0 +1,338 @@
+ /* --- 1. GLOBAL RESET & FOUNDATION --- */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+ :root {
+     --sidebar-width: 280px;
+     --header-bg: linear-gradient(to top, #000, #000 10%, #0000ff);
+     --nav-bg: #252525;
+     --primary-green: #0b6623;
+     --active-green: #1f9c58;
+ }
+
+ html,
+ body {
+     height: 100%;
+     overflow: hidden;
+     /* Prevents double scrollbars on the main page */
+     background-color: #ddd;
+ }
+
+ /* --- 2. GRID LAYOUT --- */
+ .container {
+     display: grid;
+     height: 100vh;
+     grid-template-columns: var(--sidebar-width) 1fr;
+     grid-template-rows: auto auto 1fr auto;
+     grid-template-areas:
+         "header header"
+         "navigation navigation"
+         "sidebar main"
+ }
+
+ html,
+ body,
+ .container,
+ main {
+     overflow-x: hidden;
+ }
+
+ /* --- 3. HEADER & TEXT EFFECTS --- */
+ header {
+     grid-area: header;
+     background:
+         url("images/cursor/header-01.svg"),
+         linear-gradient(to top, black, black 10%, blue);
+     background-size: contain;
+     background-repeat: no-repeat;
+     color: #fff;
+     min-height: 120px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+ }
+
+ header h2 {
+     font-size: clamp(1.2rem, 3vw, 2.5rem);
+     -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(255, 255, 255, 0.368));
+ }
+
+ header h2 span {
+     display: inline-block;
+     transition: 0.3s transform ease;
+     cursor: pointer;
+ }
+
+ header h2 span:hover {
+     color: #0f0;
+     transform: translateY(-5px) rotate(10deg);
+ }
+
+ /* --- 4. NAVIGATION BAR --- */
+ .top-navigation {
+     grid-area: navigation;
+     background: var(--nav-bg);
+     padding: 10px 20px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     color: white;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+ }
+
+ .menu-toggle {
+     display: none;
+     /* Hidden on desktop */
+     background: none;
+     border: none;
+     color: white;
+     font-size: 24px;
+     cursor: pointer;
+ }
+
+ #openTab {
+     background: var(--primary-green);
+     color: white;
+     border: none;
+     padding: 8px 16px;
+     border-radius: 20px;
+     cursor: pointer;
+     transition: 0.2s;
+ }
+
+ #openTab:hover {
+     background: var(--active-green);
+ }
+
+ /* --- 5. SIDEBAR (SCROLLABLE) --- */
+ .sidebar {
+     grid-area: sidebar;
+     background: #1c1c1c;
+     color: white;
+     padding: 10px;
+     overflow-y: auto;
+     border-right: 2px solid #444;
+ }
+
+ .sidebar h3 {
+     font-size: 14px;
+     background: #0E21A0;
+     padding: 8px;
+     margin: 5px 0 10px 0;
+     text-align: center;
+     border-radius: 4px;
+ }
+
+ .project-list {
+     list-style: none;
+ }
+
+ .project-list a {
+     display: block;
+     padding: 8px 12px;
+     margin: 5px 0;
+     background: #333;
+     color: #eee;
+     text-decoration: none;
+     border-radius: 4px;
+     font-size: 13px;
+     transition: 0.2s;
+ }
+
+ .project-list a:hover {
+     background: #444;
+     padding-left: 18px;
+ }
+
+ .project-list a.active {
+     background: var(--active-green);
+     color: white;
+ }
+
+ /* --- 6. MAIN CONTENT & IFRAME --- */
+ main {
+     grid-area: main;
+     display: flex;
+     flex-direction: column;
+     padding: 5px;
+     background: #504d4d;
+     overflow: hidden;
+ }
+
+ iframe {
+     width: 100%;
+     height: 100%;
+     border: none;
+     display: block;
+     /* Hide scrollbar for IE, Edge and Firefox */
+     -webkit-overflow-style: none;
+     /* Safari and Chrome */
+     -ms-overflow-style: none;
+     /* IE and Edge */
+     scrollbar-width: none;
+     /* Firefox */
+ }
+
+
+ /* --- 7. FOOTER --- */
+ footer {
+     grid-area: footer;
+     background: #222;
+     color: #888;
+     padding: 10px;
+     text-align: center;
+     font-size: 12px;
+ }
+
+ .quicklink a {
+     color: var(--active-green);
+     text-decoration: none;
+     margin: 0 5px;
+ }
+
+ /* --- SIDEBAR FOOTER DESIGN --- */
+ .sidebar-footer {
+     margin-top: 30px;
+     padding-top: 20px;
+     border-top: 1px solid #444;
+     /* Subtle separation line */
+     text-align: center;
+ }
+
+ .sidebar-quicklinks p {
+     color: #888;
+     font-size: 12px;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     margin-bottom: 10px;
+ }
+
+ .sidebar-quicklinks a {
+     display: inline-block;
+     color: #3cb371;
+     /* Using the green theme */
+     text-decoration: none;
+     font-size: 13px;
+     margin: 5px;
+     padding: 4px 8px;
+     background: rgba(60, 179, 113, 0.1);
+     border-radius: 4px;
+     transition: 0.3s;
+ }
+
+ .sidebar-quicklinks a:hover {
+     background: #3cb371;
+     color: white;
+ }
+
+ .copyright {
+     margin-top: 20px;
+     padding: 10px;
+     font-size: 11px;
+     color: #666;
+     line-height: 1.4;
+ }
+
+ /* Remove the old footer grid area if you aren't using the bottom footer anymore */
+ .container {
+     grid-template-rows: auto auto 1fr;
+     /* Removed the last 'auto' row */
+     grid-template-areas:
+         "header header"
+         "navigation navigation"
+         "sidebar main";
+ }
+
+ /* --- 8. RESPONSIVE DESIGN (MOBILE) --- */
+ @media (max-width: 768px) {
+     .container {
+         grid-template-columns: 1fr;
+         grid-template-areas:
+             "header"
+             "navigation"
+             "main";
+     }
+
+     .menu-toggle {
+         display: block;
+     }
+
+     .sidebar {
+         position: fixed;
+         /* top: 0; */
+         bottom: 0;
+         left: -100%;
+         /* Fully hidden */
+         width: 280px;
+         height: 100vh;
+         z-index: 1000;
+         transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+     }
+
+     .sidebar.open {
+         left: 0;
+     }
+
+
+     /* Overlay when menu is open */
+     .overlay {
+         position: fixed;
+         inset: 0;
+         background: rgba(0, 0, 0, 0.6);
+         display: none;
+         z-index: 999;
+     }
+
+     .overlay.show {
+         display: block;
+     }
+
+     header {
+         min-height: 70px;
+         background-size: 130%;
+         padding: 10px;
+     }
+
+     .logo {
+         height: 25px;
+     }
+
+     #openTab {
+         padding: 6px 12px;
+         font-size: 12px;
+     }
+
+     #pageTitle {
+         font-size: 14px;
+     }
+
+     iframe {
+         /* Hide scrollbar for IE, Edge and Firefox */
+         -webkit-overflow-style: none;
+         /* Safari and Chrome */
+         -ms-overflow-style: none;
+         /* IE and Edge */
+         scrollbar-width: none;
+         /* Firefox */
+     }
+
+     /* 2. Hide scrollbar for Chrome, Safari and Opera */
+     iframe::-webkit-scrollbar {
+         display: none;
+     }
+ }
+
+ /* Custom Scrollbar for Sidebar */
+ .sidebar::-webkit-scrollbar {
+     width: 6px;
+ }
+
+ .sidebar::-webkit-scrollbar-thumb {
+     background: #555;
+     border-radius: 10px;
+ }
