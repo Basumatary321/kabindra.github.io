@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      :root {
+         --green: #07db3ccc;
+      }
+
+      body {
+         background-color: #051629;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         font-size: 2rem;
+         font-family: consolas;
+         color: var(--green);
+         padding: 20px;
+      }
+
+      form {
+         background-color: rgb(0, 0, 0);
+         width: max-content;
+         border-radius: 10px;
+         padding: 20px;
+         border: 1px solid var(--green);
+         display: flex;
+         flex-direction: column;
+         justify-content: end;
+         align-items: flex-end;
+      }
+
+      h1 {
+         color: var(--green);
+      }
+
+      label,
+      input {
+         margin-bottom: 10px;
+         padding: 5px;
+         color: var(--green);
+      }
+
+      .login {
+         align-self: center;
+         justify-self: center;
+
+      }
+
+      .login input {
+         background-color: var(--green);
+         color: rgb(0, 0, 0);
+         padding: 5px;
+         width: 200px;
+         font-size: 16px;
+         border-radius: 10px;
+         border: navajowhite;
+         font-weight: bold;
+      }
+
+      input::placeholder {
+         color: var(--green);
+         font-family: consolas;
+      }
+
+      input[type="email"],
+      input[type="password"] {
+         border: 1px solid var(--green);
+         outline: none;
+         background-color: transparent;
+      }
+
+      .explain {
+         border: 1px solid var(--green);
+         margin: 100px 10px 10px 10px;
+         padding: 0;
+         width: 100%;
+
+      }
+
+      p {
+         margin: 0;
+         color: black;
+         background-color: var(--green);
+      }
+      h1::first-letter{
+         color: red;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Placeholder Design...</h1>
+   <form action="#">
+      <div> <label for="name">Email:</label><input type="email" placeholder="Email..."></div>
+      <div><label for="password">Password:</label><input type="password" placeholder="Password..."></div>
+      <div class="login">
+         <input type="submit" value="LOGIN" id="login">
+      </div>
+   </form>
+
+
+   <div class="explain">
+      <p>css</p>
+      <code>
+      input::placeholder{<br>
+         //code<br>
+      }
+   </code>
+   </div>
+</body>
+
+</html>
