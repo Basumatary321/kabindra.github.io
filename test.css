@@ -7,19 +7,23 @@
  }
 
  :root {
-     --sidebar-width: 280px;
-     --header-bg: linear-gradient(to top, #000, #000 10%, #0000ff);
-     --nav-bg: #252525;
-     --primary-green: #0b6623;
-     --active-green: #1f9c58;
+     --sidebar-width: 300px;
+     --header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     --nav-bg: #2d3748;
+     --primary-green: #10b981;
+     --active-green: #059669;
+     --sidebar-bg: #1a202c;
+     --sidebar-hover: #2d3748;
+     --text-primary: #f7fafc;
+     --text-secondary: #cbd5e0;
+     --border-color: #4a5568;
  }
 
  html,
  body {
-     height: 100%;
+     height: 100vh;
      overflow: hidden;
-     /* Prevents double scrollbars on the main page */
-     background-color: #ddd;
+     background-color: #e8ecf1;
  }
 
  /* --- 2. GRID LAYOUT --- */
@@ -44,88 +48,132 @@
  /* --- 3. HEADER & TEXT EFFECTS --- */
  header {
      grid-area: header;
-     background:
-         url("images/cursor/header-01.svg"),
-         linear-gradient(to top, black, black 10%, blue);
-     background-size: contain;
-     background-repeat: no-repeat;
+     background: var(--header-bg);
      color: #fff;
-     min-height: 120px;
+     min-height: 110px;
      display: flex;
      align-items: center;
      justify-content: center;
      text-align: center;
+     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+     padding: 15px;
  }
 
  header h2 {
      font-size: clamp(1.2rem, 3vw, 2.5rem);
-     -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(255, 255, 255, 0.368));
+     font-weight: 700;
+     letter-spacing: 2px;
+     -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(255, 255, 255, 0.25));
  }
 
  header h2 span {
      display: inline-block;
-     transition: 0.3s transform ease;
+     transition: 0.3s transform ease, 0.3s color ease;
      cursor: pointer;
  }
 
  header h2 span:hover {
-     color: #0f0;
-     transform: translateY(-5px) rotate(10deg);
+     color: #ffd700;
+     transform: translateY(-8px) rotate(15deg) scale(1.1);
  }
 
  /* --- 4. NAVIGATION BAR --- */
  .top-navigation {
      grid-area: navigation;
      background: var(--nav-bg);
-     padding: 10px 20px;
+     padding: 12px 20px;
      display: flex;
+     border-bottom: 3px solid var(--primary-green);
      justify-content: space-between;
      align-items: center;
      color: white;
-     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     gap: 10px;
+ }
+
+ .top-navigation .logo {
+     height: 40px;
+     transition: 0.3s transform ease;
+ }
+
+ .top-navigation .logo:hover {
+     transform: scale(1.05);
+ }
+
+ .mob {
+     display: none;
  }
 
  .menu-toggle {
      display: none;
-     /* Hidden on desktop */
      background: none;
      border: none;
      color: white;
      font-size: 24px;
      cursor: pointer;
+     transition: 0.3s;
  }
 
- #openTab {
+ .menu-toggle:hover {
+     transform: scale(1.1);
+ }
+
+ #openTab, #openTab2 {
      background: var(--primary-green);
      color: white;
      border: none;
-     padding: 8px 16px;
-     border-radius: 20px;
+     padding: 10px 18px;
+     border-radius: 25px;
      cursor: pointer;
-     transition: 0.2s;
+     transition: 0.3s ease;
+     font-weight: 600;
+     font-size: 13px;
+     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
  }
 
- #openTab:hover {
+ #pageTitle {
+     flex: 1;
+     text-align: center;
+     font-weight: 600;
+     font-size: 15px;
+     color: var(--text-primary);
+ }
+
+ #openTab:hover, #openTab2:hover {
      background: var(--active-green);
+     transform: translateY(-2px);
+     box-shadow: 0 6px 16px rgba(5, 150, 105, 0.4);
  }
 
  /* --- 5. SIDEBAR (SCROLLABLE) --- */
  .sidebar {
      grid-area: sidebar;
-     background: #1c1c1c;
-     color: white;
-     padding: 10px;
+     background: var(--sidebar-bg);
+     color: var(--text-primary);
+     padding: 15px;
      overflow-y: auto;
-     border-right: 2px solid #444;
+     border-right: 3px solid var(--border-color);
+     transition: 0.3s;
  }
 
  .sidebar h3 {
-     font-size: 14px;
-     background: #0E21A0;
-     padding: 8px;
-     margin: 5px 0 10px 0;
+     font-size: 13px;
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     padding: 10px;
+     margin: 15px 0 10px 0;
      text-align: center;
-     border-radius: 4px;
+     border-radius: 8px;
+     font-weight: 700;
+     letter-spacing: 0.5px;
+     text-transform: uppercase;
+     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+ }
+
+ .sidebar .logo {
+     display: none;
+     border-radius: 8px;
+     margin-bottom: 15px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
  }
 
  .project-list {
@@ -134,24 +182,30 @@
 
  .project-list a {
      display: block;
-     padding: 8px 12px;
-     margin: 5px 0;
-     background: #333;
-     color: #eee;
+     padding: 10px 12px;
+     margin: 6px 0;
+     background: var(--sidebar-hover);
+     color: var(--text-secondary);
      text-decoration: none;
-     border-radius: 4px;
+     border-radius: 8px;
      font-size: 13px;
-     transition: 0.2s;
+     transition: 0.3s ease;
+     border-left: 3px solid transparent;
+     font-weight: 500;
  }
 
  .project-list a:hover {
-     background: #444;
-     padding-left: 18px;
+     background: #374151;
+     padding-left: 16px;
+     border-left-color: var(--primary-green);
+     color: var(--text-primary);
  }
 
  .project-list a.active {
-     background: var(--active-green);
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
      color: white;
+     border-left-color: #ffd700;
+     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
  }
 
  /* --- 6. MAIN CONTENT & IFRAME --- */
@@ -159,8 +213,8 @@
      grid-area: main;
      display: flex;
      flex-direction: column;
-     padding: 5px;
-     background: #504d4d;
+     padding: 0;
+     background: #f5f7fa;
      overflow: hidden;
  }
 
@@ -199,43 +253,25 @@
  .sidebar-footer {
      margin-top: 30px;
      padding-top: 20px;
-     border-top: 1px solid #444;
-     /* Subtle separation line */
+     border-top: 2px solid var(--border-color);
      text-align: center;
  }
 
  .sidebar-quicklinks p {
-     color: #888;
-     font-size: 12px;
+     color: #9ca3af;
+     font-size: 11px;
      text-transform: uppercase;
-     letter-spacing: 1px;
+     letter-spacing: 1.5px;
      margin-bottom: 10px;
- }
-
- .sidebar-quicklinks a {
-     display: inline-block;
-     color: #3cb371;
-     /* Using the green theme */
-     text-decoration: none;
-     font-size: 13px;
-     margin: 5px;
-     padding: 4px 8px;
-     background: rgba(60, 179, 113, 0.1);
-     border-radius: 4px;
-     transition: 0.3s;
- }
-
- .sidebar-quicklinks a:hover {
-     background: #3cb371;
-     color: white;
+     font-weight: 700;
  }
 
  .copyright {
-     margin-top: 20px;
+     margin-top: 15px;
      padding: 10px;
      font-size: 11px;
-     color: #666;
-     line-height: 1.4;
+     color: #6b7280;
+     line-height: 1.5;
  }
 
  /* Remove the old footer grid area if you aren't using the bottom footer anymore */
@@ -294,16 +330,19 @@
 
      header {
          min-height: 70px;
-         background-size: 130%;
          padding: 10px;
      }
 
-     .logo {
-         height: 25px;
+     .sidebar .logo {
+         display: block;
+         width: auto;
+         height: 40px;
+         margin-bottom: 10px;
+         border-radius: 8px;
      }
 
-     #openTab {
-         padding: 6px 12px;
+     #openTab, #openTab2 {
+         padding: 8px 14px;
          font-size: 12px;
      }
 
@@ -312,27 +351,46 @@
      }
 
      iframe {
-         /* Hide scrollbar for IE, Edge and Firefox */
          -webkit-overflow-style: none;
-         /* Safari and Chrome */
          -ms-overflow-style: none;
-         /* IE and Edge */
          scrollbar-width: none;
-         /* Firefox */
      }
 
-     /* 2. Hide scrollbar for Chrome, Safari and Opera */
      iframe::-webkit-scrollbar {
          display: none;
      }
- }
+
+     .top-navigation {
+         justify-content: space-between;
+     }
+
+     .top-navigation .logo {
+         display: none;
+     }
+
+     .desk {
+         display: none;
+     }
+
+     .mob {
+         display: block;
+     }
 
  /* Custom Scrollbar for Sidebar */
  .sidebar::-webkit-scrollbar {
-     width: 6px;
+     width: 8px;
+ }
+
+ .sidebar::-webkit-scrollbar-track {
+     background: transparent;
  }
 
  .sidebar::-webkit-scrollbar-thumb {
-     background: #555;
+     background: #4a5568;
      border-radius: 10px;
+     transition: 0.3s;
  }
+
+ .sidebar::-webkit-scrollbar-thumb:hover {
+     background: #667eea;
+ }}
