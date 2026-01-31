@@ -216,8 +216,9 @@
      flex-direction: column;
      padding: 0;
      background: #f5f7fa;
-     overflow: hidden;
+     overflow-y: auto;
  }
+
 
  iframe {
      width: 100%;
@@ -266,7 +267,7 @@
      margin-bottom: 10px;
      font-weight: 700;
  }
-
+ .sidebar-quicklinks a{color: var(--active-green);}
  .copyright {
      margin-top: 15px;
      padding: 10px;
@@ -370,6 +371,7 @@
      }
 
      iframe {
+        height: 90%;
          -webkit-overflow-style: none;
          -ms-overflow-style: none;
          scrollbar-width: none;
