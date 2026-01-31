@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            /* background: #0f0f0f; */
+            background: #1c1c1c;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container */
+        .youtube-loader {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+        }
+
+        /* Thumbnail */
+        .thumb {
+            width: 160px;
+            height: 90px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 37%, #2a2a2a 63%);
+            background-size: 400% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+
+        /* Text info */
+        .info {
+            flex: 1;
+        }
+
+        .line {
+            height: 14px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 37%, #2a2a2a 63%);
+            background-size: 400% 100%;
+            animation: shimmer 1.4s infinite;
+        }
+
+        .title {
+            height: 18px;
+            width: 90%;
+        }
+
+        .short {
+            width: 60%;
+        }
+
+        /* Animation */
+        @keyframes shimmer {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="youtube-loader">
+        <div class="thumb"></div>
+        <div class="info">
+            <div class="line title"></div>
+            <div class="line"></div>
+            <div class="line short"></div>
+        </div>
+        <div class="thumb"></div>
+        <div class="info">
+            <div class="line title"></div>
+            <div class="line"></div>
+            <div class="line short"></div>
+        </div>
+        <div class="thumb"></div>
+        <div class="info">
+            <div class="line title"></div>
+            <div class="line"></div>
+            <div class="line short"></div>
+        </div>
+    </div>
+</body>
+
+</html>
