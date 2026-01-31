@@ -8,7 +8,7 @@
 
  :root {
      --sidebar-width: 300px;
-     --header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     --header-bg: linear-gradient(135deg, #1741fa 0%, #f8101b 100%);
      --nav-bg: #2d3748;
      --primary-green: #10b981;
      --active-green: #059669;
@@ -83,7 +83,7 @@
      background: var(--nav-bg);
      padding: 12px 20px;
      display: flex;
-     border-bottom: 3px solid var(--primary-green);
+     /* border-bottom: 3px solid var(--primary-green); */
      justify-content: space-between;
      align-items: center;
      color: white;
@@ -202,7 +202,8 @@
  }
 
  .project-list a.active {
-     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+     background-color: var(--active-green);
      color: white;
      border-left-color: #ffd700;
      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
@@ -283,7 +284,25 @@
          "navigation navigation"
          "sidebar main";
  }
+/* Custom Scrollbar for Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
 
+.sidebar::-webkit-scrollbar-track {
+    background:rgb(131, 131, 131);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary-green);
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #bcea66;
+
+}
  /* --- 8. RESPONSIVE DESIGN (MOBILE) --- */
  @media (max-width: 768px) {
      .container {
@@ -376,23 +395,5 @@
          display: block;
      }
 
- /* Custom Scrollbar for Sidebar */
- .sidebar::-webkit-scrollbar {
-     width: 8px;
  }
-
- .sidebar::-webkit-scrollbar-track {
-     background: transparent;
- }
-
- .sidebar::-webkit-scrollbar-thumb {
-     background: #4a5568;
-     border-radius: 10px;
-     transition: 0.3s;
- }
-
- .sidebar::-webkit-scrollbar-thumb:hover {
-     background: #667eea;
-
- }}
 
