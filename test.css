@@ -373,7 +373,7 @@
      }
 
      .mob {
-         display: block;
+         display: none;
      }
 
  /* Custom Scrollbar for Sidebar */
@@ -393,4 +393,5 @@
 
  .sidebar::-webkit-scrollbar-thumb:hover {
      background: #667eea;
+
  }}
