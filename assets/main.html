@@ -8,6 +8,7 @@
         body{
             background-color: black;
             color: white;
+            line-height: 2;
         }
         .main-content {
     padding: 30px;
@@ -66,6 +67,7 @@
 .how-to-use li {
     margin-bottom: 8px;
     color: #d0d0d0;
+    
 }
 
 .note {
@@ -75,6 +77,15 @@
     border-left: 4px solid #7aa2ff;
     border-radius: 6px;
 }
+kbd {
+    background: #1f1f1f;
+    border: 1px solid #444;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #7aa2ff;
+    font-size: 13px;
+}
+
 
     </style>
 </head>
@@ -117,14 +128,22 @@
             <h3>🧭 How to Use This Page</h3>
             <ul>
                 <li>
-                    Choose a project from the left sidebar (desktop) or tap the menu button (☰) on the top-right
+                    Choose a project from the left sidebar (desktop) or tap the menu button <kbd>☰</kbd> on the top-right
                     to open the project list on mobile devices.
                 </li>
                 
                 <li>Read the task instructions carefully</li>
                 <li>Write code in your editor (VS Code recommended)</li>
                 <li>Preview output in browser</li>
-                <li>Use <strong>Open in New Tab</strong> for full-screen view</li>
+                <li>Use <strong><kbd>Open in New Tab</kbd> </strong> for full-screen view</li>
+                <li>
+                    If you need help or want to see how the code works,
+                    right-click on the page and choose <strong><span style="color:green">View Page Source</span> </strong>
+                    (or <strong><span style="color:green">View Frame Source</span></strong> if the content is inside a frame).
+                    Shortcut: <strong><kbd>Ctrl</kbd> + <kbd>U</kbd>
+                    </strong>.
+                </li>
+                
             </ul>
         </div>
     
