@@ -399,6 +399,7 @@
 
      /* Fix for mobile content overflow */
      main {
+        background-color: black;
          height: auto;
          min-height: calc(100vh - 180px);
          overflow-y: auto;
@@ -406,7 +407,7 @@
 
      iframe {
          height: auto;
-         min-height: calc(100vh - 180px);
+         min-height: calc(100vh - 170px);
      }
 
  }
