@@ -1,4 +1,4 @@
- /* --- 1. GLOBAL RESET & FOUNDATION --- */
+   /* --- 1. GLOBAL RESET & FOUNDATION --- */
  * {
      margin: 0;
      padding: 0;
@@ -369,12 +369,16 @@
      #pageTitle {
          font-size: 14px;
      }
-
+main{
+    height: calc(100vh - 130px);
+}
      iframe {
-        height: 95%;
+        height: 100%;
          -webkit-overflow-style: none;
          -ms-overflow-style: none;
          scrollbar-width: none;
+         /* padding-bottom: 30px; */
+         /* border: 1px solid red; */
      }
 
      iframe::-webkit-scrollbar {
@@ -398,6 +402,3 @@
      }
 
  }
-
-
-
