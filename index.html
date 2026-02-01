@@ -71,6 +71,41 @@
             font-size: 13px;
             color: #888;
         }
+        .countdown {
+    margin-top: 25px;
+}
+
+.countdown h3 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #bdbdbd;
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+#timer div {
+    background: #141414;
+    padding: 10px 12px;
+    border-radius: 8px;
+    min-width: 70px;
+}
+
+#timer span {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    color: #7aa2ff;
+}
+
+#timer small {
+    font-size: 11px;
+    color: #aaa;
+}
+
     </style>
 </head>
 <body>
@@ -84,6 +119,15 @@
             Our website is currently undergoing scheduled maintenance
             to improve performance and user experience.
         </p>
+<div class="countdown">
+    <h3>⏳ We’ll be back in</h3>
+    <div id="timer">
+        <div><span id="days">00</span><small>Days</small></div>
+        <div><span id="hours">00</span><small>Hours</small></div>
+        <div><span id="minutes">00</span><small>Minutes</small></div>
+        <div><span id="seconds">00</span><small>Seconds</small></div>
+    </div>
+</div>
 
         <p>
             Please visit again later. If you need immediate assistance,
@@ -99,6 +143,32 @@
             © Techno IT Computer Institute. All Rights Reserved.
         </div>
     </div>
+<script>
+    // SET MAINTENANCE END DATE (YYYY, MM-1, DD, HH, MM, SS)
+    const maintenanceEnd = new Date(2026, 1, 2, 12, 0, 0).getTime();
+
+    const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = maintenanceEnd - now;
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.querySelector(".countdown").innerHTML =
+                "<h3>✅ We are back online!</h3>";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }, 1000);
+</script>
 
 </body>
 </html>
