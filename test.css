@@ -1,4 +1,4 @@
-   /* --- 1. GLOBAL RESET & FOUNDATION --- */
+  /* --- 1. GLOBAL RESET & FOUNDATION --- */
  * {
      margin: 0;
      padding: 0;
@@ -158,8 +158,8 @@
 
  .sidebar h3 {
      font-size: 13px;
-     background: linear-gradient(135deg,
-      #070a16 0%, #200279 100%);
+     background: linear-gradient(155deg,
+      #0a12ea 0%, #820202 100%);
      padding: 10px;
      margin: 15px 0 10px 0;
      text-align: center;
@@ -370,16 +370,11 @@
      #pageTitle {
          font-size: 14px;
      }
-main{
-    height: calc(100vh - 140px);
-}
+
      iframe {
-        height: 100%;
-         -webkit-overflow-style: none;
+        -webkit-overflow-style: none;
          -ms-overflow-style: none;
          scrollbar-width: none;
-         /* padding-bottom: 30px; */
-         /* border: 1px solid red; */
      }
 
      iframe::-webkit-scrollbar {
@@ -400,6 +395,18 @@ main{
 
      .mob {
          display: block;
+     }
+
+     /* Fix for mobile content overflow */
+     main {
+         height: auto;
+         min-height: calc(100vh - 180px);
+         overflow-y: auto;
+     }
+
+     iframe {
+         height: auto;
+         min-height: calc(100vh - 180px);
      }
 
  }
