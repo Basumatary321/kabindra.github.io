@@ -6,8 +6,12 @@
     <title>Document</title>
     <style>
         body{
-            background-color: black;
-            color: white;
+            /* background-color: black; */
+           background: url("../images/cursor/header-01.svg"),
+           linear-gradient(to bottom, black,rgb(3, 3, 69),black);
+            background-size: contain, cover;
+            background-repeat: no-repeat;
+           color: white;
             line-height: 2;
         }
         .main-content {
@@ -85,7 +89,21 @@ kbd {
     color: #7aa2ff;
     font-size: 13px;
 }
-
+ .copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+     margin-top: 15px;
+     padding: 10px;
+     font-size: 14px;
+     color: #6b7280;
+     line-height: 1.5;
+ }
+ @media (max-width: 600px) {
+    body{
+        background-size: 150%;
+    }
+ }
 
     </style>
 </head>
@@ -153,7 +171,10 @@ kbd {
         </div>
     
     </div>
-    
+        <div class="copyright">
+                    <p>© 2026 Techno IT Computer Institute.</p>
+                    <p>All Rights Reserved.</p>
+                </div>
 </body>
 
 </html>
