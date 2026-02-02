@@ -9,7 +9,7 @@
  :root {
      --sidebar-width: 300px;
      --header-bg: linear-gradient(135deg, #1741fa 0%, #f8101b 100%);
-     --nav-bg: #2d3748;
+      --nav-bg: #182439;
      --primary-green: #10b981;
      --active-green: #059669;
      --sidebar-bg: #1a202c;
@@ -411,3 +411,4 @@
      }
 
  }
+
