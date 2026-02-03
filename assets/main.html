@@ -7,19 +7,17 @@
     <title>main</title>
     <style>
         body {
-            /* background-color: black; */
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
             background:
-                /* url("../images/cursor/header-01.svg"), */
                 linear-gradient(to bottom, rgb(11, 1, 48), rgb(3, 3, 69), black);
-            background-size: contain, cover;
-            background-repeat: no-repeat;
             color: white;
-            line-height: 2;
+            line-height: 1.6;
             text-align: justify;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
         }
-
         .main-content {
             padding: 30px;
             color: #eaeaea;
@@ -59,6 +57,8 @@
         .feature-card h3 {
             margin-bottom: 10px;
             color: #7aa2ff;
+            border-bottom: 2px dashed #7aa2ff;
+            padding-bottom: 5px;
         }
 
         .feature-card p {
@@ -108,13 +108,38 @@
             line-height: 1.5;
         }
 .footerbg{
-  
     width: 100%;
     height: 100px;
     background: url("../images/cursor/header-01.svg");
     transform: rotate(180deg);
     background-size: contain;
     background-repeat: no-repeat;
+    padding: 0;margin: 0;
+}
+ul.custom-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+/* Style each list item */
+ul.custom-list li {
+    position: relative; /* Needed for custom bullet positioning */
+    padding-left: 30px;  /* Space for custom bullet */
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Custom bullet using ::before */
+ul.custom-list li::before {
+    content: "⫸"; /* You can use any Unicode character or emoji */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #2ecc71; /* Green color */
+    font-size: 18px;
+    line-height: 1.5;
 }
         @media (max-width: 600px) {
             body {
@@ -168,8 +193,9 @@
         </div>
 
         <div class="how-to-use">
-            <h3>🧭 How to Use This Page</h3>
-            <ul>
+            <h2>💭 How to Use This Page</h2>
+            <hr>
+            <ul class="custom-list">
                 <li>
                     Choose a project from the left sidebar (desktop) or tap the menu button <kbd>☰</kbd> on the
                     top-right
@@ -182,9 +208,9 @@
                 <li>Use <strong><kbd>Open in New Tab</kbd> </strong> for full-screen view</li>
                 <li>
                     If you need help or want to see how the code works,
-                    right-click on the page and choose <strong><span style="color:green">View Page Source</span>
+                    right-click on the page and choose <strong><span style="color:#2ecc71">View Page Source</span>
                     </strong>
-                    (or <strong><span style="color:green">View Frame Source</span></strong> if the content is inside a
+                    (or <strong><span style="color:#2ecc71">View Frame Source</span></strong> if the content is inside a
                     frame).
                     Shortcut: <strong><kbd>Ctrl</kbd> + <kbd>U</kbd>
                     </strong>.
