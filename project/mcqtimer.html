@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beat the Timer</title>
+
+<style>
+*{ box-sizing:border-box; }
+
+body{
+    margin:0;
+    font-family:system-ui, Arial, sans-serif;
+    background:#0f172a;
+    color:#e5e7eb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:15px;
+}
+
+.game{
+    background:#020617;
+    width:100%;
+    max-width:420px;
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.5);
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.timer{
+    font-weight:700;
+    color:#38bdf8;
+}
+
+.question{
+    font-size:1.1rem;
+    margin-bottom:15px;
+}
+
+.options button{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:8px;
+    font-size:1rem;
+    cursor:pointer;
+    background:#1e293b;
+    color:#e5e7eb;
+}
+
+.options button:hover{
+    background:#334155;
+}
+
+.progress{
+    height:8px;
+    background:#1e293b;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.bar{
+    height:100%;
+    width:100%;
+    background:#22c55e;
+    transition:0.3s;
+}
+
+.result{
+    text-align:center;
+    font-size:1.2rem;
+    font-weight:700;
+}
+
+.start-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:1rem;
+    background:#22c55e;
+    color:#022c22;
+    cursor:pointer;
+}
+.start-btn:hover{
+    background:#16a34a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="game" id="game">
+    <button class="start-btn" onclick="startGame()">▶ Start Beat the Timer</button>
+</div>
+
+<script>
+const questions = [
+    { q:"5 × 6 = ?", options:[30, 25, 35, 20], answer:0 },
+    { q:"HTML stands for?", options:["Hyper Text Markup Language","High Text Machine Language","Hyperlinks Text Mark","None"], answer:0 },
+    { q:"CSS is used for?", options:["Logic","Styling","Database","Server"], answer:1 },
+    { q:"10 + 15 ÷ 3 = ?", options:[8, 15, 20, 25], answer:1 },
+    { q:"Which is NOT a programming language?", options:["Python","HTML","Java","C++"], answer:1 }
+];
+
+let index = 0;
+let score = 0;
+let time = 30;
+let timer;
+
+function startGame(){
+    index = 0;
+    score = 0;
+    time = 30;
+    loadQuestion();
+    timer = setInterval(updateTimer,1000);
+}
+
+function updateTimer(){
+    time--;
+    document.getElementById("time").textContent = time;
+
+    if(time <= 0){
+        endGame();
+    }
+}
+
+function loadQuestion(){
+    if(index >= questions.length){
+        endGame();
+        return;
+    }
+
+    const q = questions[index];
+    document.getElementById("game").innerHTML = `
+        <div class="header">
+            <div>Question ${index+1}/5</div>
+            <div class="timer">⏱ <span id="time">${time}</span>s</div>
+        </div>
+
+        <div class="question">${q.q}</div>
+
+        <div class="options">
+            ${q.options.map((opt,i)=>`
+                <button onclick="checkAnswer(${i})">${opt}</button>
+            `).join("")}
+        </div>
+
+        <div class="progress">
+            <div class="bar" style="width:${100 - index*20}%"></div>
+        </div>
+    `;
+}
+
+function checkAnswer(selected){
+    if(selected === questions[index].answer){
+        score++;
+    }
+    index++;
+    loadQuestion();
+}
+
+function endGame(){
+    clearInterval(timer);
+    document.getElementById("game").innerHTML = `
+        <div class="result">
+            ⏱ Time Over! <br><br>
+            ✅ Score: ${score} / 5
+        </div>
+        <br>
+        <button class="start-btn" onclick="startGame()">🔁 Play Again</button>
+    `;
+}
+</script>
+
+</body>
+</html>
