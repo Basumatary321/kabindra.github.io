@@ -93,7 +93,7 @@ button:hover{
 <body>
 
 <div class="container">
-    <h1>Crack the Code?</h1>
+    <h1>Crack the Code!🛅⚠️</h1>
     <div class="lock">🔒</div>
     <p>A numeric lock has a <b>3-digit key</b></p>
 
@@ -102,19 +102,19 @@ button:hover{
         <input type="number" id="d2" maxlength="1">
         <input type="number" id="d3" maxlength="1">
     </div>
-
+    <div class="result" id="result"></div>
     <button onclick="checkCode()">Check Code</button>
 
     <div class="hint-title">HINT</div>
     <div class="hints">
-        <div class="hint">🔴 682 – One number is correct and well placed</div>
-        <div class="hint">🔴 614 – One number is correct but wrongly placed</div>
-        <div class="hint">🔴 206 – Two numbers are correct but wrongly placed</div>
-        <div class="hint">🔴 738 – Nothing is correct</div>
-        <div class="hint">🔴 780 – One number is correct but wrongly placed</div>
+        <div class="hint">🗝️ 682 – One number is correct and well placed</div>
+        <div class="hint">🗝️ 614 – One number is correct but wrongly placed</div>
+        <div class="hint">🗝️ 206 – Two numbers are correct but wrongly placed</div>
+        <div class="hint">🗝️ 738 – Nothing is correct</div>
+        <div class="hint">🗝️ 780 – One number is correct but wrongly placed</div>
     </div>
 
-    <div class="result" id="result"></div>
+
 </div>
 
 <script>
@@ -134,10 +134,10 @@ function checkCode(){
     }
 
     if(input === code){
-        result.textContent = "🎉 Lock Opened! Code is Correct.";
+        result.textContent = "🎊Lock Opened!🔓 Code is Correct.";
         result.className = "result success";
     }else{
-        result.textContent = "❌ Wrong Code. Try Again!";
+        result.textContent = "❌ Wrong Code. Try Again!⚠️";
         result.className = "result error";
     }
 }
