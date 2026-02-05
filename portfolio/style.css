@@ -80,7 +80,26 @@
         nav a:hover {
             color: var(--accent);
         }
+.cv_btn{
 
+    background-color: var(--accent);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 40% 10%;
+    transition: 0.3s;
+}
+.cv_btn:hover{
+    transform: translateY(-5px);
+    background-color: #8e0839;
+    box-shadow: 0 10px 20px rgba(216, 27, 96, 0.3);
+}
+.cv_btn .cv_link{
+    color: white;
+    text-decoration: none;
+}
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
@@ -121,7 +140,7 @@
         .btn-main, .btn-send {
             background-color: var(--accent);
             color: white;
-            padding: 15px 35px;
+            padding: 10px 35px;
             border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
