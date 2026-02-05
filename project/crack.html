@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crack the Code</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    background:#fff;
+    width:380px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+.lock{
+    font-size:50px;
+    margin:10px 0;
+}
+
+.code-input{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:15px 0;
+}
+
+.code-input input{
+    width:60px;
+    height:60px;
+    font-size:28px;
+    text-align:center;
+    border:2px solid #ff4d4d;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 25px;
+    background:#ff4d4d;
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e63e3e;
+}
+
+.hint-title{
+    margin:20px 0 10px;
+    font-weight:bold;
+}
+
+.hints{
+    text-align:left;
+    font-size:14px;
+}
+
+.hint{
+    margin-bottom:8px;
+}
+
+.result{
+    margin-top:15px;
+    font-weight:bold;
+}
+.success{
+    color:green;
+}
+.error{
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Crack the Code?</h1>
+    <div class="lock">🔒</div>
+    <p>A numeric lock has a <b>3-digit key</b></p>
+
+    <div class="code-input">
+        <input type="number" id="d1" maxlength="1">
+        <input type="number" id="d2" maxlength="1">
+        <input type="number" id="d3" maxlength="1">
+    </div>
+
+    <button onclick="checkCode()">Check Code</button>
+
+    <div class="hint-title">HINT</div>
+    <div class="hints">
+        <div class="hint">🔴 682 – One number is correct and well placed</div>
+        <div class="hint">🔴 614 – One number is correct but wrongly placed</div>
+        <div class="hint">🔴 206 – Two numbers are correct but wrongly placed</div>
+        <div class="hint">🔴 738 – Nothing is correct</div>
+        <div class="hint">🔴 780 – One number is correct but wrongly placed</div>
+    </div>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function checkCode(){
+    const code = "042"; // correct answer
+    const input =
+        document.getElementById("d1").value +
+        document.getElementById("d2").value +
+        document.getElementById("d3").value;
+
+    const result = document.getElementById("result");
+
+    if(input.length !== 3){
+        result.textContent = "Please enter all 3 digits!";
+        result.className = "result error";
+        return;
+    }
+
+    if(input === code){
+        result.textContent = "🎉 Lock Opened! Code is Correct.";
+        result.className = "result success";
+    }else{
+        result.textContent = "❌ Wrong Code. Try Again!";
+        result.className = "result error";
+    }
+}
+</script>
+
+</body>
+</html>
