@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hire Me – Unlock My Skills</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:#0e0e0e;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.main{
+    width:100%;
+    max-width:850px;
+}
+
+/* CV IMAGE */
+.cv-box{
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 30px 70px rgba(0,0,0,0.8);
+}
+
+.cv-box img{
+    width:100%;
+    display:block;
+}
+
+/* SKILL BLUR ZONE */
+.blur-zone{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:90%;
+    backdrop-filter: blur(2px);
+    background:linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.403), rgba(0, 0, 0, 0.879),black);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    transition:all 1.2s ease;
+}
+
+.blur-zone h2{ 
+    color:#ff7a00;
+    margin-bottom:15px;
+}
+
+/* HIRE BUTTON */
+.hire-btn{
+    background:#1db954;
+    color:#fff;
+    font-size:1.4rem;
+    padding:14px 60px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    transition:transform .3s;
+}
+
+.hire-btn:hover{
+    transform:scale(1.08);
+}
+
+/* CONFIRM */
+.confirm{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:#fff;
+    z-index:5;
+}
+
+.confirm p{
+    font-size:1.4rem;
+    margin-bottom:20px;
+}
+
+.confirm button{
+    margin:10px;
+    padding:12px 35px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.yes{background:#1db954;color:#fff;}
+.no{background:#ff4d4d;color:#fff;}
+
+/* THANK YOU */
+.thanks{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,0.8);
+    color:#1db954;
+    padding:10px 20px;
+    border-radius:30px;
+    display:none;
+    animation:fadeIn 1s ease forwards;
+}
+
+/* DOWNLOAD */
+.download{
+    display:none;
+    text-align:center;
+    margin-top:25px;
+    animation:bounce 1s ease;
+}
+
+.download a{
+    background:#00e5ff;
+    padding:14px 45px;
+    border-radius:40px;
+    color:#000;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* UNLOCK EFFECT */
+.unlock{
+    height:0;
+    opacity:0;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes bounce{
+    0%{transform:scale(.8)}
+    60%{transform:scale(1.1)}
+    100%{transform:scale(1)}
+}
+
+@media(max-width:600px){
+    .blur-zone h2{font-size:1.3rem}
+    .thanks{font-size:0.7rem}
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="cv-box">
+
+<img src="cv.jpg" alt="CV">
+
+<div class="blur-zone" id="blurZone">
+    <h2>Skills Locked 🔒</h2>
+    <button class="hire-btn" onclick="askConfirm()">HIRE</button>
+</div>
+
+<div class="confirm" id="confirm">
+    <p>Are you sure you want to unlock my skills?</p>
+    <div>
+        <button class="yes" onclick="unlock()">Yes</button>
+        <button class="no" onclick="cancel()">No</button>
+    </div>
+</div>
+
+<div class="thanks" id="thanks">
+    🙏 Thank you for hiring me
+</div>
+
+</div>
+
+<div class="download" id="download">
+    <a href="cv.pdf" download>
+        ⬇ Download Full CV
+    </a>
+</div>
+
+<audio id="sound" src="unlock.mp3"></audio>
+
+</div>
+
+<script>
+function askConfirm(){
+    document.getElementById("confirm").style.display="flex";
+}
+
+function cancel(){
+    document.getElementById("confirm").style.display="none";
+}
+
+function unlock(){
+    document.getElementById("confirm").style.display="none";
+    document.getElementById("sound").play();
+
+    const blur = document.getElementById("blurZone");
+    blur.classList.add("unlock");
+
+    setTimeout(()=>{
+        blur.style.display="none";
+        document.getElementById("thanks").style.display="block";
+    },1000);
+
+    setTimeout(()=>{
+        document.getElementById("download").style.display="block";
+    },2500);
+}
+</script>
+
+</body>
+</html>
