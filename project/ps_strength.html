@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Strength Checker</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#0f172a;
+    color:#e5e7eb;
+    font-family:system-ui, Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:15px;
+}
+
+.container{
+    background:#020617;
+    width:100%;
+    max-width:380px;
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:1.4rem;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    font-size:1rem;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    margin:15px 0;
+}
+
+.progress{
+    background:#1e293b;
+    height:10px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    transition:0.3s ease;
+}
+
+.strength{
+    text-align:center;
+    margin-top:10px;
+    font-weight:600;
+    font-size:0.95rem;
+}
+
+.rules{
+    margin-top:15px;
+    font-size:0.9rem;
+}
+
+.rule{
+    margin:6px 0;
+    color:#94a3b8;
+}
+
+.rule.valid{
+    color:#22c55e;
+}
+
+/* Strength colors */
+.very-weak{background:#ef4444;}
+.weak{background:#f97316;}
+.medium{background:#eab308;}
+.strong{background:#22c55e;}
+.very-strong{background:#38bdf8;}
+
+@media (max-width:400px){
+    h2{
+        font-size:1.2rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔐 Password Strength Checker</h2>
+
+    <input type="password" id="password" placeholder="Type your password..." oninput="checkPassword()">
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="strength" id="strengthText">Strength: —</div>
+
+    <div class="rules">
+        <div class="rule" id="len">• Minimum 6 characters</div>
+        <div class="rule" id="num">• At least 1 number</div>
+        <div class="rule" id="sym">• At least 1 symbol</div>
+        <div class="rule" id="upper">• At least 1 uppercase letter</div>
+    </div>
+</div>
+
+<script>
+function checkPassword(){
+    const pass = document.getElementById("password").value;
+    const bar = document.getElementById("progressBar");
+    const text = document.getElementById("strengthText");
+
+    const len = pass.length >= 6;
+    const num = /\d/.test(pass);
+    const sym = /[^A-Za-z0-9]/.test(pass);
+    const upper = /[A-Z]/.test(pass);
+
+    updateRule("len", len);
+    updateRule("num", num);
+    updateRule("sym", sym);
+    updateRule("upper", upper);
+
+    const score = [len, num, sym, upper].filter(Boolean).length;
+
+    let strength = "";
+    let width = score * 25;
+
+    bar.className = "progress-bar";
+
+    if(score === 0){
+        strength = "Very Weak";
+        bar.classList.add("very-weak");
+    }else if(score === 1){
+        strength = "Weak";
+        bar.classList.add("weak");
+    }else if(score === 2){
+        strength = "Medium";
+        bar.classList.add("medium");
+    }else if(score === 3){
+        strength = "Strong";
+        bar.classList.add("strong");
+    }else{
+        strength = "Very Strong";
+        bar.classList.add("very-strong");
+    }
+
+    bar.style.width = width + "%";
+    text.textContent = "Strength: " + strength;
+}
+
+function updateRule(id, ok){
+    document.getElementById(id).classList.toggle("valid", ok);
+}
+</script>
+
+</body>
+</html>
