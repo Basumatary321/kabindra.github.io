@@ -1,1 +1,164 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rowspan and Colspan</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f8fafc;
+  padding:15px;
+}
+
+/* Section box */
+.lesson{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2{
+  color:#1e293b;
+}
+
+/* Result box */
+.result{
+  border:1px solid #cbd5f5;
+  padding:15px;
+  border-radius:8px;
+  background:#eef2ff;
+  margin-bottom:15px;
+  overflow-x:auto;
+}
+
+/* Toggle button */
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+button:hover{
+  background:#1d4ed8;
+}
+
+/* Table styling */
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+}
+th, td{
+  border:1px solid #94a3b8;
+  padding:8px;
+  text-align:center;
+}
+th{
+  background:#c7d2fe;
+}
+
+/* Code block */
+pre{
+  background:#020617;
+  color:#e5e7eb;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin-top:15px;
+  display:none;
+}
+code{
+  font-family: Consolas, monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lesson">
+
+<h2>Rowspan and Colspan</h2>
+<p>
+The <b>rowspan</b> attribute is used to merge rows vertically,
+and the <b>colspan</b> attribute is used to merge columns horizontally
+in an HTML table.
+</p>
+
+<h3>Output:</h3>
+
+<!-- RESULT FIRST -->
+<div class="result">
+
+<table>
+  <tr>
+    <th>Day</th>
+    <th colspan="2">Subjects</th>
+  </tr>
+
+  <tr>
+    <td rowspan="2">Monday</td>
+    <td>HTML</td>
+    <td>CSS</td>
+  </tr>
+
+  <tr>
+    <td colspan="2">JavaScript</td>
+  </tr>
+
+  <tr>
+    <td>Tuesday</td>
+    <td>PHP</td>
+    <td>MySQL</td>
+  </tr>
+</table>
+
+</div>
+
+<button onclick="toggleCode()">Show / Hide Code</button>
+
+<!-- CODE (HIDDEN INITIALLY) -->
+<pre id="codeBox"><code>
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Day&lt;/th&gt;
+    &lt;th colspan="2"&gt;Subjects&lt;/th&gt;
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+    &lt;td rowspan="2"&gt;Monday&lt;/td&gt;
+    &lt;td&gt;HTML&lt;/td&gt;
+    &lt;td&gt;CSS&lt;/td&gt;
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+    &lt;td colspan="2"&gt;JavaScript&lt;/td&gt;
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+    &lt;td&gt;Tuesday&lt;/td&gt;
+    &lt;td&gt;PHP&lt;/td&gt;
+    &lt;td&gt;MySQL&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+</div>
+
+<script>
+function toggleCode(){
+  const box = document.getElementById("codeBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
+
+</body>
+</html>
