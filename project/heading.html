@@ -1,15 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title> Headings </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Headings Tag</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f8fafc;
+  padding:15px;
+}
+
+/* Section box */
+.lesson{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2{
+  color:#1e293b;
+}
+
+/* Result box */
+.result{
+  border:1px solid #cbd5f5;
+  padding:15px;
+  border-radius:8px;
+  background:#eef2ff;
+  margin-bottom:15px;
+}
+
+/* Toggle button */
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+button:hover{
+  background:#1d4ed8;
+}
+
+/* Code block */
+pre{
+  background:#020617;
+  color:#e5e7eb;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin-top:15px;
+  display:none;
+}
+code{
+  font-family: Consolas, monospace;
+}
+</style>
 </head>
-<body bgcolor="white">
-<h1> This is Heading 1 </h1>
-<h2> This is Heading 2 </h2>
-<h3> This is Heading 3 </h3>
-<h4> This is Heading 4 </h4>
-<h5> This is Heading 5 </h5>
-<h6> This is Heading 6 </h6>
-<a href="../projects/hyperlink.html"></a>
+
+<body>
+
+<div class="lesson">
+
+<h2>Headings Tag</h2>
+<p>
+HTML heading tags are used to create headings for the content of a webpage.
+HTML provides six heading tags, from <b>&lt;h1&gt;</b> to <b>&lt;h6&gt;</b>,
+each displaying a different font size.
+</p>
+
+<h3>Output:</h3>
+
+<!-- RESULT FIRST -->
+<div class="result">
+  <h1>This is Heading 1</h1>
+  <h2>This is Heading 2</h2>
+  <h3>This is Heading 3</h3>
+  <h4>This is Heading 4</h4>
+  <h5>This is Heading 5</h5>
+  <h6>This is Heading 6</h6>
+</div>
+
+<button onclick="toggleCode()">👁️Code</button>
+
+<!-- CODE (HIDDEN INITIALLY) -->
+<pre id="codeBox"><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Headings&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;This is Heading 1&lt;/h1&gt;
+  &lt;h2&gt;This is Heading 2&lt;/h2&gt;
+  &lt;h3&gt;This is Heading 3&lt;/h3&gt;
+  &lt;h4&gt;This is Heading 4&lt;/h4&gt;
+  &lt;h5&gt;This is Heading 5&lt;/h5&gt;
+  &lt;h6&gt;This is Heading 6&lt;/h6&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+</div>
+
+<script>
+function toggleCode(){
+  const box = document.getElementById("codeBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
+
 </body>
 </html>
