@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table thead tbody tfoot</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f8fafc;
+  padding:15px;
+}
+
+/* Section box */
+.lesson{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2{
+  color:#1e293b;
+}
+
+/* Result box */
+.result{
+  border:1px solid #cbd5f5;
+  padding:15px;
+  border-radius:8px;
+  background:#eef2ff;
+  margin-bottom:15px;
+  overflow-x:auto;
+}
+
+/* Toggle button */
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+button:hover{
+  background:#1d4ed8;
+}
+
+/* Table styling */
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+}
+th, td{
+  border:1px solid #94a3b8;
+  padding:8px;
+  text-align:center;
+}
+thead{
+  background:#c7d2fe;
+}
+tfoot{
+  background:#e0e7ff;
+  font-weight:bold;
+}
+
+/* Code block */
+pre{
+  background:#020617;
+  color:#e5e7eb;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin-top:15px;
+  display:none;
+}
+code{
+  font-family: Consolas, monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lesson">
+
+<h2>thead, tbody and tfoot</h2>
+<p>
+HTML tables can be divided into three sections for better structure:
+<b>&lt;thead&gt;</b> (table header),
+<b>&lt;tbody&gt;</b> (table body),
+and <b>&lt;tfoot&gt;</b> (table footer).
+</p>
+
+<h3>Output:</h3>
+
+<!-- RESULT FIRST -->
+<div class="result">
+
+<table>
+  <thead>
+    <tr>
+      <th>Roll No</th>
+      <th>Name</th>
+      <th>Marks</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Amit</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Riya</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Rahul</td>
+      <td>90</td>
+    </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="2">Total Students</td>
+      <td>3</td>
+    </tr>
+  </tfoot>
+</table>
+
+</div>
+
+<button onclick="toggleCode()">Show / Hide Code</button>
+
+<!-- CODE (HIDDEN INITIALLY) -->
+<pre id="codeBox"><code>
+&lt;table&gt;
+
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Roll No&lt;/th&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Marks&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Amit&lt;/td&gt;
+      &lt;td&gt;80&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Riya&lt;/td&gt;
+      &lt;td&gt;85&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Rahul&lt;/td&gt;
+      &lt;td&gt;90&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td colspan="2"&gt;Total Students&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+
+&lt;/table&gt;
+</code></pre>
+
+</div>
+
+<script>
+function toggleCode(){
+  const box = document.getElementById("codeBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
+
+</body>
+</html>
