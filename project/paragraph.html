@@ -1,32 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>paragraph</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Paragraph Tag</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f8fafc;
+  padding:15px;
+}
+
+/* Section box */
+.lesson{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2{
+  color:#1e293b;
+}
+
+/* Result box */
+.result{
+  border:1px solid #cbd5f5;
+  padding:15px;
+  border-radius:8px;
+  background:#eef2ff;
+  margin-bottom:15px;
+}
+
+/* Toggle button */
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+button:hover{
+  background:#1d4ed8;
+}
+
+/* Code block */
+pre{
+  background:#020617;
+  color:#e5e7eb;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin-top:15px;
+  display:none;
+}
+code{
+  font-family: Consolas, monospace;
+}
+</style>
 </head>
 
-<body bgcolor="white">
-    <div class="container">
-        <h1>Welcome to HTML</h1>
-        <p>
-            HTML stands for HyperText Markup Language. It is used to design web pages using a markup language.HTML is a
-            combination of Hypertext and Markup language. Hypertext defines the link between web pages. A markup
-            language is
-            used to define the text document within the tag which defines the structure of web pages.
-        </p>
+<body>
 
-        <h2>Second Paragraph Using Line Break (CSS neutralized)</h2>
-        <p>
-            HTML stands for Hypertext Markup Language. <br> It is used to design web pages using a markup <br>
-            language.HTML
-            is a combination of Hypertext <br> and Markup language. Hypertext defines the <br> link between web pages. A
-            markup language <br> is used to define the text document within the <br> tag which defines the structure of
-            web
-            pages.
-        </p>
-    </div>
+<div class="lesson">
+
+<h2>Paragraph Tag</h2>
+<p>
+The HTML <b>&lt;p&gt;</b> tag is used to define a paragraph.
+A paragraph always starts on a new line and browsers automatically
+add space before and after the paragraph.
+</p>
+
+<h3>Output:</h3>
+
+<!-- RESULT FIRST -->
+<div class="result">
+  <p>This is a paragraph.</p>
+  <p>This is another paragraph. HTML automatically adds space between paragraphs.</p>
+  <p>
+    Paragraphs can contain long text and will wrap automatically
+    according to the screen size.
+  </p>
+</div>
+
+<button onclick="toggleCode()">👁️Code</button>
+
+<!-- CODE (HIDDEN INITIALLY) -->
+<pre id="codeBox"><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Paragraph Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+  &lt;p&gt;
+    This is another paragraph. HTML automatically adds space
+    between paragraphs.
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    Paragraphs can contain long text and will wrap automatically
+    according to the screen size.
+  &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+</div>
+
+<script>
+function toggleCode(){
+  const box = document.getElementById("codeBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
+
 </body>
-
 </html>
