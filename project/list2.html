@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML List Types</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f8fafc;
+  padding:15px;
+}
+
+/* Section box */
+.lesson{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2{
+  color:#1e293b;
+}
+
+/* Result box */
+.result{
+  border:1px solid #cbd5f5;
+  padding:15px;
+  border-radius:8px;
+  background:#eef2ff;
+  margin-bottom:15px;
+}
+
+/* Toggle button */
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+button:hover{
+  background:#1d4ed8;
+}
+
+/* Code block */
+pre{
+  background:#020617;
+  color:#e5e7eb;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin-top:15px;
+  display:none;
+}
+code{
+  font-family: Consolas, monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lesson">
+
+<h2>Different Types of HTML Lists</h2>
+<p>
+HTML allows us to change the appearance of lists using the
+<b>type</b> attribute (basic level) or CSS (modern way).
+</p>
+
+<h3>Output:</h3>
+
+<!-- RESULT FIRST -->
+<div class="result">
+
+  <h4>Unordered List Types</h4>
+
+  <b>Disc (default)</b>
+  <ul type="disc">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+
+  <b>Circle</b>
+  <ul type="circle">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+
+  <b>Square</b>
+  <ul type="square">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+
+  <hr>
+
+  <h4>Ordered List Types</h4>
+
+  <b>Numbers (default)</b>
+  <ol type="1">
+    <li>Wake Up</li>
+    <li>Study</li>
+    <li>Sleep</li>
+  </ol>
+
+  <b>Uppercase Letters</b>
+  <ol type="A">
+    <li>Wake Up</li>
+    <li>Study</li>
+    <li>Sleep</li>
+  </ol>
+
+  <b>Lowercase Letters</b>
+  <ol type="a">
+    <li>Wake Up</li>
+    <li>Study</li>
+    <li>Sleep</li>
+  </ol>
+
+  <b>Roman Numbers (Uppercase)</b>
+  <ol type="I">
+    <li>Wake Up</li>
+    <li>Study</li>
+    <li>Sleep</li>
+  </ol>
+
+  <b>Roman Numbers (Lowercase)</b>
+  <ol type="i">
+    <li>Wake Up</li>
+    <li>Study</li>
+    <li>Sleep</li>
+  </ol>
+
+</div>
+
+<button onclick="toggleCode()">Show / Hide Code</button>
+
+<!-- CODE (HIDDEN INITIALLY) -->
+<pre id="codeBox"><code>
+&lt;!-- Unordered List Types --&gt;
+&lt;ul type="disc"&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul type="circle"&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul type="square"&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered List Types --&gt;
+&lt;ol type="1"&gt;
+  &lt;li&gt;Wake Up&lt;/li&gt;
+  &lt;li&gt;Study&lt;/li&gt;
+  &lt;li&gt;Sleep&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol type="A"&gt;
+  &lt;li&gt;Wake Up&lt;/li&gt;
+  &lt;li&gt;Study&lt;/li&gt;
+  &lt;li&gt;Sleep&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol type="a"&gt;
+  &lt;li&gt;Wake Up&lt;/li&gt;
+  &lt;li&gt;Study&lt;/li&gt;
+  &lt;li&gt;Sleep&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol type="I"&gt;
+  &lt;li&gt;Wake Up&lt;/li&gt;
+  &lt;li&gt;Study&lt;/li&gt;
+  &lt;li&gt;Sleep&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol type="i"&gt;
+  &lt;li&gt;Wake Up&lt;/li&gt;
+  &lt;li&gt;Study&lt;/li&gt;
+  &lt;li&gt;Sleep&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+
+</div>
+
+<script>
+function toggleCode(){
+  const box = document.getElementById("codeBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
+
+</body>
+</html>
