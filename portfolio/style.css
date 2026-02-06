@@ -13,14 +13,21 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             background-color: var(--bg-dark);
             /* background: url("../images/me.jpg"); */
-            
             color: var(--text-white);
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+            width: 100%;
+            max-width: 100%;
         }
 
         /* --- Global Layout --- */
@@ -50,12 +57,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
+            padding: 20px;
+        
             position: fixed;
             width: 100%;
+            max-width: 100%;
             z-index: 1000;
             background: rgba(15, 16, 18, 0.9);
             backdrop-filter: blur(10px);
+            box-sizing: border-box;
         }
 
         .logo {
@@ -88,8 +98,9 @@
     border-radius: 5px;
     text-decoration: none;
     font-weight: 600;
-    border-radius: 0 0 40% 10%;
+    border-radius: 0 0 0px 30px;
     transition: 0.3s;
+    border: 1px dashed var(--text-gray);
 }
 .cv_btn:hover{
     transform: translateY(-5px);
@@ -331,9 +342,12 @@ textarea{
 
             .hero {
                 background-size: 150%;
-                background-position:top 10% right;
+                background-position:top 10% right 20%;
+                padding: 0 5%;
                 padding-bottom: 50px;
                 background-repeat: no-repeat;
+                max-width: 100vw;
+                overflow-x: hidden;
             }
 .description{
     backdrop-filter: blur(1px);
@@ -342,10 +356,10 @@ textarea{
                 flex-direction: column;
                 gap: 15px;
                 font-size: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                margin-left: 30px;
-                width: 100%;
+                left: 5%;
+                transform: none;
+                margin-left: 0;
+                width: auto;
                 padding-bottom: 50px;
             }
             .hero-content h1,.hero-content .typewriter {
@@ -366,6 +380,24 @@ textarea{
 
             .container {
                 padding: 60px 5%;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 0 4%;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+
+            .hero-footer {
+                left: 4%;
+                gap: 10px;
+            }
+
+            .container {
+                padding: 40px 4%;
             }
         }
  .typewriter {
