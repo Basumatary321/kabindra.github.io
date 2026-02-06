@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Description List</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f8fafc;
+  padding:15px;
+}
+
+/* Section box */
+.lesson{
+  max-width:900px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2{
+  color:#1e293b;
+}
+
+/* Result box */
+.result{
+  border:1px solid #cbd5f5;
+  padding:15px;
+  border-radius:8px;
+  background:#eef2ff;
+  margin-bottom:15px;
+}
+
+/* Toggle button */
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+button:hover{
+  background:#1d4ed8;
+}
+
+/* Description list styling */
+dt{
+  font-weight:bold;
+  margin-top:10px;
+}
+dd{
+  margin-left:20px;
+}
+
+/* Code block */
+pre{
+  background:#020617;
+  color:#e5e7eb;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin-top:15px;
+  display:none;
+}
+code{
+  font-family: Consolas, monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lesson">
+
+<h2>Description List</h2>
+<p>
+A description list is used to display terms and their descriptions.
+It uses three tags: <b>&lt;dl&gt;</b>, <b>&lt;dt&gt;</b>, and <b>&lt;dd&gt;</b>.
+</p>
+
+<h3>Output:</h3>
+
+<!-- RESULT FIRST -->
+<div class="result">
+
+<dl>
+  <dt>HTML</dt>
+  <dd>HTML stands for HyperText Markup Language.</dd>
+
+  <dt>CSS</dt>
+  <dd>CSS is used to style and design web pages.</dd>
+
+  <dt>JavaScript</dt>
+  <dd>JavaScript is used to make web pages interactive.</dd>
+</dl>
+
+</div>
+
+<button onclick="toggleCode()">Show / Hide Code</button>
+
+<!-- CODE (HIDDEN INITIALLY) -->
+<pre id="codeBox"><code>
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HTML stands for HyperText Markup Language.&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;CSS is used to style and design web pages.&lt;/dd&gt;
+
+  &lt;dt&gt;JavaScript&lt;/dt&gt;
+  &lt;dd&gt;JavaScript is used to make web pages interactive.&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+
+</div>
+
+<script>
+function toggleCode(){
+  const box = document.getElementById("codeBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
+
+</body>
+</html>
