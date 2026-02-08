@@ -161,7 +161,8 @@ button{
     <div class="question">
         I promise to keep you smiling 💕
     </div>
-    <button class="share" onclick="share()">Share on WhatsApp 💚</button>
+   <button class="share" onclick="sendWhatsApp()">Reply on WhatsApp 💚</button>
+
 </div>
 
 </div>
@@ -233,12 +234,23 @@ function yes(){
     success.style.display="block";
 }
 
-function share(){
-    const msg=encodeURIComponent(
-        "Someone made this cute Valentine page for you 💖👇\n"+location.href
+// function share(){
+//     const msg=encodeURIComponent(
+//         "Someone made this cute Valentine page for you 💖👇\n"+location.href
+//     );
+//     window.open("https://wa.me/?text="+msg,"_blank");
+// }
+/* WHATSAPP DIRECT REPLY */
+const YOUR_NUMBER = "916000537626"; // 🔴 CHANGE THIS
+
+function sendWhatsApp(){
+    const msg = encodeURIComponent(
+        "Yes ❤️\nI saw your page…\nAnd I smiled 😊"
     );
-    window.open("https://wa.me/?text="+msg,"_blank");
-}
+    window.open(
+        `https://wa.me/${YOUR_NUMBER}?text=${msg}`,
+        "_blank"
+    );}
 </script>
 
 </body>
