@@ -19,12 +19,14 @@ body{
     overflow:hidden;
 }
 
-/* HEARTS */
+/* HEARTS (FIXED) */
 .heart{
     position:fixed;
     top:-10px;
     font-size:18px;
     animation:fall linear infinite;
+    pointer-events:none;        /* IMPORTANT FIX */
+    z-index:0;
 }
 @keyframes fall{
     to{transform:translateY(110vh);opacity:0}
@@ -36,6 +38,8 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+    z-index:2;
+    position:relative;
 }
 
 /* CARD */
@@ -51,9 +55,11 @@ body{
 }
 
 /* ENVELOPE */
+#open{
+    cursor:pointer;
+}
 #envelope{
     font-size:70px;
-    cursor:pointer;
     animation:float 2s infinite alternate;
 }
 @keyframes float{
@@ -169,12 +175,16 @@ setInterval(()=>{
 const params=new URLSearchParams(location.search);
 document.getElementById("name").innerText=params.get("name")||"You";
 
-/* FLOW */
-open.onclick=()=>{
-    open.style.display="none";
-    letter.style.display="block";
-};
+/* OPEN LETTER (EXTRA SAFE) */
+const openBox=document.getElementById("open");
+openBox.onclick=openLetter;
 
+function openLetter(){
+    openBox.style.display="none";
+    letter.style.display="block";
+}
+
+/* FLOW */
 function toQuiz(){
     letter.style.display="none";
     quiz.style.display="block";
