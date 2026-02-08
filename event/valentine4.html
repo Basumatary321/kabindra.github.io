@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    height:100vh;
+    font-family:'Pacifico',cursive;
+    background:radial-gradient(circle at top,#2b1055,#000);
+    color:#fff;
+    overflow:hidden;
+}
+
+/* HEARTS */
+.heart{
+    position:fixed;
+    top:-10px;
+    font-size:18px;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    to{transform:translateY(110vh);opacity:0}
+}
+
+/* CENTER */
+.container{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* CARD */
+.card{
+    width:92%;
+    max-width:360px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border-radius:22px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* ENVELOPE */
+#envelope{
+    font-size:70px;
+    cursor:pointer;
+    animation:float 2s infinite alternate;
+}
+@keyframes float{
+    to{transform:translateY(-8px)}
+}
+
+/* HIDDEN SECTIONS */
+.section{display:none}
+
+/* TEXT */
+.big{font-size:24px;color:#ffb6c1}
+.small{font-size:16px;margin-top:10px}
+
+/* BUTTONS */
+button{
+    padding:12px 18px;
+    border:none;
+    border-radius:18px;
+    font-family:'Pacifico',cursive;
+    font-size:16px;
+    margin-top:15px;
+}
+
+.yes{background:#2ecc71;color:white}
+.no{background:#ff7675;color:white}
+.play{background:#f1c40f;color:black}
+.share{background:#25D366;color:white}
+
+/* RING */
+#ring{
+    font-size:60px;
+    animation:ring 1.2s infinite alternate;
+}
+@keyframes ring{
+    from{transform:scale(1)}
+    to{transform:scale(1.15)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card" id="card">
+
+<!-- ENVELOPE -->
+<div id="open">
+    <div id="envelope">💌</div>
+    <div class="small">Tap to open</div>
+</div>
+
+<!-- LETTER -->
+<div id="letter" class="section">
+    <div class="big">Hey <span id="name">You</span> 💖</div>
+    <div class="small">
+        I wanted to tell you something…  
+        but in a way you’d remember 🌙
+    </div>
+    <button onclick="toQuiz()">Continue ✨</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+    <div class="big">One question 😌</div>
+    <div class="small">
+        Do you believe some connections are not accidental?
+    </div>
+    <button onclick="toProposal()">Maybe… 💭</button>
+</div>
+
+<!-- PROPOSAL -->
+<div id="proposal" class="section">
+    <div class="big" id="loveText">I Love You ❤️</div>
+    <div class="small" id="request">Please be mine… 🥺</div>
+
+    <button class="play" onclick="playVoice()">▶ Listen</button>
+
+    <div style="margin-top:10px">
+        <button class="yes" onclick="yes()">Yes 💖</button>
+        <button class="no" onclick="no()">No 🙈</button>
+    </div>
+</div>
+
+<!-- SUCCESS -->
+<div id="success" class="section">
+    <div id="ring">💍</div>
+    <div class="big">You chose us 🥰</div>
+    <div class="small">This moment is special to me 🤍</div>
+    <button class="share" onclick="share()">Share on WhatsApp 💚</button>
+</div>
+
+</div>
+</div>
+
+<!-- VOICE NOTE -->
+<audio id="voice">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_7bdb6d4a63.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* HEART RAIN */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=3+Math.random()*3+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},400);
+
+/* NAME FROM LINK */
+const params=new URLSearchParams(location.search);
+document.getElementById("name").innerText=params.get("name")||"You";
+
+/* FLOW */
+open.onclick=()=>{
+    open.style.display="none";
+    letter.style.display="block";
+};
+
+function toQuiz(){
+    letter.style.display="none";
+    quiz.style.display="block";
+}
+
+function toProposal(){
+    quiz.style.display="none";
+    proposal.style.display="block";
+}
+
+/* NO LOGIC */
+const loves=[
+ "I Love You ❤️","Te Amo 💕","Je t’aime 💖",
+ "Ich liebe dich 💘","Ti amo 💓",
+ "मैं तुमसे प्यार करता हूँ ❤️",
+ "आं नोंखौ मोजां मोनो 💞"
+];
+
+const requests=[
+ "Please… just feel it once 🥺",
+ "My heart already chose you 💘",
+ "I promise respect & honesty 🤍",
+ "I’ll wait… even now 😔"
+];
+
+let n=0;
+function no(){
+    n++;
+    loveText.innerText=loves[n%loves.length];
+    request.innerText=requests[n%requests.length];
+}
+
+/* YES */
+function yes(){
+    proposal.style.display="none";
+    success.style.display="block";
+}
+
+/* VOICE */
+function playVoice(){
+    document.getElementById("voice").play();
+}
+
+/* SHARE */
+function share(){
+    const msg=encodeURIComponent(
+        "This was made just for you 💖👇\n"+location.href
+    );
+    window.open("https://wa.me/?text="+msg,"_blank");
+}
+</script>
+
+</body>
+</html>
