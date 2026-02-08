@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Crush 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    height:100vh;
+    font-family:'Pacifico',cursive;
+    background:linear-gradient(135deg,#1a1a2e,#16213e);
+    color:white;
+    overflow:hidden;
+}
+
+/* HEART RAIN */
+.heart{
+    position:fixed;
+    top:-10px;
+    font-size:18px;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    to{transform:translateY(110vh);opacity:0}
+}
+
+/* CENTER */
+.container{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* CARD */
+.card{
+    width:92%;
+    max-width:360px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    border-radius:22px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* SLIDES */
+.slide{display:none;font-size:22px;line-height:1.4}
+.slide.active{display:block}
+
+/* PROPOSAL */
+#loveText{font-size:26px;color:#ffb6c1}
+#request{font-size:16px;margin:10px 0 15px}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+}
+
+button{
+    padding:12px 18px;
+    border:none;
+    border-radius:18px;
+    font-size:16px;
+    font-family:'Pacifico',cursive;
+}
+
+.yes{background:#2ecc71;color:white}
+.no{background:#ff7675;color:white}
+.share{background:#25D366;color:white}
+
+/* TYPING */
+#typing{
+    font-size:14px;
+    opacity:0.8;
+    margin-top:10px;
+}
+
+/* RING */
+#ring{
+    font-size:60px;
+    animation:ring 1.2s infinite alternate;
+}
+@keyframes ring{
+    from{transform:scale(1)}
+    to{transform:scale(1.15)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card" id="card">
+
+<!-- STORY SLIDES -->
+<div class="slide active">
+    Hey… 👋  
+    <br>Tap anywhere 💕
+</div>
+
+<div class="slide">
+    I didn’t plan this…  
+    <br>it just happened 💭
+</div>
+
+<div class="slide">
+    Every smile of yours  
+    <br>felt a little special ✨
+</div>
+
+<div class="slide">
+    So I made this…  
+    <br>just for you ❤️
+</div>
+
+<!-- PROPOSAL -->
+<div class="slide" id="proposal">
+    <div id="loveText">I Love You ❤️</div>
+    <div id="request">Please be mine… 🥺</div>
+
+    <div class="buttons">
+        <button class="yes" onclick="yes()">Yes 💖</button>
+        <button class="no" onclick="no()">No 🙈</button>
+    </div>
+
+    <div id="typing"></div>
+</div>
+
+<!-- SUCCESS -->
+<div class="slide" id="success">
+    <div id="ring">💍</div>
+    <div style="font-size:24px;margin-top:10px">
+        You chose us 🥰
+    </div>
+    <button class="share" onclick="share()">Share on WhatsApp 💚</button>
+</div>
+
+</div>
+</div>
+
+<script>
+/* HEARTS */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=3+Math.random()*3+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},350);
+
+/* STORY LOGIC */
+const slides=document.querySelectorAll(".slide");
+let i=0;
+
+document.body.onclick=()=>{
+    if(i<slides.length-2){
+        slides[i].classList.remove("active");
+        i++;
+        slides[i].classList.add("active");
+    }
+};
+
+/* LOVE LOGIC */
+const loves=[
+ "I Love You ❤️","Te Amo 💕","Je t’aime 💖",
+ "Ich liebe dich 💘","Ti amo 💓",
+ "मैं तुमसे प्यार करता हूँ ❤️",
+ "आं नोंखौ मोजां मोनो 💞"
+];
+
+const requests=[
+ "Please… just feel it once 🥺",
+ "My heart already decided 💘",
+ "I promise honesty & respect 🤍",
+ "I’ll wait… even now 😔"
+];
+
+let n=0;
+
+function no(){
+    n++;
+    loveText.innerText=loves[n%loves.length];
+    request.innerText=requests[n%requests.length];
+    typingEffect();
+}
+
+function typingEffect(){
+    const t=document.getElementById("typing");
+    t.innerText="She is thinking…";
+    setTimeout(()=>t.innerText="typing…",800);
+    setTimeout(()=>t.innerText="",1600);
+}
+
+function yes(){
+    slides[i].classList.remove("active");
+    success.classList.add("active");
+}
+
+function share(){
+    const msg=encodeURIComponent(
+        "This page was made just for you 💖👇\n"+location.href
+    );
+    window.open("https://wa.me/?text="+msg,"_blank");
+}
+</script>
+
+</body>
+</html>
