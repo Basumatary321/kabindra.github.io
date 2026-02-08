@@ -1,226 +1,243 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Crush 💖</title>
 
-<!-- Handwritten Font -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-* {
-    box-sizing: border-box;
-}
+*{box-sizing:border-box}
 
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    font-family: 'Pacifico', cursive;
-    overflow: hidden;
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    font-family:'Pacifico',cursive;
+    overflow:hidden;
+    transition:0.3s;
 }
 
 /* Heart Rain */
-.heart {
-    position: fixed;
-    top: -10px;
-    font-size: 18px;
-    animation: fall linear infinite;
-    color: rgba(255,0,80,0.8);
+.heart{
+    position:fixed;
+    top:-10px;
+    font-size:18px;
+    animation:fall linear infinite;
+    color:rgba(255,0,80,0.8);
 }
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
+@keyframes fall{
+    to{transform:translateY(110vh)}
 }
 
-/* Card */
-.container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Shake */
+.shake{
+    animation:shake 0.3s;
+}
+@keyframes shake{
+    0%{transform:translateX(0)}
+    25%{transform:translateX(-5px)}
+    50%{transform:translateX(5px)}
+    75%{transform:translateX(-5px)}
+    100%{transform:translateX(0)}
 }
 
-.card {
-    background: white;
-    padding: 25px;
-    width: 90%;
-    max-width: 360px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+/* Cry Emoji */
+.cry{
+    position:fixed;
+    font-size:30px;
+    animation:cryFall 2s linear forwards;
+}
+@keyframes cryFall{
+    to{transform:translateY(120vh);opacity:0}
 }
 
-h1 {
-    color: #ff2e63;
-    font-size: 26px;
+/* Layout */
+.container{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.question {
-    font-size: 20px;
-    margin: 20px 0;
+.card{
+    background:white;
+    width:92%;
+    max-width:360px;
+    padding:25px;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    text-align: center;
+h1{color:#ff2e63}
+
+.question{font-size:20px;margin:15px 0}
+
+input{
+    width:100%;
+    padding:10px;
+    border-radius:14px;
+    border:1px solid #ccc;
+    text-align:center;
+    font-size:16px;
 }
 
-button {
-    margin-top: 15px;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: 'Pacifico', cursive;
+button{
+    padding:12px 18px;
+    margin-top:15px;
+    border:none;
+    border-radius:16px;
+    font-family:'Pacifico',cursive;
+    font-size:16px;
 }
 
-.start-btn {
-    background: #ff2e63;
-    color: white;
+.start{background:#ff2e63;color:white}
+
+#proposal,#success{display:none}
+
+#loveText{
+    font-size:24px;
+    color:#ff2e63;
+    margin-bottom:6px;
 }
 
-/* Proposal */
-#proposal {
-    display: none;
+#request{
+    font-size:16px;
+    margin-bottom:14px;
 }
 
-#loveText {
-    font-size: 22px;
-    color: #ff2e63;
-    margin-bottom: 8px;
+.buttons{
+    display:flex;
+    gap:12px;
+    justify-content:center;
 }
 
-#requestLine {
-    font-size: 16px;
-    margin-bottom: 15px;
-}
+.yes{background:#2ecc71;color:white}
+.no{background:#ff7675;color:white}
 
-.buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.yes {
-    background: #2ecc71;
-    color: white;
-}
-
-.no {
-    background: #ff7675;
-    color: white;
-}
-
-/* After Yes */
-#success {
-    display: none;
-}
-
-.share {
-    background: #25D366;
-    color: white;
-    margin-top: 15px;
+.share{
+    background:#25D366;
+    color:white;
 }
 </style>
 </head>
 
 <body>
 
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c9c0b3d7e.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
-    <div class="card">
+<div class="card" id="card">
 
-        <!-- STEP 1 -->
-        <div id="step1">
-            <h1>Hey You 💌</h1>
-            <div class="question">
-                Before I say something…  
-                <br>Are you smiling right now? 😊
-            </div>
-            <input type="text" placeholder="type yes / maybe">
-            <button class="start-btn" onclick="startLove()">Continue 💕</button>
-        </div>
+<!-- STEP 1 -->
+<div id="step1">
+    <h1>Hey You 💌</h1>
+    <div class="question">
+       Before I continue…  
+        <br>Do you believe in cute surprises? 😄
+    </div>
+    <input placeholder="yes / maybe">
+    <button class="start" onclick="start()">Continue 💕</button>
+</div>
 
-        <!-- STEP 2 -->
-        <div id="proposal">
-            <div id="loveText">I Love You ❤️</div>
-            <div id="requestLine">Please… will you be mine? 🥺</div>
+<!-- STEP 2 -->
+<div id="proposal">
+    <div id="loveText">I Love You ❤️</div>
+    <div id="request">Please say yes… I’m serious 🥺</div>
 
-            <div class="buttons">
-                <button class="yes" onclick="sayYes()">Yes 💖</button>
-                <button class="no" onclick="sayNo()">No 🙈</button>
-            </div>
-        </div>
-
-        <!-- STEP 3 -->
-        <div id="success">
-            <h1>Yayyy 🥰</h1>
-            <div class="question">
-                You just made my heart very happy 💕
-            </div>
-            <button class="share" onclick="shareLove()">Share on WhatsApp 💚</button>
-        </div>
-
+    <div class="buttons">
+        <button class="yes" onclick="yes()">Yes 💖</button>
+        <button class="no" onclick="no()">No 🙈</button>
     </div>
 </div>
 
+<!-- STEP 3 -->
+<div id="success">
+    <h1>She Said YES 🥰</h1>
+    <div class="question">
+        I promise to keep you smiling 💕
+    </div>
+    <button class="share" onclick="share()">Share on WhatsApp 💚</button>
+</div>
+
+</div>
+</div>
+
 <script>
-/* Heart Rain */
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = 2 + Math.random() * 3 + "s";
-    document.body.appendChild(heart);
+/* Hearts */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=2+Math.random()*3+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+},300);
 
-    setTimeout(() => heart.remove(), 5000);
-}, 300);
+/* Love Languages + Requests */
+const loves=[
+ "I Love You ❤️",
+ "मैं तुमसे प्यार करता हूँ ❤️",
+ "आं नोंखौ मोजां मोनो 💞",
+ "Ame Tomake Bhalobasi🤍",
+ "Moi tumak bhal pao💘",
+"म तिमीलाई माया गर्छु💝",
+ "Te Amo 💕",
+ "Je t'aime 💖",
+ "Ich liebe dich 💘",
+ "Ti amo 💓",
 
-/* Logic */
-const loveLanguages = [
-    "I Love You ❤️",
-    "Te Amo 💕",
-    "Je t’aime 💖",
-    "Ich liebe dich 💘",
-    "Ti amo 💓",
-    "मैं तुमसे प्यार करता हूँ ❤️",
-    "आं नोंखौ मोजां मोनो 💞",
-    "Saranghae 💗",
-    "Aishiteru 💝"
+ "Saranghae 💗",
+ "Aishiteru 💝"
 ];
 
-let noCount = 0;
+const requests=[
+ "Please… just think once 🥺",
+ "My heart chose you only 💘",
+ "I promise snacks & respect 😌",
+ "Don’t break this poor heart 💔",
+ "At least smile before saying no 😭"
+];
 
-function startLove() {
-    document.getElementById("step1").style.display = "none";
-    document.getElementById("proposal").style.display = "block";
+let n=0;
+
+function start(){
+    document.getElementById("music").play();
+    step1.style.display="none";
+    proposal.style.display="block";
 }
 
-function sayNo() {
-    noCount++;
-    const text = loveLanguages[noCount % loveLanguages.length];
-    document.getElementById("loveText").innerText = text;
+function no(){
+    n++;
+    loveText.innerText=loves[n%loves.length];
+    request.innerText=requests[n%requests.length];
+
+    card.classList.add("shake");
+    setTimeout(()=>card.classList.remove("shake"),300);
+
+    const cry=document.createElement("div");
+    cry.className="cry";
+    cry.innerHTML="😭";
+    cry.style.left=Math.random()*100+"vw";
+    document.body.appendChild(cry);
+    setTimeout(()=>cry.remove(),2000);
 }
 
-function sayYes() {
-    document.getElementById("proposal").style.display = "none";
-    document.getElementById("success").style.display = "block";
+function yes(){
+    proposal.style.display="none";
+    success.style.display="block";
 }
 
-function shareLove() {
-    const msg = encodeURIComponent(
-        "Someone made this cute love letter for you 💖👇\n" +
-        window.location.href
+function share(){
+    const msg=encodeURIComponent(
+        "Someone made this cute Valentine page for you 💖👇\n"+location.href
     );
-    window.open(`https://wa.me/?text=${msg}`, "_blank");
+    window.open("https://wa.me/?text="+msg,"_blank");
 }
 </script>
 
