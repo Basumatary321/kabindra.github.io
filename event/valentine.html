@@ -1,0 +1,128 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Little Letter 💌</title>
+
+  <!-- Handwritten Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="heart-rain"></div>
+
+<div class="letter">
+  <div class="paper">
+
+    <h1>Dear You 🌸</h1>
+
+    <!-- Mini Question -->
+    <p id="miniText">
+      Before anything…<br>
+      do you like cute surprises? 😊
+    </p>
+
+    <div class="buttons" id="miniButtons">
+      <button id="miniYes">Yes 🤍</button>
+      <button id="miniNo">Maybe 😅</button>
+    </div>
+
+    <!-- MAIN QUESTION (HIDDEN FIRST) -->
+    <p class="question" id="proposal">
+      Then I wanted to ask…<br>
+     जागोनना आंनि Valentine? 💖
+    </p>
+
+    <div class="buttons" id="mainButtons">
+      <button id="yes">Yes 😳</button>
+      <button id="no">No 🙃</button>
+    </div>
+
+    <!-- Result -->
+    <div class="result">
+      <p>
+        You just made my heart very happy 🥹💘  
+        No pressure, no rush —  
+        just smiles and good vibes 🌷
+      </p>
+
+      <a id="whatsapp" target="_blank">💬 Share on WhatsApp</a>
+    </div>
+
+    <p class="sign">— someone who thinks you’re special ✨</p>
+
+  </div>
+</div>
+
+<script>
+/* HIDE MAIN BUTTONS AT START */
+document.getElementById("proposal").style.display = "none";
+document.getElementById("mainButtons").style.display = "none";
+
+/* Mini Question Logic */
+const miniYes = document.getElementById("miniYes");
+const miniNo = document.getElementById("miniNo");
+const miniButtons = document.getElementById("miniButtons");
+const miniText = document.getElementById("miniText");
+const proposal = document.getElementById("proposal");
+const mainButtons = document.getElementById("mainButtons");
+
+function showProposal() {
+  miniText.innerHTML = "Okay… this is my little surprise 🙈";
+  miniButtons.style.display = "none";
+
+  setTimeout(() => {
+    proposal.style.display = "block";
+    mainButtons.style.display = "block";
+  }, 1200);
+}
+
+miniYes.onclick = showProposal;
+miniNo.onclick = showProposal;
+
+/* NO button escape */
+const noBtn = document.getElementById("no");
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * 70 + "%";
+  noBtn.style.top = Math.random() * 70 + "%";
+});
+
+/* YES button */
+const yesBtn = document.getElementById("yes");
+const result = document.querySelector(".result");
+const whatsapp = document.getElementById("whatsapp");
+
+yesBtn.onclick = () => {
+  result.style.display = "block";
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
+
+  const msg = encodeURIComponent(
+    "Someone sent me the cutest handwritten love letter 🥹💌\nYou should see this:"
+  );
+
+  whatsapp.href = `https://wa.me/?text=${msg} ${window.location.href}`;
+};
+
+/* Heart Rain */
+const heartRain = document.querySelector(".heart-rain");
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  heartRain.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
