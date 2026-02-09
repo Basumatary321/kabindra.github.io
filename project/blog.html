@@ -1,261 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Learning Web Development – A Complete Beginner Story</title>
+    <meta charset="UTF-8">
+    <title>Learning Web Development – A Complete Beginner Story</title>
 
-<style>
-  body{
-    font-family: Georgia, serif;
-    background:#f2f4f8;
-    margin:0;
-    padding:20px;
-    line-height:1.8;
-  }
+    <style>
+        body {
+            font-family: Georgia, serif;
+            /* background: #f2f4f8;
+             */
+             background: url("../images/cursor/header-01.svg"),
+             linear-gradient( rgb(15, 1, 29),rgb(14, 3, 58),rgb(29, 2, 2));
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+             margin: 0;
+            padding: 20px;
+            line-height: 1.8;
+        }
 
-  .container{
-    max-width:900px;
-    margin:auto;
-    background:#ffffff;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-  h1, h2, h3{
-    color:#2c3e50;
-  }
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
 
-  h1{
-    text-align:center;
-    margin-bottom:10px;
-  }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
 
-  .meta{
-    text-align:center;
-    font-size:14px;
-    color:#777;
-    margin-bottom:30px;
-  }
+        .meta {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 30px;
+        }
 
-  p{
-    margin-bottom:18px;
-  }
+        p {
+            margin-bottom: 18px;
+        }
 
-  mark{
-    background:#ffe082;
-    padding:3px 6px;
-  }
+        mark {
+            background: #ffe082;
+            padding: 3px 6px;
+        }
 
-  blockquote{
-    background:#f5f7fa;
-    border-left:5px solid #3498db;
-    padding:15px 20px;
-    font-style:italic;
-    margin:25px 0;
-  }
+        blockquote {
+            background: #f5f7fa;
+            border-left: 5px solid #3498db;
+            padding: 15px 20px;
+            font-style: italic;
+            margin: 25px 0;
+        }
 
-  ul, ol{
-    background:#fafafa;
-    padding:20px 40px;
-    border-radius:8px;
-    margin-bottom:25px;
-  }
+        ul,
+        ol {
+            background: #fafafa;
+            padding: 20px 40px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
 
-  li{
-    margin-bottom:10px;
-  }
+        li {
+            margin-bottom: 10px;
+        }
 
-  img{
-    display:block;
-    max-width:100%;
-    margin:25px auto;
-    border-radius:8px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
-  }
+        img {
+            display: block;
+            max-width: 100%;
+            margin: 25px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-  table{
-    width:100%;
-    border-collapse:collapse;
-    margin:25px 0;
-    font-size:15px;
-  }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+        }
 
-  th, td{
-    border:1px solid #ccc;
-    padding:12px;
-    text-align:center;
-  }
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
 
-  th{
-    background:#2c3e50;
-    color:#fff;
-  }
+        th {
+            background: #2c3e50;
+            color: #fff;
+        }
 
-  tr:nth-child(even){
-    background:#f2f2f2;
-  }
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
 
-  code{
-    background:#eee;
-    padding:2px 6px;
-    border-radius:4px;
-  }
+        code {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
 
-  .footer{
-    text-align:center;
-    margin-top:40px;
-    font-size:14px;
-    color:#666;
-  }
-</style>
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .textformating {
+            background: #eceaea;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: 20px 0;
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-<h1>My Journey into Web Development</h1>
+        <h1>My Journey into Web Development</h1>
 
-<div class="meta">
-  <span><b>Author:</b> Rahul Sharma</span> |
-  <span><i>Date:</i> 9 February 2026</span> |
-  <span><abbr title="HyperText Markup Language">HTML</abbr> Learning Blog</span>
-</div>
+        <div class="meta">
+            <span><b>Author:</b> Lenso B</span> |
+            <span><i>Date:</i> 9 February 2026</span> |
+            <span><abbr title="HyperText Markup Language">HTML</abbr> Learning Blog</span>
+        </div>
 
-<h2>Introduction</h2>
+        <h2>Introduction</h2>
 
-<p>
-  Web development may look <b>complex</b> at first, but in reality it starts with
-  very <i>simple</i> steps. When I first heard about coding, I honestly thought,
-  <q>Only very intelligent people can do this.</q>
-  But that belief was completely <u>wrong</u>.
-</p>
+        <p>
+            Web development may look <b>complex</b> at first, but in reality it starts with
+            very <i>simple</i> steps. When I first heard about coding, I honestly thought,
+            <q>Only very intelligent people can do this.</q>
+            But that belief was completely <u>wrong</u>.
+        </p>
 
-<p>
-  My teacher once said,
-  <mark>“If you can read and write, you can code.”</mark>
-  That single sentence changed my mindset.
-  I realized that learning <strong>HTML</strong> is not about memorizing,
-  but about <em>understanding structure</em>.
-</p>
+        <p>
+            My teacher once said,
+            <mark>“If you can read and write, you can code.”</mark>
+            That single sentence changed my mindset.
+            I realized that learning <strong>HTML</strong> is not about memorizing,
+            but about <em>understanding structure</em>.
+        </p>
 
-<blockquote>
-  “Every expert was once a beginner.
-  The difference is that experts didn’t quit.”
-</blockquote>
+        <blockquote>
+            “Every expert was once a beginner.
+            The difference is that experts didn’t quit.”
+        </blockquote>
 
-<h2>What is HTML?</h2>
+        <h2>What is HTML?</h2>
 
-<p>
-  <b>HTML</b> stands for <strong>HyperText Markup Language</strong>.
-  It is used to <u>structure</u> content on the web.
-  For example, a paragraph is written using
-  <code>&lt;p&gt;</code> and headings are written using
-  <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>.
-</p>
+        <p>
+            <b>HTML</b> stands for <strong>HyperText Markup Language</strong>.
+            It is used to <u>structure</u> content on the web.
+            For example, a paragraph is written using
+            <code>&lt;p&gt;</code> and headings are written using
+            <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>.
+        </p>
 
-<p>
-  HTML does not add colors or animations.
-  That job is done by <i>CSS</i>.
-  HTML only focuses on <mark>content and meaning</mark>.
-</p>
+        <p>
+            HTML does not add colors or animations.
+            That job is done by <i>CSS</i>.
+            HTML only focuses on <mark>content and meaning</mark>.
+        </p>
 
-<h3>Basic Things I Learned First</h3>
+        <h3>Basic Things I Learned First</h3>
 
-<ul>
-  <li><b>HTML tags</b> are written inside angle brackets</li>
-  <li><i>Most tags</i> have opening and closing forms</li>
-  <li><u>Content matters</u> more than design at the beginning</li>
-  <li><small>Practice daily</small> gives confidence</li>
-</ul>
+        <ul>
+            <li><b>HTML tags</b> are written inside angle brackets</li>
+            <li><i>Most tags</i> have opening and closing forms</li>
+            <li><u>Content matters</u> more than design at the beginning</li>
+            <li>Practice daily gives confidence</li>
+        </ul>
+        <h2>HTML Text Formatting</h2>
+        <div class="textformating">
 
-<h2>Daily Learning Routine</h2>
+            <p>
+                <strong>1<sup>st</sup> Paragraph:</strong> HTML allows us to
+                make text look <b>bold</b>, <i>italic</i>, and <u>underlined</u>. We can
+                also <mark>highlight</mark> important words and show corrections like <strike>Wrong Word</strike> and
+                <ins>Correct Word</ins>.
+            </p>
+            <p><strong>2<sup>nd</sup> Paragraph:</strong> You can write chemical formulas like H<sub>2</sub>O and
+                mathematical
+                powers such as
+                X <sup>2</sup>. Also, HTML supports small text for <small>footnotes or disclaimers</small> .
+            </p>
+            <pre>
+This text is inside a preformatted tag.It keeps formatting like 
+        spaces,             tab,   and line brakes,
+    function testFunction(strText)
+        {
+             alert(strText);
+        } 
+</pre>
 
-<p>
-  Learning without discipline never works.
-  So I followed a very <em>simple routine</em> every day:
-</p>
+        </div>
+        <h2>Daily Learning Routine</h2>
 
-<ol>
-  <li>Read one topic carefully</li>
-  <li>Write the code by hand</li>
-  <li>Test it in the browser</li>
-  <li>Fix mistakes without fear</li>
-</ol>
+        <p>
+            Learning without discipline never works.
+            So I followed a very <em>simple routine</em> every day:
+        </p>
 
-<p>
-  Whenever I made errors, I remembered this line:
-  <q>Mistakes are proof that you are trying.</q>
-</p>
+        <ol>
+            <li>Read one topic carefully</li>
+            <li>Write the code by hand</li>
+            <li>Test it in the browser</li>
+            <li>Fix mistakes without fear</li>
+        </ol>
 
-<h2>Motivation That Kept Me Going</h2>
+        <p>
+            Whenever I made errors, I remembered this line:
+            <q>Mistakes are proof that you are trying.</q>
+        </p>
 
-<img src="Motivation.png" alt="Motivation Image">
+        <h2>Motivation That Kept Me Going</h2>
 
-<p>
-  On difficult days, I reminded myself:
-  <mark>Don’t stop when you’re tired. Stop when you’re done.</mark>
-</p>
+        <img src="../images/motivation.jpeg" alt="Motivation Image">
 
-<p>
-  Sometimes I felt like giving up, but then I realized that
-  <del>giving up</del> is replaced by <ins>growing stronger</ins>
-  when you stay consistent.
-</p>
+        <p>
+            On difficult days, I reminded myself:
+            <mark>Don’t stop when you’re tired. Stop when you’re done.</mark>
+        </p>
 
-<h2>Weekly Study Plan</h2>
+        <p>
+            Sometimes I felt like giving up, but then I realized that
+            <del>giving up</del> is replaced by <ins>growing stronger</ins>
+            when you stay consistent.
+        </p>
 
-<table>
-  <tr>
-    <th>Day</th>
-    <th>Topic</th>
-    <th>Practice Hours</th>
-    <th>Notes</th>
-  </tr>
-  <tr>
-    <td>Monday</td>
-    <td>HTML Basics</td>
-    <td>2</td>
-    <td>Tags & Structure</td>
-  </tr>
-  <tr>
-    <td>Wednesday</td>
-    <td>Lists & Tables</td>
-    <td>2</td>
-    <td>Layout Practice</td>
-  </tr>
-  <tr>
-    <td>Friday</td>
-    <td>Mini Project</td>
-    <td>1</td>
-    <td>Confidence Boost</td>
-  </tr>
-</table>
+        <h2>Weekly Study Plan</h2>
 
-<h2>Important Lessons</h2>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Topic</th>
+                <th>Practice Hours</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td>HTML Basics</td>
+                <td>2</td>
+                <td>Tags & Structure</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>Lists & Tables</td>
+                <td>2</td>
+                <td>Layout Practice</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>Mini Project</td>
+                <td>1</td>
+                <td>Confidence Boost</td>
+            </tr>
+        </table>
 
-<p>
-  These are some <b>life lessons</b> that coding taught me:
-</p>
+        <h2>Important Lessons</h2>
 
-<ul>
-  <li><em>Patience</em> is more important than speed</li>
-  <li><strong>Logic</strong> improves with practice</li>
-  <li><u>Consistency</u> beats talent</li>
-  <li><cite>Learning never ends</cite></li>
-</ul>
+        <p>
+            These are some <b>life lessons</b> that coding taught me:
+        </p>
 
-<p>
-  Today, when I look back, I can proudly say:
-  <q>HTML no longer scares me.</q>
-</p>
+        <ul>
+            <li><em>Patience</em> is more important than speed</li>
+            <li><strong>Logic</strong> improves with practice</li>
+            <li><u>Consistency</u> beats talent</li>
+            <li><cite>Learning never ends</cite></li>
+        </ul>
 
-<p class="footer">
-  © 2026 | Written with <span style="color:red;">♥</span> for beginners
-</p>
+        <p>
+            Today, when I look back, I can proudly say:
+            <q>HTML no longer scares me.</q>
+        </p>
 
-</div>
+        <p class="footer">
+            © 2026 | Written with <span style="color:red;">♥</span> for beginners
+        </p>
+
+    </div>
 
 </body>
+
 </html>
