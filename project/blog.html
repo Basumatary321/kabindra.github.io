@@ -7,7 +7,7 @@
     <title>Learning Web Development – A Complete Beginner Story</title>
 
     <style>
-        /* Global Box Sizing for better spacing calculation */
+        /* Global Box Sizing */
         * {
             box-sizing: border-box;
         }
@@ -18,15 +18,13 @@
                         linear-gradient(rgb(15, 1, 29), rgb(14, 3, 58), rgb(29, 2, 2));
             background-attachment: fixed;
             background-repeat: no-repeat;
-            /* Added background-size to cover screen properly on mobile */
-            background-size: contain; 
+            background-size: contain;
             margin: 0;
             padding: 20px;
             line-height: 1.8;
         }
 
         .container {
-            /* Changed width to 100% and max-width to 900px for responsiveness */
             width: 100%;
             max-width: 900px;
             margin: auto;
@@ -38,13 +36,13 @@
 
         h1, h2, h3 {
             color: #2c3e50;
-            line-height: 1.3; /* Better spacing for multi-line headings on mobile */
+            line-height: 1.3;
         }
 
         h1 {
             text-align: center;
             margin-bottom: 10px;
-            font-size: 2em; /* Default size */
+            font-size: 2em;
         }
 
         .meta {
@@ -52,21 +50,28 @@
             font-size: 14px;
             color: #777;
             margin-bottom: 30px;
-            /* Flexbox allows meta items to wrap nicely on very small screens */
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
         }
-        
-        /* Helper to add separators in flex mode if needed, or keep pipes in HTML text */
+
+        /* Helper to ensure text inside meta doesn't break weirdly */
         .meta span {
             white-space: nowrap;
         }
 
         p {
             margin-bottom: 18px;
-            /* Note: Justify is often removed in media queries below for readability */
+        }
+
+        /* Specific class to handle Justify */
+        .justify {
+            text-align: justify;
+            /* Optional: hyphens make justified text look better on mobile */
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
         }
 
         mark {
@@ -84,27 +89,25 @@
 
         ul, ol {
             background: #fafafa;
-            padding: 20px 20px 20px 40px; /* Adjusted padding */
+            padding: 20px 20px 20px 40px;
             border-radius: 8px;
             margin-bottom: 25px;
         }
 
         li {
             margin-bottom: 10px;
-            word-wrap: break-word; /* Prevents long words breaking layout */
         }
 
         img {
             display: block;
-            max-width: 100%; /* Ensures image shrinks to fit container */
-            height: auto;    /* Maintains aspect ratio */
+            max-width: 100%;
+            height: auto;
             margin: 25px auto;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* TABLE STYLES */
-        /* We wrap the table in a div (see HTML below) to allow horizontal scroll */
+        /* Table Responsive Wrapper */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -115,12 +118,12 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 15px;
-            min-width: 500px; /* Forces scroll on small screens so text isn't crushed */
+            min-width: 500px; /* Forces scroll on small screens */
         }
 
         th, td {
             border: 1px solid #ccc;
-            padding: 8px 5px; /* Slightly more padding */
+            padding: 8px 5px;
             text-align: center;
         }
 
@@ -138,7 +141,6 @@
             padding: 2px 6px;
             border-radius: 4px;
             font-family: monospace;
-            word-wrap: break-word;
         }
 
         .footer {
@@ -153,18 +155,16 @@
             border-radius: 10px;
             padding: 10px 20px;
             margin: 20px 0;
-            text-align: justify;
+            text-align: justify; /* Kept justify here as requested */
             font-family: 'Times New Roman', Times, serif;
-            overflow-x: hidden; /* Prevents container spill */
         }
 
-        /* PRE formatting - Critical for mobile */
         pre {
             background: #e0e0e0;
             padding: 10px;
             border-radius: 5px;
-            overflow-x: auto; /* Allows scrolling for long code lines */
-            white-space: pre-wrap; /* Optional: Makes text wrap instead of scroll */
+            overflow-x: auto;
+            white-space: pre-wrap;
             word-wrap: break-word;
             font-size: 14px;
         }
@@ -172,42 +172,31 @@
         /* --- MOBILE MEDIA QUERIES --- */
         @media (max-width: 600px) {
             body {
-                padding: 10px; /* Less padding on body */
+                padding: 10px;
                 background-size: 180%;
             }
 
             .container {
-                padding: 15px; /* Less padding inside container */
+                padding: 15px;
             }
 
             h1 {
-                font-size: 1.6em; /* Smaller Title */
+                font-size: 1.6em;
             }
 
             h2 {
                 font-size: 1.4em;
             }
 
-            /* Override justified text on mobile to prevent ugly gaps */
-            p, .textformating {
-                text-align: left !important; 
-            }
-
-            /* Stack meta info */
+            /* Meta data stacks vertically */
             .meta {
-                font-size: 12px;
                 flex-direction: column;
                 gap: 5px;
             }
 
-            .meta span {
-                display: block;
-            }
-
-            blockquote {
-                margin: 15px 0;
-                padding: 10px 15px;
-            }
+            /* * I removed the rule that forced text-align: left.
+             * Now, anything with class="justify" will remain justified on mobile.
+             */
         }
     </style>
 </head>
@@ -219,21 +208,23 @@
         <h1>My Journey into Web Development</h1>
 
         <div class="meta">
-            <span><b>Author:</b> Lenso B</span> <span class="divider">|</span>
-            <span><i>Date:</i> 9 February 2026</span> <span class="divider">|</span>
+            <span><b>Author:</b> Lenso B</span>
+            <span>|</span>
+            <span><i>Date:</i> 9 February 2026</span>
+            <span>|</span>
             <span><abbr title="HyperText Markup Language">HTML</abbr> Learning Blog</span>
         </div>
 
         <h2>Introduction</h2>
 
-        <p class="justify-text">
+        <p class="justify">
             Web development may look <b>complex</b> at first, but in reality it starts with
             very <i>simple</i> steps. When I first heard about coding, I honestly thought,
             <q>Only very intelligent people can do this.</q>
             But that belief was completely <u>wrong</u>.
         </p>
 
-        <p class="justify-text">
+        <p class="justify">
             My teacher once said,
             <mark>“If you can read and write, you can code.”</mark>
             That single sentence changed my mindset.
@@ -248,7 +239,7 @@
 
         <h2>What is HTML?</h2>
 
-        <p class="justify-text">
+        <p class="justify">
             <b>HTML</b> stands for <strong>HyperText Markup Language</strong>.
             It is used to <u>structure</u> content on the web.
             For example, a paragraph is written using
@@ -256,7 +247,7 @@
             <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>.
         </p>
 
-        <p class="justify-text">
+        <p class="justify">
              I was surprised to learn that HTML itself does not add any colors or styles to the page.
              It only defines the <mark>structure and meaning</mark> of the content.
              The visual design is handled by another language called <i>CSS</i>.
@@ -328,7 +319,7 @@ It keeps formatting like
             <mark>Don’t stop when you’re tired. Stop when you’re done.</mark>
         </p>
 
-        <p class="justify-text">
+        <p class="justify">
             Sometimes I felt like giving up, but then I realized that
             <del>giving up</del> is replaced by <ins>growing stronger</ins>
             when you stay consistent.
