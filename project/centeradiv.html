@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How to Center a Div in CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+    line-height:1.6;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    color:#222;
+}
+h2{
+    margin-top:40px;
+    border-left:6px solid #198754;
+    padding-left:10px;
+    color:#222;
+}
+
+.card{
+    background:#fff;
+    padding:20px;
+    margin-top:20px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.demo{
+    border:2px dashed #198754;
+    height:200px;
+    margin-top:10px;
+    position:relative;
+}
+
+/* Box */
+.box{
+    width:100px;
+    height:100px;
+    background:#198754;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    border-radius:6px;
+}
+
+button{
+    margin-top:15px;
+    padding:8px 14px;
+    background:#198754;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#146c43;
+}
+
+pre{
+    background:#111;
+    color:#0f0;
+    padding:15px;
+    overflow-x:auto;
+    display:none;
+    border-radius:6px;
+    margin-top:10px;
+}
+
+.note{
+    background:#e7f5ff;
+    border-left:5px solid #0d6efd;
+    padding:10px;
+    margin-top:10px;
+    border-radius:5px;
+}
+</style>
+
+<script>
+function toggleCode(id){
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+</script>
+</head>
+
+<body>
+<div class="container">
+
+<h1>How to Center a Div in CSS (All Methods)</h1>
+
+<!-- 1 -->
+<h2>1. Center using Flexbox (Best & Most Used)</h2>
+<div class="card">
+<p>
+Centers a div <b>horizontally and vertically</b> using Flexbox.
+</p>
+
+<div class="demo" style="display:flex; justify-content:center; align-items:center;">
+    <div class="box">BOX</div>
+</div>
+
+<button onclick="toggleCode('c1')">Show Code</button>
+<pre id="c1">
+.parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</pre>
+
+<div class="note">✅ Recommended method for modern websites</div>
+</div>
+
+<!-- 2 -->
+<h2>2. Center using CSS Grid</h2>
+<div class="card">
+<p>
+Grid allows perfect centering using one line.
+</p>
+
+<div class="demo" style="display:grid; place-items:center;">
+    <div class="box">BOX</div>
+</div>
+
+<button onclick="toggleCode('c2')">Show Code</button>
+<pre id="c2">
+.parent{
+    display: grid;
+    place-items: center;
+}
+</pre>
+
+<div class="note">✅ Clean & powerful (modern CSS)</div>
+</div>
+
+<!-- 3 -->
+<h2>3. Center using margin: auto (Horizontal only)</h2>
+<div class="card">
+<p>
+Used when you only want <b>horizontal centering</b>.
+</p>
+
+<div class="demo">
+    <div class="box" style="margin: auto;">BOX</div>
+</div>
+
+<button onclick="toggleCode('c3')">Show Code</button>
+<pre id="c3">
+.box{
+    margin: auto;
+}
+</pre>
+
+<div class="note">⚠ Works only if width is fixed</div>
+</div>
+
+<!-- 4 -->
+<h2>4. Center using Position + Transform</h2>
+<div class="card">
+<p>
+Classic method using position and transform.
+</p>
+
+<div class="demo">
+    <div class="box" style="
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+    ">BOX</div>
+</div>
+
+<button onclick="toggleCode('c4')">Show Code</button>
+<pre id="c4">
+.box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+</pre>
+
+<div class="note">⚠ Still used in modals & popups</div>
+</div>
+
+<!-- 5 -->
+<h2>5. Center using Position Absolute (Old Method)</h2>
+<div class="card">
+<p>
+Uses top, bottom, left, right with margin auto.
+</p>
+
+<div class="demo">
+    <div class="box" style="
+        position:absolute;
+        top:0; bottom:0;
+        left:0; right:0;
+        margin:auto;
+    ">BOX</div>
+</div>
+
+<button onclick="toggleCode('c5')">Show Code</button>
+<pre id="c5">
+.box{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+</pre>
+</div>
+
+<!-- 6 -->
+<h2>6. Center Text inside a Div</h2>
+<div class="card">
+<p>
+Used for text or inline elements.
+</p>
+
+<div class="demo" style="text-align:center; line-height:200px;">
+    <strong>TEXT</strong>
+</div>
+
+<button onclick="toggleCode('c6')">Show Code</button>
+<pre id="c6">
+.parent{
+    text-align: center;
+    line-height: 200px;
+}
+</pre>
+
+<div class="note">⚠ Not suitable for complex layouts</div>
+</div>
+
+</div>
+</body>
+</html>
