@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Flexbox – Complete Interactive Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    color:#222;
+}
+h2{
+    margin-top:30px;
+    border-left:6px solid #0d6efd;
+    padding-left:10px;
+}
+
+.card{
+    background:#fff;
+    padding:20px;
+    margin-top:20px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Controls */
+.controls{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+label{
+    font-weight:bold;
+    font-size:14px;
+}
+select, input{
+    width:100%;
+    padding:6px;
+    margin-top:5px;
+}
+
+/* Demo */
+.demo{
+    border:2px dashed #0d6efd;
+    padding:15px;
+    min-height:180px;
+    margin-bottom:20px;
+}
+
+.flex-container{
+    background:#e9ecef;
+    min-height:150px;
+    display:flex;
+}
+
+.box{
+    background:#0d6efd;
+    color:white;
+    padding:20px;
+    margin:5px;
+    border-radius:4px;
+    font-weight:bold;
+}
+
+/* Code */
+pre{
+    background:#111;
+    color:#0f0;
+    padding:15px;
+    overflow-x:auto;
+    border-radius:6px;
+}
+.note{
+    background:#fff3cd;
+    border-left:5px solid #ffc107;
+    padding:10px;
+    margin-top:10px;
+    border-radius:5px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>📘 CSS Flexbox – Complete Interactive Guide</h1>
+
+<div class="card">
+
+<h2>Flex Container Controls</h2>
+
+<div class="controls">
+    <div>
+        <label>flex-direction</label>
+        <select id="direction">
+            <option>row</option>
+            <option>row-reverse</option>
+            <option>column</option>
+            <option>column-reverse</option>
+        </select>
+    </div>
+
+    <div>
+        <label>justify-content</label>
+        <select id="justify">
+            <option>flex-start</option>
+            <option>center</option>
+            <option>flex-end</option>
+            <option>space-between</option>
+            <option>space-around</option>
+            <option>space-evenly</option>
+        </select>
+    </div>
+
+    <div>
+        <label>align-items</label>
+        <select id="align">
+            <option>stretch</option>
+            <option>flex-start</option>
+            <option>center</option>
+            <option>flex-end</option>
+            <option>baseline</option>
+        </select>
+    </div>
+
+    <div>
+        <label>flex-wrap</label>
+        <select id="wrap">
+            <option>nowrap</option>
+            <option>wrap</option>
+            <option>wrap-reverse</option>
+        </select>
+    </div>
+
+    <div>
+        <label>gap (px)</label>
+        <input type="number" id="gap" value="0">
+    </div>
+</div>
+
+<div class="demo">
+    <div class="flex-container" id="flexBox">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+</div>
+
+<h2>Generated CSS Code</h2>
+<pre id="code"></pre>
+
+<div class="note">
+💡 Change any option above and see the layout + code update instantly.
+</div>
+
+</div>
+</div>
+
+<script>
+const flexBox = document.getElementById("flexBox");
+const codeBox = document.getElementById("code");
+
+function updateFlex(){
+    const direction = document.getElementById("direction").value;
+    const justify = document.getElementById("justify").value;
+    const align = document.getElementById("align").value;
+    const wrap = document.getElementById("wrap").value;
+    const gap = document.getElementById("gap").value;
+
+    flexBox.style.flexDirection = direction;
+    flexBox.style.justifyContent = justify;
+    flexBox.style.alignItems = align;
+    flexBox.style.flexWrap = wrap;
+    flexBox.style.gap = gap + "px";
+
+    codeBox.textContent =
+`.container{
+    display: flex;
+    flex-direction: ${direction};
+    justify-content: ${justify};
+    align-items: ${align};
+    flex-wrap: ${wrap};
+    gap: ${gap}px;
+}`;
+}
+
+document.querySelectorAll("select, input").forEach(el=>{
+    el.addEventListener("input", updateFlex);
+});
+
+updateFlex();
+</script>
+
+</body>
+</html>
