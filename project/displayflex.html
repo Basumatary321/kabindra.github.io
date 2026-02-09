@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Flexbox – Display Flex Explained</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+    line-height:1.6;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+/* Heading */
+h1{
+    text-align:center;
+    color:#333;
+}
+h2{
+    color:#222;
+    border-left:6px solid #0d6efd;
+    padding-left:10px;
+    margin-top:40px;
+}
+
+/* Card */
+.card{
+    background:#fff;
+    padding:20px;
+    margin-top:20px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Demo area */
+.demo{
+    border:2px dashed #0d6efd;
+    padding:15px;
+    margin-top:10px;
+}
+
+/* Flex container demo */
+.flex-box{
+    background:#e9ecef;
+    padding:10px;
+    display:flex;
+}
+
+.box{
+    background:#0d6efd;
+    color:#fff;
+    padding:20px;
+    margin:5px;
+    text-align:center;
+    border-radius:4px;
+    font-weight:bold;
+}
+
+/* Button */
+button{
+    margin-top:15px;
+    padding:8px 14px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#084298;
+}
+
+/* Code block */
+pre{
+    background:#111;
+    color:#0f0;
+    padding:15px;
+    overflow-x:auto;
+    display:none;
+    border-radius:6px;
+    margin-top:10px;
+}
+
+/* Utility */
+.note{
+    background:#fff3cd;
+    padding:10px;
+    border-left:5px solid #ffc107;
+    margin-top:10px;
+    border-radius:5px;
+}
+</style>
+
+<script>
+function toggleCode(id){
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+</script>
+</head>
+
+<body>
+<div class="container">
+
+<h1>📘 CSS Flexbox – display: flex (Complete Guide)</h1>
+
+<!-- 1 -->
+<h2>1. What is Flexbox?</h2>
+<div class="card">
+<p>
+<strong>Flexbox</strong> is a CSS layout system used to arrange elements 
+<strong>horizontally or vertically</strong> in a flexible way.
+</p>
+
+<div class="note">
+Flexbox works with a <b>container</b> and its <b>items</b>.
+</div>
+</div>
+
+<!-- 2 -->
+<h2>2. display: flex</h2>
+<div class="card">
+<p>
+To activate flexbox, we use:
+</p>
+
+<div class="demo">
+<div class="flex-box">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+</div>
+</div>
+
+<button onclick="toggleCode('code1')">Show Code</button>
+
+<pre id="code1">
+.container{
+    display: flex;
+}
+
+.box{
+    padding: 20px;
+}
+</pre>
+</div>
+
+<!-- 3 -->
+<h2>3. flex-direction</h2>
+<div class="card">
+<p>
+Controls the <b>direction</b> of flex items.
+</p>
+
+<div class="demo">
+<div class="flex-box" style="flex-direction: column;">
+    <div class="box">A</div>
+    <div class="box">B</div>
+    <div class="box">C</div>
+</div>
+</div>
+
+<button onclick="toggleCode('code2')">Show Code</button>
+
+<pre id="code2">
+.container{
+    display: flex;
+    flex-direction: column;
+}
+</pre>
+</div>
+
+<!-- 4 -->
+<h2>4. justify-content</h2>
+<div class="card">
+<p>
+Aligns items on the <b>horizontal (main axis)</b>.
+</p>
+
+<div class="demo">
+<div class="flex-box" style="justify-content: space-between;">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+</div>
+</div>
+
+<button onclick="toggleCode('code3')">Show Code</button>
+
+<pre id="code3">
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+</pre>
+</div>
+
+<!-- 5 -->
+<h2>5. align-items</h2>
+<div class="card">
+<p>
+Aligns items on the <b>vertical (cross axis)</b>.
+</p>
+
+<div class="demo" style="height:150px;">
+<div class="flex-box" style="height:120px; align-items:center;">
+    <div class="box">X</div>
+    <div class="box">Y</div>
+</div>
+</div>
+
+<button onclick="toggleCode('code4')">Show Code</button>
+
+<pre id="code4">
+.container{
+    display: flex;
+    align-items: center;
+}
+</pre>
+</div>
+
+<!-- 6 -->
+<h2>6. gap</h2>
+<div class="card">
+<p>
+Adds spacing <b>between flex items</b>.
+</p>
+
+<div class="demo">
+<div class="flex-box" style="gap:20px;">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+</div>
+</div>
+
+<button onclick="toggleCode('code5')">Show Code</button>
+
+<pre id="code5">
+.container{
+    display: flex;
+    gap: 20px;
+}
+</pre>
+</div>
+
+</div>
+</body>
+</html>
