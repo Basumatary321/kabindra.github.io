@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flexbox Playground v2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    *{
+        box-sizing:border-box;
+        margin: 0;
+        padding: 0;
+    }
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+}
+
+.wrapper{
+    max-width:1200px;
+    margin:auto;
+    padding:15px;
+}
+
+h1{text-align:center}
+
+/* Layout */
+.controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+@media(max-width:768px){
+    .controls{grid-template-columns:1fr}
+}
+
+.card{
+    background:#fff;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+label{font-size:14px;font-weight:bold}
+select,input{
+    width:100%;
+    padding:6px;
+    margin-bottom:10px;
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+}
+
+/* Preview */
+.preview{
+    margin-top:20px;
+    background:#fff;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.flex-container{
+    border:2px dashed #6f42c1;
+    min-height:180px;
+    display:flex;
+    padding:10px;
+}
+
+.item{
+    background:#6f42c1;
+    color:#fff;
+    padding:15px;
+    margin:5px;
+    border-radius:6px;
+    cursor:pointer;
+}
+.item.selected{
+    outline:3px solid #ffc107;
+}
+
+/* Buttons */
+.buttons{
+    margin-top:10px;
+}
+button{
+    padding:6px 12px;
+    border:none;
+    border-radius:4px;
+    background:#6f42c1;
+    color:#fff;
+    cursor:pointer;
+    margin-right:5px;
+}
+button.secondary{background:#198754}
+button.danger{background:#dc3545}
+button:disabled{opacity:.5}
+
+/* Code */
+.codes{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+@media(max-width:768px){
+    .codes{grid-template-columns:1fr}
+}
+pre{
+    background:#000000;
+    color:#0f0;
+    padding:12px;
+    border-radius:6px;
+    overflow-x:auto;
+}
+
+/* Modal */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+}
+.modal-content{
+    background:#fff;
+    width:90%;
+    max-width:400px;
+    padding:20px;
+    border-radius:8px;
+}
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.close{
+    cursor:pointer;
+    font-size:20px;
+}
+ .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+<h1>CSS Flexbox Generator</h1>
+
+<div class="controls">
+
+<!-- Container -->
+<div class="card">
+<h3>Container Properties</h3>
+
+<label>Flex Direction</label>
+<select id="direction">
+<option>row</option>
+<option>row-reverse</option>
+<option>column</option>
+<option>column-reverse</option>
+</select>
+
+<label>Justify Content</label>
+<select id="justify">
+<option>flex-start</option>
+<option>center</option>
+<option>flex-end</option>
+<option>space-between</option>
+<option>space-around</option>
+<option>space-evenly</option>
+</select>
+
+<label>Align Items</label>
+<select id="alignItems">
+<option>flex-start</option>
+<option>stretch</option>
+<option>center</option>
+<option>flex-end</option>
+<option>baseline</option>
+</select>
+
+<label>Flex Wrap</label>
+<select id="wrap">
+<option>nowrap</option>
+<option>wrap</option>
+<option>wrap-reverse</option>
+</select>
+
+<label>Gap (px)</label>
+<input type="number" id="gap" value="0">
+
+<label>Padding (px)</label>
+<input type="number" id="padding" value="10">
+</div>
+
+</div>
+
+<!-- Preview -->
+<div class="preview">
+<h3>Preview</h3>
+
+<div class="flex-container" id="flexBox">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+</div>
+
+<div class="buttons">
+<button onclick="addItem()">+ Add</button>
+<button onclick="removeItem()">– Remove</button>
+<button id="editBtn" class="secondary" onclick="openModal()" disabled>Edit Item</button>
+<button class="danger" onclick="resetAll()">Reset</button>
+</div>
+</div>
+
+<!-- Code Preview -->
+<div class="codes">
+<div>
+<h3>HTML Code</h3>
+<pre id="htmlCode"></pre>
+</div>
+<div>
+<h3>CSS Code</h3>
+<pre id="cssCode"></pre>
+</div>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<div class="modal-header">
+<h3>Item Properties</h3>
+<span class="close" onclick="closeModal()">×</span>
+</div>
+
+<label>Order</label>
+<input type="number" id="order">
+
+<label>Flex Grow</label>
+<input type="number" id="grow">
+
+<label>Flex Shrink</label>
+<input type="number" id="shrink">
+
+<label>Flex Basis</label>
+<input type="text" id="basis">
+
+<button style="margin-top:10px" onclick="applyItem()">Apply</button>
+</div>
+
+</div>
+ <p class="footer">
+            © 2026 | Written with <span style="color:red;">♥</span> for beginners | Kabindra
+        </p>
+
+<script>
+const flexBox=document.getElementById("flexBox");
+const cssCode=document.getElementById("cssCode");
+const htmlCode=document.getElementById("htmlCode");
+const editBtn=document.getElementById("editBtn");
+const modal=document.getElementById("modal");
+
+let selected=null;
+
+/* Container */
+function updateContainer(){
+    flexBox.style.flexDirection=direction.value;
+    flexBox.style.justifyContent=justify.value;
+    flexBox.style.alignItems=alignItems.value;
+    flexBox.style.flexWrap=wrap.value;
+    flexBox.style.gap=gap.value+"px";
+    flexBox.style.padding=padding.value+"px";
+    updateCode();
+}
+
+/* Select item */
+function selectItem(el){
+    document.querySelectorAll(".item").forEach(i=>i.classList.remove("selected"));
+    selected=el;
+    el.classList.add("selected");
+    editBtn.disabled=false;
+
+    order.value=el.style.order||0;
+    grow.value=el.style.flexGrow||0;
+    shrink.value=el.style.flexShrink||1;
+    basis.value=el.style.flexBasis||"auto";
+}
+
+/* Item modal */
+function openModal(){modal.style.display="flex"}
+function closeModal(){modal.style.display="none"}
+
+function applyItem(){
+    if(!selected) return;
+    selected.style.order=order.value;
+    selected.style.flexGrow=grow.value;
+    selected.style.flexShrink=shrink.value;
+    selected.style.flexBasis=basis.value;
+    closeModal();
+    updateCode();
+}
+
+/* Add / Remove */
+function addItem(){
+    const n=flexBox.children.length+1;
+    const d=document.createElement("div");
+    d.className="item";
+    d.textContent="Item "+n;
+    d.onclick=()=>selectItem(d);
+    flexBox.appendChild(d);
+    updateCode();
+}
+function removeItem(){
+    if(flexBox.lastElementChild){
+        flexBox.removeChild(flexBox.lastElementChild);
+        updateCode();
+    }
+}
+
+/* Code */
+function updateCode(){
+cssCode.textContent=
+`.container{
+  display:flex;
+  flex-direction:${direction.value};
+  justify-content:${justify.value};
+  align-items:${alignItems.value};
+  flex-wrap:${wrap.value};
+  gap:${gap.value}px;
+  padding:${padding.value}px;
+}`;
+htmlCode.textContent=
+`<div class="container">
+${[...flexBox.children].map(i=>`  <div class="item">${i.textContent}</div>`).join("\n")}
+</div>`;
+}
+
+/* Reset */
+function resetAll(){location.reload()}
+
+/* Init */
+document.querySelectorAll("select,input").forEach(el=>{
+    el.addEventListener("input",updateContainer);
+});
+document.querySelectorAll(".item").forEach(i=>{
+    i.onclick=()=>selectItem(i);
+});
+updateContainer();
+</script>
+
+</body>
+</html>
