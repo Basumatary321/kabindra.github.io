@@ -8,8 +8,9 @@
 
  :root {
      --sidebar-width: 300px;
-     --header-bg: linear-gradient(135deg, #1741fa 0%, #f8101b 100%);
-      --nav-bg: #182439;
+     /* --header-bg: linear-gradient(135deg, #1741fa 0%, #f8101b 100%); */
+     --header-bg: #2563eb; 
+     --nav-bg: #182439;
      --primary-green: #10b981;
      --active-green: #059669;
      --sidebar-bg: #1a202c;
@@ -158,8 +159,8 @@
 
  .sidebar h3 {
      font-size: 13px;
-     background: linear-gradient(155deg,
-      #0a12ea 0%, #820202 100%);
+     /* background: linear-gradient(155deg,#0a12ea 0%, #820202 100%); */
+   background-color: var(--header-bg);  
      padding: 10px;
      margin: 15px 0 10px 0;
      text-align: center;
@@ -213,11 +214,19 @@
  /* --- 6. MAIN CONTENT & IFRAME --- */
  main {
      grid-area: main;
-     display: flex;
-     flex-direction: column;
+     /* display: flex;
+     flex-direction: column; */
      padding: 0;
-     background: #f5f7fa;
+     background: #000000;
      overflow-y: auto;
+        /* Hide scrollbar for IE, Edge and Firefox */
+     -webkit-overflow-style: none;
+     /* Safari and Chrome */
+     -ms-overflow-style: none;
+     margin: 0;
+     /* IE and Edge */
+     scrollbar-width: none;
+     
  }
 
 
@@ -230,6 +239,7 @@
      -webkit-overflow-style: none;
      /* Safari and Chrome */
      -ms-overflow-style: none;
+     margin: 0;
      /* IE and Edge */
      scrollbar-width: none;
      /* Firefox */
@@ -350,8 +360,8 @@
      }
 
      header {
-         min-height: 60px;
-         padding: 10px;
+         min-height: 55px;
+         padding: 5px;
      }
 
      .sidebar .logo {
