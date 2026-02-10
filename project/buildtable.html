@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pro Table Merger Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --danger: #dc2626;
+            --bg-color: #f8fafc;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        /* --- Grid Layout Container --- */
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            /* Mobile: 1 column */
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- Header Section --- */
+        header {
+            grid-column: 1 / -1;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: clamp(1rem, 5vw, 2.5rem);
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+
+        /* --- Components Styling --- */
+        .note-container,
+        .controls,
+        .table-container,
+        .code-container {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        /* Note Section */
+        details.note {
+            background: #ffffff;
+            /* border-left: 5px solid #ffc107; */
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        details.note summary {
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 8px;
+          
+        }
+
+        details.note ul {
+            padding-left: 20px;
+            font-size: 0.9rem;
+            border-left: 2px solid #ffc107;
+        }
+
+        /* Controls Section */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .field input {
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn.primary {
+            background: var(--primary);
+        }
+
+        .btn.danger {
+            background: var(--danger);
+        }
+
+        /* Table Section */
+        .table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            overflow: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            touch-action: none;
+        }
+
+        td {
+            width: 60px;
+            height: 50px;
+            border: 1px solid #cbd5e1;
+            text-align: center;
+            background: #e0f2fe;
+            user-select: none;
+        }
+
+        td.highlight {
+            background: #3b82f6;
+            color: white;
+        }
+
+        td.merged {
+            background: #fbbf24;
+            color: #78350f;
+            font-weight: bold;
+        }
+
+        /* Code Section */
+        .code-container h2 {
+            font-size: 1.1rem;
+            margin-top: 0;
+        }
+
+        code {
+            display: block;
+            background: #1e293b;
+            color: #34d399;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .heart {
+            color: #dc2626;
+        }
+
+        /* --- DESKTOP GRID LAYOUT --- */
+        @media (min-width: 1024px) {
+            .main-wrapper {
+                grid-template-columns: 280px 1fr 220px;
+                /* Left | Middle | Right */
+                grid-template-rows: auto 1fr auto;
+            }
+
+            .note-container {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .table-container {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .controls {
+                grid-column: 3;
+                grid-row: 2;
+            }
+
+            .code-container {
+                grid-column: 1 / -1;
+                grid-row: 3;
+            }
+
+            /* Make buttons horizontal in desktop if you prefer, 
+       but vertical column fits a sidebar well */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <header>
+            <h1>🧩Merge Table (Colspan & Rowspan)</h1>
+        </header>
+
+        <div class="note-container">
+            <details class="note" open>
+                <summary>ℹ️ Instructions</summary>
+                <ul>
+                    <li>Set Rows/Cols in the right panel.</li>
+                    <li>Click and drag cells to select a range.</li>
+                    <li>Release to merge cells.</li>
+                    <li>Works on Mobile & Desktop.</li>
+                </ul>
+            </details>
+        </div>
+
+        <div class="table-container">
+            <table id="grid"></table>
+        </div>
+
+        <div class="controls">
+            <div class="field">
+                <label>Rows</label>
+                <input type="number" id="rows" value="5" min="1">
+            </div>
+            <div class="field">
+                <label>Columns</label>
+                <input type="number" id="cols" value="5" min="1">
+            </div>
+            <div class="actions">
+                <button class="btn primary" onclick="buildTable()">Apply Grid</button>
+                <button class="btn danger" onclick="buildTable()">Reset</button>
+            </div>
+        </div>
+
+        <div class="code-container">
+            <h2>💻 Live HTML Code</h2>
+            <code id="code"></code>
+        </div>
+
+        <footer>
+            Made with <span class="heart">♥</span>
+            | For Beginners by <strong>Kabindra Sir</strong>
+        </footer>
+    </div>
+
+    <script>
+        // (Keep all the Javascript logic from the previous response here)
+        // Make sure the IDs (rows, cols, grid, code) remain the same.
+
+        const table = document.getElementById("grid");
+        const codeBox = document.getElementById("code");
+        let isDragging = false;
+        let startCell = null;
+
+        function buildTable() {
+            const rows = +document.getElementById("rows").value;
+            const cols = +document.getElementById("cols").value;
+            table.innerHTML = "";
+            for (let r = 1; r <= rows; r++) {
+                const tr = document.createElement("tr");
+                for (let c = 1; c <= cols; c++) {
+                    const td = document.createElement("td");
+                    td.textContent = `${r},${c}`;
+                    td.dataset.r = r;
+                    td.dataset.c = c;
+                    td.dataset.merged = "false";
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            updateCode();
+        }
+
+        table.addEventListener("pointerdown", (e) => {
+            const cell = e.target.closest("td");
+            if (!cell || cell.dataset.merged === "true") return;
+            e.preventDefault();
+            isDragging = true;
+            startCell = cell;
+            highlightRange(cell);
+        });
+
+        document.addEventListener("pointermove", (e) => {
+            if (!isDragging || !startCell) return;
+            const target = document.elementFromPoint(e.clientX, e.clientY);
+            const cell = target?.closest("td");
+            if (cell && table.contains(cell)) highlightRange(cell);
+        });
+
+        document.addEventListener("pointerup", (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const target = document.elementFromPoint(e.clientX, e.clientY);
+            const endCell = target?.closest("td");
+            if (endCell && table.contains(endCell)) {
+                mergeSelection(startCell, endCell);
+            } else {
+                clearHighlights();
+            }
+            startCell = null;
+        });
+
+        function highlightRange(endCell) {
+            if (endCell.dataset.merged === "true") return;
+            const r1 = Math.min(startCell.dataset.r, endCell.dataset.r);
+            const r2 = Math.max(startCell.dataset.r, endCell.dataset.r);
+            const c1 = Math.min(startCell.dataset.c, endCell.dataset.c);
+            const c2 = Math.max(startCell.dataset.c, endCell.dataset.c);
+            document.querySelectorAll("td").forEach(td => {
+                if (td.dataset.merged === "true") return;
+                const r = parseInt(td.dataset.r);
+                const c = parseInt(td.dataset.c);
+                if (r >= r1 && r <= r2 && c >= c1 && c <= c2) td.classList.add("highlight");
+                else td.classList.remove("highlight");
+            });
+        }
+
+        function mergeSelection(start, end) {
+            if (start === end) { clearHighlights(); return; }
+            const r1 = Math.min(start.dataset.r, end.dataset.r);
+            const r2 = Math.max(start.dataset.r, end.dataset.r);
+            const c1 = Math.min(start.dataset.c, end.dataset.c);
+            const c2 = Math.max(start.dataset.c, end.dataset.c);
+            const rowSpan = r2 - r1 + 1;
+            const colSpan = c2 - c1 + 1;
+            const mainCell = table.querySelector(`td[data-r='${r1}'][data-c='${c1}']`);
+            if (!mainCell) return;
+            mainCell.rowSpan = rowSpan;
+            mainCell.colSpan = colSpan;
+            mainCell.classList.add("merged");
+            mainCell.dataset.merged = "true";
+            mainCell.textContent = `${rowSpan}×${colSpan}`;
+            document.querySelectorAll("td").forEach(td => {
+                if (td === mainCell || td.dataset.merged === "true") return;
+                const r = parseInt(td.dataset.r);
+                const c = parseInt(td.dataset.c);
+                if (r >= r1 && r <= r2 && c >= c1 && c <= c2) {
+                    td.style.display = "none";
+                    td.dataset.merged = "true";
+                }
+            });
+            clearHighlights();
+            updateCode();
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll(".highlight").forEach(td => td.classList.remove("highlight"));
+        }
+
+        function updateCode() {
+            let html = "<table>\n";
+            table.querySelectorAll("tr").forEach(tr => {
+                html += "  <tr>\n";
+                Array.from(tr.children).forEach(td => {
+                    if (td.style.display === "none") return;
+                    const rs = td.rowSpan > 1 ? ` rowspan="${td.rowSpan}"` : "";
+                    const cs = td.colSpan > 1 ? ` colspan="${td.colSpan}"` : "";
+                    html += `    <td${rs}${cs}>Cell</td>\n`;
+                });
+                html += "  </tr>\n";
+            });
+            html += "</table>";
+            codeBox.textContent = html;
+        }
+
+        buildTable();
+    </script>
+
+</body>
+
+</html>

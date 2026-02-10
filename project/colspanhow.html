@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Colspan & Rowspan Explained</title>
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    margin:0;
+    background:#f4f6f9;
+    line-height:1.6;
+}
+
+header{
+    background:#1e88e5;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+section{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+    background:white;
+    margin-top:20px;
+    border-radius:8px;
+}
+
+h2{
+    color:#1e88e5;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:15px 0;
+}
+
+td,th{
+    border:1px solid #333;
+    padding:10px;
+    text-align:center;
+}
+
+.example{
+    background:#fafafa;
+    padding:15px;
+    border-left:5px solid #1e88e5;
+    margin-top:15px;
+}
+
+button{
+    padding:8px 15px;
+    border:none;
+    background:#1e88e5;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+    margin-top:10px;
+}
+
+code{
+    display:block;
+    background:#222;
+    color:#00ff9d;
+    padding:10px;
+    margin-top:10px;
+    white-space:pre-wrap;
+    display:none;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    margin-top:20px;
+    color:#555;
+}
+
+@media(max-width:600px){
+    body{font-size:14px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>HTML Table Colspan & Rowspan Tutorial</h1>
+<p>Beginner Friendly Explanation with Examples</p>
+</header>
+
+<section>
+<h2>📌 What is Colspan?</h2>
+
+<p>
+Colspan is used when you want a table cell to cover multiple columns.
+Instead of creating many separate cells, one cell can span across columns.
+</p>
+
+<div class="example">
+<h3>Normal Table</h3>
+
+<table>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+</tr>
+</table>
+
+<h3>Using Colspan</h3>
+
+<table>
+<tr>
+<td colspan="3">This cell covers 3 columns</td>
+</tr>
+</table>
+
+<button onclick="toggleCode('code1')">Show Code</button>
+
+<code id="code1">
+&lt;tr&gt;
+    &lt;td colspan="3"&gt;This cell covers 3 columns&lt;/td&gt;  
+&lt;/tr&gt;
+</code>
+</div>
+
+</section>
+
+<section>
+<h2>📌 What is Rowspan?</h2>
+
+<p>
+Rowspan is used when one cell needs to cover multiple rows vertically.
+This is useful when a category applies to many rows.
+</p>
+
+<div class="example">
+
+<table>
+<tr>
+<td rowspan="2">Student</td>
+<td>HTML</td>
+</tr>
+
+<tr>
+<td>CSS</td>
+</tr>
+</table>
+
+<button onclick="toggleCode('code2')">Show Code</button>
+
+<code id="code2">
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;Student&lt;/td&gt;  
+        &lt;td&gt;HTML&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;CSS&lt;/td&gt;
+    &lt;/tr&gt;
+</code>
+
+</div>
+
+</section>
+
+<section>
+<h2>📌 Colspan + Rowspan Together</h2>
+
+<p>
+You can combine both attributes to create complex table layouts.
+This is commonly used in marksheets, schedules, and reports.
+</p>
+
+<div class="example">
+
+<table>
+
+<tr>
+<th rowspan="2">Name</th>
+<th colspan="2">Marks</th>
+</tr>
+
+<tr>
+<th>HTML</th>
+<th>CSS</th>
+</tr>
+
+<tr>
+<td>Rahul</td>
+<td>80</td>
+<td>90</td>
+</tr>
+
+</table>
+
+<button onclick="toggleCode('code3')">Show Code</button>
+
+<code id="code3">
+&lt;tr&gt;
+    &lt;th rowspan="2"&gt;Name&lt;/th&gt;
+    &lt;th colspan="2"&gt;Marks&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;th&gt;HTML&lt;/th&gt;
+    &lt;th&gt;CSS&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;Rahul&lt;/td&gt;
+    &lt;td&gt;80&lt;/td&gt;
+    &lt;td&gt;90&lt;/td&gt;
+&lt;/tr&gt;
+</code>
+
+</div>
+
+</section>
+
+<section>
+<h2>📌 When to Use Them?</h2>
+
+<ul>
+<li>Marksheets</li>
+<li>School Timetables</li>
+<li>Attendance Reports</li>
+<li>Invoice Tables</li>
+<li>Complex Data Tables</li>
+</ul>
+</section>
+
+<section>
+<h2>📌 Try to make this table</h2>
+<table>
+<tr>
+<th>Name</th>
+<th colspan="2">Details</th>
+</tr>
+<tr>
+<td rowspan="2">Alice</td>
+<td>Age</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Location </td>
+<td>New York</td>
+</tr>
+<tr>
+<td>Bob</td>
+<td colspan="2">Single Cell for Bob's Info</td>
+</tr>
+</table>
+</section>
+<footer>
+<p>Created for Beginners Learning HTML Tables ❤️</p>
+</footer>
+
+<script>
+function toggleCode(id){
+    var code=document.getElementById(id);
+    if(code.style.display==="block"){
+        code.style.display="none";
+    }else{
+        code.style.display="block";
+    }
+}
+</script>
+
+</body>
+</html>
