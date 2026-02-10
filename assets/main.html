@@ -63,7 +63,7 @@
         }
 
         .feature-card {
-            background: #262626;
+            background: black;
             padding: 20px;
             border-radius: 10px;
             transition: 0.3s;
@@ -75,9 +75,9 @@
         }
 
         .feature-card h3 {
-            margin-bottom: 10px;
+        
             color: #7aa2ff;
-            border-bottom: 2px dashed #7aa2ff;
+            
             padding-bottom: 5px;
         }
 
@@ -185,6 +185,55 @@
             }
 
         }
+        /* ===== 3D CUBE INLINE SECTION ===== */
+.cube-section {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 60px;
+}
+
+.loader {
+    perspective: 1000px;
+    width: 160px;
+    height: 160px;
+}
+
+.cube {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 10s linear infinite;
+}
+
+.face {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 0 15px rgba(255,255,255,0.25);
+    background: #000;
+}
+
+.face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 3D placement */
+.face:nth-child(1){ transform: rotateX(90deg) translateZ(80px); }
+.face:nth-child(2){ transform: rotateX(-90deg) translateZ(80px); }
+.face:nth-child(3){ transform: translateZ(80px); }
+.face:nth-child(4){ transform: rotateY(90deg) translateZ(80px); }
+.face:nth-child(5){ transform: rotateY(-90deg) translateZ(80px); }
+.face:nth-child(6){ transform: rotateY(180deg) translateZ(80px); }
+
+@keyframes rotate {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to   { transform: rotateX(360deg) rotateY(360deg); }
+}
     </style>
 </head>
 
@@ -196,6 +245,34 @@
             This page is specially designed for students of <strong>Techno IT Computer Institute</strong>
             to practice real-world HTML, CSS, and JavaScript projects in a structured way.
         </p>
+        
+        
+        <div class="cube-section">
+    <div class="loader">
+        <div class="cube">
+            <div class="face" data-target="html">
+                <img src="../images/cursor/html.png">
+            </div>
+            <div class="face" data-target="css">
+                <img src="../images/cursor/css.png">
+            </div>
+            <div class="face" data-target="js">
+                <img src="../images/cursor/javascript.png">
+            </div>
+            <div class="face" data-target="howto">
+                <img src="../images/cursor/projectmate.png">
+            </div>
+            <div class="face" data-target="note">
+                <img src="../images/cursor/techno.png">
+            </div>
+            <div class="face" data-target="top">
+                <img src="../images/cursor/webdevelopment.png">
+            </div>
+        </div>
+    </div>
+</div>
+        
+        
 
         <div class="features">
             <div class="feature-card">
