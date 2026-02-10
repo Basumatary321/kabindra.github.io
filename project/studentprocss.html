@@ -1,170 +1,231 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Techno IT Student Profile</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Profile | Techno IT</title>
     <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #6366f1;
+            --accent: #10b981;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+        }
+
         body {
-            background-color: black;
-            background-image: radial-gradient(circle, white 1px, transparent 2px);
-            background-size: 20px 20px;
-        }
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: 20px auto;
-            background: whitesmoke;
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #0f172a;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+            color: #334155;
+            margin: 0;
             padding: 20px;
-            border-radius: 10px;
         }
-        h1,
-        h2 {
-            color: #0f78e0;
-            text-align: center;
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
+
+        /* Profile Header */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--light);
+        }
+
         .profile-img {
-            display: block;
-            margin: 10px auto;
             width: 120px;
             height: 120px;
-            border-radius: 50%;
-            border: 3px solid #1e22f9;
-            box-shadow: 0 0 40px #55e6fa;
+            border-radius: 20%; /* Squircle shape */
+            object-fit: cover;
+            border: 4px solid var(--primary);
         }
-        p {
-            font-size: 16px;
-            line-height: 1.5;
-            border-bottom: 2px solid blue;
-            padding-left: 10px;
+
+        /* Lists Styling */
+        .details-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        td,
-        th {
-            padding: 10px;
-            text-align: center;
-        }
-        form {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        label {
-            border-left: 4px solid rgb(244, 0, 0);
-            padding-left: 5px;
-        }
-        input,
-        textarea,
-        select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 6px;
+
+        h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
             margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .gender {
-            width: max-content;
+
+        /* Skill List (Horizontal Badges) */
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        .submit {
-            background-color: #1621fc;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            border-radius: 5px;
+
+        .skill-list li {
+            background: var(--light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--secondary);
+            border: 1px solid #e2e8f0;
         }
-        .submit:hover {
-            background-color: #04b65a;
+
+        /* Academic Timeline List */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            border-left: 2px solid var(--light);
+            margin-left: 10px;
         }
-        marquee {
-            color: #d35400;
-            margin-bottom: 10px;
+
+        .timeline li {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline li::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            font-weight: bold;
+            color: #94a3b8;
+        }
+
+        /* Project List */
+        .project-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: transform 0.2s;
+        }
+
+        .project-item:hover {
+            transform: translateX(10px);
+            background: #eef2ff;
+        }
+
+        .project-title {
+            font-weight: 700;
+            display: block;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .details-section { grid-template-columns: 1fr; }
+            .profile-header { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <marquee>🌟 Welcome to Techno IT Computer Institute Student Portal 🌟</marquee>
-        <h1>Student Profile Page</h1>
-        <img src="../images/rashmika.jpg" alt="Profile Picture" class="profile-img">
+        <div class="profile-header">
+            <img src="../images/rashmika.jpg" alt="Student Photo" class="profile-img">
+            <div>
+                <h1 style="margin:0; color:var(--dark);">Aryan Sharma</h1>
+                <p style="color:var(--secondary); font-weight:600; margin:5px 0;">Lead Full-Stack Student</p>
+                <code style="background:#f1f5f9; padding:2px 8px; border-radius:4px;">ID: TIT-2026-9921</code>
+            </div>
+        </div>
 
-        <h2>Basic Information</h2>
-        <p><strong>Name:</strong> Write Your Name</p>
-        <p><strong>Course:</strong> Diploma in Web Design</p>
-        <p><strong>Gender:</strong> Male</p>
-        <p><strong>Email:</strong> example@gmail.com</p>
-        <p><strong>Phone:</strong> +91-9876543210</p>
+        <div class="details-section">
+            <div>
+                <h2>Technical Proficiencies</h2>
+                <ul class="skill-list">
+                    <li>HTML5/CSS3</li>
+                    <li>JavaScript (ES6)</li>
+                    <li>React.js</li>
+                    <li>Node.js</li>
+                    <li>MongoDB</li>
+                    <li>Git/GitHub</li>
+                    <li>Tailwind CSS</li>
+                </ul>
 
-        <h2>Educational Qualifications</h2>
-        <table>
-            <tr>
-                <th>Exam</th>
-                <th>Board</th>
-                <th>Year</th>
-                <th>Percentage</th>
-            </tr>
-            <tr>
-                <td>10th</td>
-                <td>SEBA</td>
-                <td>2017</td>
-                <td>85%</td>
-            </tr>
-            <tr>
-                <td>12th</td>
-                <td>AHSEC</td>
-                <td>2019</td>
-                <td>78%</td>
-            </tr>
-        </table>
+                <h2 style="margin-top:40px;">Key Projects</h2>
+                <ul class="project-list">
+                    <li class="project-item">
+                        <span class="project-title">E-Learning Dashboard</span>
+                        <small>Built a student-teacher portal using MERN stack.</small>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-title">Portfolio Site</span>
+                        <small>A mobile-responsive CSS3/JS personal site.</small>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-title">Weather App</span>
+                        <small>Integrated OpenWeather API with real-time updates.</small>
+                    </li>
+                </ul>
+            </div>
 
-        <h2>Contact Form</h2>
-        <form>
-            <label>Full Name:</label>
-            <input type="text" placeholder="Enter your name">
+            <div>
+                <h2>Education Timeline</h2>
+                <ul class="timeline">
+                    <li>
+                        <span class="timeline-date">2024 - Present</span><br>
+                        <strong>Diploma in Full Stack Web Dev</strong><br>
+                        <small>Techno IT Computer Institute</small>
+                    </li>
+                    <li>
+                        <span class="timeline-date">2022 - 2024</span><br>
+                        <strong>Higher Secondary (Science)</strong><br>
+                        <small>AHSEC Board • 88.5%</small>
+                    </li>
+                    <li>
+                        <span class="timeline-date">2022</span><br>
+                        <strong>High School Leaving Cert.</strong><br>
+                        <small>SEBA Board • 92%</small>
+                    </li>
+                </ul>
 
-            <label>Email:</label>
-            <input type="email" placeholder="example@gmail.com">
+                <h2 style="margin-top:40px;">Certifications</h2>
+                <ul style="padding-left: 18px; line-height: 1.8;">
+                    <li>Google Analytics IQ Certified</li>
+                    <li>Responsive Web Design (FreeCodeCamp)</li>
+                    <li>Techno IT - Student of the Month (Oct 2025)</li>
+                </ul>
+            </div>
+        </div>
 
-            <label>Upload Photo:</label>
-            <input type="file">
-
-            <label>Gender:</label><br>
-            <input type="radio" name="gender" class="gender"> Male
-            <input type="radio" name="gender" class="gender"> Female <br><br>
-
-            <label>Select Course:</label>
-            <select>
-                <option>--Select Course--</option>
-                <option>ADCA</option>
-                <option>PGDCA</option>
-                <option>MS Office</option>
-            </select>
-            <label>Write about yourself:</label>
-            <textarea rows="4"></textarea>
-            <input type="submit" value="Submit" class="submit">
-        </form>
-        <h2>Our Location</h2>
-        <iframe src="https://maps.google.com/maps?q=kokrajhar&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%"
-            height="200" style="border:1px solid #333;"></iframe>
-        <hr>
-        <p style="text-align:center;">© 2025 Techno IT Computer Institute</p>
+        <footer style="margin-top: 50px; border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
+            <p style="font-size: 14px; color: #94a3b8;">© 2026 Techno IT Computer Institute Academic Portal</p>
+        </footer>
     </div>
 </body>
 
 </html>
-
