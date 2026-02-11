@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -54,6 +54,11 @@
             max-width: 800px;
             margin-bottom: 30px;
         }
+        .page-intro::first-letter{
+            color: red;
+            font-size: 1.5rem;
+            font-family:Curlz MT;
+        }
 
         .features {
             display: grid;
@@ -77,9 +82,8 @@
 
         .feature-card h3 {
         
-            color: #7aa2ff;
-            
-            padding-bottom: 5px;
+            color: #38bdf8;
+            /* padding-bottom: 5px; */
         }
 
         .feature-card p {
@@ -206,6 +210,10 @@
     transform-style: preserve-3d;
     animation: rotate 10s linear infinite;
 }
+.loader:hover {
+            transform: scale(1.5);
+            transition: transform 0.8s ease-in-out;
+        }
 
 .face {
     position: absolute;
@@ -213,7 +221,7 @@
     height: 160px;
     cursor: pointer;
     border: 1px solid rgba(255,255,255,0.4);
-    box-shadow: 0 0 15px rgba(255,255,255,0.25);
+    box-shadow: 0 0 35px 5px rgba(255, 0, 119, 0.267);
     background: #000;
 }
 
