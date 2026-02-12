@@ -421,4 +421,19 @@
      }
 
  }
+ @media(max-width:900px) and (orientation:landscape){
+    header{
+        display: none;
+    }
+    .top-navigation{
+        padding: 1;
+    }
+    .top-navigation .logo{
+        display: none;
+    }
+    .tab{
+        padding: 1;
+    }
+ }
+
 
