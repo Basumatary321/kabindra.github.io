@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -322,6 +322,22 @@
     font-size: 14px;
     color: #cbd5e1;
 }
+.appear{
+ animation: appear linear;
+ animation-timeline: view();
+ animation-range: 0% cover 15%;
+}
+@keyframes appear{
+    from{
+        scale: 0;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        scale: 1;
+        opacity: 1;
+        transform: translateY(0);
+    }}
 
 
     </style>
@@ -365,7 +381,7 @@
         
 
         <div class="features">
-            <div class="feature-card">
+            <div class="feature-card appear">
                 <h3>📄 HTML Practice</h3>
                 <p>
                     Learn basic to advanced HTML concepts through practical tasks like forms,
@@ -373,7 +389,7 @@
                 </p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card appear">
                 <h3>🎨 CSS Practice</h3>
                 <p>
                     Improve styling skills with hover effects, layouts, responsive design,
@@ -381,7 +397,7 @@
                 </p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card appear">
                 <h3>⚙️ JavaScript Practice</h3>
                 <p>
                     Understand logic building using validation, events, DOM manipulation,
@@ -422,7 +438,7 @@
 
     <div class="apps-grid">
 
-        <div class="app-card">
+        <div class="app-card appear">
             <div class="app-header">
                 <span class="app-title">Colspan & Rowspan Generator</span>
                 <a href="../project/buildtable.html" target="_blank" class="demo-btn">Demo</a>
@@ -431,7 +447,7 @@
             <p>Create and visualize HTML table colspan & rowspan interactively.</p>
         </div>
 
-        <div class="app-card">
+        <div class="app-card  appear">
             <div class="app-header">
                 <span class="app-title">Flex Generator</span>
                 <a href="../project/flexgenerator.html" target="_blank" class="demo-btn">Demo</a>
@@ -440,7 +456,7 @@
             <p>Generate CSS Flexbox layouts visually with live preview.</p>
         </div>
 
-        <div class="app-card">
+        <div class="app-card appear">
             <div class="app-header">
                 <span class="app-title">CSS Filter App</span>
                 <a href="../project/basicfilter.html" target="_blank" class="demo-btn">Demo</a>
@@ -449,7 +465,7 @@
             <p>Basic Image Filter Using CSS, Like brightness, contrast, hue-rotate, opacity etc.</p>
         </div>
 
-        <div class="app-card">
+        <div class="app-card appear">
             <div class="app-header">
                 <span class="app-title">Number Guest Game</span>
                 <a href="../project/guess3.html" target="_blank" class="demo-btn">Demo</a>
@@ -458,7 +474,7 @@
             <p>Fun number guessing game to practice JS logic building.</p>
         </div>
 
-        <div class="app-card">
+        <div class="app-card appear">
             <div class="app-header">
                 <span class="app-title">Crack the Code</span>
                 <a href="../project/crack.html" target="_blank" class="demo-btn">Demo</a>
@@ -467,7 +483,7 @@
             <p>Pattern & logic-based mini challenge for students.</p>
         </div>
 
-        <div class="app-card">
+        <div class="app-card appear">
             <div class="app-header">
                 <span class="app-title">Crazy Game</span>
                 <a href="../project/crazygame.html" target="_blank" class="demo-btn">Demo</a>
@@ -475,7 +491,7 @@
             <span class="badge game">Game</span>
             <p>Fun number guessing game to practice JS logic building.</p>
         </div>
-        <div class="app-card">
+        <div class="app-card  appear">
             <div class="app-header">
                 <span class="app-title">Valentine Proposal</span>
                 <a href="../event/valentine.html" target="_blank" class="demo-btn">Demo</a>
@@ -483,7 +499,7 @@
             <span class="badge intermediate">Intermediate</span>
             <p>Fun Valentine's Day themed proposal generator.</p>
         </div>
-        <div class="app-card">
+        <div class="app-card appear">
             <div class="app-header">
                 <span class="app-title">Live ID Card Printer</span>
                 <a href="../project/print.html" target="_blank" class="demo-btn">Demo</a>
@@ -491,7 +507,7 @@
             <span class="badge intermediate">Intermediate</span>
             <p>Generate and print customizable ID cards with live preview.</p>
         </div>
-        <div class="app-card">
+        <div class="app-card  appear">
             <div class="app-header">
                 <span class="app-title">Password Strength Checker</span>
                 <a href="../project/ps_strength.html" target="_blank" class="demo-btn">Demo</a>
@@ -499,7 +515,7 @@
             <span class="badge intermediate">Intermediate</span>
             <p>Check and visualize the strength of any password.</p>
         </div>
-        <div class="app-card">
+        <div class="app-card appear">
             <div class="app-header">
                 <span class="app-title">Age Calculator</span>
                 <a href="../project/agecalculator.html" target="_blank" class="demo-btn">Demo</a>
