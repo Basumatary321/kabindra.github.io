@@ -338,7 +338,12 @@
         opacity: 1;
         transform: translateY(0);
     }}
-
+.icon{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+}
 
     </style>
 </head>
@@ -382,7 +387,14 @@
 
         <div class="features">
             <div class="feature-card appear">
-                <h3>📄 HTML Practice</h3>
+                   <div class="icon">
+                    <lord-icon
+    src="https://cdn.lordicon.com/ailnzwyn.json"
+    trigger="loop"
+    state="morph-code"
+    colors="primary:#30c9e8,secondary:#16c72e"
+    style="width:45px;height:45px">
+</lord-icon><h3>HTML Practice</h3></div>
                 <p>
                     Learn basic to advanced HTML concepts through practical tasks like forms,
                     tables, lists, layouts, and semantic elements.
@@ -390,7 +402,14 @@
             </div>
 
             <div class="feature-card appear">
-                <h3>🎨 CSS Practice</h3>
+                 <div class="icon">
+                <lord-icon
+    src="https://cdn.lordicon.com/jectmwqf.json"
+    trigger="loop"
+    delay="500"
+    colors="primary:#30c9e8,secondary:#c7166f"
+    style="width:50px;height:50px">
+</lord-icon><h3>CSS Practice</h3></div>
                 <p>
                     Improve styling skills with hover effects, layouts, responsive design,
                     animations, and modern UI components.
@@ -398,7 +417,14 @@
             </div>
 
             <div class="feature-card appear">
-                <h3>⚙️ JavaScript Practice</h3>
+                <div class="icon">
+                <lord-icon
+    src="https://cdn.lordicon.com/fwkrbvja.json"
+    trigger="loop"
+    state="loop-oscillate"
+    colors="primary:#30c9e8,secondary:#c7166f"
+    style="width:45px;height:45px">
+</lord-icon><h3>JavaScript Practice</h3></div>
                 <p>
                     Understand logic building using validation, events, DOM manipulation,
                     and small interactive projects.
@@ -541,5 +567,6 @@
     </div>
     <div class="footerbg"></div>
 </body>
+
 
 </html>
