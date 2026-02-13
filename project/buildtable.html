@@ -93,7 +93,6 @@ Colspan Builder, Rowspan Generator, HTML Table Tool, Web Development Project, Ja
         details.note ul {
             padding-left: 20px;
             font-size: 0.9rem;
-            border-left: 2px solid #ffc107;
         }
 
         /* Controls Section */
@@ -239,6 +238,26 @@ Colspan Builder, Rowspan Generator, HTML Table Tool, Web Development Project, Ja
             /* Make buttons horizontal in desktop if you prefer, 
        but vertical column fits a sidebar well */
         }
+        details summary {
+    list-style: none;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+}
+
+/* Custom arrow */
+details summary::before {
+    content: "➤";
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    transition: 0.3s ease;
+}
+
+/* Rotate when open */
+details[open] summary::before {
+    transform: rotate(90deg);
+}
     </style>
 </head>
 
@@ -418,3 +437,4 @@ Colspan Builder, Rowspan Generator, HTML Table Tool, Web Development Project, Ja
 
 
 </html>
+
