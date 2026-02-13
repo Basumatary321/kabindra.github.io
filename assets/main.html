@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <style>
         html {
             /* Hiding scrollbar for Firefox and Edge */
@@ -344,13 +345,63 @@
     flex-direction: row;
     gap: 8px;
 }
+/* WATER EFFECT */
+.w-content {
+    position: relative;              /* IMPORTANT */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: clamp(100px, 10vh, 250px); /* Responsive height */
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;                /* Prevent overflow */
+}
+
+/* Responsive Font Size */
+.w-content h2 {
+    position: absolute;
+    font-size: clamp(4rem, 8vw, 6rem);  /* Mobile Friendly */
+    white-space: nowrap;               /* Prevent line break */
+}
+
+/* Outline Text */
+.w-content h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 1px #ffffff;
+}
+
+/* Water Animation Text */
+.w-content h2:nth-child(2) {
+    color: rgb(15, 123, 246);
+    animation: animate 3s ease-in-out infinite;
+}
+
+/* Animation */
+@keyframes animate {
+    0%,100% {
+        clip-path: polygon(0 42%, 17% 36%, 37% 39%, 58% 55%, 
+        79% 62%, 93% 59%, 100% 55%, 100% 100%, 0% 100%, 0 64%);
+    }
+    50% {
+        clip-path: polygon(0 53%, 19% 54%, 38% 49%, 56% 44%, 
+        73% 46%, 85% 47%, 100% 52%, 100% 100%, 0% 100%, 0 64%);
+    }
+    70% {
+        clip-path: polygon(0 53%, 20% 60%, 40% 58%, 57% 47%, 
+        73% 45%, 87% 49%, 100% 59%, 100% 100%, 0% 100%, 0 64%);
+    }
+}
+
 
     </style>
 </head>
 
 <body>
     <div class="main-content">
-
+<div class="w-content">
+    <h2>🤝बरायबाय</h2>
+    <h2>🤝बरायबाय</h2>
+</div>
         <!--<h2 class="page-title">HTML, CSS & JavaScript Practice Hub</h2>-->
         <p class="page-intro">
             This page is specially designed for students of <strong>Techno IT Computer Institute</strong>
@@ -387,7 +438,7 @@
 
         <div class="features">
             <div class="feature-card appear">
-                   <div class="icon">
+                <div class="icon">
                     <lord-icon
     src="https://cdn.lordicon.com/ailnzwyn.json"
     trigger="loop"
@@ -417,7 +468,7 @@
             </div>
 
             <div class="feature-card appear">
-                <div class="icon">
+                 <div class="icon">
                 <lord-icon
     src="https://cdn.lordicon.com/fwkrbvja.json"
     trigger="loop"
@@ -567,6 +618,5 @@
     </div>
     <div class="footerbg"></div>
 </body>
-
 
 </html>
