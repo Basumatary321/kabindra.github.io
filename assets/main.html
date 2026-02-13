@@ -222,9 +222,19 @@
     height: 160px;
     cursor: pointer;
     border: 1px solid rgba(255,255,255,0.4);
-    box-shadow: 0 0 35px 5px rgba(255, 0, 119, 0.267);
+    box-shadow: 0 0 35px 5px rgba(248, 210, 39, 0.178);
     background: #000;
+    animation: shadow 3s ease-in-out infinite;
 }
+@keyframes shadow {
+    0%,100% {
+        box-shadow: 0 0 35px 5px rgba(255, 204, 0, 0.236);
+    }25% {
+        box-shadow: 0 0 35px 5px rgba(70, 39, 248, 0.178);
+    }
+    50% {
+        box-shadow: 0 0 35px 5px rgba(213, 39, 248, 0.296);
+    }   }
 
 .face img {
     width: 100%;
@@ -367,12 +377,12 @@
 /* Outline Text */
 .w-content h2:nth-child(1) {
     color: transparent;
-    -webkit-text-stroke: 1px #ffffff;
+    -webkit-text-stroke: 1px #b6be6a;
 }
 
 /* Water Animation Text */
 .w-content h2:nth-child(2) {
-    color: rgb(15, 123, 246);
+    color: rgb(11, 120, 246);
     animation: animate 3s ease-in-out infinite;
 }
 
