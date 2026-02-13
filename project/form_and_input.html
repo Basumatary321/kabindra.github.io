@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HTML Forms Explained (With Code)</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f4f7;
+    margin:0;
+}
+
+header{
+    background:#1f3c88;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+section{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 0 8px rgba(0,0,0,0.1);
+}
+
+h2{
+    color:#0b6fa4;
+}
+
+/* LIVE DEMO BOX */
+.demo{
+    background:#fafafa;
+    border:1px solid #ccc;
+    padding:15px;
+    margin-top:10px;
+}
+
+/* CODE BOX */
+.code{
+    background:#272822;
+    color:#eee;
+    padding:10px;
+    margin-top:15px;
+    overflow-x:auto;
+    border-radius:6px;
+}
+
+pre{
+    margin:0;
+}
+
+label{
+    font-weight:bold;
+}
+
+input, select, textarea{
+    padding:6px;
+    margin:5px 0 10px;
+}
+ .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+  .note{
+        background:#eaf7ff;
+        padding:10px;
+        border-left:4px solid #3498db;
+        margin-top:10px;
+    }
+    @media (max-width:600px){
+      input,select, textarea{
+        width: 90%;
+      }
+      input[type="submit"], input[type="reset"], input[type="button"],
+      input[type="radio"], input[type="checkbox"]{
+        width: auto;
+      }
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>HTML Forms & Input Elements</h1>
+<p>Example + Code View (Student Learning Format)</p>
+</header>
+<!-- INTRODUCTION -->
+<section>
+<h2>What is an HTML Form?</h2>
+
+<p>
+HTML forms are used to collect user input such as text, selections,
+passwords, files, and more. Forms are commonly used for:
+</p>
+
+<ul>
+<li>Login pages</li>
+<li>Registration forms</li>
+<li>Feedback systems</li>
+<li>Search boxes</li>
+</ul>
+
+<h3>Basic Syntax</h3>
+<div class="code">
+<pre><code>
+&lt;form&gt;
+   &lt;!-- input fields go here --&gt;
+&lt;/form&gt;
+</code>
+</pre></div>
+</section>
+<!-- TEXT & NUMBER -->
+<section>
+
+<h2>Input Type: Text and Number</h2>
+
+<p><b>Output:</b></p>
+
+<div class="demo">
+<form>
+<label>Name:</label><br>
+<input type="text" placeholder="Enter your name" required>
+
+<br>
+
+<label>Age:</label><br>
+<input type="number" min="1" max="100" placeholder="00">
+</form>
+</div>
+
+<p><b>Code:</b></p>
+
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Name:&lt;/label&gt;&lt;br&gt;
+&lt;input type="text" placeholder="Enter your name" required&gt;
+
+&lt;br&gt;
+
+&lt;label&gt;Age:&lt;/label&gt;&lt;br&gt;
+&lt;input type="number" min="1" max="100"&gt;
+&lt;/form&gt;
+</code></pre>
+
+</div>
+<div class="note">
+<b>Important Attributes:</b>
+<ul>
+<li>placeholder → Hint text</li>
+<li>required  → Must fill before submit</li>
+<li>min / max  → Limit numeric values</li>
+</ul>
+</div>
+</section>
+
+<!-- DATE & TIME -->
+<section>
+<h2>Input Type: Date and Time</h2>
+
+<div class="demo">
+<form>
+<label>Select Date:</label><br>
+<input type="date">
+
+<br>
+
+<label>Select Time:</label><br>
+<input type="time">
+</form>
+</div>
+
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Select Date:&lt;/label&gt;&lt;br&gt;
+&lt;input type="date"&gt;
+
+&lt;br&gt;
+
+&lt;label&gt;Select Time:&lt;/label&gt;&lt;br&gt;
+&lt;input type="time"&gt;
+&lt;/form&gt;
+</code></pre>
+</div>
+
+<div class="note">
+<p>Used for booking systems, appointments, scheduling etc.</p>
+</div>
+</section>
+
+<!-- EMAIL & PASSWORD -->
+<section>
+<h2>Input Type: Email and Password</h2>
+
+<div class="demo">
+<form>
+<label>Email:</label><br>
+<input type="email" placeholder="example@mail.com">
+
+<br>
+
+<label>Password:</label><br>
+<input type="password" maxlength="12">
+</form>
+</div>
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Email:&lt;/label&gt;&lt;br&gt;
+&lt;input type="email" placeholder="example@mail.com"&gt;
+
+&lt;br&gt;
+
+&lt;label&gt;Password:&lt;/label&gt;&lt;br&gt;
+&lt;input type="password" maxlength="12"&gt;
+&lt;/form&gt;
+</code></pre>
+</div>
+
+<div class="note">
+<ul>
+<li>email → Validates email format eg example@mail.com</li>
+<li>password → Hides input characters for security</li></ul>
+</div>
+</section>
+<!-- RADIO & CHECKBOX -->
+<section>
+
+<h2>Radio and Checkbox</h2>
+
+<p><b>Output:</b></p>
+
+<div class="demo">
+<form>
+<label>Gender:</label><br>
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+
+<br><br>
+
+<label>Skills:</label><br>
+<input type="checkbox"> HTML
+<input type="checkbox"> CSS
+<input type="checkbox"> JavaScript
+</form>
+</div>
+
+<p><b>Code:</b></p>
+
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Gender:&lt;/label&gt;&lt;br&gt;
+&lt;input type="radio" name="gender"&gt; Male
+&lt;input type="radio" name="gender"&gt; Female
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;label&gt;Skills:&lt;/label&gt;&lt;br&gt;
+&lt;input type="checkbox"&gt; HTML
+&lt;input type="checkbox"&gt; CSS
+&lt;input type="checkbox"&gt; JavaScript
+&lt;/form&gt;
+</code></pre>
+</div>
+<div class="note">
+<ul>
+<li>radio  → Select only ONE option</li>
+<li>checkbox → Select MULTIPLE options</li>
+</ul></div>
+</section>
+
+<!-- SELECT DROPDOWN -->
+<section>
+
+<h2>Select Dropdown</h2>
+
+<p><b>Output:</b></p>
+
+<div class="demo">
+<form>
+
+<label>Select Course:</label><br>
+
+<select>
+
+<option>HTML</option>
+<option>CSS</option>
+<option selected>-- Choose Course --</option>
+<option>JavaScript</option>
+<option>PHP</option>
+
+</select>
+
+</form>
+</div>
+
+<p><b>Code:</b></p>
+
+<div class="code">
+<pre><code>
+&lt;form&gt;
+
+&lt;label&gt;Select Course:&lt;/label&gt;&lt;br&gt;
+
+&lt;select&gt;
+
+&lt;option&gt;HTML&lt;/option&gt;
+&lt;option&gt;CSS&lt;/option&gt;
+&lt;option selected&gt;-- Choose Course --&lt;/option&gt;
+&lt;option&gt;JavaScript&lt;/option&gt;
+&lt;option&gt;PHP&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;/form&gt;
+</code></pre>
+</div>
+<div class="note">
+<b>Important:</b>
+<ul>
+<li>&lt;select&gt; → Creates dropdown</li>
+<li>&lt;option&gt; → Dropdown items</li>
+<li>selected → Default selected option</li>
+</ul>
+</div>
+</section>
+
+<!-- TEXTAREA -->
+<section>
+
+<h2>Textarea Input</h2>
+
+<p><b>Output:</b></p>
+
+<div class="demo">
+<form>
+<label>Message:</label><br>
+<textarea rows="4" cols="30"
+placeholder="Type your message"></textarea>
+</form>
+</div>
+
+<p><b>Code:</b></p>
+
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Message:&lt;/label&gt;&lt;br&gt;
+&lt;textarea rows="4" cols="30"
+placeholder="Type your message"&gt;&lt;/textarea&gt;
+&lt;/form&gt;
+</code></pre>
+</div>
+<div class="note">
+<ul>
+<li>textarea → Multi-line text input</li>
+<li>rows / cols → Set size of textarea</li>
+</ul>
+</div>
+</section>
+<!-- Range input -->
+<section>
+<h2>Range Input</h2>
+
+<div class="demo">
+<form>
+<label>Rate:</label><br>
+<input type="range" min="0" max="10">
+</form>
+</div>
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Rate:&lt;/label&gt;&lt;br&gt;
+&lt;input type="range" min="0" max="10">
+</code></pre>
+</div>
+<div class="note">
+<ul>
+<li>range → Slider for numeric input</li>
+<li>min / max → Set slider limits</li>
+</div>
+</section>
+<!-- Search -->
+ <section>
+<h2>Search Input</h2>
+<div class="demo">
+<form>
+<label>Search:</label><br>
+<input type="search">
+</form>
+</div>
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Search:&lt;/label&gt;&lt;br&gt;
+&lt;input type="search"&gt;
+&lt;/form&gt;
+
+
+</code></pre>
+</div>
+<div class="note">
+<ul>
+<li>color → Color picker input</li>
+</div>
+</div>
+ </section>
+<!-- Color Input/Pick -->
+ <section>
+<h2>Color Input</h2>
+<div class="demo">
+<form>
+<label>Pick Color:</label><br>
+<input type="color">
+</form>
+</div>
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;label&gt;Pick Color:&lt;/label&gt;&lt;br&gt;
+&lt;input type="color"&gt;
+&lt;/form&gt;
+
+
+</code></pre>
+</div>
+<div class="note">
+<ul>
+<li>color → Color picker input</li>
+</div>
+</div>
+ </section>
+<!--File-->
+<section>
+
+<h2>File Input</h2>
+
+<p><b>Output:</b></p>
+
+<div class="demo">
+<form>
+<input type="file" value="Upload File">
+</form>
+</div>
+
+<p><b>Code:</b></p>
+
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;input type="file" value="Upload File"&gt;
+&lt;/form&gt;
+</code></pre>
+</div>
+<div class="note">
+File input allows users to upload files from their device.
+</div>
+</section>
+<!-- BUTTONS -->
+<section>
+
+<h2>Form Buttons</h2>
+
+<p><b>Output:</b></p>
+
+<div class="demo">
+<form>
+<input type="submit" value="Submit">
+<input type="reset" value="Reset">
+<input type="button" value="Normal Button">
+</form>
+</div>
+
+<p><b>Code:</b></p>
+
+<div class="code">
+<pre><code>
+&lt;form&gt;
+&lt;input type="submit" value="Submit"&gt;
+&lt;input type="reset" value="Reset"&gt;
+&lt;input type="button" value="Normal Button"&gt;
+&lt;/form&gt;
+</code></pre>
+</div>
+<div class="note">
+<ul>
+<li>Submit → Submits form data</li>
+<li>Reset → Resets all form fields to their default values</li>
+<li>Button → Creates a clickable button without any default behavior</li>
+</ul>
+</div>
+</section>
+<!-- FOOTER -->
+<section>
+<h2>Conclusion</h2>
+
+<p>
+HTML forms are essential for interactive websites. By combining
+different input types, developers can collect structured data
+efficiently and improve user experience.
+</p>
+
+</section>
+ <p class="footer">
+            © 2026 | Written with <span style="color:red;">♥</span> for beginners by Kabindra sr.
+        </p>
+</body>
+</html>
