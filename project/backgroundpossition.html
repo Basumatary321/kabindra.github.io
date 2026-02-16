@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS background-position Guide</title>
+    <style>
+        :root {
+            --bg-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80');
+            --primary-blue: #2980b9;
+            --primary-purple: #8e44ad;
+            --primary-green: #27ae60;
+            --primary-dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .banner {
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .banner.blue { background-color: var(--primary-blue); }
+        .banner.purple { background-color: var(--primary-purple); }
+        .banner.green { background-color: var(--primary-green); }
+        .banner.dark { background-color: var(--primary-dark); }
+
+        .box-container {
+            height: 250px;
+            background-color: #e0e0e0;
+            margin: 20px;
+            border: 2px dashed #ccc;
+            /* Using a smaller size so we can see the position clearly */
+            background-image: var(--bg-image);
+            background-size: 150px 100px; 
+            background-repeat: no-repeat;
+        }
+
+        /* Position Logic */
+        .pos-center { background-position: center; }
+        .pos-top-right { background-position: top right; }
+        .pos-bottom-left { background-position: bottom left; }
+        .pos-coords { background-position: 20% 80%; }
+
+        .caption {
+            padding: 15px;
+            background: #fff;
+        }
+
+        .caption h3 { margin: 0 0 5px 0; font-size: 1rem; }
+        .caption p { margin: 0; font-size: 0.85rem; color: #777; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="banner blue">Position: "center"</div>
+            <div class="box-container pos-center"></div>
+            <div class="caption">
+                <h3>Dead Center</h3>
+                <p>Equidistant from all sides</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="banner purple">Position: "top right"</div>
+            <div class="box-container pos-top-right"></div>
+            <div class="caption">
+                <h3>Aligned to Corners</h3>
+                <p>Uses keywords (top, bottom, left, right)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="banner green">Position: "bottom left"</div>
+            <div class="box-container pos-bottom-left"></div>
+            <div class="caption">
+                <h3>Lower Anchor</h3>
+                <p>Common for corner branding</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="banner dark">Position: "20% 80%"</div>
+            <div class="box-container pos-coords"></div>
+            <div class="caption">
+                <h3>X and Y Coordinates</h3>
+                <p>Precise control using % or px</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
