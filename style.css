@@ -1,426 +1,440 @@
+   /* --- 1. GLOBAL RESET & FOUNDATION --- */
  * {
      margin: 0;
      padding: 0;
      box-sizing: border-box;
-     font-family: Arial, sans-serif;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  }
 
- html, body { height: 100%; }
-body {
-    background-color: #ddd;
-    min-height: 100%;
-}
+ :root {
+     --sidebar-width: 300px;
+     /* --header-bg: linear-gradient(135deg, #1741fa 0%, #f8101b 100%); */
+     --header-bg: #2563eb; 
+     --nav-bg: #182439;
+     --primary-green: #10b981;
+     --active-green: #059669;
+     --sidebar-bg: #1a202c;
+     --sidebar-hover: #2d3748;
+     --text-primary: #f7fafc;
+     --text-secondary: #cbd5e0;
+     --border-color: #4a5568;
+ }
 
- /* GRID LAYOUT */
+ html,
+ body {
+     height: 100vh;
+     overflow: hidden;
+     background-color: #000000;
+ }
+
+ /* --- 2. GRID LAYOUT --- */
  .container {
-     height: 100%;
-     min-height: 100vh;
      display: grid;
-     grid-template-columns: 260px 1fr;
-     grid-template-rows: auto 1fr 60px;
-     /* header is now auto-sized to allow taller responsive header */
+     height: 100vh;
+     grid-template-columns: var(--sidebar-width) 1fr;
+     grid-template-rows: auto auto 1fr auto;
      grid-template-areas:
          "header header"
+         "navigation navigation"
          "sidebar main"
-         "footer footer";
  }
 
- /* HEADER */
+ html,
+ body,
+ .container,
+ main {
+     overflow-x: hidden;
+ }
+
+ /* --- 3. HEADER & TEXT EFFECTS --- */
  header {
      grid-area: header;
-    /* ← SVG color comes from here */
-      background:
-          url("images/cursor/header-01.svg"),
-          linear-gradient(to top, black, black 10%, blue);
-      background-size: contain;
-      background-repeat: no-repeat;
+     background: var(--header-bg);
      color: #fff;
-     text-align: center;
-     margin-bottom: 10px;
-     min-height: 15vh;
-     /* provides room for reflection */
-     padding: 0;
+     min-height: 110px;
      display: flex;
      align-items: center;
      justify-content: center;
-     flex-direction: column;
-     overflow: visible;
+     text-align: center;
+     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+     padding: 15px;
  }
 
  header h2 {
-     margin: 0;
+     font-size: clamp(1.2rem, 3vw, 2.5rem);
      font-weight: 700;
-     line-height: 1;
-     font-size: clamp(1.5rem, 3.5vw, 3.5rem);
-     /* responsive text */
-     -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(236, 43, 43, 0.682));
+     letter-spacing: 2px;
+     -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(255, 255, 255, 0.25));
  }
 
  header h2 span {
-    display: inline-block;
-     font-weight: 700;
-     line-height: 1;
+     display: inline-block;
+     transition: 0.3s transform ease, 0.3s color ease;
      cursor: pointer;
-     font-size: clamp(1.5rem, 3.5vw, 3.5rem);
-     transform: rotate(0deg);
-     transition: 0.8s linear ease;
-      cursor: pointer;
-      cursor: url("../images/cursor/animatedcursson2.png"), pointer;
  }
 
- header h2 span:nth-child(even):hover {
-    color: orangered;
-     font-size: larger;
-     transform: rotate(45deg);
- }
- header h2 span:nth-child(odd):hover {
-    color: rgb(72, 255, 0);
-     font-size: larger;
-     transform: rotate(-45deg);
+ header h2 span:hover {
+     color: #ffd700;
+     transform: translateY(-8px) rotate(15deg) scale(1.1);
  }
 
-
- /* SIDEBAR */
- aside {
-     grid-area: sidebar;
-     /* background: #f0f0f0; */
-          background: #1c1c1c;
-     padding: 10px;
-     min-width: max-content;
-     height: 100%; /* ensure sidebar fills the layout height */
-     overflow-y: auto;
-     border-right: 2px solid #ccc;
- }
-
- aside h3 {
-     margin: 10px 0;
-     background: #0E21A0;
+ /* --- 4. NAVIGATION BAR --- */
+ .top-navigation {
+     grid-area: navigation;
+     background: var(--nav-bg);
+     padding: 12px 20px;
+     display: flex;
+     /* border-bottom: 3px solid var(--primary-green); */
+     justify-content: space-between;
+     align-items: center;
      color: white;
-     padding: 6px;
-     font-size: 14px;text-align: center;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+     gap: 10px;
+ }
+
+ .top-navigation .logo {
+     height: 40px;
+     transition: 0.3s transform ease;
+ }
+
+ .top-navigation .logo:hover {
+     transform: scale(1.05);
+ }
+
+.mob{
+    order: 3;
+}
+
+ .menu-toggle {
+     display: none;
+     background: none;
+     border: none;
+     color: white;
+     font-size: 24px;
+     cursor: pointer;
+     transition: 0.3s;
+ }
+
+ .menu-toggle:hover {
+     transform: scale(1.1);
+ }
+
+ #openTab{
+     background: var(--primary-green);
+     color: white;
+     border: none;
+     padding: 10px 18px;
+     border-radius: 25px;
+     cursor: pointer;
+     transition: 0.3s ease;
+     font-weight: 600;
+     font-size: 13px;
+     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+ }
+
+ #pageTitle {
+     flex: 1;
+     text-align: center;
+     font-weight: 600;
+     font-size: 15px;
+     color: var(--text-primary);
+ }
+
+ #openTab:hover {
+     background: var(--active-green);
+     transform: translateY(-2px);
+     box-shadow: 0 6px 16px rgba(5, 150, 105, 0.4);
+ }
+
+ /* --- 5. SIDEBAR (SCROLLABLE) --- */
+ .sidebar {
+     grid-area: sidebar;
+     background: var(--sidebar-bg);
+     color: var(--text-primary);
+     padding: 15px;
+     overflow-y: auto;
+     border-right: 3px solid var(--border-color);
+     transition: 0.3s;
+ }
+
+ .sidebar h3 {
+     font-size: 13px;
+     /* background: linear-gradient(155deg,#0a12ea 0%, #820202 100%); */
+   background-color: var(--header-bg);  
+     padding: 10px;
+     margin: 15px 0 10px 0;
+     text-align: center;
+     border-radius: 8px;
+     font-weight: 700;
+     letter-spacing: 0.5px;
+     text-transform: uppercase;
+     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+ }
+
+ .sidebar .logo {
+     display: none;
+     border-radius: 8px;
+     margin-bottom: 15px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
  }
 
  .project-list {
      list-style: none;
-     margin-bottom: 15px;
  }
 
  .project-list a {
      display: block;
-     padding: 6px;
-     margin: 4px 0;
-     background: #ddd;
-     color: #000;
+     padding: 10px 12px;
+     margin: 6px 0;
+     background: var(--sidebar-hover);
+     color: var(--text-secondary);
      text-decoration: none;
-     border-radius: 4px;
-     cursor: pointer;
+     border-radius: 8px;
+     font-size: 13px;
+     transition: 0.3s ease;
+     border-left: 3px solid transparent;
+     font-weight: 500;
  }
 
  .project-list a:hover {
-     background: #bbb;
+     background: #374151;
+     padding-left: 16px;
+     border-left-color: var(--primary-green);
+     color: var(--text-primary);
  }
 
  .project-list a.active {
-     background: #3cb371;
+     /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+     background-color: var(--active-green);
      color: white;
+     border-left-color: #ffd700;
+     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
  }
 
- /* MAIN */
+ /* --- 6. MAIN CONTENT & IFRAME --- */
  main {
      grid-area: main;
-     background: #ddd;
-     padding: 0 10px 10px; /* reserve space for fixed footer on desktop */
-     display: flex;
-     flex-direction: column;
+     /* display: flex;
+     flex-direction: column; */
+     padding: 0;
+     background: #000000;
+     overflow-y: auto;
+     margin: 0;
  }
 
- .top-bar {
-      /* background: #555555; */
-          background: #333333;
-      padding: 8px;
-      color: rgb(53, 4, 248);
-      font-weight: bold;
-      display: flex;
-      color: white;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 5px;
-
-  }
-
- /* Mobile menu toggle (hidden on desktop) */
- .menu-toggle {
-     display: none;
-     border: none;
-     background: transparent;
-     color: white;
-     font-size: 22px;
-     cursor: pointer;
-     padding: 6px;
-     border-radius: 6px;
- }
- .menu-toggle:focus { outline: 2px solid rgba(255,255,255,0.25); }
-.menu-toggle a, .menu-toggle a img{margin: 0; padding: 0;}
- #pagetitle {
-     font-size: 18px;
-     color: white;
-     -webkit-box-reflect: below -7px linear-gradient(transparent, rgba(236, 43, 43, 0.425));
- }
-
- #openTab {
-     padding: 6px 14px;
-     border: none;
-     border-radius: 20px;
-     background: #2e8b57;
-     color: white;
-     cursor: pointer;
- }
-
- #openTab:hover {
-     background: #1e6b3f;
- }
 
  iframe {
-     margin-top: 10px;
      width: 100%;
      height: 100%;
      border: none;
-     /* background:rgba(183, 185, 185, 0.399); */
-    /* background: url("images/animated\ logo.gif"); */
-     background-size: 40% auto;
-      background-position: center;
-      background-repeat:no-repeat;
-      animation: skelton 1s linear infinite;
-      animation-direction: alternate;
-      
-
+     display: block;
+     margin: 0;
  }
-@keyframes skelton{
-    0%{
-        /* background-color:#686767 ; */
-        background: linear-gradient(to top, black 5%, white);
-        /* background-color: #aaa; */
-          /* background: linear-gradient(to top, white, black); */
-        
-    }
-}
 
- /* FOOTER */
+
+ /* --- 7. FOOTER --- */
  footer {
      grid-area: footer;
-     /* background: linear-gradient(to bottom, #111111, rgb(37, 37, 37)); */
-     background-color: #333333;
-     color: white;
-     text-align: center;
-     height: max-content;
-     position: fixed;
-     bottom: 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;gap: 5px;
-     width: 100%;
-     padding: 5px 0;
-     /* line-height:20px; */
- }
-.quicklink{
-    background-color: #cecbcb2a;
-    padding: 5px;
-    border-radius: 10px;
-    width: max-content;    
-    font-family:cursive;
-}
-.quicklink a{
-    margin: 0 4px;
-    color: rgb(5, 169, 5);
-    text-decoration: none;
-     font-family:'Lucida Console', monospace;
-    /* font-weight: bold; */
-}
- /* SIDEBAR */
- .sidebar {
-     grid-area: sidebar;
-     background: #eee;
+     background: #222;
+     color: #888;
      padding: 10px;
-     border-right: 2px solid #ccc;
-     height: 100%; /* fill available height */
-     overflow-y: auto;
-     /* enable scrolling for long lists */
-     /* Firefox */
-     scrollbar-width: thin;
-     scrollbar-color: #f04b8a #fffdfd;
-     /* thumb color then track color */
+     text-align: center;
+     font-size: 12px;
  }
 
- /* WebKit (Chrome, Edge, Safari) */
- .sidebar::-webkit-scrollbar {
-     width: 12px;
+ .quicklink a {
+     color: var(--active-green);
+     text-decoration: none;
+     margin: 0 5px;
  }
 
- .sidebar::-webkit-scrollbar-track {
-     /* background: #f0f0f0; */
-     border-radius: 10px;
+ /* --- SIDEBAR FOOTER DESIGN --- */
+ .sidebar-footer {
+     margin-top: 30px;
+     padding-top: 20px;
+     border-top: 2px solid var(--border-color);
+     text-align: center;
  }
 
- .sidebar::-webkit-scrollbar-thumb {
-     /* background: #3cb371;  */
-     background: linear-gradient(to top, blue, rgb(5, 251, 5));
-
-     border-radius: 10px;
-     border: 3px solid #f0f0f0;
-     /* creates padding effect */
+ .sidebar-quicklinks p {
+     color: #9ca3af;
+     font-size: 11px;
+     text-transform: uppercase;
+     letter-spacing: 1.5px;
+     margin-bottom: 10px;
+     font-weight: 700;
+ }
+ .sidebar-quicklinks a{color: var(--active-green);}
+ .copyright {
+     margin-top: 15px;
+     padding: 10px;
+     font-size: 11px;
+     color: #6b7280;
+     line-height: 1.5;
  }
 
- .sidebar::-webkit-scrollbar-thumb:hover {
-     background: #2e8b57;
+ /* Remove the old footer grid area if you aren't using the bottom footer anymore */
+ .container {
+     grid-template-rows: auto auto 1fr;
+     /* Removed the last 'auto' row */
+     grid-template-areas:
+         "header header"
+         "navigation navigation"
+         "sidebar main";
  }
-
- /* Ensure the reflection and spacing are reasonable on small screens */
-@media (max-width: 600px) {
-    /* prevent horizontal scroll while sidebar is off-canvas */
-    html, body, .container { overflow-x: hidden; }
-
-    .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr auto;
-        grid-template-areas:
-            "header"
-            "main"
-            "footer";
-        height: auto; /* allow page to grow naturally on mobile */
-    }
-
-    /* Sidebar becomes an off-canvas panel instead of hidden */
-    .top-bar{
-       position: relative;
-       z-index: 11100;
-    }
-    aside {
-        display: block;
-        position: fixed;
-        top: 145px;
-        left: 10px;
-        bottom: 0; /* stretch to bottom of viewport */
-        height: auto; /* allow top/bottom to determine height */
-        width: 100%; /* cover most of screen on mobile */
-        max-width: 320px;
-        background: #f0f0f0;
-        padding: 12px 14px 20px; /* extra bottom padding so last items aren't hidden */
-        transform: translateX(-110%); /* fully hidden */
-        transition: transform 0.28s ease, left 0.28s ease;
-        z-index: 11000; /* above overlay */
-        box-shadow: 2px 0 20px rgba(0,0,0,0.18);
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-    }
-
-    /* visible state */
-    aside.open {
-        transform: translateX(0);
-    }
-
-    /* show menu toggle on mobile */
-    .menu-toggle {
-        display: inline-block;
-    }
-
-    /* overlay behind sidebar */
-    .overlay {
-        position: fixed;
-        inset: 0;
-        /* background: rgba(0,0,0,0.45); */
-        backdrop-filter: blur(0.5px);
-         /* blur effect */
-         background: rgba(255, 255, 255, 0.25);
-         /* light translucent background */
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s ease;
-        z-index: 10000; /* below sidebar but above main */
-    }
-
-    .overlay.show {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    header {
-        padding: 6px 8px;
-        min-height: 8vh;
-        background-size: 160%;
-        align-items: center;
-        justify-content: center;
-    }
-
-    header h2 {
-        padding: 0;
-        margin: 0;
-        font-size: clamp(1rem, 5.5vw, 1.6rem);
-        -webkit-box-reflect: none; /* remove reflection on small screens */
-        text-align: center;
-    }
-
-    .project-list a {
-        font-size: 12px; /* readable tap targets if sidebar is shown */
-    }
-
-    main {
-        width: 100%;
-        height: 100%;
-        padding: 8px 10px ;
-    
-    }
-    iframe{height: 100%; margin: 0; padding: 0;}
-
-    aside h3 {
-        font-size: 14px;
-        padding: 4px;
-    }
-
-    .top-bar {
-        gap: 8px;
-        padding: 8px;
-        align-items: center;
-    }
-
-    .top-bar img { height: 28px; }
-    .top-bar #pageTitle { font-size: 14px; color: white; }
-    .top-bar #openTab { padding: 6px 10px; font-size: 13px; }
-
-    iframe {
-        margin-top: 10px;
-        width: 100%;
-        height: 80vh;
-        border-radius: 6px;
-    }
-
-    /* Make footer sit below content and be larger for touch targets */
-    footer{
-        position: static;
-        padding: 14px 12px;
-        font-size: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        align-items: center;
-        text-align: center;
-    }
-
-    footer a {
-        /* display: inline-block; */
-        margin: 2px 2px;
-        padding: 3px 4px;
-        color: inherit;
-        text-decoration: none;
-        border-radius: 6px;
-    }
-
+/* Custom Scrollbar for Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 4px;
 }
 
+.sidebar::-webkit-scrollbar-track {
+    background:rgb(131, 131, 131);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary-green);
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #bcea66;
+}
+
+/* Custom Scrollbar for Main Content */
+main::-webkit-scrollbar,
+iframe::-webkit-scrollbar {
+    width: 4px;
+}
+
+main::-webkit-scrollbar-track,
+iframe::-webkit-scrollbar-track {
+    background: rgb(131, 131, 131);
+}
+
+main::-webkit-scrollbar-thumb,
+iframe::-webkit-scrollbar-thumb {
+    background: var(--primary-green);
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+main::-webkit-scrollbar-thumb:hover,
+iframe::-webkit-scrollbar-thumb:hover {
+    background: #bcea66;
+}
+
+/* Firefox scrollbar styling */
+main {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-green) rgb(131, 131, 131);
+}
+
+ /* --- 8. RESPONSIVE DESIGN (MOBILE) --- */
+ @media (max-width: 768px) {
+     .container {
+         grid-template-columns: 1fr;
+         grid-template-areas:
+             "header"
+             "navigation"
+             "main";
+     }
+
+     .menu-toggle {
+         display: block;
+     }
+
+     .sidebar {
+         position: fixed;
+         /* top: 0; */
+         bottom: 0;
+         left: -100%;
+         /* Fully hidden */
+         width: 280px;
+         height: 100vh;
+         z-index: 1000;
+         transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+     }
+
+     .sidebar.open {
+         left: 0;
+     }
 
 
+     /* Overlay when menu is open */
+     .overlay {
+         position: fixed;
+         inset: 0;
+         background: rgba(0, 0, 0, 0.6);
+         display: none;
+         z-index: 999;
+     }
 
+     .overlay.show {
+         display: block;
+     }
 
+     header {
+         min-height: 55px;
+         padding: 5px;
+     }
 
+     .sidebar .logo {
+         display: none;
+         width: auto;
+         height: 40px;
+         margin-bottom: 10px;
+         border-radius: 8px;
+     }
 
+     #openTab{
+         padding: 8px 14px;
+         font-size: 12px;
+     }
+
+     #pageTitle {
+         font-size: 14px;
+         order: 3;
+     }
+
+     iframe {
+        -webkit-overflow-style: none;
+         -ms-overflow-style: none;
+         scrollbar-width: none;
+     }
+
+     iframe::-webkit-scrollbar {
+         display: none;
+     }
+
+     .top-navigation {
+         justify-content: space-between;
+     }
+
+     .top-navigation .logo {
+         display: none;
+     }
+
+     .desk {
+         display: none;
+     }
+
+     .menu-toggle {
+         order: 3;
+     }
+
+     /* Fix for mobile content overflow */
+     main {
+        background-color: black;
+         height: auto;
+         min-height: calc(100vh - 180px);
+         overflow-y: auto;
+     }
+
+     iframe {
+         height: auto;
+         min-height: calc(100vh - 170px);
+     }
+
+ }
 
