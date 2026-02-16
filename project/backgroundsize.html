@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS background-size Guide</title>
+    <style>
+        :root {
+            --bg-image: url("/Motivation.png");
+            --primary-teal: #008081;
+            --primary-orange: #f39c12;
+            --primary-red: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Banner Styling */
+        .banner {
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .banner.teal { background-color: var(--primary-teal); }
+        .banner.orange { background-color: var(--primary-orange); }
+        .banner.red { background-color: var(--primary-red); }
+
+        /* The Box where the background is applied */
+        .box-container {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee; /* Shows gaps if image doesn't fill */
+            border: 1px solid black;
+            margin: 20px;
+        }
+
+        .bg-demo {
+            width: 100%;
+            height: 100%;
+           background: url('Motivation.png');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Logic for different background-sizes */
+        .size-cover { background-size: cover; }
+        .size-contain { background-size: contain; }
+        .size-auto { background-size: auto; }
+        .size-fixed { background-size: 150px 100px; }
+
+        /* Caption Styling */
+        .caption {
+            padding: 20px;
+            color: #333;
+        }
+
+        .caption h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .caption p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="banner teal">Size: "cover"</div>
+            <div class="box-container">
+                <div class="bg-demo size-cover"></div>
+            </div>
+            <div class="caption">
+                <h3>Covers Entire Box</h3>
+                <p>(Cropped to Fit)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="banner orange">Size: "contain"</div>
+            <div class="box-container">
+                <div class="bg-demo size-contain"></div>
+            </div>
+            <div class="caption">
+                <h3>Fits Inside Box</h3>
+                <p>(May Leave Gaps)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="banner teal">Size: "auto"</div>
+            <div class="box-container">
+                <div class="bg-demo size-auto"></div>
+            </div>
+            <div class="caption">
+                <h3>Original Size</h3>
+                <p>(May Overflow)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="banner red">Size: "150px 100px"</div>
+            <div class="box-container">
+                <div class="bg-demo size-fixed"></div>
+            </div>
+            <div class="caption">
+                <h3>"Width x Height"</h3>
+                <p>in Pixels</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
