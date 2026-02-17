@@ -16,7 +16,7 @@ color:#e6eef6;font-family:Arial,Segoe UI,sans-serif">
     text-decoration:none;font-weight:bold">
       View on GitHub live host
     </a>
-     <a> Last Update:1st February 2026</a>
+     <a> Last Update:17th February 2026</a>
   </p>
 
   <hr style="border:0;border-top:1px solid #1f2937;margin:20px 0">
