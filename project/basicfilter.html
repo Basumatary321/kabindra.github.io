@@ -1,414 +1,508 @@
-
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Advanced Image Editor</title>
-  <style>
-   /* --- Global Styles --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Image Editor PRO</title>
+<style>
+     /* ================= GLOBAL ================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #121212; /* Pro dark background */
-  color: #e0e0e0;
-  padding: 20px;
-  line-height: 1.6;
+body{
+background:#1b1b1b;
+color:#eee;
+padding:20px;
+height:100vh;
+overflow:hidden; 
 }
 
-/* --- Layout --- */
-.main-container {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1400px;
-  margin: 0 auto;
-  gap: 25px;
+img{
+max-width:100%;
+height:auto;
 }
 
-.left-panel, .right-panel {
-  background: #1e1e1e;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  flex: 1 1 450px;
+/* ================= LAYOUT ================= */
+
+.main{
+max-width:1350px;
+margin:auto;
+display:grid;
+grid-template-columns:1.3fr 1fr;
+gap:20px;
+height:calc(100vh - 40px); /* full editor height */
 }
 
-/* --- Image Viewport --- */
-.image-area {
-  width: 100%;
-  height: 500px; /* Adjusted height for better balance */
-  border: 2px dashed #444;
-  background: #252525;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
+
+.left{
+background:#242424;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 20px rgba(0,0,0,.6);
+
+position:sticky;
+top:0;
+height:100%;
+overflow:hidden;
 }
 
-.image-area:hover {
-  border-color: #3498db;
-  background: #2a2a2a;
+.image-area{
+height:500px;
+background:#111;
+border:3px dashed #00b894;
+border-radius:10px;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+position:relative;
+cursor:pointer;
 }
 
-.image-area img {
-  max-width: 95%;
-  max-height: 95%;
-  border-radius: 4px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease; /* For Zoom scale */
+.image-area img{
+max-width:95%;
+max-height:95%;
+transition:.2s;
 }
 
-#drop-area.dragover {
-  background-color: #1a3a4a;
-  border-color: #3498db;
+.placeholder{
+color:#888;
+font-size:18px;
 }
 
-/* --- Controls & Inputs --- */
-h3 {
-  color: #3498db;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  border-bottom: 1px solid #333;
-  padding-bottom: 5px;
+
+.controls{
+margin-top:15px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
 }
 
-.filters label {
-  display: inline-block;
-  width: 100px;
-  font-size: 0.85rem;
-  color: #bbb;
+button{
+padding:10px 18px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+white-space:nowrap;
 }
 
-.filters input[type="range"] {
-  width: calc(100% - 110px);
-  height: 5px;
-  border-radius: 5px;
-  background: #333;
-  outline: none;
-  cursor: pointer;
-  vertical-align: middle;
-  margin-bottom: 20px;
+.upload{background:#0984e3;color:#fff;}
+.download{background:#00b894;color:#fff;}
+.reset{background:#d63031;color:#fff;}
+.toggle{background:#6c5ce7;color:#fff;}
+
+
+.right{
+background:#242424;
+padding:18px;
+border-radius:10px;
+
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+gap:15px;
+
+height:100%;
+overflow-y:auto;   
+overflow-x:hidden;
 }
 
-/* --- Resize Section --- */
-.resize {
-  margin: 20px 0;
-  padding: 15px;
-  background: #252525;
-  border-radius: 8px;
+
+.card{
+background:#2f2f2f;
+padding:1px;
+border-radius:8px;
+margin-bottom:15px;
+min-width:0;
 }
 
-.resize p {
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-  color: #888;
+
+.card1,
+.card2{
+flex:1 1 calc(50% - 8px);
 }
 
-.resize input, .resize select {
-  padding: 8px;
-  background: #333;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 4px;
-  margin-right: 5px;
-  margin-bottom: 10px;
+.card3{
+flex:1 1 100%;
 }
 
-.resize input[type="number"] {
-  width: 100px;
+.card h3{
+background:#0984e3;
+padding:7px 10px;
+border-radius:5px;
+font-size:14px;
+margin-bottom:12px;
 }
 
-/* --- Buttons --- */
-button {
-  padding: 10px 22px;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
+
+.filter{
+margin-bottom:12px;
+padding:2px 10px;
 }
 
-#upload-btn {
-  background: #3498db;
-  color: white;
-   width: 100%;
-  margin-bottom: 20px;
+.filter label{
+font-size:13px;
+display:flex;
+justify-content:space-between;
+margin-bottom:4px;
 }
 
-#upload-btn:hover { background: #2980b9; }
-
-.download-btn {
-  background: #27ae60;
-  color: white;
-  width: 100%;
-  margin-top: 10px;
+.filter input{
+width:100%;
+accent-color:#00cec9;
 }
 
-.download-btn:hover { background: #219150; }
 
-.resize button {
-  background: #8e44ad;
-  color: white;
+.resize{
+padding:5px 10px;
 }
 
-/* --- Code Preview Area --- */
-.generated-code textarea {
-  width: 100%;
-  height: 80px;
-  background: #000;
-  color: #2ecc71; /* Matrix-style green text */
-  border: 1px solid #333;
-  border-radius: 5px;
-  padding: 10px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.8rem;
-  resize: none;
-  margin-bottom: 15px;
-}
-#upload{
-  visibility: hidden;
+.resize input,
+.resize select{
+width:100%;
+padding:7px;
+margin-bottom:8px;
+border-radius:5px;
+border:none;
 }
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 900px) {
-  .main-container {
-    flex-direction: column;
-  }
-  
-  .image-area {
-    height: 350px;
-  }
-  .left-panel{
-    position: static;
-    top: 0;
-    left: 0;
-  }
-  .right-panel{
-    overflow-y: scroll;
-  }
-  .right-panel::-webkit-scrollbar {
-    display: none;
-  }
+
+textarea{
+width:100%;
+height:80px;
+background:#111;
+color:#00ff9f;
+border:none;
+padding:10px;
+font-family:monospace;
+resize:none;
 }
-  </style>
+/* ================= COPY BUTTON PRO ================= */
+
+.cssHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.copyBtn{
+background:#0984e3;
+color:#fff;
+border:none;
+width:32px;
+height:28px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.25s;
+}
+
+/* hover effect */
+.copyBtn:hover{
+transform:translateY(-1px);
+box-shadow:0 4px 10px rgba(0,0,0,.4);
+}
+
+/* copied animation */
+.copyBtn.copied{
+background:#00b894;
+transform:scale(1.1);
+}
+
+
+
+@media(max-width:900px){
+
+body{
+padding:12px;
+height:auto;
+overflow:auto;
+}
+
+.main{
+grid-template-columns:1fr;
+height:auto;
+gap:15px;
+}
+
+.image-area{
+height:350px;
+}
+
+.right{
+height:auto;
+overflow:visible;
+padding:12px;
+}
+
+.card{
+min-width:0;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="main-container">
-  <!-- Left Panel -->
-  <div class="left-panel">
-    <div class="image-area" id="drop-area">
-      <p>Drag & Drop Image Here</p>
-      <img id="image">
-    </div>
+<div class="main">
 
-    <div class="buttons">
-      <input type="file" id="upload" accept="image/*">
-      <button id="upload-btn">Upload</button>
-    </div>
+<!-- LEFT -->
+<div class="left">
 
-    <div class="download">
-      <p>Your Image is ready!</p>
-      <button onclick="downloadImage()" class="download-btn">
-        Download Now
-      </button>
-    </div>
-  </div>
+<div id="drop" class="image-area">
+<div class="placeholder">Drag & Drop Image</div>
+<img id="img">
+</div>
 
-  <!-- Right Panel -->
-  <div class="right-panel">
-    <div class="filters">
-      <h3>Filter</h3><br>
-       <label>Brightness</label><input type="range" id="brightness" min="0" max="200" value="100"><br>
-      <label>Contrast</label><input type="range" id="contrast" min="0" max="200" value="100"><br>
-      <label>Saturate</label><input type="range" id="saturate" min="0" max="200" value="100"><br>
-      <label>Grayscale</label><input type="range" id="grayscale" min="0" max="100" value="0"><br>
-      <label>Invert</label><input type="range" id="invert" min="0" max="100" value="0"><br>
-      <label>Sepia</label><input type="range" id="sepia" min="0" max="100" value="0"><br>
-      <label>Opacity</label><input type="range" id="opacity" min="0" max="100" value="100"><br>
-      <label>Hue-rotate</label><input type="range" id="hue-rotate" min="0" max="360" value="0"><br>
-      <label>Zoom(scale)</label><input type="range" id="zoom" min="0.5" max="2" step="0.1" value="1"><br>
-      <label>Blur</label><input type="range" id="blur" min="0" max="10" value="0">
-    </div>
+<div class="controls">
+<input type="file" id="upload" hidden accept="image/*">
+<button class="upload" id="uploadBtn">Upload</button>
+<button class="download" onclick="download()">Download</button>
+<button class="reset" onclick="resetAll()">Reset</button>
+ </div>
 
-    <div class="resize">
-      <h3>Resize</h3>
-      <p>Image size:<br>Height=<span id="current-height">0</span>px<br>Width=<span id="current-width">0</span>px</p>
-      <input type="number" id="height" placeholder="Enter height">
-      <input type="number" id="width" placeholder="Enter width">
-      <select id="units">
-        <option value="px">px</option>
-        <option value="%">%</option>
-      </select>
-      <button onclick="resizeImage()">Resize</button>
-    </div>
+</div>
 
-    <div class="generated-code">
-      <h3>HTML</h3>
-      <textarea id="html-code" readonly></textarea>
+<!-- RIGHT -->
+<div class="right">
 
-      <h3>CSS</h3>
-      <textarea id="css-code" readonly></textarea>
-    </div>
-  </div>
+<div class="card card1">
+<h3>Filters</h3>
+
+<div id="filters"></div>
+
+</div>
+
+<div class="card resize card2">
+<h3>Resize</h3>
+
+<input type="number" id="width" placeholder="Width">
+<input type="number" id="height" placeholder="Height">
+
+<select id="unit">
+<option value="px">px</option>
+<option value="%">%</option>
+</select>
+
+<button onclick="resizeImage()">Apply Resize</button>
+</div>
+
+ <div class="card card3">
+
+<h3 class="cssHeader">
+Generated CSS
+
+<button class="copyBtn" onclick="copyCSS()" title="Copy CSS">
+📋
+</button>
+
+</h3>
+
+<textarea id="cssCode" readonly></textarea>
+
+</div>
+
+
+
+</div>
+
 </div>
 
 <script>
-  const upload = document.getElementById('upload');
-  const uploadBtn = document.getElementById('upload-btn');
-  const dropArea = document.getElementById('drop-area');
-  const image = document.getElementById('image');
 
-  uploadBtn.addEventListener('click', () => upload.click());
-  upload.addEventListener('change', loadImage);
+/* ================= VARIABLES ================= */
 
-  dropArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropArea.classList.add('dragover');
-  });
+const img=document.getElementById("img");
+const upload=document.getElementById("upload");
+const drop=document.getElementById("drop");
+const placeholder=document.querySelector(".placeholder");
 
-  dropArea.addEventListener('dragleave', () => {
-    dropArea.classList.remove('dragover');
-  });
+let beforeMode=false;
 
-  dropArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    dropArea.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    loadDroppedImage(file);
-  });
+/* FILTER CONFIG */
+const filterConfig=[
+["brightness",100,0,200,"%"],
+["contrast",100,0,200,"%"],
+["saturate",100,0,200,"%"],
+["grayscale",0,0,100,"%"],
+["invert",0,0,100,"%"],
+["sepia",0,0,100,"%"],
+["opacity",100,0,100,"%"],
+["hue-rotate",0,0,360,"deg"],
+["blur",0,0,10,"px"],
+["zoom",1,0.5,2,""]
+];
 
-  function loadImage() {
-    const file = upload.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      image.onload = () => updateSize();
-      image.src = reader.result;
-      image.style.display = 'block';
-      dropArea.querySelector('p').style.display = 'none';
-    }
-    reader.readAsDataURL(file);
-  }
+const filtersDiv=document.getElementById("filters");
 
-  function loadDroppedImage(file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      image.onload = () => updateSize();
-      image.src = reader.result;
-      image.style.display = 'block';
-      dropArea.querySelector('p').style.display = 'none';
-    }
-    reader.readAsDataURL(file);
-  }
+/* CREATE SLIDERS AUTO */
+filterConfig.forEach(f=>{
+const wrap=document.createElement("div");
+wrap.className="filter";
 
-  const filters = [
-    'brightness', 'contrast', 'saturate', 'grayscale', 'invert',
-    'sepia', 'opacity', 'hue-rotate', 'zoom', 'blur'
-  ];
+wrap.innerHTML=`
+<label>${f[0]} <span id="${f[0]}Val">${f[1]}</span></label>
+<input type="range" id="${f[0]}" min="${f[2]}" max="${f[3]}" step="0.1" value="${f[1]}">
+`;
 
-  filters.forEach(filter => {
-    document.getElementById(filter).addEventListener('input', applyFilters);
-  });
+filtersDiv.appendChild(wrap);
 
-  function applyFilters() {
-    const defaults = {
-      brightness: 100,
-      contrast: 100,
-      saturate: 100,
-      grayscale: 0,
-      invert: 0,
-      sepia: 0,
-      opacity: 100,
-      hueRotate: 0,
-      blur: 0,
-      zoom: 1
-    };
+document.getElementById(f[0]).addEventListener("input",applyFilters);
+});
 
-    const brightness = document.getElementById('brightness').value;
-    const contrast = document.getElementById('contrast').value;
-    const saturate = document.getElementById('saturate').value;
-    const grayscale = document.getElementById('grayscale').value;
-    const invert = document.getElementById('invert').value;
-    const sepia = document.getElementById('sepia').value;
-    const opacity = document.getElementById('opacity').value;
-    const hueRotate = document.getElementById('hue-rotate').value;
-    const zoom = document.getElementById('zoom').value;
-    const blur = document.getElementById('blur').value;
+/* ================= IMAGE LOAD ================= */
 
-    const filterParts = [];
+uploadBtn.onclick=()=>upload.click();
 
-    if (brightness != defaults.brightness) filterParts.push(`brightness(${brightness}%)`);
-    if (contrast != defaults.contrast) filterParts.push(`contrast(${contrast}%)`);
-    if (saturate != defaults.saturate) filterParts.push(`saturate(${saturate}%)`);
-    if (grayscale != defaults.grayscale) filterParts.push(`grayscale(${grayscale}%)`);
-    if (invert != defaults.invert) filterParts.push(`invert(${invert}%)`);
-    if (sepia != defaults.sepia) filterParts.push(`sepia(${sepia}%)`);
-    if (opacity != defaults.opacity) filterParts.push(`opacity(${opacity}%)`);
-    if (hueRotate != defaults.hueRotate) filterParts.push(`hue-rotate(${hueRotate}deg)`);
-    if (blur != defaults.blur) filterParts.push(`blur(${blur}px)`);
+upload.onchange=e=>{
+loadImage(e.target.files[0]);
+};
 
-    const filterValue = filterParts.join(' ') || 'none';
-    image.style.filter = filterValue;
-    image.style.transform = `scale(${zoom})`;
+drop.ondragover=e=>{e.preventDefault();}
+drop.ondrop=e=>{
+e.preventDefault();
+loadImage(e.dataTransfer.files[0]);
+};
 
-    let css = `#img {\n`;
-    if (filterValue !== 'none') css += `  filter: ${filterValue};\n`;
-    if (zoom != defaults.zoom) css += `  transform: scale(${zoom});\n`;
-    css += `}`;
+function loadImage(file){
+const reader=new FileReader();
+reader.onload=()=>{
+img.src=reader.result;
+placeholder.style.display="none";
+};
+reader.readAsDataURL(file);
+}
 
-    document.getElementById('css-code').value = css;
-  }
+/* ================= FILTER APPLY ================= */
 
-  function resizeImage() {
-    const height = document.getElementById('height').value;
-    const width = document.getElementById('width').value;
-    const units = document.getElementById('units').value;
+function applyFilters(){
 
-    image.style.height = height + units;
-    image.style.width = width + units;
+let filterString="";
+let zoom=1;
 
-    updateSize();
-  }
+filterConfig.forEach(f=>{
+const val=document.getElementById(f[0]).value;
+document.getElementById(f[0]+"Val").innerText=val;
 
-  function updateSize() {
-    document.getElementById('current-height').innerText = image.offsetHeight;
-    document.getElementById('current-width').innerText = image.offsetWidth;
+if(f[0]==="zoom"){
+zoom=val;
+}else{
+filterString+=`${f[0]}(${val}${f[4]}) `;
+}
+});
 
-    const shortSrc = 'edited-image.png';
-    document.getElementById('html-code').value = `
-<img src="${shortSrc}" height="${image.offsetHeight}" width="${image.offsetWidth}" id="img">
-    `.trim();
-  }
+img.style.filter=filterString;
+img.style.transform=`scale(${zoom})`;
 
-  function downloadImage() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
+document.getElementById("cssCode").value=
+`#img{
+filter:${filterString};
+transform:scale(${zoom});
+}`;
+}
 
-    canvas.width = image.width;
-    canvas.height = image.height;
+/* ================= RESET ================= */
 
-    ctx.filter = getComputedStyle(image).filter;
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+function resetAll(){
+filterConfig.forEach(f=>{
+document.getElementById(f[0]).value=f[1];
+});
+applyFilters();
+}
 
-    const link = document.createElement('a');
-    link.download = 'edited-image.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  }
+/* ================= BEFORE AFTER ================= */
+
+function togglePreview(){
+beforeMode=!beforeMode;
+img.style.filter=beforeMode?"none":img.style.filter;
+}
+
+/* ================= RESIZE ================= */
+
+function resizeImage(){
+const w=document.getElementById("width").value;
+const h=document.getElementById("height").value;
+const u=document.getElementById("unit").value;
+
+if(w) img.style.width=w+u;
+if(h) img.style.height=h+u;
+}
+
+/* ================= MOUSE WHEEL ZOOM ================= */
+
+drop.addEventListener("wheel",e=>{
+e.preventDefault();
+let zoom=document.getElementById("zoom");
+zoom.value=Math.min(2,Math.max(0.5,parseFloat(zoom.value)-(e.deltaY*0.001)));
+applyFilters();
+});
+
+/* ================= DOWNLOAD ================= */
+
+function download(){
+
+const canvas=document.createElement("canvas");
+const ctx=canvas.getContext("2d");
+
+canvas.width=img.naturalWidth;
+canvas.height=img.naturalHeight;
+
+ctx.filter=getComputedStyle(img).filter;
+ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+const link=document.createElement("a");
+link.download="edited-image.png";
+link.href=canvas.toDataURL();
+link.click();
+}
+/* ================= MOBILE SAFE COPY ================= */
+
+function copyCSS(){
+
+const textarea = document.getElementById("cssCode");
+const btn = document.querySelector(".copyBtn");
+
+const text = textarea.value;
+
+/* modern clipboard */
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(text).then(successCopy);
+
+}else{
+
+/* fallback for older mobile browsers */
+textarea.select();
+textarea.setSelectionRange(0,99999);
+document.execCommand("copy");
+successCopy();
+
+}
+
+function successCopy(){
+btn.classList.add("copied");
+btn.innerText="✔";
+
+setTimeout(()=>{
+btn.classList.remove("copied");
+btn.innerText="📋";
+},1500);
+}
+
+}
+
+
 </script>
-
 </body>
 </html>
-
