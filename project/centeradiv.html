@@ -58,25 +58,11 @@ h2{
     border-radius:6px;
 }
 
-button{
-    margin-top:15px;
-    padding:8px 14px;
-    background:#198754;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-}
-button:hover{
-    background:#146c43;
-}
-
 pre{
     background:#111;
     color:#0f0;
     padding:15px;
     overflow-x:auto;
-    display:none;
     border-radius:6px;
     margin-top:10px;
 }
@@ -89,13 +75,6 @@ pre{
     border-radius:5px;
 }
 </style>
-
-<script>
-function toggleCode(id){
-    const el = document.getElementById(id);
-    el.style.display = el.style.display === "block" ? "none" : "block";
-}
-</script>
 </head>
 
 <body>
@@ -114,7 +93,6 @@ Centers a div <b>horizontally and vertically</b> using Flexbox.
     <div class="box">BOX</div>
 </div>
 
-<button onclick="toggleCode('c1')">Show Code</button>
 <pre id="c1">
 .parent{
     display: flex;
@@ -137,7 +115,6 @@ Grid allows perfect centering using one line.
     <div class="box">BOX</div>
 </div>
 
-<button onclick="toggleCode('c2')">Show Code</button>
 <pre id="c2">
 .parent{
     display: grid;
@@ -159,7 +136,6 @@ Used when you only want <b>horizontal centering</b>.
     <div class="box" style="margin: auto;">BOX</div>
 </div>
 
-<button onclick="toggleCode('c3')">Show Code</button>
 <pre id="c3">
 .box{
     margin: auto;
@@ -185,7 +161,6 @@ Classic method using position and transform.
     ">BOX</div>
 </div>
 
-<button onclick="toggleCode('c4')">Show Code</button>
 <pre id="c4">
 .box{
     position: absolute;
@@ -213,8 +188,6 @@ Uses top, bottom, left, right with margin auto.
         margin:auto;
     ">BOX</div>
 </div>
-
-<button onclick="toggleCode('c5')">Show Code</button>
 <pre id="c5">
 .box{
     position: absolute;
@@ -238,7 +211,6 @@ Used for text or inline elements.
     <strong>TEXT</strong>
 </div>
 
-<button onclick="toggleCode('c6')">Show Code</button>
 <pre id="c6">
 .parent{
     text-align: center;
@@ -252,3 +224,4 @@ Used for text or inline elements.
 </div>
 </body>
 </html>
+
