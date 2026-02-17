@@ -12,7 +12,7 @@
 
 body{
     margin:0;
-    background:#0f172a;
+    background:radial-gradient(circle, #fcfcfc, #000000);
     color:#e5e7eb;
     font-family:system-ui, Arial, sans-serif;
     display:flex;
@@ -39,6 +39,8 @@ h2{
 
 input{
     width:100%;
+    background-color: #1e293b;
+    color: white;
     padding:14px;
     font-size:1rem;
     border:none;
@@ -80,7 +82,18 @@ input{
 .rule.valid{
     color:#22c55e;
 }
-
+.input-container{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.eye-icon{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
 /* Strength colors */
 .very-weak{background:#ef4444;}
 .weak{background:#f97316;}
@@ -100,9 +113,10 @@ input{
 
 <div class="container">
     <h2>🔐 Password Strength Checker</h2>
-
-    <input type="password" id="password" placeholder="Type your password..." oninput="checkPassword()">
-
+<div class="input-container">
+    <input type="password" id="passes" placeholder="Type your password..." oninput="checkPassword()">
+<span class="eye-icon" id="eye-icon">👁</span>
+</div>
     <div class="progress">
         <div class="progress-bar" id="progressBar"></div>
     </div>
@@ -119,7 +133,7 @@ input{
 
 <script>
 function checkPassword(){
-    const pass = document.getElementById("password").value;
+    const pass = document.getElementById("passes").value;
     const bar = document.getElementById("progressBar");
     const text = document.getElementById("strengthText");
 
@@ -164,6 +178,19 @@ function checkPassword(){
 function updateRule(id, ok){
     document.getElementById(id).classList.toggle("valid", ok);
 }
+let input=document.getElementById('passes');
+let eyeicon=document.getElementById('eye-icon');
+eyeicon.addEventListener('click',
+    function(){
+        if(input.type==='password'){
+            input.type='text';
+            eyeicon.textContent='🙈'
+        }else{
+            input.type='password';
+            eyeicon.textContent='👁';
+        }
+    }
+)
 </script>
 
 </body>

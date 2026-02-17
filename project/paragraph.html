@@ -51,13 +51,11 @@ button:hover{
 
 /* Code block */
 pre{
-  background:#020617;
-  color:#e5e7eb;
-  padding:15px;
+  color:#105ffd;
   border-radius:8px;
   overflow-x:auto;
-  margin-top:15px;
-  display:none;
+  margin-top:0px;
+  
 }
 code{
   font-family: Consolas, monospace;
@@ -87,10 +85,10 @@ add space before and after the paragraph.
     according to the screen size.
   </p>
 </div>
-
-<button onclick="toggleCode()">👁️Code</button>
-
-<!-- CODE (HIDDEN INITIALLY) -->
+<form action="">
+  <fieldset>
+    <legend>HTML</legend>
+  
 <pre id="codeBox"><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -114,15 +112,9 @@ add space before and after the paragraph.
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
+</fieldset>
+</form>
 </div>
-
-<script>
-function toggleCode(){
-  const box = document.getElementById("codeBox");
-  box.style.display = box.style.display === "none" ? "block" : "none";
-}
-</script>
 
 </body>
 </html>

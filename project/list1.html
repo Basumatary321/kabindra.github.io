@@ -51,13 +51,12 @@ button:hover{
 
 /* Code block */
 pre{
-  background:#020617;
-  color:#e5e7eb;
+  color:#0652e9;
   padding:15px;
   border-radius:8px;
   overflow-x:auto;
-  margin-top:15px;
-  display:none;
+  margin-top:0px;
+
 }
 code{
   font-family: Consolas, monospace;
@@ -97,9 +96,13 @@ There are three main types of lists in HTML:
 
 </div>
 
-<button onclick="toggleCode()">Show / Hide Code</button>
+<!-- <button onclick="toggleCode()">Show / Hide Code</button> -->
 
 <!-- CODE (HIDDEN INITIALLY) -->
+ <form action="">
+  <fieldset>
+    <legend>HTML</legend>
+ 
 <pre id="codeBox"><code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -125,7 +128,8 @@ There are three main types of lists in HTML:
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
+</fieldset>
+</form>
 </div>
 
 <script>

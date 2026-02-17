@@ -34,6 +34,9 @@ h2{
   background:#eef2ff;
   margin-bottom:15px;
 }
+form{
+  margin-bottom: 15px;
+}
 
 /* Toggle button */
 button{
@@ -51,13 +54,13 @@ button:hover{
 
 /* Code block */
 pre{
-  background:#020617;
-  color:#e5e7eb;
+
+  color:#0857f7;
   padding:15px;
   border-radius:8px;
   overflow-x:auto;
-  margin-top:15px;
-  display:none;
+  margin-top:0px;
+ 
 }
 code{
   font-family: Consolas, monospace;
@@ -104,7 +107,38 @@ HTML allows us to change the appearance of lists using the
   </ul>
 
   <hr>
+</div>
+<form action="">
+  <fieldset>
+    <legend>HTML</legend>
+  
+<pre id="codeBox"><code>
+  &lt;!-- Unordered List Types --&gt;
+  &lt;ul type="disc"&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+  &lt;/ul&gt;
+  
+  &lt;ul type="circle"&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+  &lt;/ul&gt;
+  
+  &lt;ul type="square"&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+  &lt;/ul&gt;
+  </code>
+  </pre>
+</fieldset>
+</form>
 
+
+
+<div class="result">
   <h4>Ordered List Types</h4>
 
   <b>Numbers (default)</b>
@@ -144,29 +178,11 @@ HTML allows us to change the appearance of lists using the
 
 </div>
 
-<button onclick="toggleCode()">Show / Hide Code</button>
-
 <!-- CODE (HIDDEN INITIALLY) -->
+ <form action="">
+  <fieldset>
+    <legend>HTML</legend>
 <pre id="codeBox"><code>
-&lt;!-- Unordered List Types --&gt;
-&lt;ul type="disc"&gt;
-  &lt;li&gt;HTML&lt;/li&gt;
-  &lt;li&gt;CSS&lt;/li&gt;
-  &lt;li&gt;JavaScript&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ul type="circle"&gt;
-  &lt;li&gt;HTML&lt;/li&gt;
-  &lt;li&gt;CSS&lt;/li&gt;
-  &lt;li&gt;JavaScript&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ul type="square"&gt;
-  &lt;li&gt;HTML&lt;/li&gt;
-  &lt;li&gt;CSS&lt;/li&gt;
-  &lt;li&gt;JavaScript&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;!-- Ordered List Types --&gt;
 &lt;ol type="1"&gt;
   &lt;li&gt;Wake Up&lt;/li&gt;
@@ -198,7 +214,8 @@ HTML allows us to change the appearance of lists using the
   &lt;li&gt;Sleep&lt;/li&gt;
 &lt;/ol&gt;
 </code></pre>
-
+</fieldset>
+</form>
 </div>
 
 <script>
