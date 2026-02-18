@@ -92,3 +92,34 @@ openTab.addEventListener("click", () => {
   });
 
 })();
+
+/* Project Search/Filter Functionality */
+(function(){
+  const searchInput = document.querySelector('.project-search');
+  const projectLists = document.querySelectorAll('.project-list');
+  
+  if (!searchInput || projectLists.length === 0) return;
+  
+  searchInput.addEventListener('keyup', function() {
+    const searchTerm = this.value.toLowerCase();
+    
+    projectLists.forEach(list => {
+      const projectItems = list.querySelectorAll('li');
+      
+      projectItems.forEach(item => {
+        const linkText = item.querySelector('a').textContent.toLowerCase();
+        
+        if (linkText.includes(searchTerm)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+  
+  // Clear search on focus for better UX
+  searchInput.addEventListener('focus', function() {
+    this.select();
+  });
+})();

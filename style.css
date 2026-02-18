@@ -330,6 +330,61 @@ main {
     scrollbar-color: var(--primary-green) rgb(131, 131, 131);
 }
 
+/* --- 8. BADGE STYLING --- */
+.badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+    color: white;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+    vertical-align: middle;
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* --- 9. SEARCH CONTAINER STYLING --- */
+.search-container {
+    margin: 8px 0 10px 0;
+    display: block;
+}
+
+.project-search {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    background: rgba(45, 55, 72, 0.5);
+    color: var(--text-primary);
+    border-radius: 6px;
+    font-size: 12px;
+    transition: 0.3s ease;
+    box-sizing: border-box;
+}
+
+.project-search:focus {
+    outline: none;
+    background: rgba(45, 55, 72, 0.8);
+    border-color: var(--primary-green);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.project-search::placeholder {
+    color: var(--text-secondary);
+}
+
+.project-list li.hidden {
+    display: none;
+}
+
  /* --- 8. RESPONSIVE DESIGN (MOBILE) --- */
  @media (max-width: 768px) {
      .container {
