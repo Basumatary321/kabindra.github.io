@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Details Tag Tutorial</title>
+
+<style>
+
+/* ===== Global Style ===== */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    line-height:1.6;
+}
+
+/* Container */
+.container{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Header */
+header{
+    background:#444;
+    color:white;
+    padding:12px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* Section Title */
+h2{
+    color:#0b7dda;
+    border-bottom:2px solid #0b7dda;
+    padding-bottom:5px;
+}
+
+/* Code Box */
+.code-box{
+    background:#f1f1f1;
+    border-left:5px solid #0b7dda;
+    padding:15px;
+    margin:15px 0;
+    overflow:auto;
+    font-family: Consolas, monospace;
+}
+
+/* Key Points */
+ul{
+    padding-left:20px;
+}
+
+/* Details Styling */
+details{
+    margin:12px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+    padding:10px;
+    background:#fafafa;
+}
+
+summary{
+    font-weight:bold;
+    cursor:pointer;
+    color:#0b7dda;
+    font-size:17px;
+}
+
+details[open]{
+    background:#eef6ff;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    margin-top:20px;
+    padding:10px;
+    color:#777;
+}
+
+/* Responsive */
+@media(max-width:600px){
+    header{
+        font-size:20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+HTML &lt;details&gt; Tag Tutorial
+</header>
+
+<!-- Introduction -->
+<h2>📘 Introduction</h2>
+
+<p>
+The <b>&lt;details&gt;</b> and <b>&lt;summary&gt;</b> tags are HTML5 semantic elements used
+to create <b>expandable and collapsible content</b> without using JavaScript.
+</p>
+
+<p>
+They are commonly used for FAQs, Help sections, Read More / Read Less content,
+and extra information blocks.
+</p>
+
+<p>
+The <b>&lt;details&gt;</b> tag creates a disclosure widget that users can open or close.
+</p>
+
+<!-- Key Points -->
+<h2>⭐ Key Points</h2>
+
+<ul>
+<li>Content inside &lt;details&gt; is hidden by default</li>
+<li>Clicking the summary shows or hides content</li>
+<li>No JavaScript required</li>
+<li>Easy way to create FAQ sections</li>
+</ul>
+
+<!-- Syntax -->
+<h2>🧩 Syntax</h2>
+
+<div class="code-box">
+&lt;details&gt;<br>
+&nbsp;&nbsp;&lt;summary&gt;Caption / Title&lt;/summary&gt;<br>
+&nbsp;&nbsp;&lt;p&gt;Content goes here&lt;/p&gt;<br>
+&lt;/details&gt;
+</div>
+
+<!-- Example -->
+<h2>💻 Example (Live Demo)</h2>
+
+<details>
+<summary>What is HTML?</summary>
+<p>
+HTML (HyperText Markup Language) is the standard language used to create
+and structure web pages. It forms the backbone of web development.
+</p>
+</details>
+
+<details>
+<summary>What is CSS?</summary>
+<p>
+CSS (Cascading Style Sheets) is used to style and layout HTML elements.
+It controls colors, spacing, fonts, borders, and positioning.
+</p>
+</details>
+
+<details>
+<summary>What is JavaScript?</summary>
+<p>
+JavaScript is a lightweight programming language used to create dynamic
+and interactive web features.
+</p>
+</details>
+
+<details>
+<summary>What is C Language?</summary>
+<p>
+C is a general-purpose programming language created by Dennis Ritchie
+at Bell Labs. It is widely used for system software and embedded systems.
+</p>
+</details>
+
+<!-- Open Attribute -->
+<h2>🔓 Open Attribute</h2>
+
+<p>
+The <b>open</b> attribute keeps the details expanded by default.
+</p>
+
+<div class="code-box">
+&lt;details open&gt;<br>
+&nbsp;&nbsp;&lt;summary&gt;Click to collapse&lt;/summary&gt;<br>
+&nbsp;&nbsp;&lt;p&gt;This content is visible by default.&lt;/p&gt;<br>
+&lt;/details&gt;
+</div>
+
+<h3>Example:</h3>
+
+<details open>
+<summary>Course Details</summary>
+<p>
+This course covers HTML, CSS, and JavaScript fundamentals.
+</p>
+</details>
+
+<footer>
+© Techno IT Computer Institute | HTML Learning Module
+</footer>
+
+</div>
+
+</body>
+</html>
