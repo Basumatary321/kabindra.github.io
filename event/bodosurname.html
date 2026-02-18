@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bodo Common Surnames | Bodo Titles List</title>
+<meta name="description" content="List of common Bodo surnames and titles including Basumatary, Boro, Daimary, Narzary and more.">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b0b0b;
+color:white;
+}
+
+/* ===== HEADER ===== */
+header{
+position:sticky;
+top:0;
+background:#0b0b0b;
+padding:18px;
+text-align:center;
+z-index:1000;
+border-bottom:1px solid #222;
+}
+
+header h1{
+font-weight:600;
+font-size:26px;
+}
+
+.counter{
+margin-top:5px;
+opacity:.7;
+font-size:14px;
+}
+
+/* ===== SEARCH ===== */
+.search-box{
+max-width:700px;
+margin:20px auto;
+padding:0 15px;
+}
+
+.search-box input{
+width:100%;
+padding:14px;
+border-radius:30px;
+border:none;
+outline:none;
+font-size:16px;
+background:#1b1b1b;
+color:white;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+/* ===== CARD ===== */
+.card{
+background:#6b6428;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,.5);
+animation:fadeIn .8s ease;
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+/* ===== SURNAME BADGE ===== */
+.names{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.name{
+background:rgba(255,255,255,.18);
+padding:8px 14px;
+border-radius:20px;
+cursor:pointer;
+transition:.25s;
+font-size:14px;
+}
+
+.name:hover{
+background:white;
+color:black;
+transform:scale(1.05);
+}
+
+/* ===== COPY MESSAGE ===== */
+.toast{
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translateX(-50%);
+background:#222;
+padding:10px 20px;
+border-radius:20px;
+opacity:0;
+transition:.4s;
+}
+
+.toast.show{
+opacity:1;
+}
+
+/* ===== FOOTER ===== */
+footer{
+text-align:center;
+padding:25px;
+opacity:.6;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Bodo Common Surnames</h1>
+<div class="counter" id="count"></div>
+</header>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="🔎 Search surname...">
+</div>
+
+<div class="container">
+<div class="card">
+<h2>Common Bodo Titles</h2>
+
+<div class="names" id="surnameList">
+
+<span class="name">Basumatary</span>
+<span class="name">Boro</span>
+<span class="name">Basumata</span>
+<span class="name">Deory</span>
+<span class="name">Dangiriya</span>
+<span class="name">Bongsiari</span>
+<span class="name">Ramchiary</span>
+<span class="name">Sibingari</span>
+<span class="name">Bingiary</span>
+<span class="name">Swargiary</span>
+<span class="name">Moshari</span>
+<span class="name">Owary</span>
+<span class="name">Banuary</span>
+<span class="name">Kachari</span>
+<span class="name">Hakhorary</span>
+<span class="name">Karjee</span>
+<span class="name">Islary</span>
+<span class="name">Narzary</span>
+<span class="name">Muchahary</span>
+<span class="name">Brahma</span>
+<span class="name">Goyary</span>
+<span class="name">Daimary</span>
+<span class="name">Mohilary</span>
+<span class="name">Kerkatary</span>
+<span class="name">Baglary</span>
+<span class="name">Borgoyary</span>
+<span class="name">Ayeopromary</span>
+<span class="name">Borjowary</span>
+<span class="name">Kakhlary</span>
+<span class="name">Chainary</span>
+<span class="name">Bwiswmuthiary</span>
+<span class="name">Patwary</span>
+<span class="name">Karzi</span>
+<span class="name">Laifanghari</span>
+<span class="name">Lahari</span>
+<span class="name">Chompramary</span>
+<span class="name">Hajowary</span>
+<span class="name">Bodosa</span>
+<span class="name">Lawary</span>
+
+</div>
+</div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<footer>
+© 2026 | Bodo Culture Web
+</footer>
+
+<script>
+
+/* ===== COUNT TOTAL ===== */
+const names = document.querySelectorAll(".name");
+document.getElementById("count").innerText =
+names.length + " surnames available";
+
+/* ===== SEARCH FILTER ===== */
+document.getElementById("search").addEventListener("keyup", function(){
+let value = this.value.toLowerCase();
+
+names.forEach(n=>{
+n.style.display =
+n.innerText.toLowerCase().includes(value)
+? "inline-block" : "none";
+});
+});
+
+/* ===== COPY NAME ===== */
+const toast = document.getElementById("toast");
+
+names.forEach(n=>{
+n.addEventListener("click",()=>{
+navigator.clipboard.writeText(n.innerText);
+
+toast.classList.add("show");
+setTimeout(()=>toast.classList.remove("show"),1500);
+});
+});
+
+</script>
+
+</body>
+</html>
