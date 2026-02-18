@@ -1,102 +1,187 @@
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Border Radius Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Border Radius Tutorial</title>
+
 <style>
-    body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 40px 0;
-    }
-
-.rows {
-  width: 80%;
-  max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+    line-height:1.6;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+/* Header */
+header{
+    text-align:center;
+    background:#1e88e5;
+    color:white;
+    padding:20px;
+    border-radius:10px;
 }
 
-.name h2 {
-  margin: 0;
-  font-size: 1.4rem;
+/* Section box */
+.section{
+    background:white;
+    margin-top:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-.shape {
-width: 120px;
-height: 120px;
-background-color: #3498db;
-text-align: center;
-line-height: 120px;
-margin: 0;
-flex-shrink: 0;
-}
-.circle {
-border-radius: 50%;
-}
-.soft-corners {
-border-radius: 10px;
-}
-.pill {
-width: 180px;
-height: 50px;
-line-height: 50px;
-border-radius: 999px;
-background-color: #2ecc71;
-}
-.one-side {
-border-radius: 0 30px 30px 0;
-background-color: #e67e22;
-}
-.oval {
-width: 160px;
-height: 100px;
-border-radius: 50% / 25%;
-background-color: #9b59b6;
+/* Preview container */
+.preview{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:15px;
 }
 
-@media (max-width:520px){
-  .row{flex-direction:column;align-items:flex-start}
-  .shape{margin-top:8px}
+/* Demo boxes */
+.box{
+    width:150px;
+    height:150px;
+    background:linear-gradient(135deg,#42a5f5,#7e57c2);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
 }
+
+/* Different border radius examples */
+.radius1{ border-radius:10px; }
+.radius2{ border-radius:50px; }
+.radius3{ border-radius:50%; }
+.radius4{ border-radius:20px 50px; }
+.radius5{ border-radius:10px 40px 60px 80px; }
+
+/* Code block */
+pre{
+    background:#111;
+    color:#00ff9d;
+    padding:15px;
+    overflow:auto;
+    border-radius:8px;
+}
+
+
 </style>
 </head>
-<body bgcolor="white">
-<div class="rows">
-  <div class="row">
-    <div class="name"><h2>🔵 Perfect Circle</h2></div>
-    <div class="shape circle">Circle</div>
-  </div>
 
-  <div class="row">
-    <div class="name"><h2>🟦 Soft Corners</h2></div>
-    <div class="shape soft-corners">10px</div>
-  </div>
+<body>
 
-  <div class="row">
-    <div class="name"><h2>🟩 Pill Shape</h2></div>
-    <div class="shape pill">Pill Button</div>
-  </div>
+<header>
+<h1>CSS Border Radius Tutorial</h1>
+<p>Learn how border-radius works with live examples</p>
+</header>
 
-  <div class="row">
-    <div class="name"><h2>🟧 One Side Rounded</h2></div>
-    <div class="shape one-side">Right Round</div>
-  </div>
+<!-- Description -->
+<div class="section">
+<h2>📘 What is Border Radius?</h2>
 
-  <div class="row">
-    <div class="name"><h2>🟪 Oval Shape</h2></div>
-    <div class="shape oval">Oval</div>
-  </div>
+<p>
+The <b>border-radius</b> property is used to create rounded corners for elements.
+You can make slightly rounded boxes, pill shapes, or even perfect circles.
+</p>
+
+<p>
+It accepts values in <b>px, %, em</b> etc.
+</p>
 </div>
+
+<!-- Example 1 -->
+<div class="section">
+<h2>1️⃣ Basic Rounded Corners</h2>
+
+ 
+<pre id="code1">
+.box{
+   border-radius:10px;
+}
+</pre>
+
+<h3>Preview:</h3>
+<div class="preview">
+<div class="box radius1">10px</div>
+</div>
+</div>
+
+<!-- Example 2 -->
+<div class="section">
+<h2>2️⃣ More Rounded Corners</h2>
+
+ 
+<pre id="code2">
+.box{
+   border-radius:50px;
+}
+</pre>
+
+<h3>Preview:</h3>
+<div class="preview">
+<div class="box radius2">50px</div>
+</div>
+</div>
+
+<!-- Example 3 -->
+<div class="section">
+<h2>3️⃣ Circle Shape</h2>
+
+ 
+<pre id="code3">
+.box{
+   border-radius:50%;
+}
+</pre>
+
+<h3>Preview:</h3>
+<div class="preview">
+<div class="box radius3">50%</div>
+</div>
+</div>
+
+<!-- Example 4 -->
+<div class="section">
+<h2>4️⃣ Two Value Border Radius</h2>
+
+ 
+<pre id="code4">
+.box{
+   border-radius:20px 50px;
+}
+</pre>
+
+<h3>Preview:</h3>
+<div class="preview">
+<div class="box radius4">20px 50px</div>
+</div>
+</div>
+
+<!-- Example 5 -->
+<div class="section">
+<h2>5️⃣ Four Corner Control</h2>
+
+ 
+<pre id="code5">
+.box{
+   border-radius:10px 40px 60px 80px;
+}
+/* order:
+top-left
+top-right
+bottom-right
+bottom-left */
+</pre>
+
+<h3>Preview:</h3>
+<div class="preview">
+<div class="box radius5">4 Values</div>
+</div>
+</div>
+
 </body>
 </html>

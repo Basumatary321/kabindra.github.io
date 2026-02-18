@@ -1,0 +1,603 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Text Formatting Values</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f6f9;
+    scroll-behavior:smooth;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    padding:20px;
+}
+
+header{
+    text-align:center;
+    background:#333;
+    color:white;
+    padding:15px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* ===== NAV TABLE ===== */
+.nav-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+}
+
+.nav-table td{
+    border:2px solid #e7ebe9;
+    height:110px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-table td:hover{
+    background:#cfe8ff;
+}
+
+.nav-table a{
+    text-decoration:none;
+    color:black;
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+table p{
+    background:#1976d2;
+    color:white;
+    font-size:12px;
+    padding:5px;
+    margin-bottom:10px;
+}
+
+/* ===== Sections ===== */
+.section{
+    margin:50px 0;
+    padding:20px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    box-shadow:0 0 6px rgba(0,0,0,.08);
+}
+
+.section h2{
+    color:#1976d2;
+}
+
+.code{
+    background:#000;
+    color:#27ff3a;
+    padding:12px;
+    font-family:Consolas, monospace;
+    margin-top:10px;
+}
+
+.preview{
+    width: 100%;
+    margin-top:12px;
+    padding:15px;
+    border:2px dashed #1976d2;
+    background:#fafafa;
+}
+/* for center verticalmodetext */
+.cn{
+
+}
+
+/* demo styles */
+.center{text-align:center;}
+.left{text-align:left;}
+.right{text-align:right;}
+.justify{text-align:justify;}
+
+.upper{text-transform:uppercase;}
+.lower{text-transform:lowercase;}
+.cap{text-transform:capitalize;}
+
+.underline{text-decoration:underline;}
+.over{text-decoration:overline;}
+.strike{text-decoration:line-through;}
+
+.shadow1{text-shadow:2px 2px 3px gray;}
+.shadow2{text-shadow:4px 4px 5px red;}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>CSS Text Formatting</header>
+
+<!-- ================= NAV TABLE ================= -->
+
+<table class="nav-table">
+
+<tr>
+<td><a href="#align"><p>Text Align</p>Left | Center | Right | Justify</a></td>
+<td><a href="#transform"><p>Transform</p>Upper | Lower | Capitalize</a></td>
+<td><a href="#decoration"><p>Decoration</p>Underline | Overline | Strike</a></td>
+</tr>
+<tr>
+<td><a href="#shadow"><p>Shadow</p>Soft | Strong</a></td>
+<td><a href="#weight"><p>Font Weight</p>Normal | Bold | 100 | 300 | 500 | 700 | 900</a></td>
+<td><a href="#orientation"><p>Text Orientation</p>Upright | Sideways | Mixed | Sideways-Right | Sideways-Left</a></td>
+
+</tr>
+<tr>
+<td><a href="#color"><p>Color</p>Named | Hex | RGB | RGBA | HSL</a></td>
+<td><a href="#size"><p>Font Size</p>Pixels | Em | Percentage</a></td>
+<td><a href="#family"><p>Font Family</p>Arial | Times New Roman | Courier New</a></td>
+</tr>
+<tr>
+<td><a href="#style"><p>Font Style</p>Normal | Italic | Oblique</a></td>
+<td><a href="#spacing"><p>Letter Spacing</p>Normal | 4px | -1px</a></td>
+<td><a href="#line"><p>Line Height</p>Normal | 2.5 | 50px</a></td>
+</tr>
+<tr>
+<td><a href="#direction"><p>Direction</p>LTR | RTL</a></td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+
+<!-- color -->
+ <div id="color" class="section">
+        <h2>color</h2>
+    
+        <div class="code">
+            color: red;
+        </div>
+        <div class="preview" style="color:red;">
+            This text is red.
+            </div>
+    
+            <div class="code" >
+                color: #1976d2;
+            </div>
+            <div class="preview" style="color:#1976d2;">
+                This text is blue.
+            </div>
+    
+            <div class="code">
+                color: rgb(255, 0, 0);
+            </div>
+            <div class="preview" style="color:rgb(255, 0, 0);">
+                This text is also red(in RGB).
+            </div>
+    
+            <div class="code">
+                color: rgba(255, 0, 0, 0.5);
+            </div>
+            <div class="preview" style="color:rgba(255, 0, 0, 0.5);">
+                This text is semi-transparent red.
+            </div>
+    
+            <div class="code">
+                color: hsl(120, 100%, 50%);
+            </div>
+            <div class="preview" style="color:hsl(120, 100%, 50%);">
+                This text is green.
+            </div>
+
+ </div>
+ <!-- font-size -->
+    <div id="size" class="section">
+        <h2>font-size</h2>
+    
+        <div class="code">
+            font-size: 16px;
+        </div>
+        <div class="preview" style="font-size:16px;">
+            This text is 16 pixels in size.
+            </div>
+    
+            <div class="code" >
+                font-size: 1.5em;
+            </div>
+            <div class="preview" style="font-size:1.5em;">
+                This text is 1.5 times the size of the parent element's font size.
+            </div>
+    
+            <div class="code">
+                font-size: 120%;
+            </div>
+            <div class="preview" style="font-size:120%;">
+                This text is 120% of the parent element's font size.
+            </div>
+    
+        </div>
+        <!-- font-family -->
+        <div id="family" class="section">
+            <h2>font-family</h2>
+        
+            <div class="code">
+                font-family: Arial, sans-serif;
+            </div>
+            <div class="preview" style="font-family:Arial, sans-serif;">
+                This text uses Arial font.
+                </div>
+        
+                <div class="code" >
+                    font-family: 'Times New Roman', serif;
+                </div>
+                <div class="preview" style="font-family:'Times New Roman', serif;">
+                    This text uses Times New Roman font.
+                </div>
+        
+                <div class="code">
+                    font-family: 'Courier New', monospace;
+                </div>
+                <div class="preview" style="font-family:'Courier New', monospace;">
+                    This text uses Courier New font.
+                </div>
+        
+            </div>
+            <!-- font-style -->
+            <div id="style" class="section">
+                <h2>font-style</h2>
+            
+                <div class="code">
+                    font-style: normal;
+                </div>
+                <div class="preview" style="font-style:normal;">
+                    This text is normal.
+                    </div>
+            
+                    <div class="code" >
+                        font-style: italic;
+                    </div>
+                    <div class="preview" style="font-style:italic;">
+                        This text is italic.
+                    </div>
+            
+                    <div class="code">
+                        font-style: oblique;
+                    </div>
+                    <div class="preview" style="font-style:oblique;">
+                        This text is oblique.
+                    </div>
+            
+                </div>
+                <!-- letter-spacing -->
+                <div id="spacing" class="section">
+                    <h2>letter-spacing</h2>
+                
+                    <div class="code">
+                        letter-spacing: normal;
+                    </div>
+                    <div class="preview" style="letter-spacing:normal;">
+                        This text has normal letter spacing.
+                        </div>
+                
+                        <div class="code" >
+                            letter-spacing: 4px;
+                        </div>
+                        <div class="preview" style="letter-spacing:4px;">
+                            This text has 4 pixels of letter spacing.
+                        </div>
+                
+                        <div class="code">
+                            letter-spacing: -1px;
+                        </div>
+                        <div class="preview" style="letter-spacing:-1px;">
+                            This text has -1 pixel of letter spacing (letters are closer together).
+                        </div>
+                
+                    </div>
+                    <!-- line-height -->
+                    <div id="line" class="section">
+                        <h2>line-height</h2>
+                    
+                        <div class="code">
+                            line-height: normal;
+                        </div>
+                        <div class="preview" style="line-height:normal;">
+                            This text has normal <br> line height.
+                            </div>
+                    
+                            <div class="code" >
+                                line-height: 2.5;
+                            </div>
+                            <div class="preview" style="line-height:2.5;">
+                                This text has a line height of 2.5 <br> (250% of the font size).
+                            </div>
+                    
+                            <div class="code">
+                                line-height: 50px;
+                            </div>
+                            <div class="preview" style="line-height:50px;">
+                                This text has a line height of <br>50 pixels.
+                            </div>
+                    
+                        </div>
+                        <!-- direction -->
+                        <div id="direction" class="section">
+                            <h2>direction</h2>
+                        
+                            <div class="code">
+                                direction: ltr;
+                            </div>
+                            <div class="preview" style="direction:ltr;">
+                                This text is displayed left-to-right.
+                                </div>
+                        
+                                <div class="code" >
+                                    direction: rtl;
+                                </div>
+                                <div class="preview" style="direction:rtl;">
+                                    This text is displayed right-to-left.
+                                </div>
+                        
+                            </div>
+<!-- ================= TEXT ALIGN ================= -->
+
+<div id="align" class="section">
+<h2>text-align</h2>
+
+<div class="code">
+text-align: left;
+</div>
+<div class="preview left">
+Left aligned text example.
+</div>
+
+<div class="code">
+text-align: center;
+</div>
+<div class="preview center">
+Center aligned text example.
+</div>
+
+<div class="code">
+text-align: right;
+</div>
+<div class="preview right">
+Right aligned text example.
+</div>
+
+<div class="code">
+text-align: justify;
+</div>
+<div class="preview justify">
+This paragraph stretches automatically so that both left and right edges become aligned evenly.
+</div>
+
+</div>
+
+<!-- ================= TRANSFORM ================= -->
+
+<div id="transform" class="section">
+<h2>text-transform</h2>
+
+<div class="code">
+text-transform: uppercase;
+</div>
+<div class="preview upper">
+this becomes uppercase
+</div>
+
+<div class="code">
+text-transform: lowercase;
+</div>
+<div class="preview lower">
+THIS BECOMES LOWERCASE
+</div>
+
+<div class="code">
+text-transform: capitalize;
+</div>
+<div class="preview cap">
+capitalize every word example
+</div>
+
+</div>
+
+<!-- ================= DECORATION ================= -->
+
+<div id="decoration" class="section">
+<h2>text-decoration</h2>
+
+<div class="code">
+text-decoration: underline;
+</div>
+<div class="preview underline">
+Underline text example
+</div>
+
+<div class="code">
+text-decoration: overline;
+</div>
+<div class="preview over">
+Overline text example
+</div>
+
+<div class="code">
+text-decoration: line-through;
+</div>
+<div class="preview strike">
+Line-through text example
+</div>
+
+</div>
+
+<!-- ================= SHADOW ================= -->
+
+<div id="shadow" class="section">
+<h2>text-shadow Examples</h2>
+
+<div class="code">
+text-shadow: 2px 2px 3px gray;
+</div>
+<div class="preview shadow1">
+Soft shadow text
+</div>
+
+<div class="code">
+text-shadow: 4px 4px 5px red;
+</div>
+<div class="preview shadow2">
+Strong shadow text
+</div>
+
+</div>
+<!-- font-weight -->
+ <div id="weight" class="section">
+     <h2>font-weight</h2>
+
+     <div class="code">
+         font-weight: normal;
+     </div>
+     <div class="preview">
+         Normal weight text example 
+        </div>
+
+        <div class="code" >
+            font-weight: bold;
+        </div>
+        <div class="preview" style="font-weight: bold;">
+            Bold weight text example
+        </div>
+
+        <div class="code">
+            font-weight: 100;
+        </div>
+        <div class="preview" style="font-weight: 100;">
+            Thin weight text example
+        </div>
+
+        <div class="code">
+            font-weight: 300;
+
+        </div>
+        <div class="preview" style="font-weight: 300;">
+            Light weight text example
+        </div>
+        <div class="code">
+            font-weight: 500;
+
+        </div>
+        <div class="preview" style="font-weight: 500;">
+            Medium weight text example
+        </div>
+        <div class="code" >
+            font-weight: 700;
+        </div>
+        <div class="preview" style="font-weight: 700;">
+            Semi-bold weight text example
+        </div>
+        <div class="code">
+            font-weight: 900;
+        </div>
+        <div class="preview" style="font-weight: 900;">
+            Extra-bold weight text example
+        </div>
+    </div>
+<!-- text-orientation with writing mode vertical and horizontal -->
+<div id="orientation" class="section">
+    <h2>text-orientation with writing-mode</h2>
+
+    <div class="code">
+        text-orientation: upright;
+    </div>
+    <div class="preview cn" style="text-orientation: upright;">
+        This text is displayed in upright orientation.
+    </div>
+
+    <div class="code">
+        text-orientation: sideways;
+    </div>
+    <div class="preview" style="text-orientation: sideways;">
+        This text is displayed in sideways orientation.
+    </div>
+
+    <div class="code">
+        text-orientation: mixed;
+    </div>
+    <div class="preview" style="text-orientation: mixed;">
+        This text is displayed in mixed orientation.
+    </div>
+
+    <div class="code">
+        text-orientation: sideways-right;
+    </div>
+    <div class="preview" style="text-orientation: sideways-right;">
+        This text is displayed in sideways-right orientation.
+    </div>
+    <div class="code">
+        text-orientation: sideways-left;
+    </div>
+    <div class="preview" style="text-orientation: sideways-left;">
+        This text is displayed in sideways-left orientation.
+    </div>
+    
+
+    <div class="code">
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        </div>
+    <div class="preview cn" style="writing-mode: vertical-rl;
+     text-orientation: upright; text-align: center;">
+       upright. 
+    </div>
+    <div class="code">
+        writing-mode: vertical-rl;
+        text-orientation: sideways;
+        </div>
+    <div class="preview cn" style="writing-mode: vertical-rl; text-orientation: sideways;">
+       sideways.
+    </div>
+    <div class="code">
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        </div>
+    <div class="preview cn" style="writing-mode: vertical-rl; text-orientation: mixed;">
+       mixed.
+    </div>
+    <div class="code">
+        writing-mode: vertical-rl;
+        text-orientation: sideways-right;
+        </div>
+    <div class="preview cn " style="writing-mode: vertical-rl; text-orientation: sideways-right;">
+         sideways-right.
+    </div>
+    <div class="code">
+        writing-mode: vertical-rl;
+        text-orientation: sideways-left;
+        </div>
+    <div class="preview cn" style="writing-mode: vertical-rl; text-orientation: sideways-left;">
+         sideways-left.
+    </div>
+</div>
+
+
+
+<footer style="text-align:center;color:#777;margin-top:40px;">
+© Techno IT Computer Institute — CSS Text Formatting
+</footer>
+
+</div>
+
+</body>
+</html>
