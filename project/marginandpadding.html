@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,6 +107,112 @@ footer{
     padding:15px;
     background:#0d6efd;
     color:white;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* CONTROL PANEL */
+.controls {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type=range] {
+    width: 100%;
+    cursor: pointer;
+}
+
+/* PREVIEW AREA */
+.preview {
+    flex: 2;
+    min-width: 250px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* THE FIX IS HERE */
+.outer {
+    background: #e9ecef;
+    border: 2px dashed #adb5bd; /* Visual boundary */
+    border-radius: 8px;
+    /* Essential Fix: overflow:hidden or padding prevents margin collapse */
+    overflow: hidden; 
+    transition: 0.3s;
+}
+
+.demo-box {
+    background: #ff7675;
+    border: 2px solid #2d3436;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.1s; /* Faster response for sliders */
+    box-sizing: border-box;
+}
+
+/* CODE AREA */
+.code-box {
+    background: #1e1e1e;
+    color: #dcdcdc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre;
+}
+
+.highlight { color: #4fc1ff; }
+
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: none;
+    background: #0d6efd;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background: #084298;
+}
+
+
+
+@media(max-width:768px){
+    .container { flex-direction: column; }
+    .controls, .preview {
+       padding: 1px 15px;}
+       .controls input, .controls label {
+           width: 100%;
+           display: block;
+           margin-bottom: 5px;
+            margin: 0;
+       }
 }
 
 </style>
@@ -256,9 +363,95 @@ padding:20px 40px;
 </p>
 </section>
 
+
+<div class="container">
+
+    <div class="controls">
+        <h2>🎛 Controls</h2>
+        
+        <div class="control-group">
+            <label>Margin: <span id="marginValue">20</span>px</label>
+            <input type="range" min="0" max="80" value="20" id="marginSlider">
+            <small style="color:#666">Spacing outside the black border.</small>
+        </div>
+
+        <div class="control-group">
+            <label>Padding: <span id="paddingValue">20</span>px</label>
+            <input type="range" min="0" max="80" value="20" id="paddingSlider">
+            <small style="color:#666">Spacing inside the black border.</small>
+        </div>
+    </div>
+
+    <div class="preview">
+        <h2>👀 Live Preview</h2>
+        
+        <div class="outer">
+            <div class="demo-box" id="demoBox">
+                CONTENT AREA
+            </div>
+            <div class="demo-box" id="demoBox2">
+                CONTENT AREA
+            </div>
+        </div>
+
+        <div class="code-box" id="cssCode">
+.demo-box {
+   <span class="highlight">margin</span>: 20px;
+   <span class="highlight">padding</span>: 20px;
+}</div>
+
+        <button onclick="copyCode()">Copy CSS Snippet</button>
+    </div>
+
+</div>
+
+
+
 <footer>
 © Techno IT Computer Education | CSS Learning Series
 </footer>
+<script>
+const marginSlider = document.getElementById("marginSlider");
+const paddingSlider = document.getElementById("paddingSlider");
+const box = document.getElementById("demoBox");
+const box2 = document.getElementById("demoBox2");
 
+const marginValue = document.getElementById("marginValue");
+const paddingValue = document.getElementById("paddingValue");
+const cssCode = document.getElementById("cssCode");
+
+function updateBox(){
+    const margin = marginSlider.value;
+    const padding = paddingSlider.value;
+
+    // Apply styles
+    box.style.margin = `${margin}px`;
+    box.style.padding = `${padding}px`;
+    box2.style.margin = `${margin}px`;
+    box2.style.padding = `${padding}px`;
+
+    // Update Text
+    marginValue.innerText = margin;
+    paddingValue.innerText = padding;
+
+    // Update Code Display
+    cssCode.innerHTML = `.demo-box {
+   <span class="highlight">margin</span>: ${margin}px;
+   <span class="highlight">padding</span>: ${padding}px;
+}`;
+}
+
+marginSlider.addEventListener("input", updateBox);
+paddingSlider.addEventListener("input", updateBox);
+
+// Initialize
+updateBox();
+
+function copyCode(){
+    const text = cssCode.innerText;
+    navigator.clipboard.writeText(text);
+    alert("CSS Code Copied to Clipboard!");
+}
+</script>
 </body>
 </html>
