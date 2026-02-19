@@ -1,69 +1,264 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Profile Card Project</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .card-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap; /* Ensures wrapping on medium screens */
-        }
-        .card {
-            background-color: rgb(255, 239, 186);
-            border: 1px solid #cbcaca;
-            border-radius: 10px;
-            width: 250px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-            object-fit: cover; /* Prevents image distortion */
-        }
-        
-        /* Responsive adjustments for phones */
-        @media (max-width: 600px) {
-            .card {
-                width: 90%; /* Take up most of the screen width */
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Margin vs Padding Tutorial</title>
+
+<style>
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    background:#f4f6f9;
+    line-height:1.6;
+}
+
+/* HEADER */
+header{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+section{
+    background:white;
+    margin:20px;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    color:#0d6efd;
+}
+
+/* DEMO BOXES */
+.demo-container{
+    background:#eee;
+    padding:20px;
+    margin-top:15px;
+}
+
+/* Padding Example */
+.padding-box{
+    background:orange;
+    padding:40px;
+    border:4px solid black;
+    color:black;
+    font-weight:bold;
+}
+
+/* Margin Example */
+.margin-box{
+    background:lightgreen;
+    margin:40px;
+    padding:20px;
+    border:4px solid black;
+    font-weight:bold;
+}
+
+/* Combined Example */
+.combo-parent{
+    background:#ddd;
+    padding:20px;
+}
+
+.combo-box{
+    background:#ff7675;
+    margin:30px;
+    padding:30px;
+    border:4px solid black;
+    color:white;
+    font-weight:bold;
+}
+
+/* CODE STYLE */
+pre{
+    background:#1e1e1e;
+    color:#00ff9d;
+    padding:15px;
+    overflow:auto;
+    border-radius:8px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th, td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#0d6efd;
+    color:white;
+}
+
+footer{
+    text-align:center;
+    padding:15px;
+    background:#0d6efd;
+    color:white;
+}
+
+</style>
 </head>
-<body bgcolor="white">
 
-<h1>Our Team</h1>
+<body>
 
-<div class="card-container">
-    <div class="card">
-        <img src="../images/watching.jpg" alt="Profile 1">
-        <h3>John Doe</h3>
-        <p>Frontend Developer</p>
-    </div>
-    <div class="card">
-        <img src="../images/profile.avif" alt="Profile 2">
-        <h3>Jane Smith</h3>
-        <p>Backend Developer</p>
-    </div>
-    <div class="card">
-        <img src="../images/rashmika.jpg" alt="Profile 3">
-        <h3>Rashmika Mandana</h3>
-        <p>UI/UX Designer</p>
-    </div>
+<header>
+<h1>CSS Margin & Padding Explained</h1>
+<p>Complete Beginner Guide with Examples</p>
+</header>
+
+<!-- INTRO -->
+<section>
+<h2>📘 What is Margin?</h2>
+<p>
+Margin is the <b>space outside</b> an element's border.  
+It creates distance between one element and another element.
+</p>
+
+<pre>
+.box{
+   margin:20px;
+}
+</pre>
+
+<div class="demo-container">
+<div class="margin-box">
+This box has MARGIN (space outside)
 </div>
+</div>
+</section>
+
+<!-- PADDING -->
+<section>
+<h2>📘 What is Padding?</h2>
+<p>
+Padding is the <b>space inside</b> the element between the content and its border.
+It increases internal spacing.
+</p>
+
+<pre>
+.box{
+   padding:40px;
+}
+</pre>
+
+<div class="demo-container">
+<div class="padding-box">
+This box has PADDING (space inside)
+</div>
+</div>
+</section>
+
+<!-- DIFFERENCE -->
+<section>
+<h2>📘 Margin vs Padding (Visual Example)</h2>
+
+<div class="combo-parent">
+<div class="combo-box">
+Margin = outer space<br>
+Padding = inner space
+</div>
+</div>
+
+<pre>
+.combo-box{
+   margin:30px;
+   padding:30px;
+}
+</pre>
+
+</section>
+
+<!-- TYPES -->
+<section>
+<h2>📘 Individual Side Properties</h2>
+
+<pre>
+margin-top:20px;
+margin-right:20px;
+margin-bottom:20px;
+margin-left:20px;
+
+padding-top:20px;
+padding-right:20px;
+padding-bottom:20px;
+padding-left:20px;
+</pre>
+
+<h3>Shortcut Property</h3>
+
+<pre>
+margin:10px 20px 30px 40px;
+/* top right bottom left */
+
+padding:20px 40px;
+/* top-bottom | left-right */
+</pre>
+
+</section>
+
+<!-- TABLE -->
+<section>
+<h2>📘 Margin vs Padding Comparison</h2>
+
+<table>
+<tr>
+<th>Feature</th>
+<th>Margin</th>
+<th>Padding</th>
+</tr>
+
+<tr>
+<td>Location</td>
+<td>Outside Border</td>
+<td>Inside Border</td>
+</tr>
+
+<tr>
+<td>Controls</td>
+<td>Space between elements</td>
+<td>Space inside element</td>
+</tr>
+
+<tr>
+<td>Background Color</td>
+<td>Not affected</td>
+<td>Background visible</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+<td>Layout spacing</td>
+<td>Content spacing</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- TIP -->
+<section>
+<h2>💡 Easy Trick to Remember</h2>
+<p>
+👉 <b>Margin = Outside Space (Neighbors)</b><br>
+👉 <b>Padding = Inside Space (Comfort)</b>
+</p>
+</section>
+
+<footer>
+© Techno IT Computer Education | CSS Learning Series
+</footer>
 
 </body>
 </html>
