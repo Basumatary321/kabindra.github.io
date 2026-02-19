@@ -1,460 +1,357 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Formatting Tags Navigator</title>
-
+    <title>HTML Tag Search Navigator</title>
     <style>
-     *{
+        :root {
+            --primary: #1976d2;
+            --secondary: #0b6303;
+            --bg: #f4f6f9;
+            --code-bg: #111;
+            --code-text: #26ff29;
+        }
+
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-     }
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            background: #f4f6f9;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--bg);
             scroll-behavior: smooth;
-            /* smooth scrolling */
+            padding-bottom: 50px;
+        }
+
+        header {
+            text-align: center;
+            background: var(--secondary);
+            color: white;
+            padding: 40px 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== SEARCH BAR STYLING ===== */
+        .search-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        #tagSearch {
+            width: 90%;
+            max-width: 600px;
+            padding: 15px 25px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        #tagSearch:focus {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
         }
 
         .container {
             max-width: 1100px;
             margin: auto;
+            padding: 0 15px;
+        }
+
+        /* ===== GRID LAYOUT (2 per row on mobile) ===== */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .nav-card {
             background: white;
-            padding: 20px;
-        }
-
-        /* ===== Header ===== */
-        header {
+            border-radius: 8px;
+            position: relative;
+            height: 110px;
+            transition: 0.3s;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            background: #555;
-            color: white;
-            padding: 12px;
-            font-size: 24px;
-            font-weight: bold;
         }
 
-        /* ===== TOP TABLE ===== */
-        .nav-table {
+        .nav-card p {
+            position: absolute;
+            top: 0;
             width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        .nav-table td {
-            border: 3px solid #e7ebe9;
-            width: 25%;
-            height: 120px;
-            text-align: center;
-            /* vertical-align: middle; */
+            background: var(--primary);
+            color: white;
             font-size: 18px;
-            cursor: pointer;
-            transition: .3s;
+            padding: 3px 0;
+            border-radius: 8px 8px 0 0;
         }
 
-        .nav-table td:hover {
-            background: #a3d2f4;
-            /* transform: scale(1.03); */
-        }
-
-        /* clickable link style */
-        .nav-table a {
+        .nav-card a {
             text-decoration: none;
-            color: black;
-            display: block;
+            color: #333;
             width: 100%;
             height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 15px;
         }
-   
+
+        .nav-card:hover {
+            background: #e3f2fd;
+            transform: scale(1.02);
+        }
+
+        /* ===== SECTIONS ===== */
         .section {
-            margin: 50px 0;
-            padding: 20px;
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 12px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
         }
 
-        .section h2 {
-            color: #1976d2;
-        }
-
-        /* Code box */
         .code {
-            background: #000000;
-            color: rgb(38, 255, 41);
-            padding: 12px;
-            border-left: 5px solid #1976d2;
-            font-family: Consolas, monospace;
-            margin-top: 10px;
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: monospace;
+            overflow-x: auto;
         }
 
-        /* Preview */
         .preview {
-            margin-top: 12px;
-            padding: 12px;
-            border: 2px dashed #1976d2;
+            border: 2px dashed #ccc;
+            padding: 15px;
             background: #fafafa;
+        }
+
+        .hidden {
+            display: none !important;
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
-            color: #777;
-        }
-        table p{
-            background-color: #1976d2;
-            width: 100%;
-            padding: 5px;
-            color: white;
-            font-size: 12px;
-           
-            margin-bottom: 10px;
+            margin-top: 50px;
+            color: #888;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <header>
+        <h3>HTML Text Formatting Explorer</h3>
+        <p>Search and discover HTML tags instantly.</p>
+    </header>
 
-        <header>
-            HTML Text Formatting Tags
-        </header>
-
-        <!-- ================= TOP NAV TABLE ================= -->
-
-        <table class="nav-table">
-
-            <tr>
-                <td>
-                    <a href="#bold">
-                       <p>Bold</p><br>
-                        <b>This text is bold</b>
-                    </a>
-                </td>
-
-                <td>
-                    <a href="#italic">
-                     <p>Italic</p><br>
-                        <i>italic text</i>
-                    </a>
-                </td>
-
-                <td>
-                    <a href="#underline">
-                       <p>Underline</p><br>
-                        <u>underlined</u>
-                    </a>
-                </td>
-
-              
-            </tr>
-
-            <tr>
-                <td class="mark-box">
-                    <a href="#mark">
-                     <p>Mark</p><br>
-                        <mark>highlight</mark>
-                    </a>
-                </td>
-
-                <td>
-                    <a href="#sup">
-                     <p>Superscript</p><br>
-                        a<sup>2</sup>+ b <sup>2</sup> = c<sup>2</sup>
-                    </a>
-                </td>
-
-                <td>
-                    <a href="#sub">
-                     <p>Subscript</p><br>
-                        H<sub>2</sub>O
-                    </a>
-                </td>
-
-               
-            </tr>
-            <tr>
-                  <td>
-                    <a href="#strong">
-                     <p>Strong</p><br>
-                        <strong>important</strong>
-                    </a>
-                </td>
-                 <td>
-                    <a href="#pre">
-                       <p>Preformatted</p>
-                     line 1<br>
-                &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;line 2 <br>
-                    line 3    
-                    </a>
-                </td>
-                 <td>
-                    <a href="#details">
-                       <p>Strike</p><br>
-                        <strike>strikethrough</strike>
-                    </a>
-            </tr>
-            <tr>
-                    <td>
-                        <a href="#center">
-                         <p>Center</p><br>
-                            <center>Centered Text</center>
-                        </a>
-                    </td>
-                     <td>
-                        <a href="#em">
-                         <p>Emphasis</p><br>
-                            <em>Emphasized Text</em>
-                        </a>
-                    </td>
-                     <td>
-                        <a href="#del">
-                         <p>Deleted Text</p><br>
-                            <del>Deleted Text</del>
-                        </a>
-                    </td>
-                   
-            </tr>
-            <tr> 
-                    <td>
-                        <a href="#ins">
-                         <p>Inserted Text</p><br>
-                            <ins>Inserted Text</ins>
-                        </a>
-                    </td>
-                        <td>
-                            <a href="#small">
-                            <p>Small Text</p><br>
-                                <small>Small Text</small>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#code">
-                            <p>Code</p><br>
-                                <code>Code Snippet</code>
-                            </a>
-                        </td>
-            </tr>
-
-        </table>
-
-        <!-- ================= CONTENT ================= -->
-
-        <!-- BOLD -->
-        <div id="bold" class="section">
-            <h2>Bold Tag (&lt;b&gt;)</h2>
-            <p>Anything that appears within the &lt;b&gt; element is displayed in <b>bold</b>. As shown in the example below:</p>
-
-            <div class="code">
-                &lt;b&gt;This text is bold&lt;/b&gt;
-            </div>
-
-            <div class="preview">
-                <b>This text is bold</b>
-            </div>
-        </div>
-
-        <!-- ITALIC -->
-        <div id="italic" class="section">
-            <h2>Italic Tag (&lt;i&gt;)</h2>
-            <p>Anything that appears within the &lt;i&gt; element is displayed in <i>italic</i>. As shown in the example below:</p>
-
-            <div class="code">
-                &lt;i&gt;Italic Text&lt;/i&gt;
-            </div>
-
-            <div class="preview">
-                <i>Italic Text</i>
-            </div>
-        </div>
-
-        <!-- UNDERLINE -->
-        <div id="underline" class="section">
-            <h2>Underline Tag (&lt;u&gt;)</h2>
-<p>Any text that appears within the &lt;u&gt; element is displayed with an <u>underline.</u></p>
-            <div class="code">
-                &lt;u&gt;Underlined Text&lt;/u&gt;
-            </div>
-
-            <div class="preview">
-                <u>Underlined Text</u>
-            </div>
-        </div>
-
-        <!-- STRONG -->
-        <div id="strong" class="section">
-            <h2>Strong Tag (&lt;strong&gt;)</h2>
-<p>Anything that appears within the &lt;strong&gt; element is displayed in <strong>bold</strong> and is considered important.</p>
-            <div class="code">
-                &lt;strong&gt;Important Text&lt;/strong&gt;
-            </div>
-
-            <div class="preview">
-                <strong>Important Text</strong>
-            </div>
-        </div>
-
-        <!-- MARK -->
-        <div id="mark" class="section">
-            <h2>Mark Tag (&lt;mark&gt;)</h2>
-<p>Any text that appears within the &lt;mark&gt; element is highlighted.</p>
-            <div class="code">
-                &lt;mark&gt;Highlighted&lt;/mark&gt;
-            </div>
-
-            <div class="preview">
-                <mark>Highlighted</mark>
-            </div>
-        </div>
-
-        <!-- SUP -->
-        <div id="sup" class="section">
-            <h2>Superscript (&lt;sup&gt;)</h2>
-<p>Any text that appears within the &lt;sup&gt; element is displayed as superscript.</p>
-            <div class="code">
-                x&lt;sup&gt;2&lt;/sup&gt;+ b &lt;sup&gt;2&lt;/sup&gt; = c&lt;sup&gt;2&lt;/sup&gt;
-            </div>
-
-            <div class="preview">
-                x<sup>2</sup>+ b <sup>2</sup> = c<sup>2</sup>
-            </div>
-        </div>
-
-        <!-- SUB -->
-        <div id="sub" class="section">
-            <h2>Subscript (&lt;sub&gt;)</h2>
-<p>Any text that appears within the &lt;sub&gt; element is displayed as subscript.</p>
-            <div class="code">
-                H&lt;sub&gt;2&lt;/sub&gt;O
-            </div>
-
-            <div class="preview">
-                H<sub>2</sub>O
-            </div>
-        </div>
-
-        <!-- PRE -->
-        <div id="pre" class="section">
-            <h2>Preformatted Text (&lt;pre&gt;)</h2>
-<p>Sometimes, you want to preserve the formatting of text exactly as it appears in the HTML source code. The &lt;pre&gt; element is used for this purpose.
-    It preserves both spaces and line breaks, allowing you to display text in a fixed-width font while maintaining the original formatting. As shown in the example below:
-</p>
-            <div class="code">
-                &lt;pre&gt;<br>
-                Line 1<br>
-               &nbsp;&nbsp; Line 2 <br>
-                &lt;/pre&gt;
-            </div>
-
-            <div class="preview">
-                <pre>
-Line 1
-    Line 2
-</pre>
-            </div>
-        </div>
-        <!-- stike -->
-        <div id="details" class="section">
-            <h2>Strike Tag (&lt;strike&gt;)</h2>
-<p>Any text that appears within the &lt;strike&gt; element is displayed with a <strike> strikethrough.</strike></p>
-            <div class="code">
-                &lt;strike&gt; <br>
-                &nbsp; Strikethrough Text <br>
-                &lt;/strike&gt;
-            </div>
-
-            <div class="preview">
-                <strike>Strikethrough Text</strike>
-            </div>
-        </div>
-        <!-- center -->
-        <div id="center" class="section">
-            <h2>Center Tag (&lt;center&gt;)</h2>
-<p>Any text that appears within the &lt;center&gt; element is displayed in the center of the page.</p>
-            <div class="code">
-                &lt;center&gt; <br>
-                &nbsp; Centered Text <br>
-                &lt;/center&gt;
-            </div>
-            <div class="preview">
-                <center>Centered Text</center>
-            </div>
-        </div>
-        <!-- em -->
-        <div id="em" class="section">
-            <h2>Emphasis Tag (&lt;em&gt;)</h2>
-<p>Any text that appears within the &lt;em&gt; element is displayed in italics and is considered emphasized.</p>
-            <div class="code">
-                &lt;em&gt; <br>
-                &nbsp; Emphasized Text <br>
-                &lt;/em&gt;
-            </div>
-            <div class="preview">
-                <em>Emphasized Text</em>
-            </div>
-        </div>
-<!-- del -->
-        <div id="del" class="section">
-            <h2>Deleted Text Tag (&lt;del&gt;)</h2>
-<p>Any text that appears within the &lt;del&gt; element is displayed with a strikethrough, indicating that it has been deleted.</p>
-            <div class="code">
-                &lt;del&gt; <br>
-                &nbsp; Deleted Text <br>
-                &lt;/del&gt;
-            </div>
-            <div class="preview">
-                <del>Deleted Text</del>
-            </div>
-        </div>
-        <!-- ins -->
-        <div id="ins" class="section">
-            <h2>Inserted Text Tag (&lt;ins&gt;)</h2>
-<p>Any text that appears within the &lt;ins&gt; element is displayed with an underline, indicating that it has been inserted.</p>
-            <div class="code">
-                &lt;ins&gt; <br>
-                &nbsp; Inserted Text <br>
-                &lt;/ins&gt;
-            </div>
-            <div class="preview">
-                <ins>Inserted Text</ins>
-            </div>
-        </div>
-        <!-- small -->
-        <div id="small" class="section">
-            <h2>Small Text Tag (&lt;small&gt;)</h2>
-<p>Any text that appears within the &lt;small&gt; element is displayed in smaller font size.</p>
-            <div class="code">
-                &lt;small&gt; <br>
-                &nbsp; Small Text <br>
-                &lt;/small&gt;
-            </div>
-            <div class="preview">
-                <small>Small Text</small>
-            </div>
-        </div>
-        <!-- code -->
-        <div id="code" class="section">
-            <h2>Code Tag (&lt;code&gt;)</h2>
-<p>Any text that appears within the &lt;code&gt; element is displayed in a monospace font and is typically used to represent code snippets.</p>
-            <div class="code">
-                &lt;code&gt; <br>
-                &nbsp; Code Snippet <br>
-                &lt;/code&gt;
-            </div>
-            <div class="preview">
-                <code>Code Snippet</code>
-            </div>
-        </div>
-        <!-- footer -->
-        <footer>
-            © Techno IT Computer Institute, 2026. All rights reserved.
-        </footer>
-
+    <div class="search-container">
+        <input type="text" id="tagSearch" placeholder="Type a tag (e.g., 'bold', 'mark', 'sup')..."
+            onkeyup="filterTags()">
     </div>
+
+    <div class="container">
+        <nav class="nav-grid" id="mainGrid">
+            <div class="nav-card" data-name="bold"><a href="#bold">
+                    <p>Bold</p><b>&lt;b&gt;</b>
+                </a></div>
+            <div class="nav-card" data-name="italic"><a href="#italic">
+                    <p>Italic</p><i>&lt;i&gt;</i>
+                </a></div>
+            <div class="nav-card" data-name="underline"><a href="#underline">
+                    <p>Underline</p><u>&lt;u&gt;</u>
+                </a></div>
+            <div class="nav-card" data-name="mark"><a href="#mark">
+                    <p>Mark</p><mark>&lt;mark&gt;</mark>
+                </a></div>
+            <div class="nav-card" data-name="superscript"><a href="#sup">
+                    <p>Sup</p><span>x<sup>2</sup>+b<sup>2</sup> </span>
+                </a></div>
+            <div class="nav-card" data-name="subscript"><a href="#sub">
+                    <p>Sub</p> <span>H<sub>2</sub>O</span>
+                </a></div>
+            <div class="nav-card" data-name="strong"><a href="#strong">
+                    <p>Strong</p><strong>&lt;strong&gt;</strong>
+                </a></div>
+            <div class="nav-card" data-name="preformatted"><a href="#pre">
+                    <p>Pre</p>&lt;pre&gt;
+                </a></div>
+            <div class="nav-card" data-name="strike"><a href="#strike">
+                    <p>Strike</p><strike>&lt;strike&gt;</strike>
+                </a></div>
+            <div class="nav-card" data-name="center"><a href="#center">
+                    <p>Center</p>&lt;center&gt;
+                </a></div>
+            <div class="nav-card" data-name="emphasis"><a href="#em">
+                    <p>Em</p><em>&lt;em&gt;</em>
+                </a></div>
+            <div class="nav-card" data-name="delete"><a href="#del">
+                    <p>Del</p><del>&lt;del&gt;</del>
+                </a></div>
+            <div class="nav-card" data-name="insert"><a href="#ins">
+                    <p>Ins</p><ins>&lt;ins&gt;</ins>
+                </a></div>
+            <div class="nav-card" data-name="small"><a href="#small">
+                    <p>Small</p><small>&lt;small&gt;</small>
+                </a></div>
+            <div class="nav-card" data-name="code"><a href="#code-sec">
+                    <p>Code</p><code>&lt;code&gt;</code>
+                </a></div>
+        </nav>
+
+        <div id="contentSections">
+            <section id="bold" class="section" data-name="bold">
+                <h2>Bold Tag (&lt;b&gt;)</h2>
+                <p>Used to make text stand out without semantic importance.</p>
+                <div class="code">&lt;b&gt;Bold Text&lt;/b&gt;</div>
+                <div class="preview"><b>Bold Text</b></div>
+            </section>
+
+            <section id="underline" class="section" data-name="underline">
+                <h2>Underline Tag (&lt;u&gt;)</h2>
+                <p>Used to underline text, often for emphasis or links.</p>
+                <div class="code">&lt;u&gt;Underlined Text&lt;/u&gt;</div>
+                <div class="preview"><u>Underlined Text</u></div>
+            </section>
+
+            <section id="mark" class="section" data-name="mark">
+                <h2>Mark Tag (&lt;mark&gt;)</h2>
+                <p>Used to highlight text for reference or emphasis.</p>
+                <div class="code">&lt;mark&gt;Highlighted Text&lt;/mark&gt;</div>
+                <div class="preview"><mark>Highlighted Text</mark></div>
+            </section>
+
+            <section id="strong" class="section" data-name="strong">
+                <h2>Strong Tag (&lt;strong&gt;)</h2>
+                <p>Indicates strong importance, seriousness, or urgency.</p>
+                <div class="code">&lt;strong&gt;Strong Text&lt;/strong&gt;</div>
+                <div class="preview"><strong>Strong Text</strong></div>
+            </section>
+            <section id="code-sec" class="section" data-name="code">
+                <h2>Preformatted Tag (&lt;pre&gt;)</h2>
+                <p>Preserves whitespace and line breaks, often used for code blocks.</p>
+               <div class="code">
+                <pre>
+&lt;pre&gt;
+        Art:
+        / \
+       | o |
+        \ /
+&lt;/pre&gt;
+</pre></div>
+        <div class="preview">
+<pre>
+  Art:
+   / \
+  | o |
+   \ /
+</pre>
+    </div>
+            </section>
+            <section id="strike" class="section" data-name="strike">
+                <h2>Strike Tag (&lt;strike&gt;)</h2>
+                <p>Used to indicate text that is no longer relevant or accurate.</p>
+                <div class="code">&lt;strike&gt;Strikethrough Text&lt;/strike&gt;</div>
+                <div class="preview"><strike>Strikethrough Text</strike></div>
+            </section>
+
+            <section id="center" class="section" data-name="center">
+                <h2>Center Tag (&lt;center&gt;)</h2>
+                <p>Used to center-align text (deprecated in HTML5).</p>
+                <div class="code">&lt;center&gt;Centered Text&lt;/center&gt;</div>
+                <div class="preview"><center>Centered Text</center></div>
+            </section>
+            <section id="emphasis" class="section" data-name="emphasis">
+                <h2>Emphasis Tag (&lt;em&gt;)</h2>
+                <p>Indicates emphasized text, typically rendered in italics.</p>
+                <div class="code">&lt;em&gt;Emphasized Text&lt;/em&gt;</div>
+                <div class="preview"><em>Emphasized Text</em></div>
+            </section>
+            <section id="delete" class="section" data-name="delete">
+                <h2>Delete Tag (&lt;del&gt;)</h2>
+                <p>Indicates text that has been deleted or is no longer accurate.</p>
+                <div class="code">&lt;del&gt;Deleted Text&lt;/del&gt;</div>
+                <div class="preview"><del>Deleted Text</del></div>
+            </section>
+            <section id="insert" class="section" data-name="insert">
+                <h2>Insert Tag (&lt;ins&gt;)</h2>
+                <p>Indicates text that has been inserted or added.</p>
+                <div class="code">&lt;ins&gt;Inserted Text&lt;/ins&gt;</div>
+                <div class="preview"><ins>Inserted Text</ins></div>
+            </section>
+            <section id="small" class="section" data-name="small">
+                <h2>Small Tag (&lt;small&gt;)</h2>
+                <p>Used to indicate smaller text, often for fine print or disclaimers.</p>
+                <div class="code">&lt;small&gt;Small Text&lt;/small&gt;</div>
+                <div class="preview"><small>Small Text</small></div>
+            </section>
+            <section id="italic" class="section" data-name="italic">
+                <h2>Italic Tag (&lt;i&gt;)</h2>
+                <p>Used for technical terms, phrases from other languages, etc.</p>
+                <div class="code">&lt;i&gt;Italic Text&lt;/i&gt;</div>
+                <div class="preview"><i>Italic Text</i></div>
+            </section>
+
+            <section id="sup" class="section" data-name="superscript">
+                <h2>Superscript (&lt;sup&gt;)</h2>
+                <p>Renders text half a character above the normal line.</p>
+                <div class="code">a&lt;sup&gt;2&lt;/sup&gt;</div>
+                <div class="preview">a<sup>2</sup></div>
+            </section>
+
+        </div>
+
+        <footer>© Techno IT Computer Institute, 2026</footer>
+    </div>
+
+    <script>
+        function filterTags() {
+            let input = document.getElementById('tagSearch').value.toLowerCase();
+            let cards = document.getElementsByClassName('nav-card');
+            let sections = document.getElementsByClassName('section');
+
+            // Filter Cards
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].classList.remove('hidden');
+                } else {
+                    cards[i].classList.add('hidden');
+                }
+            }
+
+            // Filter Sections
+            for (let j = 0; j < sections.length; j++) {
+                let secName = sections[j].getAttribute('data-name');
+                if (secName.includes(input)) {
+                    sections[j].classList.remove('hidden');
+                } else {
+                    sections[j].classList.add('hidden');
+                }
+            }
+        }
+    </script>
 
 </body>
 
