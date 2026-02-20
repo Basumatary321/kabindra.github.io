@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Audio Music Player</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f6f9;
+    line-height:1.6;
+}
+
+/* HEADER */
+header{
+    background:#1e88e5;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* MAIN CONTAINER */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* PLAYER DESIGN */
+.player{
+    text-align:center;
+    background:#111;
+    color:white;
+    padding:25px;
+    border-radius:12px;
+}
+
+.player button{
+    padding:10px 18px;
+    margin:8px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.play{background:#28a745;color:white;}
+.pause{background:#dc3545;color:white;}
+
+input[type="range"]{
+    width:200px;
+}
+
+/* CODE BOX */
+pre{
+    background:#272822;
+    color:#f8f8f2;
+    padding:15px;
+    overflow:auto;
+    border-radius:8px;
+}
+
+h2{
+    color:#1e88e5;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🎵 HTML Audio Tag (Music Player)</h1>
+<p>Learn how to add music/audio in webpages</p>
+</header>
+
+<div class="container">
+
+<!-- DESCRIPTION -->
+<div class="card">
+<h2>📘 What is HTML Audio?</h2>
+<p>
+The <strong>&lt;audio&gt;</strong> tag is used to embed sound or music in a webpage.
+Users can play, pause, and control audio directly from the browser.
+</p>
+
+<h3>Basic Syntax:</h3>
+
+<pre>
+&lt;audio controls&gt;
+   &lt;source src="music.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+</pre>
+
+</div>
+
+<!-- BASIC EXAMPLE -->
+<div class="card">
+<h2>🎧 Default Audio Player</h2>
+
+<audio controls>
+    <source src="../images/resource/village m.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+</audio>
+
+</div>
+
+<!-- CUSTOM PLAYER -->
+<div class="card">
+<h2>🎼 Custom Music Player (JavaScript Control)</h2>
+
+<div class="player">
+
+<h3>Sample Music</h3>
+
+<audio id="music">
+    <source src="../images/resource/village m.mp3" type="audio/mpeg">
+</audio>
+
+<br>
+
+<button class="play" onclick="playMusic()">▶ Play</button>
+<button class="pause" onclick="pauseMusic()">⏸ Pause</button>
+
+<br><br>
+
+<label>Volume:</label>
+<input type="range" min="0" max="1" step="0.1"
+oninput="setVolume(this.value)">
+
+</div>
+
+</div>
+
+<!-- CODE EXPLANATION -->
+<div class="card">
+<h2>💻 Example Code</h2>
+
+<pre>
+&lt;audio id="music"&gt;
+   &lt;source src="music.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+
+&lt;button onclick="playMusic()"&gt;Play&lt;/button&gt;
+
+&lt;script&gt;
+function playMusic(){
+   document.getElementById("music").play();
+}
+&lt;/script&gt;
+</pre>
+
+</div>
+
+</div>
+
+<script>
+
+let music = document.getElementById("music");
+
+function playMusic(){
+    music.play();
+}
+
+function pauseMusic(){
+    music.pause();
+}
+
+function setVolume(value){
+    music.volume = value;
+}
+
+</script>
+
+</body>
+</html>
