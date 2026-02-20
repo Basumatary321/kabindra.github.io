@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Tag Search Navigator</title>
+    <title>HTML Tag Flip Navigator</title>
     <style>
         :root {
-            --primary: #1976d2;
+            --primary: #267df6;
             --secondary: #0b6303;
             --bg: #f4f6f9;
-            --code-bg: #111;
+            --code-bg: #252723;
             --code-text: #26ff29;
         }
 
@@ -23,7 +23,6 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: var(--bg);
-            scroll-behavior: smooth;
             padding-bottom: 50px;
         }
 
@@ -32,10 +31,8 @@
             background: var(--secondary);
             color: white;
             padding: 40px 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* ===== SEARCH BAR STYLING ===== */
         .search-container {
             position: sticky;
             top: 0;
@@ -49,17 +46,9 @@
             width: 90%;
             max-width: 600px;
             padding: 15px 25px;
-            font-size: 18px;
-            border: 2px solid #ddd;
             border-radius: 50px;
+            border: 2px solid #ddd;
             outline: none;
-            transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        #tagSearch:focus {
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
         }
 
         .container {
@@ -68,270 +57,316 @@
             padding: 0 15px;
         }
 
-        /* ===== GRID LAYOUT (2 per row on mobile) ===== */
+        /* ===== FLIP CARD STYLING ===== */
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 20px;
             margin-bottom: 40px;
+            perspective: 1000px; /* Essential for 3D effect */
         }
 
         @media (min-width: 768px) {
-            .nav-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            .nav-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         .nav-card {
-            background: white;
-            border-radius: 8px;
-            position: relative;
-            height: 110px;
-            transition: 0.3s;
-            border: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            height: 150px;
+            cursor: pointer;
+            background-color: transparent;
+            transition: transform 0.5s ease;
+        }
+        .nav-card:hover .card-inner {
+            border: 1px solid var(--primary);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.44);
         }
 
-        .nav-card p {
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        /* The class that triggers the flip */
+        .nav-card.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background-color: white;
+            color: black;
+        }
+
+        .card-front p {
             position: absolute;
             top: 0;
             width: 100%;
             background: var(--primary);
             color: white;
+            padding: 5px 0;
             font-size: 18px;
-            padding: 3px 0;
-            border-radius: 8px 8px 0 0;
         }
 
-        .nav-card a {
-            text-decoration: none;
-            color: #333;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 15px;
-        }
-
-        .nav-card:hover {
-            background: #e3f2fd;
-            transform: scale(1.02);
-        }
-
-        /* ===== SECTIONS ===== */
-        .section {
-            background: white;
-            margin-bottom: 30px;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-        }
-
-        .code {
-            background: var(--code-bg);
+        .card-back {
+            background-color: var(--code-bg);
             color: var(--code-text);
-            padding: 15px;
-            border-radius: 6px;
-            margin: 15px 0;
+            transform: rotateY(180deg);
             font-family: monospace;
-            overflow-x: auto;
+            font-size: 14px;
+            padding: 10px;
         }
 
-        .preview {
-            border: 2px dashed #ccc;
-            padding: 15px;
-            background: #fafafa;
-        }
+        .hidden { display: none !important; }
 
-        .hidden {
-            display: none !important;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: #888;
-        }
+        footer { text-align: center; margin-top: 50px; color: #888; }
     </style>
 </head>
 
 <body>
 
     <header>
-        <h3>HTML Text Formatting Explorer</h3>
-        <p>Search and discover HTML tags instantly.</p>
+        <h3>HTML Text Formatting Tags</h3>
+        <p>Click a card to reveal the HTML code!</p>
     </header>
 
     <div class="search-container">
-        <input type="text" id="tagSearch" placeholder="Type a tag (e.g., 'bold', 'mark', 'sup')..."
-            onkeyup="filterTags()">
+        <input type="text" id="tagSearch" placeholder="Search tags..." onkeyup="filterTags()">
     </div>
 
     <div class="container">
         <nav class="nav-grid" id="mainGrid">
-            <div class="nav-card" data-name="bold"><a href="#bold">
-                    <p>Bold</p><b>&lt;b&gt;</b>
-                </a></div>
-            <div class="nav-card" data-name="italic"><a href="#italic">
-                    <p>Italic</p><i>&lt;i&gt;</i>
-                </a></div>
-            <div class="nav-card" data-name="underline"><a href="#underline">
-                    <p>Underline</p><u>&lt;u&gt;</u>
-                </a></div>
-            <div class="nav-card" data-name="mark"><a href="#mark">
-                    <p>Mark</p><mark>&lt;mark&gt;</mark>
-                </a></div>
-            <div class="nav-card" data-name="superscript"><a href="#sup">
-                    <p>Sup</p><span>x<sup>2</sup>+b<sup>2</sup> </span>
-                </a></div>
-            <div class="nav-card" data-name="subscript"><a href="#sub">
-                    <p>Sub</p> <span>H<sub>2</sub>O</span>
-                </a></div>
-            <div class="nav-card" data-name="strong"><a href="#strong">
-                    <p>Strong</p><strong>&lt;strong&gt;</strong>
-                </a></div>
-            <div class="nav-card" data-name="preformatted"><a href="#pre">
-                    <p>Pre</p>&lt;pre&gt;
-                </a></div>
-            <div class="nav-card" data-name="strike"><a href="#strike">
-                    <p>Strike</p><strike>&lt;strike&gt;</strike>
-                </a></div>
-            <div class="nav-card" data-name="center"><a href="#center">
-                    <p>Center</p>&lt;center&gt;
-                </a></div>
-            <div class="nav-card" data-name="emphasis"><a href="#em">
-                    <p>Em</p><em>&lt;em&gt;</em>
-                </a></div>
-            <div class="nav-card" data-name="delete"><a href="#del">
-                    <p>Del</p><del>&lt;del&gt;</del>
-                </a></div>
-            <div class="nav-card" data-name="insert"><a href="#ins">
-                    <p>Ins</p><ins>&lt;ins&gt;</ins>
-                </a></div>
-            <div class="nav-card" data-name="small"><a href="#small">
-                    <p>Small</p><small>&lt;small&gt;</small>
-                </a></div>
-            <div class="nav-card" data-name="code"><a href="#code-sec">
-                    <p>Code</p><code>&lt;code&gt;</code>
-                </a></div>
-        </nav>
+            
+            <div class="nav-card" data-name="bold" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Bold</p>
+                        <b>Bold Text</b>
+                    </div>
+                    <div class="card-back">
+                        &lt;b&gt;Text&lt;/b&gt;
+                    </div>
+                </div>
+            </div>
 
-        <div id="contentSections">
-            <section id="bold" class="section" data-name="bold">
-                <h2>Bold Tag (&lt;b&gt;)</h2>
-                <p>Used to make text stand out without semantic importance.</p>
-                <div class="code">&lt;b&gt;Bold Text&lt;/b&gt;</div>
-                <div class="preview"><b>Bold Text</b></div>
-            </section>
+            <div class="nav-card" data-name="italic" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Italic</p>
+                        <i>Italic Text</i>
+                    </div>
+                    <div class="card-back">
+                        &lt;i&gt;Text&lt;/i&gt;
+                    </div>
+                </div>
+            </div>
 
-            <section id="underline" class="section" data-name="underline">
-                <h2>Underline Tag (&lt;u&gt;)</h2>
-                <p>Used to underline text, often for emphasis or links.</p>
-                <div class="code">&lt;u&gt;Underlined Text&lt;/u&gt;</div>
-                <div class="preview"><u>Underlined Text</u></div>
-            </section>
+             <div class="nav-card" data-name="underline" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Underline</p>
+                        <u>Underline Text</u>
+                    </div>
+                    <div class="card-back">
+                        &lt;u&gt;Text&lt;/u&gt;
+                    </div>
+                </div>
+            </div>
+            
+             <div class="nav-card" data-name="strong" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Strong</p>
+                        <strong>Strong Text</strong>
+                    </div>
+                    <div class="card-back">
+                        &lt;strong&gt;Text&lt;/strong&gt;
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-card" data-name="mark" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Mark</p>
+                        <mark>Marked Text</mark>
+                    </div>
+                    <div class="card-back">
+                        &lt;mark&gt;Text&lt;/mark&gt;
+                    </div>
+                </div>
+            </div>
 
-            <section id="mark" class="section" data-name="mark">
-                <h2>Mark Tag (&lt;mark&gt;)</h2>
-                <p>Used to highlight text for reference or emphasis.</p>
-                <div class="code">&lt;mark&gt;Highlighted Text&lt;/mark&gt;</div>
-                <div class="preview"><mark>Highlighted Text</mark></div>
-            </section>
+            <div class="nav-card" data-name="subscript" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Subscript</p>
+                        <span>H<sub>2</sub>O</span>
+                    </div>
+                    <div class="card-back">
+                        H&lt;sub&gt;2&lt;/sub&gt;O
+                    </div>
+                </div>
+            </div>
 
-            <section id="strong" class="section" data-name="strong">
-                <h2>Strong Tag (&lt;strong&gt;)</h2>
-                <p>Indicates strong importance, seriousness, or urgency.</p>
-                <div class="code">&lt;strong&gt;Strong Text&lt;/strong&gt;</div>
-                <div class="preview"><strong>Strong Text</strong></div>
-            </section>
-            <section id="code-sec" class="section" data-name="code">
-                <h2>Preformatted Tag (&lt;pre&gt;)</h2>
-                <p>Preserves whitespace and line breaks, often used for code blocks.</p>
-               <div class="code">
-                <pre>
+            <div class="nav-card" data-name="superscript" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Superscript</p>
+                        <span>x<sup>2</sup>+b <sup>2</sup></span>
+                    </div>
+                    <div class="card-back">
+                        x&lt;sup&gt;2&lt;/sup&gt;+b &lt;sup&gt;2&lt;/sup&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-card" data-name="linebreak" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Line Break</p>
+                        line1<br>line2
+            </div>
+                    <div class="card-back">
+                        Line1&lt;br&gt;Line2
+                    </div>
+                </div>
+            </div>
+
+             <div class="nav-card" data-name="pre" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Pre</p>
+                        <pre>
+ art:
+  /\_/\ 
+ ( o.o )
+&gt ^ &lt
+                        </pre>
+                    </div>
+                    <div class="card-back">
+                        <pre>
 &lt;pre&gt;
-        Art:
-        / \
-       | o |
-        \ /
+    art:
+     /\_/\ 
+    ( o.o )
+    &gt ^ &lt
 &lt;/pre&gt;
-</pre></div>
-        <div class="preview">
-<pre>
-  Art:
-   / \
-  | o |
-   \ /
-</pre>
-    </div>
-            </section>
-            <section id="strike" class="section" data-name="strike">
-                <h2>Strike Tag (&lt;strike&gt;)</h2>
-                <p>Used to indicate text that is no longer relevant or accurate.</p>
-                <div class="code">&lt;strike&gt;Strikethrough Text&lt;/strike&gt;</div>
-                <div class="preview"><strike>Strikethrough Text</strike></div>
-            </section>
+                    </pre>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="nav-card" data-name="small" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Small</p>
+                        <small>Small Text</small>            
+                    </div>
+                    <div class="card-back">
+                        &lt;small&gt;Text&lt;/small&gt;
+                    </div>
+                </div>
+            </div>
 
-            <section id="center" class="section" data-name="center">
-                <h2>Center Tag (&lt;center&gt;)</h2>
-                <p>Used to center-align text (deprecated in HTML5).</p>
-                <div class="code">&lt;center&gt;Centered Text&lt;/center&gt;</div>
-                <div class="preview"><center>Centered Text</center></div>
-            </section>
-            <section id="emphasis" class="section" data-name="emphasis">
-                <h2>Emphasis Tag (&lt;em&gt;)</h2>
-                <p>Indicates emphasized text, typically rendered in italics.</p>
-                <div class="code">&lt;em&gt;Emphasized Text&lt;/em&gt;</div>
-                <div class="preview"><em>Emphasized Text</em></div>
-            </section>
-            <section id="delete" class="section" data-name="delete">
-                <h2>Delete Tag (&lt;del&gt;)</h2>
-                <p>Indicates text that has been deleted or is no longer accurate.</p>
-                <div class="code">&lt;del&gt;Deleted Text&lt;/del&gt;</div>
-                <div class="preview"><del>Deleted Text</del></div>
-            </section>
-            <section id="insert" class="section" data-name="insert">
-                <h2>Insert Tag (&lt;ins&gt;)</h2>
-                <p>Indicates text that has been inserted or added.</p>
-                <div class="code">&lt;ins&gt;Inserted Text&lt;/ins&gt;</div>
-                <div class="preview"><ins>Inserted Text</ins></div>
-            </section>
-            <section id="small" class="section" data-name="small">
-                <h2>Small Tag (&lt;small&gt;)</h2>
-                <p>Used to indicate smaller text, often for fine print or disclaimers.</p>
-                <div class="code">&lt;small&gt;Small Text&lt;/small&gt;</div>
-                <div class="preview"><small>Small Text</small></div>
-            </section>
-            <section id="italic" class="section" data-name="italic">
-                <h2>Italic Tag (&lt;i&gt;)</h2>
-                <p>Used for technical terms, phrases from other languages, etc.</p>
-                <div class="code">&lt;i&gt;Italic Text&lt;/i&gt;</div>
-                <div class="preview"><i>Italic Text</i></div>
-            </section>
+             <div class="nav-card" data-name="big" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Big</p>
+                        <big>Big Text</big>
+                    </div>
+                    <div class="card-back">
+                        &lt;big&gt;Text&lt;/big&gt;
+                    </div>
+                </div>
+            </div>
 
-            <section id="sup" class="section" data-name="superscript">
-                <h2>Superscript (&lt;sup&gt;)</h2>
-                <p>Renders text half a character above the normal line.</p>
-                <div class="code">a&lt;sup&gt;2&lt;/sup&gt;</div>
-                <div class="preview">a<sup>2</sup></div>
-            </section>
+            <div class="nav-card" data-name="delete" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Delete</p>
+                        <del>Deleted Text</del>
+                    </div>
+                    <div class="card-back">
+                        &lt;del&gt;Text&lt;/del&gt;
+                    </div>
+                </div>
+            </div>
 
-        </div>
+                <div class="nav-card" data-name="insert" onclick="toggleFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <p>Insert</p>
+                            <ins>Inserted Text</ins>  
+                        </div>
+                        <div class="card-back">
+                            &lt;ins&gt;Text&lt;/ins&gt;
+                        </div>
+                    </div>
+                </div>
+                    <div class="nav-card" data-name="cite" onclick="toggleFlip(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <p>Cite</p>
+                                <cite>Cited Text</cite>
+                            </div>
+                            <div class="card-back">
+                                &lt;cite&gt;Text&lt;/cite&gt;
+                            </div>
+                        </div>
+                    </div>
+
+<!-- code -->
+ <div class="nav-card" data-name="code" onclick="toggleFlip(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p>Code</p>
+                        <code>Code Text</code>
+                    </div>
+                    <div class="card-back">
+                        &lt;code&gt;Text&lt;/code&gt;
+                    </div>
+                </div>
+
+
+
+
+
+        </nav>
 
         <footer>© Techno IT Computer Institute, 2026</footer>
     </div>
 
     <script>
+        // Function to flip the card
+        function toggleFlip(card) {
+            card.classList.toggle('is-flipped');
+        }
+
+        // Search Filter Logic
         function filterTags() {
             let input = document.getElementById('tagSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('nav-card');
-            let sections = document.getElementsByClassName('section');
 
-            // Filter Cards
             for (let i = 0; i < cards.length; i++) {
                 let name = cards[i].getAttribute('data-name');
                 if (name.includes(input)) {
@@ -340,19 +375,8 @@
                     cards[i].classList.add('hidden');
                 }
             }
-
-            // Filter Sections
-            for (let j = 0; j < sections.length; j++) {
-                let secName = sections[j].getAttribute('data-name');
-                if (secName.includes(input)) {
-                    sections[j].classList.remove('hidden');
-                } else {
-                    sections[j].classList.add('hidden');
-                }
-            }
         }
     </script>
 
 </body>
-
 </html>
