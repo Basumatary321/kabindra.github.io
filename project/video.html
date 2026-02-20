@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Video Tag Tutorial</title>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ===== BODY ===== */
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f5f9;
+    line-height:1.6;
+}
+
+/* ===== HEADER ===== */
+header{
+    background:#0077cc;
+    color:white;
+    text-align:center;
+    padding:20px 10px;
+}
+
+header h1{
+    font-size:28px;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:20px auto;
+}
+
+/* ===== SECTION CARD ===== */
+.section{
+    background:white;
+    margin-bottom:20px;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* ===== CODE BOX ===== */
+.code{
+    background:#1e1e1e;
+    color:#00ff88;
+    padding:15px;
+    border-radius:6px;
+    overflow-x:auto;
+    margin-top:10px;
+    font-family:monospace;
+    font-size:14px;
+}
+
+/* ===== PREVIEW ===== */
+.preview{
+    margin-top:15px;
+    border:2px dashed #ccc;
+    padding:15px;
+    text-align:center;
+}
+
+/* Responsive Video */
+video{
+    width:100%;
+    max-width:600px;
+    height:auto;
+    border-radius:6px;
+}
+
+/* ===== TABLE ===== */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th, td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:left;
+}
+
+th{
+    background:#0077cc;
+    color:white;
+}
+
+/* ===== MOBILE DESIGN ===== */
+@media (max-width:768px){
+
+    header h1{
+        font-size:22px;
+    }
+
+    .section{
+        padding:15px;
+    }
+
+    .code{
+        font-size:13px;
+    }
+
+}
+
+@media (max-width:480px){
+
+    header{
+        padding:15px 5px;
+    }
+
+    header h1{
+        font-size:20px;
+    }
+
+    table, th, td{
+        font-size:13px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>HTML Video Tag</h1>
+<p>Learn step-by-step with live examples</p>
+</header>
+
+<div class="container">
+
+<!-- Step 1 -->
+<div class="section">
+<h2>Step 1: What is Video Tag?</h2>
+<p>
+The <b>&lt;video&gt;</b> tag allows you to add videos directly into your webpage
+without using external players.
+</p>
+</div>
+
+<!-- Step 2 -->
+<div class="section">
+<h2>Step 2: Basic Syntax</h2>
+
+<div class="code">
+&lt;video src="video.mp4" controls&gt;&lt;/video&gt;
+</div>
+
+<ul>
+<li><b>src</b> → video file path</li>
+<li><b>controls</b> → play/pause buttons</li>
+</ul>
+
+</div>
+
+<!-- Step 3 -->
+<div class="section">
+<h2>Step 3: Example with Preview</h2>
+
+<div class="code">
+&lt;video controls&gt;
+   &lt;source src="sample.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+</div>
+
+<div class="preview">
+<video controls>
+<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+Your browser does not support video.
+</video>
+</div>
+
+</div>
+
+<!-- Step 4 -->
+<div class="section">
+<h2>Step 4: Important Attributes</h2>
+
+<table>
+<tr>
+<th>Attribute</th>
+<th>Use</th>
+</tr>
+<tr>
+<td>controls</td>
+<td>Show video controls</td>
+</tr>
+<tr>
+<td>autoplay</td>
+<td>Video plays automatically</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>Repeat video continuously</td>
+</tr>
+<tr>
+<td>muted</td>
+<td>Start without sound</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>Show thumbnail image</td>
+</tr>
+</table>
+
+</div>
+
+<!-- Step 5 -->
+<div class="section">
+<h2>Step 5: Autoplay Example</h2>
+
+<div class="code">
+&lt;video autoplay muted loop&gt;
+   &lt;source src="sample.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+</div>
+
+<div class="preview">
+<video autoplay muted loop>
+<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+</video>
+</div>
+
+</div>
+
+<!-- Step 6 -->
+<div class="section">
+<h2>Step 6: Best Practices</h2>
+
+<ul>
+<li>Use MP4 format for maximum browser support</li>
+<li>Keep video size optimized</li>
+<li>Always include fallback text</li>
+<li>Avoid autoplay with sound on mobile</li>
+</ul>
+
+</div>
+
+</div>
+
+</body>
+  </html>
