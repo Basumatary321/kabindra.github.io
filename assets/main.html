@@ -373,10 +373,15 @@
     white-space: nowrap;               /* Prevent line break */
 }
 
-/* Outline Text */
-.w-content h2:nth-child(1) {
+.w-content h2.stroke{
     color: transparent;
-    -webkit-text-stroke: 1px #b6be6a;
+    -webkit-text-stroke: 1px #fff;
+    z-index: 1;
+}
+
+.w-content h2.fill{
+    color: rgb(11,120,246);
+    z-index: 2;
 }
 
 /* Water Animation Text */
@@ -636,5 +641,6 @@
 
 
 </html>
+
 
 
