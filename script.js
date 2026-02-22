@@ -125,16 +125,35 @@ openTab.addEventListener("click", () => {
 
     projectLists.forEach(list => {
       const projectItems = list.querySelectorAll('li');
+      let visibleCount = 0;
 
       projectItems.forEach(item => {
         const linkText = item.querySelector('a').textContent.toLowerCase();
 
         if (linkText.includes(searchTerm)) {
           item.classList.remove('hidden');
+          visibleCount++;
         } else {
           item.classList.add('hidden');
         }
       });
+
+      // Find the h3 heading that precedes this project list
+      let heading = list.previousElementSibling;
+      while (heading && heading.tagName !== 'H3') {
+        heading = heading.previousElementSibling;
+      }
+
+      // Show/hide the heading based on whether there are visible items
+      if (heading) {
+        if (visibleCount > 0) {
+          heading.classList.remove('hidden');
+          heading.style.display = '';
+        } else {
+          heading.classList.add('hidden');
+          heading.style.display = 'none';
+        }
+      }
     });
   }
 

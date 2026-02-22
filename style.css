@@ -385,6 +385,10 @@ main {
     display: none;
 }
 
+.sidebar h3.hidden {
+    display: none;
+}
+
  /* --- 8. RESPONSIVE DESIGN (MOBILE) --- */
  @media (max-width: 768px) {
      .container {
