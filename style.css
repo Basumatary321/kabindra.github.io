@@ -9,10 +9,10 @@
  :root {
      --sidebar-width: 300px;
      /* --header-bg: linear-gradient(135deg, #1741fa 0%, #f8101b 100%); */
-     --header-bg: #2563eb; 
+     --header-bg: linear-gradient(135deg, #007bff,#00c6ff); 
      --nav-bg: #182439;
      --primary-green: #10b981;
-     --active-green: #059669;
+       --active-green: #05548b;
      --sidebar-bg: #1a202c;
      --sidebar-hover: #2d3748;
      --text-primary: #f7fafc;
@@ -160,7 +160,7 @@
  .sidebar h3 {
      font-size: 13px;
      /* background: linear-gradient(155deg,#0a12ea 0%, #820202 100%); */
-   background-color: var(--header-bg);  
+   background-color: var(--primary-green);  
      padding: 10px;
      margin: 15px 0 10px 0;
      text-align: center;
@@ -344,12 +344,12 @@ main {
     letter-spacing: 0.5px;
     box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
     vertical-align: middle;
-    animation: badgePulse 2s infinite;
+    animation: badgePulse 1.5s infinite;
 }
 
 @keyframes badgePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0%, 100% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
 }
 
 /* --- 9. SEARCH CONTAINER STYLING --- */
@@ -522,6 +522,7 @@ main {
         margin-right: 10px;
     }
 }
+
 
 
 
