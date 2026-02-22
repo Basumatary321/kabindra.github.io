@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -176,30 +176,6 @@ without using external players.
 </ul>
 
 </div>
-
-<!-- Step 3 -->
-<div class="section">
-<h2>Example with Preview</h2>
-
-<div class="code">
-&lt;video controls&gt;<br>
-   &lt;source src="sample.mp4" type="video/mp4"&gt; <br>
-&lt;/video&gt;
-</div>
-
-<div class="preview">
-<video controls poster="../images/thumbnail.png">
-<source src="../images/resource/videosm.mp4" type="video/mp4">
-Your browser does not support video.
-</video>
-</div>
-
-</div>
-
-<!-- Step 4 -->
-<div class="section">
-<h2>Important Attributes</h2>
-
 <table>
 <tr>
 <th>Attribute</th>
@@ -226,6 +202,47 @@ Your browser does not support video.
 <td>Show thumbnail image</td>
 </tr>
 </table>
+<!-- Step 3 -->
+<div class="section">
+<h2>Example with Preview</h2>
+
+<div class="code">
+&lt;video controls&gt;<br>
+   &lt;source src="sample.mp4" type="video/mp4"&gt; <br>
+&lt;/video&gt;
+</div>
+
+<div class="preview">
+<video controls>
+<source src="../images/resource/videosm.mp4" type="video/mp4">
+Your browser does not support video.
+</video>
+</div>
+
+</div>
+<div class="section">
+<h2>Video Thumbnail</h2>
+
+<div class="code">
+&lt;video controls poster="../images/thumbnail.png"&gt;<br>
+   &lt;source src="sample.mp4" type="video/mp4"&gt; <br>
+&lt;/video&gt;
+</div>
+
+<div class="preview">
+<video controls poster="../images/thumbnail.png">
+<source src="../images/resource/videosm.mp4" type="video/mp4">
+Your browser does not support video.
+</video>
+</div>
+
+</div>
+
+<!-- Step 4 -->
+<div class="section">
+<h2>Important Attributes</h2>
+
+
 
 </div>
 
@@ -241,7 +258,24 @@ Your browser does not support video.
 
 <div class="preview">
 <video autoplay muted loop>
-<source src="../assets/vid4.mp4" type="video/mp4">
+<source src="../images//resource/videosm.mp4" type="video/mp4">
+</video>
+</div>
+
+</div>
+<!-- Step 5 -->
+<div class="section">
+<h2>Autoplay Example</h2>
+
+<div class="code">
+&lt;video controls autoplay muted loop&gt;<br>
+   &lt;source src="sample.mp4" type="video/mp4"&gt; <br>
+&lt;/video&gt;
+</div>
+
+<div class="preview">
+<video controls muted autoplay loop>
+<source src="../images/resource/videosm.mp4" type="video/mp4">
 </video>
 </div>
 
@@ -264,5 +298,3 @@ Your browser does not support video.
 
 </body>
   </html>
-
-
