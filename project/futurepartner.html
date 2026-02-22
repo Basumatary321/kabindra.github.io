@@ -1,0 +1,272 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Partner Selector 😄</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:"Roboto",sans-serif;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  padding:20px;
+  color:#fff;
+}
+
+/* MAIN WRAPPER */
+.container{
+  width:100%;
+  max-width:900px;
+  text-align:center;
+}
+
+/* TITLE */
+h2{
+  margin-bottom:20px;
+}
+
+/* TOGGLES GRID (Mobile Responsive) */
+.toggle-area{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  margin-bottom:25px;
+}
+
+/* TOGGLE */
+.toggle-container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);
+  padding:10px;
+  border-radius:12px;
+}
+
+.toggle{
+  visibility:hidden;
+}
+
+.label{
+  background:#ccc;
+  border-radius:50px;
+  cursor:pointer;
+  width:70px;
+  height:36px;
+  margin:0 12px;
+  position:relative;
+  transition:.3s;
+}
+
+.label:hover{
+  transform:scale(1.1);
+}
+
+/* COLORS */
+#beautiful:checked + .label{background:#ff6ec7;}
+#intelligent:checked + .label{background:#3498db;}
+#dumb:checked + .label{background:#f39c12;}
+#ugly:checked + .label{background:#7f8c8d;}
+
+.ball{
+  background:#fff;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  position:absolute;
+  top:3px;
+  left:3px;
+  transition:.3s;
+}
+
+.toggle:checked + .label .ball{
+  transform:translateX(34px);
+}
+
+/* MEME CARD */
+.meme-card{
+  background:#fff;
+  color:#333;
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  transition:.4s;
+  animation:fadeIn .4s ease;
+}
+
+.meme-title{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.meme-text{
+  font-size:18px;
+  white-space:pre-line;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* MOBILE OPTIMIZATION */
+@media(max-width:500px){
+
+  h2{
+    font-size:20px;
+  }
+
+  .meme-card{
+    padding:18px;
+  }
+
+  .meme-text{
+    font-size:16px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>What do you want your future partner to be like? 😄</h2>
+
+<div class="toggle-area">
+
+<div class="toggle-container">
+<input type="checkbox" id="beautiful" class="toggle">
+<label for="beautiful" class="label"><div class="ball"></div></label>
+<span>Beautiful</span>
+</div>
+
+<div class="toggle-container">
+<input type="checkbox" id="intelligent" class="toggle">
+<label for="intelligent" class="label"><div class="ball"></div></label>
+<span>Intelligent</span>
+</div>
+
+<div class="toggle-container">
+<input type="checkbox" id="dumb" class="toggle">
+<label for="dumb" class="label"><div class="ball"></div></label>
+<span>Dumb</span>
+</div>
+
+<div class="toggle-container">
+<input type="checkbox" id="ugly" class="toggle">
+<label for="ugly" class="label"><div class="ball"></div></label>
+<span>Ugly</span>
+</div>
+
+</div>
+
+<!-- MEME CARD -->
+<div class="meme-card">
+  <div class="meme-title">Relationship Result 💌</div>
+  <div id="memeText" class="meme-text">
+Choose traits to reveal your destiny 😆
+  </div>
+</div>
+
+</div>
+
+<script>
+
+/* ELEMENTS */
+const beautiful=document.getElementById("beautiful");
+const intelligent=document.getElementById("intelligent");
+const dumb=document.getElementById("dumb");
+const ugly=document.getElementById("ugly");
+const memeText=document.getElementById("memeText");
+
+/* SOUND */
+const clickSound=new Audio(
+"https://www.soundjay.com/buttons/sounds/button-16.mp3"
+);
+
+/* MAIN LOGIC */
+function applyLogic(clicked){
+
+clickSound.currentTime=0;
+clickSound.play();
+
+if(clicked===beautiful){
+  if(beautiful.checked){
+    dumb.checked=true;
+    intelligent.checked=false;
+    ugly.checked=false;
+  }else dumb.checked=false;
+}
+
+if(clicked===intelligent){
+  if(intelligent.checked){
+    ugly.checked=true;
+    beautiful.checked=false;
+    dumb.checked=false;
+  }else ugly.checked=false;
+}
+
+if(clicked===dumb){
+  if(dumb.checked){
+    beautiful.checked=true;
+    intelligent.checked=false;
+    ugly.checked=false;
+  }else beautiful.checked=false;
+}
+
+if(clicked===ugly){
+  if(ugly.checked){
+    intelligent.checked=true;
+    beautiful.checked=false;
+    dumb.checked=false;
+  }else intelligent.checked=false;
+}
+
+updateMeme();
+}
+
+/* MEME CARD CONTENT */
+function updateMeme(){
+
+if(beautiful.checked && dumb.checked){
+memeText.innerText =
+"✨ Beautiful but Dumb 😅\n\nYou will win arguments...\nbut lose logic.";
+}
+else if(intelligent.checked && ugly.checked){
+memeText.innerText =
+"🧠 Intelligent but Ugly 🤓\n\nDeep conversations...\nNo Instagram photos.";
+}
+else{
+memeText.innerText =
+"Choose traits to reveal your destiny 😆";
+}
+}
+
+/* EVENTS */
+document.querySelectorAll(".toggle").forEach(toggle=>{
+toggle.addEventListener("change",function(){
+applyLogic(this);
+});
+});
+
+</script>
+
+</body>
+</html>
