@@ -1,4 +1,4 @@
- const links = document.querySelectorAll(".project-list a");
+  const links = document.querySelectorAll(".project-list a");
 const iframe = document.getElementById("viewer");
 const pageTitle = document.getElementById("pageTitle");
 const openTab = document.getElementById("openTab");
@@ -15,8 +15,26 @@ links.forEach(link => {
 
         links.forEach(l => l.classList.remove("active"));
         link.classList.add("active");
+        
+
+        ensureHeaderVisible();
     });
 });
+
+
+function ensureHeaderVisible() {
+    const header = document.querySelector('header');
+    if (header) {
+        header.style.display = 'flex !important';
+        header.style.visibility = 'visible';
+        header.style.opacity = '1';
+    }
+}
+
+
+setInterval(() => {
+    ensureHeaderVisible();
+}, 500);
 
 openTab.addEventListener("click", () => {
     if(currentPage){
@@ -26,12 +44,12 @@ openTab.addEventListener("click", () => {
     }
 });
 
-// Sidebar sizing helper (auto-scroll disabled)
+
 (function(){
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return; // nothing to do
 
-  // Keep sidebar height in sync with header/footer so overflow is consistent (no auto-scroll)
+
   const header = document.querySelector('header');
   const footer = document.querySelector('footer');
 
@@ -86,29 +104,31 @@ openTab.addEventListener("click", () => {
     });
   });
 
-  // Close on resize to desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth > 600) closeSidebar();
   });
 
 })();
 
-/* Project Search/Filter Functionality */
-(function(){
+
+ /* Project Search/Filter Functionality */
+(function () {
+
   const searchInput = document.querySelector('.project-search');
   const projectLists = document.querySelectorAll('.project-list');
-  
+
   if (!searchInput || projectLists.length === 0) return;
-  
-  searchInput.addEventListener('keyup', function() {
-    const searchTerm = this.value.toLowerCase();
-    
+
+  // 🔹 Filter function (reusable)
+  function filterProjects() {
+    const searchTerm = searchInput.value.toLowerCase();
+
     projectLists.forEach(list => {
       const projectItems = list.querySelectorAll('li');
-      
+
       projectItems.forEach(item => {
         const linkText = item.querySelector('a').textContent.toLowerCase();
-        
+
         if (linkText.includes(searchTerm)) {
           item.classList.remove('hidden');
         } else {
@@ -116,10 +136,15 @@ openTab.addEventListener("click", () => {
         }
       });
     });
+  }
+
+
+  searchInput.addEventListener('input', filterProjects);
+
+ 
+  searchInput.addEventListener('focus', function () {
+    this.value = '';
+    filterProjects(); // refresh immediately
   });
-  
-  // Clear search on focus for better UX
-  searchInput.addEventListener('focus', function() {
-    this.select();
-  });
+
 })();
