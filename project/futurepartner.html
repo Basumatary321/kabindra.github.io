@@ -9,6 +9,7 @@
 
 <style>
 
+/* RESET */
 *{
   box-sizing:border-box;
   margin:0;
@@ -21,40 +22,42 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(135deg,#667eea,#764ba2);
+  background:linear-gradient(135deg,#1672fc,#28034d);
   padding:20px;
   color:#fff;
 }
 
-/* MAIN WRAPPER */
 .container{
   width:100%;
-  max-width:900px;
+  max-width:1000px;
   text-align:center;
 }
 
-/* TITLE */
 h2{
-  margin-bottom:20px;
+  margin-bottom:25px;
+  font-size:clamp(1rem, 2.5vw, 4rem);
 }
 
-/* TOGGLES GRID (Mobile Responsive) */
 .toggle-area{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
-  margin-bottom:25px;
+  gap:15px;
+  margin-bottom:30px;
 }
 
-/* TOGGLE */
 .toggle-container{
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:start;
   background:rgba(255,255,255,0.12);
   backdrop-filter:blur(10px);
-  padding:10px;
-  border-radius:12px;
+  padding:12px;
+  border-radius:15px;
+  transition:.3s;
+}
+
+.toggle-container:hover{
+  transform:scale(1.05);
 }
 
 .toggle{
@@ -72,16 +75,6 @@ h2{
   transition:.3s;
 }
 
-.label:hover{
-  transform:scale(1.1);
-}
-
-/* COLORS */
-#beautiful:checked + .label{background:#ff6ec7;}
-#intelligent:checked + .label{background:#3498db;}
-#dumb:checked + .label{background:#f39c12;}
-#ugly:checked + .label{background:#7f8c8d;}
-
 .ball{
   background:#fff;
   width:30px;
@@ -93,14 +86,22 @@ h2{
   transition:.3s;
 }
 
+/* ACTIVE COLORS */
+#beautiful:checked + .label{background:#ff6ec7;}
+#ugly:checked + .label{background:#7f8c8d;}
+#intelligent:checked + .label{background:#3498db;}
+#educated:checked + .label{background:#2ecc71;}
+#uneducated:checked + .label{background:#e74c3c;}
+#cantcook:checked + .label{background:#f39c12;}
+
 .toggle:checked + .label .ball{
   transform:translateX(34px);
 }
 
-/* MEME CARD */
 .meme-card{
-  background:#fff;
-  color:#333;
+  background:transparent;
+  backdrop-filter: blur(1px);
+  color:#ffffff;
   border-radius:18px;
   padding:25px;
   box-shadow:0 15px 40px rgba(0,0,0,0.3);
@@ -108,36 +109,20 @@ h2{
   animation:fadeIn .4s ease;
 }
 
-.meme-title{
-  font-size:22px;
-  margin-bottom:10px;
-}
-
 .meme-text{
   font-size:18px;
   white-space:pre-line;
 }
 
-/* ANIMATION */
 @keyframes fadeIn{
   from{opacity:0;transform:translateY(20px);}
   to{opacity:1;transform:translateY(0);}
 }
 
-/* MOBILE OPTIMIZATION */
 @media(max-width:500px){
-
-  h2{
-    font-size:20px;
-  }
-
-  .meme-card{
-    padding:18px;
-  }
-
-  .meme-text{
-    font-size:16px;
-  }
+  h2{font-size:20px;}
+  .meme-card{padding:18px;}
+  .meme-text{font-size:16px;}
 }
 
 </style>
@@ -154,112 +139,216 @@ h2{
 <div class="toggle-container">
 <input type="checkbox" id="beautiful" class="toggle">
 <label for="beautiful" class="label"><div class="ball"></div></label>
-<span>Beautiful</span>
-</div>
-
-<div class="toggle-container">
-<input type="checkbox" id="intelligent" class="toggle">
-<label for="intelligent" class="label"><div class="ball"></div></label>
-<span>Intelligent</span>
-</div>
-
-<div class="toggle-container">
-<input type="checkbox" id="dumb" class="toggle">
-<label for="dumb" class="label"><div class="ball"></div></label>
-<span>Dumb</span>
+<span>नायनो समायना <br> (Beautiful)</span>
 </div>
 
 <div class="toggle-container">
 <input type="checkbox" id="ugly" class="toggle">
 <label for="ugly" class="label"><div class="ball"></div></label>
-<span>Ugly</span>
+<span>महर गाज्रि <br>(Ugly)</span>
+</div>
+
+<div class="toggle-container">
+<input type="checkbox" id="intelligent" class="toggle">
+<label for="intelligent" class="label"><div class="ball"></div></label>
+<span>जेरावबो आखा फाखा <br>(Intelligent)</span>
+</div>
+
+<div class="toggle-container">
+<input type="checkbox" id="educated" class="toggle">
+<label for="educated" class="label"><div class="ball"></div></label>
+<span>लेखा गोरों <br> (Educated)</span>
+</div>
+
+<div class="toggle-container">
+<input type="checkbox" id="uneducated" class="toggle">
+<label for="uneducated" class="label"><div class="ball"></div></label>
+<span>लेखा रोङि <br>(Uneducated)</span>
+</div>
+
+<div class="toggle-container">
+<input type="checkbox" id="cantcook" class="toggle">
+<label for="cantcook" class="label"><div class="ball"></div></label>
+<span>संनो रोंङा <br>Can't Cook 🍳</span>
 </div>
 
 </div>
 
-<!-- MEME CARD -->
 <div class="meme-card">
-  <div class="meme-title">Relationship Result 💌</div>
-  <div id="memeText" class="meme-text">
+   <div id="memeText" class="meme-text">
 Choose traits to reveal your destiny 😆
-  </div>
+   </div>
 </div>
 
 </div>
 
 <script>
 
-/* ELEMENTS */
-const beautiful=document.getElementById("beautiful");
-const intelligent=document.getElementById("intelligent");
-const dumb=document.getElementById("dumb");
-const ugly=document.getElementById("ugly");
-const memeText=document.getElementById("memeText");
+const beautiful = document.getElementById("beautiful");
+const ugly = document.getElementById("ugly");
+const intelligent = document.getElementById("intelligent");
+const educated = document.getElementById("educated");
+const uneducated = document.getElementById("uneducated");
+const cantcook = document.getElementById("cantcook");
+const memeText = document.getElementById("memeText");
 
-/* SOUND */
-const clickSound=new Audio(
+const clickSound = new Audio(
 "https://www.soundjay.com/buttons/sounds/button-16.mp3"
 );
 
-/* MAIN LOGIC */
 function applyLogic(clicked){
 
-clickSound.currentTime=0;
+clickSound.currentTime = 0;
 clickSound.play();
 
-if(clicked===beautiful){
-  if(beautiful.checked){
-    dumb.checked=true;
-    intelligent.checked=false;
-    ugly.checked=false;
-  }else dumb.checked=false;
+/* BEAUTIFUL */
+if(clicked === beautiful && beautiful.checked){
+  intelligent.checked = false;
+  educated.checked = false;
+  ugly.checked = false;
+  cantcook.checked=true;
 }
 
-if(clicked===intelligent){
-  if(intelligent.checked){
-    ugly.checked=true;
-    beautiful.checked=false;
-    dumb.checked=false;
-  }else ugly.checked=false;
+/* INTELLIGENT */
+if(clicked === intelligent && intelligent.checked){
+  beautiful.checked = false;
+  cantcook.checked=false;
+  educated.checked=true;
+  ugly.checked=true;
 }
 
-if(clicked===dumb){
-  if(dumb.checked){
-    beautiful.checked=true;
-    intelligent.checked=false;
-    ugly.checked=false;
-  }else beautiful.checked=false;
+/* EDUCATED */
+if(clicked === educated && educated.checked){
+  beautiful.checked = false;
+  uneducated.checked = false;
+  ugly.checked=true;
 }
 
-if(clicked===ugly){
-  if(ugly.checked){
-    intelligent.checked=true;
-    beautiful.checked=false;
-    dumb.checked=false;
-  }else intelligent.checked=false;
+/* UNEDUCATED */
+if(clicked === uneducated && uneducated.checked){
+  educated.checked = false;
+  intelligent.checked=false;
+}
+
+/* UGLY */
+if(clicked === ugly && ugly.checked){
+  beautiful.checked = false;
+}
+/* cook */
+if(clicked === cantcook && cantcook.checked){
+ intelligent.checked=false;
 }
 
 updateMeme();
 }
 
-/* MEME CARD CONTENT */
 function updateMeme(){
 
-if(beautiful.checked && dumb.checked){
+/* ---------- 3 TRAIT COMBINATIONS FIRST ---------- */
+
+if(beautiful.checked && uneducated.checked && cantcook.checked){
 memeText.innerText =
-"✨ Beautiful but Dumb 😅\n\nYou will win arguments...\nbut lose logic.";
+"🌸 Beautiful, Uneducated & Can't Cook 🍳\n\nFull maintenance mode activated.\nLove is blind… and hungry.";
 }
-else if(intelligent.checked && ugly.checked){
+
+else if(intelligent.checked && educated.checked && ugly.checked){
 memeText.innerText =
-"🧠 Intelligent but Ugly 🤓\n\nDeep conversations...\nNo Instagram photos.";
+"🧠🎓 Genius but Ugly 😅\n\nBrains level: Einstein\nInstagram level: Airplane mode.";
 }
+
+else if(beautiful.checked && intelligent.checked && educated.checked){
+memeText.innerText =
+"🔥 Impossible Combo!\n\nBeauty + Brains + Degree?\nMain character energy!";
+}
+
+/* ---------- 2 TRAIT COMBINATIONS ---------- */
+
+else if(beautiful.checked && cantcook.checked){
+memeText.innerText =
+"✨ Beautiful but Can't Cook 🍳\n\nSwiggy & Zomato subscription required.";
+}
+
+else if(beautiful.checked && uneducated.checked){
+memeText.innerText =
+"🌸 Beautiful but No Degree 🎓❌\n\nHeart over homework.";
+}
+
+else if(beautiful.checked && ugly.checked){
+memeText.innerText =
+"🤯 Quantum Partner\n\nSimultaneously Beautiful & Ugly.\nSchrödinger approves.";
+}
+
+else if(intelligent.checked && educated.checked){
+memeText.innerText =
+"🧠🎓 Brainy Powerhouse!\n\nFuture CEO vibes.";
+}
+
+else if(intelligent.checked && cantcook.checked){
+memeText.innerText =
+"🧠 Smart but Can't Cook 🍳\n\nWill calculate recipe ratios\nbut burn the kitchen.";
+}
+
+else if(educated.checked && cantcook.checked){
+memeText.innerText =
+"🎓 Degree Holder but Can't Cook 🍜\n\nMaster's in theory,\nPhD in Maggi.";
+}
+
+else if(uneducated.checked && cantcook.checked){
+memeText.innerText =
+"😅 No Degree & Can't Cook\n\nLife skills DLC not installed.";
+}
+
+else if(ugly.checked && cantcook.checked){
+memeText.innerText =
+"😬 Tough Combo!\n\nPersonality better be legendary.";
+}
+
+else if(ugly.checked && intelligent.checked){
+memeText.innerText =
+"🧠 Smart but Not Attractive 😅\n\nDeep talks, no filters.";
+}
+
+/* ---------- SINGLE TRAITS ---------- */
+
+else if(beautiful.checked){
+memeText.innerText =
+"😍 Beautiful Partner\n\nLooks level: Legendary.";
+}
+
+else if(intelligent.checked){
+memeText.innerText =
+"🤓 Intelligent Partner\n\nDeep talks at 2AM.";
+}
+
+else if(educated.checked){
+memeText.innerText =
+"📚 Educated Partner\n\nDegree unlocked.";
+}
+
+else if(uneducated.checked){
+memeText.innerText =
+"🎒 Street Smart Mode\n\nLife > Books.";
+}
+
+else if(ugly.checked){
+memeText.innerText =
+"😅 Personality matters more.";
+}
+
+else if(cantcook.checked){
+memeText.innerText =
+"🍳 Can't Cook\n\nMaggi specialist only.";
+}
+
+/* ---------- NOTHING SELECTED ---------- */
+
 else{
 memeText.innerText =
 "Choose traits to reveal your destiny 😆";
 }
+
 }
 
-/* EVENTS */
 document.querySelectorAll(".toggle").forEach(toggle=>{
 toggle.addEventListener("change",function(){
 applyLogic(this);
