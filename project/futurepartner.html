@@ -1,9 +1,19 @@
- <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Future Partner Selector 😄</title>
+<meta property="og:title" content="Future Partner Selector 😄">
+<meta property="og:description" content="This page is specially designed to help you select your ideal future partner based on traits you desire.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://basumatary321.github.io/kabindra.github.io/project/futurepartner.html">
+<meta property="og:image" content="https://basumatary321.github.io/kabindra.github.io/images/meta/fahh.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Future Partner Selector 😄">
+<meta name="twitter:description" content="This page is specially designed to help you select your ideal future partner based on traits you desire.">
+<meta name="twitter:image" content="https://basumatary321.github.io/kabindra.github.io/images/meta/fahh.jpg">
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
@@ -56,9 +66,7 @@ h2{
   transition:.3s;
 }
 
-.toggle-container:hover{
-  transform:scale(1.05);
-}
+
 
 .toggle{
   visibility:hidden;
@@ -169,14 +177,14 @@ h2{
 <div class="toggle-container">
 <input type="checkbox" id="cantcook" class="toggle">
 <label for="cantcook" class="label"><div class="ball"></div></label>
-<span>संनो रोंङा <br>Can't Cook 🍳</span>
+<span>खामानियाव उदाय रोंङा <br>Can't Cook 🍳</span>
 </div>
 
 </div>
 
 <div class="meme-card">
    <div id="memeText" class="meme-text">
-Choose traits to reveal your destiny 😆
+  गोजोवआव होनायखौ बासिना लादो 😆
    </div>
 </div>
 
@@ -193,7 +201,7 @@ const cantcook = document.getElementById("cantcook");
 const memeText = document.getElementById("memeText");
 
 const clickSound = new Audio(
-"https://www.soundjay.com/buttons/sounds/button-16.mp3"
+"../assets/fahh.mp3"
 );
 
 function applyLogic(clicked){
@@ -253,7 +261,7 @@ memeText.innerText =
 
 else if(intelligent.checked && educated.checked && ugly.checked){
 memeText.innerText =
-"🧠🎓 Genius but Ugly 😅\n\nBrains level: Einstein\nInstagram level: Airplane mode.";
+"🧠🎓 Genius but NO Selfie😅\n\nBrains level: Einstein\nInstagram level: Airplane mode.";
 }
 
 else if(beautiful.checked && intelligent.checked && educated.checked){
@@ -265,7 +273,7 @@ memeText.innerText =
 
 else if(beautiful.checked && cantcook.checked){
 memeText.innerText =
-"✨ Beautiful but Can't Cook 🍳\n\nSwiggy & Zomato subscription required.";
+"✨ Beautiful but Can't Cook 🍳\n\nSwiggy & Zomato subscription नि गोनांथि.";
 }
 
 else if(beautiful.checked && uneducated.checked){
@@ -291,6 +299,10 @@ memeText.innerText =
 else if(educated.checked && cantcook.checked){
 memeText.innerText =
 "🎓 Degree Holder but Can't Cook 🍜\n\nMaster's in theory,\nPhD in Maggi.";
+}
+else if(educated.checked && cantcook.checked && ugly.checked){
+memeText.innerText =
+"🎓 Degree Holder but Can't Cook 🍜 average look\n\nMaster's in theory,\nPhD in Maggi.";
 }
 
 else if(uneducated.checked && cantcook.checked){
@@ -320,9 +332,10 @@ memeText.innerText =
 "🤓 Intelligent Partner\n\nDeep talks at 2AM.";
 }
 
-else if(educated.checked){
+
+else if(educated.checked && ugly.checked){
 memeText.innerText =
-"📚 Educated Partner\n\nDegree unlocked.";
+"Officer Wife 👮‍♀️\n\nDegree unlocked.Looks optional";
 }
 
 else if(uneducated.checked){
@@ -344,7 +357,7 @@ memeText.innerText =
 
 else{
 memeText.innerText =
-"Choose traits to reveal your destiny 😆";
+"(Recomended)--> Officer Wife👮‍♂️ \n\n Good looking Optional 😆";
 }
 
 }
