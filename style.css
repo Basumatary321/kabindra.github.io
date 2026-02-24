@@ -193,7 +193,7 @@
      font-size: 13px;
      transition: 0.3s ease;
      border-left: 3px solid transparent;
-     font-weight: 500;
+     font-weight: 200;
  }
 
  .project-list a:hover {
@@ -526,6 +526,7 @@ main {
         margin-right: 10px;
     }
 }
+
 
 
 
