@@ -1,25 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
- <title>HTML fonts </title>
+    <meta charset="UTF-8">
+    <title>HTML Font Tag Guide</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.5; padding: 10px; background-color: #f4f4f9; }
+        .example-box { background: white; border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 25px; }
+        code { background: #eee; padding: 2px 5px; border-radius: 4px; color: #d63384; }
+        .label { font-weight: bold; color: #555; display: block; margin-bottom: 5px; }
+        hr { border: 0; border-top: 1px solid #ccc; margin: 30px 0; }
+    </style>
 </head>
-<body bgcolor="white">
-<h1>HTML font tag</h1>
-<hr>
-<font face="Times New Roman" size="6">
-This line uses font face “Times New Roman" and size "6".
-</font><br />
-<font face=" Monotype Corsiva" size="4" color="red">
-This line uses font face "Monotype Corsiva" and size "4" and color "red".
-</font><br />
-<font face="Comic sans MS" size=" 6" color="blue">
-This line uses font face "Comic sans MS" and size "4" and color "blue".
-</font><br />
-<font face="Bradley Hand ITC" size="10" color="green">
-This line uses font face="Bradley Hand ITC" and size "10" and color "green".
-</font><br />
-<font face=" Freestyle Script" size="7" color="violet">
-This line uses font face "Freestyle Script" and size "7" and color "violet".
-</font><br />
+<body>
+
+    <h1>HTML&lt;font&gt; Tag</h1>
+    <p>Follow these step-by-step examples to see how the font tag attributes work individually.</p>
+
+    <div class="example-box">
+        <h3>Step 1: The "size" Attribute</h3>
+        <p>Values range from <b>1</b> (smallest) to <b>7</b> (largest). Default is 3.</p>
+        <div class="label">Code:</div>
+        <code>&lt;font size="1"&gt;Size 1&lt;/font&gt;</code> <br>
+      <code>&lt;font size="3"&gt;Size 3 (Default)&lt;/font&gt;</code><br>
+      <code>&lt;font size="7"&gt;Size 7 (max)&lt;/font&gt;</code>
+        <div class="label" style="margin-top:10px;">Result:</div>
+        <font size="1">Size 1</font> | 
+        <font size="3">Size 3 (Default)</font> | 
+        <font size="6">Size 7 (max)</font>
+    </div>
+
+    <div class="example-box">
+        <h3>Step 2: The "color" Attribute</h3>
+        <p>Accepts color names or Hex codes (#RRGGBB).</p>
+        <div class="label">Code:</div>
+        <code>&lt;font color="red"&gt;i am red&lt;/font&gt;</code><br>
+       <code>&lt;font color="blue"&gt;i am blue&lt;/font&gt;</code><br>
+       <code>&lt;font color="green"&gt;i am green&lt;/font&gt;</code>
+        <div class="label" style="margin-top:10px;">Result:</div>
+        <font color="red">I am Red</font> | 
+        <font color="blue">I am Blue</font> | 
+        <font color="#228B22">I am Forest Green</font>
+    </div>
+
+    <div class="example-box">
+        <h3>Step 3: The "face" Attribute</h3>
+        <p>Defines the typeface (font family) of the text.</p>
+        <div class="label">Code:</div>
+        <code>&lt;font face="arial"&gt;Arial&lt;/font&gt;</code><br><br>
+      <code>&lt;font face="Courier New (Classic Serif)"&gt; Courier New (Classic Serif)&lt;/font&gt;</code><br><br>
+      <code>&lt;font face="Georgia (Classic Serif)"&gt; Georgia (Classic Serif)&lt;/font&gt;</code>
+      
+      
+        <div class="label" style="margin-top:10px;">Result:</div>
+        <font face="Arial">Arial Font</font><br>
+        <font face="Courier New">Courier New (Typewriter)</font><br>
+        <font face="Georgia">Georgia (Classic Serif)</font>
+    </div>
+
+    <hr>
+
+    <h2>Real Use Example: A Retro Banner</h2>
+    <p>Combining all three attributes to create a specific design style.</p>
+    
+    <div class="example-box" style="text-align: center; border: 3px double #000;">
+        <font face="Verdana" size="7" color="darkred">
+            <b>FLASH SALE!</b>
+        </font>
+        <br>
+        <font face="Arial" size="4" color="black">
+            Get 50% off all HTML courses this weekend.
+        </font>
+        <br><br>
+        <font face="Tahoma" size="2" color="blue">
+            <u>Click here to learn more</u>
+        </font>
+    </div>
+
+    <hr>
+
+    <h2>Modern Comparison (CSS vs Font Tag)</h2>
+    <table border="1" cellpadding="10" style="width:100%; border-collapse: collapse; background: white;">
+        <tr style="background: #eee;">
+            <th>Task</th>
+            <th>The Old Way (&lt;font&gt;)</th>
+            <th>The Modern Way (CSS)</th>
+        </tr>
+        <tr>
+            <td>Blue Text</td>
+            <td><code>&lt;font color="blue"&gt;</code></td>
+            <td><code>&lt;span style="color: blue;"&gt;</code></td>
+        </tr>
+        <tr>
+            <td>Large Text</td>
+            <td><code>&lt;font size="5"&gt;</code></td>
+            <td><code>&lt;span style="font-size: 24px;"&gt;</code></td>
+        </tr>
+        <tr>
+            <td>Arial Font</td>
+            <td><code>&lt;font face="Arial"&gt;</code></td>
+            <td><code>&lt;span style="font-family: Arial;"&gt;</code></td>
+        </tr>
+    </table>
+
 </body>
 </html>
