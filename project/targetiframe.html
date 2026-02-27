@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -96,7 +96,7 @@
             color: #38bdf8;
             padding: 10px 15px;
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: clamp(0.5rem, 2.5vw, 1.2rem);
             margin-bottom: 12px;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
         }
@@ -114,6 +114,7 @@
             padding: 4px;
             border-radius: 8px;
             border: 2px solid transparent;
+            font-size: clamp(0.7rem, 2.5vw, 1.2rem);
         }
 
         a:hover {
@@ -126,7 +127,7 @@
             color: #166534;
             padding: 2px 8px;
             border-radius: 4px;
-            font-size: 0.85rem;
+            font-size: clamp(0.7rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
 
@@ -144,7 +145,7 @@
             padding: 12px 20px;
             border-radius: 12px 12px 0 0;
             font-family: monospace;
-            font-size: 0.85rem;
+            font-size: clamp(0.5rem, 2.5vw, 1.2rem);
             border-bottom: 1px solid #334155;
         }
 
@@ -213,8 +214,8 @@
 
     <div class="display-wrapper">
         <div class="iframe-label">
-            &lt;iframe <span class="tag-attr">name</span>=<span class="target-name">"DisplayFrame"</span> src="..."&gt;&lt;/iframe&gt;
-        <span style="float: right; font-size: 18px;">Display 📺</span>
+            &lt;iframe <span class="tag-attr">name</span>=<span class="target-name">"DisplayFrame"</span> src=""&gt; <br>&lt;/iframe&gt;
+        <span style="float: right; font-size: clamp(0.5rem, 2.5vw, 1.2rem);;">Display 📺</span>
         </div>
         <iframe src="about:blank" name="DisplayFrame"></iframe>
     </div>
