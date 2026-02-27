@@ -1,0 +1,223 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Link Targets - Interactive Guide</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #051529;
+            --accent: #10b981;
+            --code-bg: #363738;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #0f172a;
+            text-align: center;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* TABLE STYLING */
+        .table-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* CODE SNIPPETS */
+        .ex {
+            display: block;
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: var(--code-bg);
+            color: #38bdf8;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tag-attr { color: #fbbf24; } /* attribute color */
+        .tag-val { color: #34d399; }  /* value color */
+
+        /* LINKS */
+        a {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            padding: 4px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+            border: 2px solid var(--primary-hover);
+        }
+
+        .tab-label {
+            background: #dcfce7;
+            color: #166534;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* IFRAME DISPLAY AREA */
+        .display-wrapper {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .iframe-label {
+            background: var(--code-bg);
+            color: #94a3b8;
+            padding: 12px 20px;
+            border-radius: 12px 12px 0 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        iframe {
+            width: 100%;
+            height: 450px;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .target-name {
+            color: #44ff16;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HTML Link Targets</h1>
+    <p class="subtitle">Interactive demonstration of how the <code>target</code> attribute behaves.</p>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Example Code & Interaction</th>
+                    <th style="width: 120px;">Attribute</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <code class="ex">&lt;a href="test.html" <span class="tag-attr">target</span>=<span class="tag-val">"_self"</span>&gt;...&lt;/a&gt;</code>
+                        <a href="test.html" target="_self">
+                            Open in the <span class="tab-label">Same Tab</span>
+                        </a>
+                    </td>
+                    <td><code>_self</code></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <code class="ex">&lt;a href="https://google.com" <span class="tag-attr">target</span>=<span class="tag-val">"_blank"</span>&gt;...&lt;/a&gt;</code>
+                        <a href="https://www.google.com" target="_blank">
+                            Open in a <span class="tab-label">New Tab</span>
+                        </a>
+                    </td>
+                    <td><code>_blank</code></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <code class="ex">&lt;a href="index.html" <span class="tag-attr">target</span>=<span class="tag-val">"DisplayFrame"</span>&gt;...&lt;/a&gt;</code>
+                        <a href="https://wikipedia.org" target="DisplayFrame">
+                            Load Wikipedia into <span class="tab-label">Iframe Below</span>
+                        </a>
+                    </td>
+                    <td><code>Custom Name</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="display-wrapper">
+        <div class="iframe-label">
+            &lt;iframe <span class="tag-attr">name</span>=<span class="target-name">"DisplayFrame"</span> src="..."&gt;&lt;/iframe&gt;
+        <span style="float: right; font-size: 18px;">Display 📺</span>
+        </div>
+        <iframe src="about:blank" name="DisplayFrame"></iframe>
+    </div>
+
+</body>
+</html>
