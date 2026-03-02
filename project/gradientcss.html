@@ -1,3 +1,4 @@
+  
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,9 +32,9 @@ h1, h2, h3, h4, h5, h6 {
         .gradient-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
+            /* border-radius: 15px; */
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
 
@@ -56,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
             padding: 25px;
             background: #f8f9fa;
             border-radius: 10px;
-            border-left: 5px solid #667eea;
+            border: 2px solid #667eea;
         }
 
         .section h2 {
@@ -232,12 +233,124 @@ h1, h2, h3, h4, h5, h6 {
             margin: 10px 0;
             line-height: 1.6;
         }
+        /* ===== PRO GENERATOR LAYOUT ===== */
+
+.generator-grid{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:30px;
+    align-items:start;
+}
+
+.generator-panel{
+    background:#ffffff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.generator-preview{
+    background:#f8f9fa;
+    padding:20px;
+    border-radius:12px;
+}
+input[type="range"]{
+    width: 100%;
+}
+.color-row{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    margin-bottom:10px;
+}
+
+.color-row input[type="color"]{
+    width:50px;
+    height:40px;
+    border:none;
+    cursor:pointer;
+}
+
+.add-btn, .remove-btn{
+    border:none;
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.add-btn{
+    background:#28a745;
+    color:white;
+}
+
+.remove-btn{
+    background:transparent;
+    color:rgb(255, 0, 0);
+    border-radius: 0px;
+    padding: 2px 5px;
+    border: 1px solid red;
+}
+
+.range-label{
+    font-weight:bold;
+    margin-top:15px;
+    display:block;
+}
+select{
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;padding-right: 20px;
+}
+/* COLOR PICKER STYLE */
+.color-row input[type="color"]{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
+
+/* Chrome / Edge inner box */
+.color-row input[type="color"]::-webkit-color-swatch-wrapper{
+    padding: 0;
+}
+
+.color-row input[type="color"]::-webkit-color-swatch{
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Firefox */
+.color-row input[type="color"]::-moz-color-swatch{
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}.color-row input[type="color"]:hover{
+    transform: scale(1.08);
+    transition: 0.2s ease;
+}
+
+.color-row input[type="color"]:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.35);
+}
+@media(max-width:900px){
+    .generator-grid{
+        grid-template-columns:1fr;
+    }
+}
     /* MOBILE SCALING — keeps same desktop design */
 @media (max-width:768px){
 
     body{
-        zoom:0.75;      /* makes mobile look like scaled desktop */
-        padding:10px;
+        margin: 0;
+        zoom:0.65;  
+            /* makes mobile look like scaled desktop */
+        padding:0px;
         font-size:13px;
     }
 
@@ -265,23 +378,33 @@ h1, h2, h3, h4, h5, h6 {
         padding:12px;
     }
 }
+.header{
+    background:linear-gradient(to right, blue, red);
+    margin: 0 0 50px 0;
+    padding: 10px;
+     
+}
+.header h1, .header p{
+    color: white;
+}
     </style>
 </head>
 <body>
     <div class="gradient-container">
+        <div class="header">
         <h1>🎨 CSS Gradient Colors</h1>
         <p class="subtitle">Complete Guide with Syntax, Examples & Live Previews</p>
-
+</div>
         <!-- Introduction Section -->
         <div class="section">
             <h2>What is CSS Gradient?</h2>
             <p>CSS gradients are CSS3 image types that display smooth transitions between two or more specified colors. These transitions are displayed in a specific direction or angle, or as a radial pattern. Gradients allow you to create beautiful, colorful backgrounds without using images.</p>
             <p>There are three types of CSS gradients:</p>
-            <ul style="margin: 15px 20px; color: #555; line-height: 2;">
+            <ol style="margin: 15px 20px; color: #555; line-height: 2;">
                 <li><strong>Linear Gradient</strong> - Colors transition along a straight line</li>
                 <li><strong>Radial Gradient</strong> - Colors transition from a center point outward</li>
                 <li><strong>Conic Gradient</strong> - Colors transition around a center point</li>
-            </ul>
+            </ol>
         </div>
 
         <!-- Syntax Section -->
@@ -296,10 +419,12 @@ h1, h2, h3, h4, h5, h6 {
             <h3>Parameter Breakdown:</h3>
             <div class="code-block">
 <span class="property">direction</span> - <span class="value">The direction of the gradient line (angle or to side)</span>
+<br>
 <span class="comment">/* Examples: 90deg, to right, to bottom right, 45deg */</span>
                 <br>
 <span class="property">color-stop</span> - <span class="value">Color and its position (can be color name, hex, rgb, or hsl)</span>
-<span class="comment">/* Examples: red, #ff0000, rgb(255,0,0), hsl(0,100%,50%) */</span>
+
+<br><span class="comment">/* Examples: red, #ff0000, rgb(255,0,0), hsl(0,100%,50%) */</span>
             </div>
 
             <h3>Radial Gradient Syntax</h3>
@@ -327,30 +452,30 @@ h1, h2, h3, h4, h5, h6 {
             
             <h3>1. Basic Two-Color Gradient</h3>
             <p>Transition from one color to another from top to bottom.</p>
-            <div class="gradient-box" style="background: linear-gradient(to bottom, #667eea, #764ba2);"></div>
+            <div class="gradient-box" style="background: linear-gradient(to bottom, #133ae7, #5ee206);"></div>
             <div class="code-block">
-<span class="property">background</span>: <span class="value">linear-gradient(to bottom, #667eea, #764ba2)</span>;
+<span class="property">background</span>: <span class="value">linear-gradient(to bottom, #133ae7, #5ee206)</span>;
             </div>
 
             <h3>2. Left to Right Gradient</h3>
             <p>Colors transition from left to right.</p>
-            <div class="gradient-box" style="background: linear-gradient(to right, #ff6b6b, #feca57);"></div>
+            <div class="gradient-box" style="background: linear-gradient(to right, red, orange);"></div>
             <div class="code-block">
-<span class="property">background</span>: <span class="value">linear-gradient(to right, #ff6b6b, #feca57)</span>;
+<span class="property">background</span>: <span class="value">linear-gradient(to right, red, orange)</span>;
             </div>
 
             <h3>3. Diagonal Gradient</h3>
             <p>Colors transition diagonally from corner to corner.</p>
-            <div class="gradient-box" style="background: linear-gradient(to bottom right, #11998e, #38ef7d);"></div>
+            <div class="gradient-box" style="background: linear-gradient(to bottom right, red, black);"></div>
             <div class="code-block">
-<span class="property">background</span>: <span class="value">linear-gradient(to bottom right, #11998e, #38ef7d)</span>;
+<span class="property">background</span>: <span class="value">linear-gradient(to bottom right, red, black)</span>;
             </div>
 
             <h3>4. Angle-Based Gradient</h3>
             <p>Control the exact angle of the gradient direction.</p>
-            <div class="gradient-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+            <div class="gradient-box" style="background: linear-gradient(175deg, white 0%, black 100%);"></div>
             <div class="code-block">
-<span class="property">background</span>: <span class="value">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>;
+<span class="property">background</span>: <span class="value">linear-gradient(175deg, white 0%, black 100%)</span>;
             </div>
         </div>
 
@@ -398,27 +523,27 @@ h1, h2, h3, h4, h5, h6 {
             
             <div class="angle-demo">
                 <div class="angle-item">
-                    <div class="gradient-box" style="background: linear-gradient(0deg, #667eea, #764ba2);"></div>
+                    <div class="gradient-box" style="background: linear-gradient(0deg, red, black);"></div>
                     <div class="angle-label">0deg (to top)</div>
                 </div>
                 <div class="angle-item">
-                    <div class="gradient-box" style="background: linear-gradient(45deg, #667eea, #764ba2);"></div>
+                    <div class="gradient-box" style="background: linear-gradient(45deg, red, black);"></div>
                     <div class="angle-label">45deg</div>
                 </div>
                 <div class="angle-item">
-                    <div class="gradient-box" style="background: linear-gradient(90deg, #667eea, #764ba2);"></div>
+                    <div class="gradient-box" style="background: linear-gradient(90deg, red, black);"></div>
                     <div class="angle-label">90deg (to right)</div>
                 </div>
                 <div class="angle-item">
-                    <div class="gradient-box" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                    <div class="gradient-box" style="background: linear-gradient(135deg, red, black);"></div>
                     <div class="angle-label">135deg</div>
                 </div>
                 <div class="angle-item">
-                    <div class="gradient-box" style="background: linear-gradient(180deg, #667eea, #764ba2);"></div>
+                    <div class="gradient-box" style="background: linear-gradient(180deg, red, black);"></div>
                     <div class="angle-label">180deg (to bottom)</div>
                 </div>
                 <div class="angle-item">
-                    <div class="gradient-box" style="background: linear-gradient(270deg, #667eea, #764ba2);"></div>
+                    <div class="gradient-box" style="background: linear-gradient(270deg, red, black);"></div>
                     <div class="angle-label">270deg (to left)</div>
                 </div>
             </div>
@@ -432,30 +557,92 @@ h1, h2, h3, h4, h5, h6 {
             <div class="radial-demo">
                 <div class="radial-item">
                     <h3>Center Radial</h3>
-                    <div class="gradient-box" style="background: radial-gradient(circle, #667eea, #764ba2);"></div>
+                    <div class="gradient-box" style="background: radial-gradient(circle,white, black);"></div>
                     <div class="code-block">
-<span class="property">background</span>: <span class="value">radial-gradient(circle, #667eea, #764ba2)</span>;
+<span class="property">background</span>: <span class="value">radial-gradient(circle, white, black)</span>;
                     </div>
                 </div>
                 
                 <div class="radial-item">
                     <h3>Ellipse Radial</h3>
-                    <div class="gradient-box" style="background: radial-gradient(ellipse, #ff6b6b, #feca57);"></div>
+                    <div class="gradient-box" style="background: radial-gradient(ellipse,white, blue);"></div>
                     <div class="code-block">
-<span class="property">background</span>: <span class="value">radial-gradient(ellipse, #ff6b6b, #feca57)</span>;
+<span class="property">background</span>: <span class="value">radial-gradient(ellipse, white, blue)</span>;
                     </div>
                 </div>
                 
                 <div class="radial-item">
                     <h3>Offset Radial</h3>
-                    <div class="gradient-box" style="background: radial-gradient(circle at 30% 30%, #11998e, #38ef7d);"></div>
+                    <div class="gradient-box" style="background: radial-gradient(circle at 30% 30%, yellow, green);"></div>
                     <div class="code-block">
-<span class="property">background</span>: <span class="value">radial-gradient(circle at 30% 30%, #11998e, #38ef7d)</span>;
+<span class="property">background</span>: <span class="value">radial-gradient(circle at 30% 30%, yellow, green)</span>;
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Conic Gradient Section -->
+        <div class="section">
+            <h2>🌀 CONIC GRADIENT EXAMPLES</h2>
+            <p>Conic gradients create color transitions that rotate around a center point, similar to a color wheel or pie chart.</p>
 
+            <h3>Conic Gradient Syntax</h3>
+            <div class="syntax-diagram">
+                <code>background: conic-gradient(from angle at position, color-stop1, color-stop2, ...);</code>
+            </div>
+
+            <h3>1. Basic Conic Gradient</h3>
+            <p>Colors rotate around the center in circular motion.</p>
+            <div class="gradient-box" style="background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red);"></div>
+            <div class="code-block">
+<span class="property">background</span>: 
+<span class="value">conic-gradient(red, yellow, lime, cyan, blue, magenta, red)</span>;
+            </div>
+
+            <h3>2. Starting Angle Control</h3>
+            <p>You can rotate where the gradient begins using <strong>from</strong> angle.</p>
+            <div class="gradient-box" style="background: conic-gradient(from 90deg, orange, purple, teal, orange);"></div>
+            <div class="code-block">
+<span class="property">background</span>: 
+<span class="value">conic-gradient(from 90deg, orange, purple, teal, orange)</span>;
+            </div>
+
+            <h3>3. Positioned Conic Gradient</h3>
+            <p>Move the gradient center using position values.</p>
+            <div class="gradient-box" style="background: conic-gradient(at 30% 40%, red, yellow, green, blue, red);"></div>
+            <div class="code-block">
+<span class="property">background</span>: 
+<span class="value">conic-gradient(at 30% 40%, red, yellow, green, blue, red)</span>;
+            </div>
+
+            <h3>4. Pie Chart Style (Color Stops)</h3>
+            <p>Perfect for charts and progress indicators.</p>
+            <div class="gradient-box" style="background: conic-gradient(
+                #667eea 0% 25%,
+                #764ba2 25% 50%,
+                #f64f59 50% 75%,
+                #12d8fa 75% 100%
+            );"></div>
+            <div class="code-block">
+<span class="property">background</span>: 
+<span class="value">conic-gradient(
+    #667eea 0% 25%,
+    #764ba2 25% 50%,
+    #f64f59 50% 75%,
+    #12d8fa 75% 100%
+)</span>;
+            </div>
+
+            <h3>5. Repeating Conic Gradient</h3>
+            <p>Create radial patterns using repeating conic gradients.</p>
+            <div class="gradient-box" style="background: repeating-conic-gradient(
+                red 0deg 15deg,
+                black 15deg 30deg
+            );"></div>
+            <div class="code-block">
+<span class="property">background</span>: 
+<span class="value">repeating-conic-gradient(red 0deg 15deg, black 15deg 30deg)</span>;
+            </div>
+        </div>
         <!-- Transparency & Repeating -->
         <div class="section">
             <h2>💧 TRANSPARENCY & REPEATING GRADIENTS</h2>
@@ -494,7 +681,7 @@ h1, h2, h3, h4, h5, h6 {
 
             <h3>Gradient Border</h3>
             <p>Create colorful gradient borders.</p>
-            <div class="gradient-box" style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 5px; border-radius: 10px;">
+            <div class="gradient-box" style="background: linear-gradient(135deg, #0c33e2,orange,green, #ff056d); padding: 5px; border-radius: 10px;">
                 <div style="background: white; height: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
                     <span style="color: #333; font-weight: bold;">Gradient Border</span>
                 </div>
@@ -502,12 +689,67 @@ h1, h2, h3, h4, h5, h6 {
 
             <h3>Button with Gradient</h3>
             <div style="padding: 20px; background: #f8f9fa; border-radius: 10px; text-align: center;">
-                <button style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px 30px; font-size: 1.1rem; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: transform 0.3s;">
+                <button style="background: linear-gradient(135deg, #0d37f0 0%, #944adf 100%); color: white; border: none; padding: 15px 30px; font-size: 1.1rem; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: transform 0.3s;">
                     Gradient Button
                 </button>
             </div>
         </div>
 
+ 
+
+    <!-- ⭐ ULTRA PRO GRADIENT GENERATOR -->
+<div class="section">
+<h2>🚀GRADIENT GENERATOR</h2>
+<p>Create unlimited-color gradients and generate animated CSS automatically.</p>
+
+<div class="generator-grid">
+
+<!-- CONTROL PANEL -->
+<div class="generator-panel">
+
+<label style="font-size: 20px;"><strong>Gradient Type</strong></label>
+<select id="typeSelect">
+    <option value="linear">Linear-Gradientt</option>
+    <option value="radial">Radial-Gradient</option>
+    <option value="conic">Conic-Gradient</option>
+</select>
+<div class="colorsbox" >
+<h3 style="margin-top:20px;">Colors</h3>
+<div id="colorContainer"style="display: flex;flex-direction: row;flex-wrap:wrap; gap:20px;"></div>
+</div>
+<button class="add-btn" onclick="addColor()">+ Add Color</button>
+
+<label class="range-label">
+Angle: <span id="angleDisplay">90</span>°
+</label>
+<input type="range" id="angleRange" min="0" max="360" value="90">
+<div class="hide" style="display: none;">
+<label class="range-label">
+Animation Speed (seconds)
+</label>
+<input type="range" id="speedRange" min="2" max="20" value="8" >
+</div>
+</div>
+
+<!-- PREVIEW -->
+<div class="generator-preview">
+
+<div id="ultraPreview" class="gradient-box"></div>
+
+<div class="code-block" id="ultraCSS"></div>
+
+<button onclick="copyUltraCSS()"
+style="margin-top:12px;padding:12px 20px;
+background:#667eea;color:#fff;border:none;
+border-radius:8px;cursor:pointer;">
+📋 Copy CSS
+</button>
+
+</div>
+</div>
+</div>
+     
+   
         <!-- Tips & Best Practices -->
         <div class="section">
             <h2>💡 TIPS & BEST PRACTICES</h2>
@@ -528,19 +770,19 @@ h1, h2, h3, h4, h5, h6 {
         <div class="section">
             <h2>📊 QUICK SUMMARY</h2>
             <div class="code-block">
-<span class="comment">/* Linear Gradient - Basic */</span>
+<span class="comment">/* Linear Gradient - Basic */</span><br>
 <span class="property">background</span>: <span class="value">linear-gradient(to right, red, blue)</span>;
-
-<span class="comment">/* Linear Gradient - With Angle */</span>
+<br>
+<span class="comment">/* Linear Gradient - With Angle */</span><br>
 <span class="property">background</span>: <span class="value">linear-gradient(45deg, red, blue)</span>;
-
-<span class="comment">/* Radial Gradient */</span>
+<br>
+<span class="comment">/* Radial Gradient */</span><br>
 <span class="property">background</span>: <span class="value">radial-gradient(circle, red, blue)</span>;
-
-<span class="comment">/* Multiple Color Stops */</span>
+<br>
+<span class="comment">/* Multiple Color Stops */</span><br>
 <span class="property">background</span>: <span class="value">linear-gradient(to right, red 0%, orange 50%, blue 100%)</span>;
-
-<span class="comment">/* Repeating Gradient */</span>
+<br>
+<span class="comment">/* Repeating Gradient */</span><br>
 <span class="property">background</span>: <span class="value">repeating-linear-gradient(45deg, red, red 10px, blue 10px, blue 20px)</span>;
             </div>
         </div>
@@ -549,5 +791,85 @@ h1, h2, h3, h4, h5, h6 {
             <strong>🎉 Congratulations!</strong> You now know how to create beautiful CSS gradients!
         </p>
     </div>
+  
+      <script>
+const container = document.getElementById("colorContainer");
+const preview = document.getElementById("ultraPreview");
+const cssBox = document.getElementById("ultraCSS");
+
+const angleRange = document.getElementById("angleRange");
+const angleDisplay = document.getElementById("angleDisplay");
+// const speedRange = document.getElementById("speedRange");
+const typeSelect = document.getElementById("typeSelect");
+
+function addColor(value="#667eea"){
+    const row=document.createElement("div");
+    row.className="color-row";
+
+    row.innerHTML=`
+        <input type="color" value="${value}">
+        <button class="remove-btn">X</button>
+    `;
+
+    row.querySelector("input").addEventListener("input",updateGradient);
+
+    row.querySelector(".remove-btn").onclick=()=>{
+        if(container.children.length>2){
+            row.remove();
+            updateGradient();
+        }
+    };
+
+    container.appendChild(row);
+    updateGradient();
+}
+
+function getColors(){
+    return [...container.querySelectorAll("input")]
+        .map(i=>i.value).join(", ");
+}
+
+function updateGradient(){
+
+    const colors=getColors();
+    const angle=angleRange.value;
+    // const speed=speedRange.value;
+    const type=typeSelect.value;
+
+    angleDisplay.textContent=angle;
+
+    let gradient="";
+
+    if(type==="linear")
+        gradient=`linear-gradient(${angle}deg, ${colors})`;
+
+    if(type==="radial")
+        gradient=`radial-gradient(circle, ${colors})`;
+
+    if(type==="conic")
+        gradient=`conic-gradient(from ${angle}deg, ${colors})`;
+
+    preview.style.background=gradient;
+
+    const CSS=`
+background: ${gradient};`;
+
+    cssBox.textContent=CSS;
+}
+
+function copyUltraCSS(){
+    navigator.clipboard.writeText(cssBox.textContent);
+    alert("✅CSS copied!");
+}
+
+angleRange.addEventListener("input",updateGradient);
+speedRange.addEventListener("input",updateGradient);
+typeSelect.addEventListener("change",updateGradient);
+
+/* Initial colors */
+addColor("#667eea");
+addColor("#764ba2");
+addColor("#f64f59");
+</script>
 </body>
 </html>
