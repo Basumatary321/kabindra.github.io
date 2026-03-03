@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -37,7 +37,7 @@ Colspan Builder, Rowspan Generator, HTML Table Tool, Web Development Project, Ja
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--bg-color);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             color: var(--text-main);
         }
 
@@ -58,7 +58,7 @@ Colspan Builder, Rowspan Generator, HTML Table Tool, Web Development Project, Ja
         }
 
         header h1 {
-            font-size: clamp(1rem, 5vw, 2.5rem);
+            font-size: clamp(1rem, 5vw, 2.2rem);
             margin-bottom: 10px;
             color: #1e293b;
         }
@@ -69,7 +69,7 @@ Colspan Builder, Rowspan Generator, HTML Table Tool, Web Development Project, Ja
         .table-container,
         .code-container {
             background: var(--surface);
-            padding: 20px;
+            padding: 10px;
             border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border);
@@ -148,7 +148,8 @@ Colspan Builder, Rowspan Generator, HTML Table Tool, Web Development Project, Ja
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 300px;
+            min-height: 200px;
+            padding: 3px;
             overflow: auto;
         }
 
@@ -258,6 +259,18 @@ details summary::before {
 details[open] summary::before {
     transform: rotate(90deg);
 }
+ @media (max-width: 768px){
+.rowcontrols{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.actions{
+    display: flex;
+    flex-direction: row;
+  justify-content: space-between;
+}
+ }
     </style>
 </head>
 
@@ -285,14 +298,16 @@ details[open] summary::before {
         </div>
 
         <div class="controls">
+            <div class="rowcontrols">
             <div class="field">
                 <label>Rows</label>
-                <input type="number" id="rows" value="5" min="1">
+                <input type="number" id="rows" value="3" min="1">
             </div>
             <div class="field">
                 <label>Columns</label>
                 <input type="number" id="cols" value="5" min="1">
             </div>
+        </div>
             <div class="actions">
                 <button class="btn primary" onclick="buildTable()">Apply Grid</button>
                 <button class="btn danger" onclick="buildTable()">Reset</button>
@@ -306,13 +321,12 @@ details[open] summary::before {
 
         <footer>
             Made with <span class="heart">♥</span>
-            | For Beginners by <strong>Kabindra Sir</strong>
+            | For Beginners by <strong>Kabindra Sr</strong>
         </footer>
     </div>
 
     <script>
-        // (Keep all the Javascript logic from the previous response here)
-        // Make sure the IDs (rows, cols, grid, code) remain the same.
+    
 
         const table = document.getElementById("grid");
         const codeBox = document.getElementById("code");
