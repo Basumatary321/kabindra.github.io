@@ -1,0 +1,160 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Background Playground</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+    text-align:center;
+}
+
+h1{
+    margin-top:20px;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    margin-top:20px;
+}
+
+/* Preview Box */
+
+.preview{
+    width:400px;
+    height:300px;
+    border:5px solid black;
+    background-image:url("images/flower.jpg");
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+/* Control Panel */
+
+.controls{
+    width:380px;
+    text-align:left;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+select,input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+}
+#bgSize,#bgPosition{
+  width: 95%;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>CSS Background Playground</h1>
+<p>Change the settings and see the background update instantly.</p>
+
+<div class="container">
+
+<div class="preview" id="box"></div>
+
+<div class="controls">
+
+<label>Upload Background Image</label>
+<input type="file" id="imageUpload">
+
+<label>Background Repeat</label>
+<select id="repeat">
+<option value="no-repeat">No Repeat</option>
+<option value="repeat">Repeat</option>
+<option value="repeat-x">Repeat X</option>
+<option value="repeat-y">Repeat Y</option>
+</select>
+
+<!-- Background Size -->
+
+<label>Background Size</label>
+
+<input list="sizes" id="bgSize" placeholder="Type or choose size">
+
+<datalist id="sizes">
+<option value="cover">
+<option value="contain">
+<option value="auto">
+<option value="50%">
+<option value="100%">
+<option value="200px">
+</datalist>
+
+<!-- Background Position -->
+
+<label>Background Position</label>
+
+<input list="positions" id="bgPosition" placeholder="Type or choose position">
+
+<datalist id="positions">
+<option value="center">
+<option value="top">
+<option value="bottom">
+<option value="left">
+<option value="right">
+<option value="top left">
+<option value="top right">
+<option value="bottom left">
+<option value="bottom right">
+<option value="50% 50%">
+<option value="20px 30px">
+</datalist>
+
+</div>
+
+</div>
+
+<script>
+
+const box = document.getElementById("box")
+
+document.getElementById("repeat").onchange = function(){
+    box.style.backgroundRepeat = this.value
+}
+
+document.getElementById("bgSize").onchange = function(){
+    box.style.backgroundSize = this.value
+}
+
+document.getElementById("bgPosition").onchange = function(){
+    box.style.backgroundPosition = this.value
+}
+
+document.getElementById("imageUpload").onchange = function(e){
+    const file = e.target.files[0]
+    const reader = new FileReader()
+
+    reader.onload = function(){
+        box.style.backgroundImage = "url("+reader.result+")"
+    }
+
+    reader.readAsDataURL(file)
+}
+
+
+</script>
+
+</body>
+</html>
