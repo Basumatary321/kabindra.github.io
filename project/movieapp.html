@@ -1,265 +1,318 @@
  <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Movie App</title>
+  <title>Movie App</title>
 
-<style>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+    :root {
+      --primary-color: #22254b;
+      --secondary-color: #373b69;
+    }
 
-:root {
-  --primary-color:#22254b;
-  --secondary-color:#373b69;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-*{
-box-sizing:border-box;
-}
+    body {
+      background: var(--primary-color);
+      font-family: Poppins;
+      margin: 0;
+    }
 
-body{
-background:var(--primary-color);
-font-family:Poppins;
-margin:0;
-}
+    header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 555;
+      padding: 10px;
+      backdrop-filter: blur(25px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      /* height: 100px; */
+      background: url("../images/cursor/header-01.svg"),
+      linear-gradient(to top,rgb(7, 7, 134),transparent);
+      /* transform: rotate(180deg); */
+      background-size: contain;
+      background-repeat: repeat-x;
 
-header{
-padding:1rem;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:var(--secondary-color);
-}
+    }
 
-header h1{
-color:#fff;
-margin:0;
-}
+    header h2 {
+      color: #fff;
+      letter-spacing: 3px;
+      margin: 0;
+    }
 
-.search{
-background:transparent;
-border:2px solid var(--primary-color);
-padding:0.5rem 1rem;
-border-radius:50px;
-width: 350px;
-color:#fff;
-}
+    .search {
+      background: transparent;
+      backdrop-filter: blur(2px);
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      width: 350px;
+      color: #fff;
+    }
 
-.search::placeholder{
-color:#aaa;
-}
+    .search::placeholder {
+      color: #ffffff;
+    }
 
-.search:focus{
-outline:none;
-background:var(--primary-color);
-}
+    .search:focus {
+      outline: none;
+    }
 
-main{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-}
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-.movie{
-width:300px;
-margin:1rem;
-background:var(--secondary-color);
-border-radius:5px;
-overflow:hidden;
-position:relative;
-cursor:pointer;
-}
+    .movie {
+      width: 250px;
+      margin: 1rem;
+      background: var(--secondary-color);
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
 
-.movie img{
-width:100%;
-}
+    .movie img {
+      width: 100%;
+    }
 
-.movie-info{
-color:#eee;
-display:flex;
-justify-content:space-between;
-align-items: center;
-padding:5px 10px;
-}
+    .movie-info {
+      color: #eee;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+      margin: 0;
+      max-height: 60px;
+    }
 
-.movie-info span{
-background:var(--primary-color);
-padding:5px 10px;
-height: fit-content;
-border-radius:3px;
-}
+    .movie-info span {
+      background: white;
+      padding: 5px 10px;
+      height: fit-content;
+      border-radius: 3px;
+      font-size: 12px;
+    }
 
-.green{color:lightgreen;}
-.orange{color:orange;}
-.red{color:red;}
+    .green {
+      color: lightgreen;
+    }
 
-.overview{
-background:linear-gradient(to bottom, transparent, white,white);
-padding:1rem;
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-max-height:100%;
-transform:translateY(101%);
-transition:transform 0.3s ease-in;
-}
+    .orange {
+      color: orange;
+    }
 
-.movie:hover .overview{
-transform:translateY(0);
-}
+    .red {
+      color: red;
+    }
 
-button{
-padding:8px 12px;
-border:none;
-background:#222;
-color:white;
-cursor:pointer;
-margin-top:10px;
-}
+    .overview {
+      background: linear-gradient(to bottom, transparent, white, white);
+      padding: 1rem;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 14px;
+      text-align: justify;
+      max-height: 100%;
+      transform: translateY(101%);
+      transition: transform 0.3s ease-in;
+    }
 
-button:hover{
-background:#444;
-}
+    .movie:hover .overview {
+      transform: translateY(0);
+    }
 
-/* Trailer Popup */
+    button {
+      padding: 5px 7px;
+      border: none;
+      background: #222;
+      color: white;
+      cursor: pointer;
+      /* margin-top:10px; */
+      float: right;
+    }
 
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-display:none;
-justify-content:center;
-align-items:center;
-}
+    button:hover {
+      background: #444;
+    }
 
-.popup-content{
-position:relative;
-width:80%;
-max-width:800px;
-}
+    /* Trailer Popup */
 
-.close{
-position:absolute;
-right:0;
-top:-40px;
-color:white;
-font-size:30px;
-cursor:pointer;
-}
+    .popup {
+      position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      flex-direction: column;
+      align-items: end;
+      padding: 10px;
+    }
 
-iframe{
-width:100%;
-height:450px;
-}
+    .popup-content {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+    }
 
-footer{
-text-align:center;
-color:white;
-padding:20px;
-}
+    .close {
+      position: absolute;
+      right: 0;
+      top: -40px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
 
-@media (max-width: 580px) {
-  header {
-    flex-direction: column;
-  }
+    iframe {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-70%,-50%);
+      width: 100%;
+      height: 450px;
+      margin: 5px;padding: 5px;
+      z-index: 666;
+    }
 
-  header h1 {
-    padding: 0.5rem 1rem;
-  }
-  .movie{
-    width: 90%;
-  }
-}
+    footer {
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
 
-</style>
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        background-size: 150%;
+      }
+
+      header h2 {
+        padding: 0.5rem 1rem;
+      }
+
+      .movie {
+        width: 90%;
+      }
+
+      .movie-info h6 {
+        font-size: 16px;
+      }
+      header h2{
+        font-size: 20px;
+      }
+      .search{
+        width: 250px;
+        padding: 5px;
+        font-size: 10px;
+      }
+      header p{
+        font-size: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <header>
 
-<h1>दिनै मा सावथुन नायनो?</h1>
+    <h2>दिनै मा सावथुन नायनो?</h2>
 
-<form id="form">
-<input type="text" id="search" class="search" placeholder="बियाव नायगिर..">
-</form>
-<p style="color: white;">Use any VPN 🌎</p>
-</header>
+    <form id="form">
+      <input type="text" id="search" class="search" placeholder="बियाव नायगिर..">
+    </form>
+    <p style="color: white;">Use any VPN 🌎</p>
+  </header>
 
-<main id="main"></main>
+  <main id="main"></main>
 
-<footer>
-This project uses TMDb API
-</footer>
+  <footer>
+    This project uses TMDb API
+  </footer>
 
-<!-- Trailer Popup -->
+  <!-- Trailer Popup -->
 
-<div class="popup" id="popup">
+  <div class="popup" id="popup">
 
-<div class="popup-content">
+    <div class="popup-content">
 
-<span class="close" id="closeBtn">✖</span>
+      <span class="close" id="closeBtn">✖</span>
 
-<iframe id="trailer" frameborder="0" allowfullscreen></iframe>
+      <iframe id="trailer" frameborder="0" allowfullscreen></iframe>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
-<script>
+  <script>
 
-const KEY="3fd2be6f0c70a2a598f084ddfb75487c";
+    const KEY = "3fd2be6f0c70a2a598f084ddfb75487c";
 
-const API_URL=`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${KEY}&page=1`;
+    const API_URL = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${KEY}&page=1`;
 
-const IMG_PATH="https://image.tmdb.org/t/p/w1280";
+    const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
-const SEARCH_API=`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=`;
-
-
-const main=document.getElementById("main");
-const form=document.getElementById("form");
-const search=document.getElementById("search");
-
-const popup=document.getElementById("popup");
-const trailer=document.getElementById("trailer");
-const closeBtn=document.getElementById("closeBtn");
+    const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=`;
 
 
-function getClassByRate(vote){
+    const main = document.getElementById("main");
+    const form = document.getElementById("form");
+    const search = document.getElementById("search");
 
-if(vote>=7.5) return "green";
-else if(vote>=7) return "orange";
-else return "red";
-
-}
+    const popup = document.getElementById("popup");
+    const trailer = document.getElementById("trailer");
+    const closeBtn = document.getElementById("closeBtn");
 
 
-function showMovies(movies){
+    function getClassByRate(vote) {
 
-main.innerHTML="";
+      if (vote >= 7.5) return "green";
+      else if (vote >= 7) return "orange";
+      else return "red";
 
-movies.forEach((movie)=>{
+    }
 
-const {id,title,poster_path,vote_average,overview}=movie;
 
-const movieEl=document.createElement("div");
+    function showMovies(movies) {
 
-movieEl.classList.add("movie");
+      main.innerHTML = "";
 
-movieEl.innerHTML=`
+      movies.forEach((movie) => {
 
-<img src="${IMG_PATH+poster_path}" alt="${title}">
+        const { id, title, poster_path, vote_average, overview } = movie;
+
+        const movieEl = document.createElement("div");
+
+        movieEl.classList.add("movie");
+
+        movieEl.innerHTML = `
+
+<img src="${IMG_PATH + poster_path}" alt="${title}">
 
 <div class="movie-info">
 
-<h4>${title}</h4>
+<h6>${title}</h6>
 
 <span class="${getClassByRate(vote_average)}">${vote_average.toFixed(1)}</span>
 
@@ -270,87 +323,88 @@ movieEl.innerHTML=`
 <h3>Overview</h3>
 
 ${overview}
-
+<br>
 <button onclick="playTrailer(${id})">▶ Watch Trailer</button>
 
 </div>
 
 `;
 
-main.appendChild(movieEl);
+        main.appendChild(movieEl);
 
-});
+      });
 
-}
-
-
-async function getMovies(url){
-
-const res=await fetch(url);
-
-const data=await res.json();
-
-showMovies(data.results);
-
-}
+    }
 
 
-getMovies(API_URL);
+    async function getMovies(url) {
+
+      const res = await fetch(url);
+
+      const data = await res.json();
+
+      showMovies(data.results);
+
+    }
 
 
-form.addEventListener("submit",(e)=>{
-
-e.preventDefault();
-
-const searchTerm=search.value;
-
-if(searchTerm && searchTerm!==""){
-
-getMovies(SEARCH_API+searchTerm);
-
-search.value="";
-
-}else{
-
-window.location.reload();
-
-}
-
-});
+    getMovies(API_URL);
 
 
-async function playTrailer(movieId){
+    form.addEventListener("submit", (e) => {
 
-const res=await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${KEY}`);
+      e.preventDefault();
 
-const data=await res.json();
+      const searchTerm = search.value;
 
-const trailerData=data.results.find(video=>video.type==="Trailer");
+      if (searchTerm && searchTerm !== "") {
 
-if(trailerData){
+        getMovies(SEARCH_API + searchTerm);
 
-trailer.src=`https://www.youtube.com/embed/${trailerData.key}`;
+        search.value = "";
 
-popup.style.display="flex";
+      } else {
 
-}else{
+        window.location.reload();
 
-alert("Trailer not available");
+      }
 
-}
-
-}
+    });
 
 
-closeBtn.onclick=()=>{
+    async function playTrailer(movieId) {
 
-popup.style.display="none";
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${KEY}`);
 
-trailer.src="";
+      const data = await res.json();
 
-};
+      const trailerData = data.results.find(video => video.type === "Trailer");
 
-</script>
+      if (trailerData) {
+
+        trailer.src = `https://www.youtube.com/embed/${trailerData.key}`;
+
+        popup.style.display = "flex";
+
+      } else {
+
+        alert("Trailer not available");
+
+      }
+
+    }
+
+
+    closeBtn.onclick = () => {
+
+      popup.style.display = "none";
+
+      trailer.src = "";
+
+    };
+
+  </script>
 
 </body>
+
 </html>
