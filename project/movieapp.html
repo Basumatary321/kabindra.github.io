@@ -1,0 +1,356 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Movie App</title>
+
+<style>
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+
+:root {
+  --primary-color:#22254b;
+  --secondary-color:#373b69;
+}
+
+*{
+box-sizing:border-box;
+}
+
+body{
+background:var(--primary-color);
+font-family:Poppins;
+margin:0;
+}
+
+header{
+padding:1rem;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:var(--secondary-color);
+}
+
+header h1{
+color:#fff;
+margin:0;
+}
+
+.search{
+background:transparent;
+border:2px solid var(--primary-color);
+padding:0.5rem 1rem;
+border-radius:50px;
+width: 350px;
+color:#fff;
+}
+
+.search::placeholder{
+color:#aaa;
+}
+
+.search:focus{
+outline:none;
+background:var(--primary-color);
+}
+
+main{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.movie{
+width:300px;
+margin:1rem;
+background:var(--secondary-color);
+border-radius:5px;
+overflow:hidden;
+position:relative;
+cursor:pointer;
+}
+
+.movie img{
+width:100%;
+}
+
+.movie-info{
+color:#eee;
+display:flex;
+justify-content:space-between;
+align-items: center;
+padding:5px 10px;
+}
+
+.movie-info span{
+background:var(--primary-color);
+padding:5px 10px;
+height: fit-content;
+border-radius:3px;
+}
+
+.green{color:lightgreen;}
+.orange{color:orange;}
+.red{color:red;}
+
+.overview{
+background:linear-gradient(to bottom, transparent, white,white);
+padding:1rem;
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+max-height:100%;
+transform:translateY(101%);
+transition:transform 0.3s ease-in;
+}
+
+.movie:hover .overview{
+transform:translateY(0);
+}
+
+button{
+padding:8px 12px;
+border:none;
+background:#222;
+color:white;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#444;
+}
+
+/* Trailer Popup */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.popup-content{
+position:relative;
+width:80%;
+max-width:800px;
+}
+
+.close{
+position:absolute;
+right:0;
+top:-40px;
+color:white;
+font-size:30px;
+cursor:pointer;
+}
+
+iframe{
+width:100%;
+height:450px;
+}
+
+footer{
+text-align:center;
+color:white;
+padding:20px;
+}
+
+@media (max-width: 580px) {
+  header {
+    flex-direction: column;
+  }
+
+  header h1 {
+    padding: 0.5rem 1rem;
+  }
+  .movie{
+    width: 90%;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>दिनै मा सावथुन नायनो?</h1>
+
+<form id="form">
+<input type="text" id="search" class="search" placeholder="बियाव नायगिर..">
+</form>
+<p style="color: white;">Use any VPN 🌎</p>
+</header>
+
+<main id="main"></main>
+
+<footer>
+This project uses TMDb API
+</footer>
+
+<!-- Trailer Popup -->
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<span class="close" id="closeBtn">✖</span>
+
+<iframe id="trailer" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+</div>
+
+<script>
+
+const KEY="3fd2be6f0c70a2a598f084ddfb75487c";
+
+const API_URL=`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${KEY}&page=1`;
+
+const IMG_PATH="https://image.tmdb.org/t/p/w1280";
+
+const SEARCH_API=`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=`;
+
+
+const main=document.getElementById("main");
+const form=document.getElementById("form");
+const search=document.getElementById("search");
+
+const popup=document.getElementById("popup");
+const trailer=document.getElementById("trailer");
+const closeBtn=document.getElementById("closeBtn");
+
+
+function getClassByRate(vote){
+
+if(vote>=7.5) return "green";
+else if(vote>=7) return "orange";
+else return "red";
+
+}
+
+
+function showMovies(movies){
+
+main.innerHTML="";
+
+movies.forEach((movie)=>{
+
+const {id,title,poster_path,vote_average,overview}=movie;
+
+const movieEl=document.createElement("div");
+
+movieEl.classList.add("movie");
+
+movieEl.innerHTML=`
+
+<img src="${IMG_PATH+poster_path}" alt="${title}">
+
+<div class="movie-info">
+
+<h4>${title}</h4>
+
+<span class="${getClassByRate(vote_average)}">${vote_average.toFixed(1)}</span>
+
+</div>
+
+<div class="overview">
+
+<h3>Overview</h3>
+
+${overview}
+
+<button onclick="playTrailer(${id})">▶ Watch Trailer</button>
+
+</div>
+
+`;
+
+main.appendChild(movieEl);
+
+});
+
+}
+
+
+async function getMovies(url){
+
+const res=await fetch(url);
+
+const data=await res.json();
+
+showMovies(data.results);
+
+}
+
+
+getMovies(API_URL);
+
+
+form.addEventListener("submit",(e)=>{
+
+e.preventDefault();
+
+const searchTerm=search.value;
+
+if(searchTerm && searchTerm!==""){
+
+getMovies(SEARCH_API+searchTerm);
+
+search.value="";
+
+}else{
+
+window.location.reload();
+
+}
+
+});
+
+
+async function playTrailer(movieId){
+
+const res=await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${KEY}`);
+
+const data=await res.json();
+
+const trailerData=data.results.find(video=>video.type==="Trailer");
+
+if(trailerData){
+
+trailer.src=`https://www.youtube.com/embed/${trailerData.key}`;
+
+popup.style.display="flex";
+
+}else{
+
+alert("Trailer not available");
+
+}
+
+}
+
+
+closeBtn.onclick=()=>{
+
+popup.style.display="none";
+
+trailer.src="";
+
+};
+
+</script>
+
+</body>
+</html>
