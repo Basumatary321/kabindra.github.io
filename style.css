@@ -61,7 +61,7 @@
  }
 
  header h2 {
-     font-size: clamp(1.2rem, 3vw, 2.5rem);
+     font-size: clamp(1rem, 3vw, 2.5rem);
      font-weight: 700;
      letter-spacing: 2px;
      -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(255, 255, 255, 0.25));
@@ -71,10 +71,14 @@
      display: inline-block;
      transition: 0.3s transform ease, 0.3s color ease;
      cursor: pointer;
+    font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+
  }
 
  header h2 span:hover {
-     color: #ffd700;
+     color: #f3f707;
      transform: translateY(-8px) rotate(15deg) scale(1.1);
  }
 
@@ -526,6 +530,7 @@ main {
         margin-right: 10px;
     }
 }
+
 
 
 
