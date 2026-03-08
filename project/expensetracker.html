@@ -1,393 +1,562 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-      crossorigin="anonymous"
-    />
-    <!-- <link rel="stylesheet" href="style.css" /> -->
-     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-:root {
-  --main-color: #13168d;
-  --secondary-color: #393a57;
-  --ternary-color: #486ba6;
-  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --background-color: #e5e6ed;
-  --background-secondary-color: #fff;
-  --border-color: #80717f;
-  --border-secondary-color: #bcc0cb;
-  --plus-color: #2ecc71;
-  --minus-color: #c0392b;
+<title>Ultimate Finance Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI}
+
+body{
+display:flex;
+background:#eef2f7;
 }
 
-* {
-  box-sizing: border-box;
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+background:#0f172a;
+color:white;
+height:100vh;
+padding:20px;
+position:fixed;
+transition:.3s;
 }
 
-body {
-  background-color: var(--background-color);
-  color: var(--secondary-color);
-  font-family: "Noto Sans", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
+.sidebar h2{
+margin-bottom:25px;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+.menu div{
+padding:12px;
+border-radius:6px;
+margin-bottom:8px;
+cursor:pointer;
 }
 
-.header img {
-  width: 4.5rem;
-  width: 4.5rem;
-  opacity: 0.5;
+.menu div:hover{
+background:#1e293b;
 }
 
-.balance-container {
-  display: flex;
-  flex-direction: column;
+/* MOBILE */
+
+.toggle{
+display:none;
+font-size:22px;
+cursor:pointer;
+margin-bottom:15px;
 }
 
-.container {
-  margin: 30px auto;
-  width: 350px;
+@media(max-width:768px){
+
+.sidebar{
+left:-240px;
 }
 
-h1 {
-  font-size: 1.25rem;
+.sidebar.show{
+left:0;
 }
 
-h2 {
-  font-size: 1.17rem;
+.toggle{
+display:block;
 }
 
-.balance {
-  letter-spacing: 1px;
-  margin: 0;
-  font-size: 2rem;
 }
 
-h3 {
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 10px;
-  margin: 40px 0 10px;
+/* MAIN */
+
+.main{
+margin-left:240px;
+flex:1;
+padding:25px;
 }
 
-h2,
-h4 {
-  margin: 0;
-  text-transform: uppercase;
+@media(max-width:768px){
+.main{margin-left:0}
 }
 
-.inc-exp-container {
-  background-color: var(--background-secondary-color);
-  box-shadow: var(--box-shadow);
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  border-radius: 5px;
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,2fr));
+gap:15px;
+margin-bottom:20px;
 }
 
-.inc-exp-container > div {
-  flex: 1;
-  text-align: center;
+.card{
+background:white;
+padding:18px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.inc-exp-container > div:first-of-type {
-  border-right: 1px solid var(--border-secondary-color);
+.card p{
+font-size:20px;
+font-weight:bold;
 }
 
-.money {
-  font-size: 20px;
-  letter-spacing: 1px;
-  margin: 5px 0;
+.green{color:#16a34a}
+.red{color:#dc2626}
+
+/* ADD BOX */
+
+.addBox{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:20px;
 }
 
-.money.plus {
-  color: var(--plus-color);
+input,select{
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+flex:1;
 }
 
-.money.minus {
-  color: var(--minus-color);
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:6px;
+cursor:pointer;
 }
 
-label {
-  display: inline-block;
-  margin: 10px 0;
+/* HISTORY */
+
+.history{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+margin-bottom:20px;
 }
 
-input[type="text"],
-input[type="number"] {
-  border: 1px solid var(--border-secondary-color);
-  border-radius: 5px;
-  display: block;
-  font-size: 16px;
-  padding: 10px;
-  width: 100%;
+.transactions{
+max-height:500px;
+overflow-y:auto;
 }
 
-.btn {
-  cursor: pointer;
-  background-color: var(--main-color);
-  box-shadow: var(--box-shadow);
-  color: var(--background-secondary-color);
-  border: 0;
-  display: block;
-  font-size: 16px;
-  margin: 10px 0 30px;
-  padding: 10px;
-  width: 100%;
-  border-radius: 5px;
+.transaction{
+border-bottom:1px solid #eee;
+padding:10px 0;
 }
 
-.list {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 40px;
+.row1{
+display:flex;
+justify-content:space-between;
+font-weight:bold;
 }
 
-.list li {
-  background-color: var(--background-secondary-color);
-  box-shadow: var(--box-shadow);
-  color: var(--ternary-color);
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
-  margin: 10px 0;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+.row2{
+display:flex;
+justify-content:space-between;
+font-size:13px;
+color:#666;
 }
 
-.list li.plus {
-  border-left: 3px solid var(--plus-color);
-  color:var(--plus-color);
+.actions i{
+margin-left:10px;
+cursor:pointer;
 }
 
-.list li.minus {
-  border-left: 3px solid var(--minus-color);
-  color: var(--minus-color);
+/* REPORTS */
+
+.reports{
+display:none;
 }
 
-.delete-btn {
-  cursor: pointer;
-  background-color: var(--minus-color);
-  color: var(--background-secondary-color);
-  box-shadow: var(--box-shadow);
-  border: 0;
-  font-size: 22px;
-  line-height: 22px;
-  padding: 10px;
-  margin: 10px;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(100%, -73%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.charts{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 }
 
-.btn:focus,
-.delete-btn:focus {
-  outline: 0;
+.chartBox{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }
 
-.list li:hover .delete-btn {
-  opacity: 1;
+@media(max-width:768px){
+.charts{grid-template-columns:1fr}
+}
+.card i{
+    font-size: 25px;
+}
+.card i:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+    transition: 0.3s ease;
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="sidebar" id="sidebar">
+
+<h2 onclick="showDashboard"><i class="fa fa-wallet"></i> Finance</h2>
+
+<div class="menu">
+
+<div onclick="showDashboard()"><i class="fa fa-home"></i> Dashboard</div>
+<div onclick="showReports()"><i class="fa fa-chart-line"></i> Reports</div>
+<div onclick="showDashboard()"><i class="fa fa-clock"></i> History</div>
+<div onclick="alert('New features coming soon!')"><i class="fa fa-gear"></i> Settings</div>
+</div>
+
+</div>
+
+
+<div class="main">
+
+<div class="toggle" onclick="toggleMenu()">
+<i class="fa fa-bars"></i>
+</div>
+
+<h1 style="margin-bottom:20px">Finance Dashboard</h1>
+
+<!-- CARDS -->
+
+<div class="cards">
+
+<div class="card">
+<div>
+<h4>Cash</h4>
+<p id="cash">₹0</p>
+</div>
+<i class="fa fa-wallet" style="color: orange;"></i>
+</div>
+
+<div class="card">
+<div>
+<h4>Bank</h4>
+<p id="bank">₹0</p>
+</div>
+<i class="fa fa-building-columns" style="color: rgb(6, 6, 168);"></i>
+</div>
+
+<div class="card">
+<div>
+<h4>Income</h4>
+<p class="green" id="income">₹0</p>
+</div>
+<i class="fa fa-arrow-trend-up" style="color: green;"></i>
+</div>
+
+<div class="card">
+<div>
+<h4>Expense</h4>
+<p class="red" id="expense">₹0</p>
+</div>
+<i class="fa fa-arrow-trend-down" style="color: red;"></i>
+</div>
+
+</div>
+
+
+<!-- ADD TRANSACTION -->
+
+<div class="addBox">
+
+<input id="desc" placeholder="Description">
+
+<input id="amount" type="number" placeholder="+income / -expense">
+
+<select id="mode">
+<option>Cash</option>
+<option>Bank</option>
+<option>UPI</option>
+</select>
+
+<button onclick="addTransaction()">Add</button>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="history" id="historySection">
+
+<h2>Transactions</h2>
+
+<div class="transactions" id="transactions"></div>
+
+</div>
+
+
+<!-- REPORTS -->
+
+<div class="reports" id="reportsSection">
+
+<h2 style="margin-bottom:15px">Analytics</h2>
+
+<div class="charts">
+
+<div class="chartBox">
+<canvas id="incomeChart"></canvas>
+</div>
+
+<div class="chartBox">
+<canvas id="modeChart"></canvas>
+</div>
+
+<div class="chartBox">
+<canvas id="monthChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let transactions=JSON.parse(localStorage.getItem("transactions"))||[];
+
+let editIndex=null;
+
+let incomeChart,modeChart,monthChart;
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+document.getElementById("sidebar").classList.toggle("show");
 }
 
-.notification-container {
-  background-color: var(--minus-color);
-  color: var(--background-secondary-color);
-  border-radius: 5px 5px 0 0;
-  padding: 15px 20px;
-  position: fixed;
-  bottom: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+function closeMenu(){
+document.getElementById("sidebar").classList.remove("show");
 }
 
-.notification-container.show {
-  opacity: 1;
+/* PAGE SWITCH */
+
+function showReports(){
+
+closeMenu();
+
+document.getElementById("historySection").style.display="none";
+document.getElementById("reportsSection").style.display="block";
+
+drawCharts();
+
 }
 
-.notification-container p {
-  margin: 0;
+function showDashboard(){
+
+closeMenu();
+
+document.getElementById("historySection").style.display="block";
+document.getElementById("reportsSection").style.display="none";
+
 }
 
-     </style>
-    <title>Expense Tracker</title>
-  </head>
-  <body>
-    <h1>Expense Tracker</h1>
+/* SAVE */
 
-    <div class="container">
-      <div class="header">
-        <img src="https://i.ibb.co/jfScDTC/budget.png" alt="Expense Tracker" />
-        <div class="balance-container">
-          <h2>Your Balance</h2>
-          <h2 id="balance" class="balance">₹0.00</h2>
-        </div>
-      </div>
-      <div class="inc-exp-container">
-        <div>
-          <h4>Income</h4>
-          <p id="money-plus" class="money plus">+₹0.00</p>
-        </div>
-        <div>
-          <h4>Expenses</h4>
-          <p id="money-minus" class="money minus">-₹0.00</p>
-        </div>
-      </div>
-      <h3>History</h3>
-      <ul id="list" class="list"></ul>
-      <h3>Add new transaction</h3>
-      <form id="form">
-        <div class="form-control">
-          <label for="text">Description</label>
-          <input type="text" id="text" placeholder="Enter description..." />
-        </div>
-        <div class="form-control">
-          <label for="amount"
-            >Amount <br />
-            <small>(-100 = expense, 100 = income)</small></label
-          >
-          <input type="number" id="amount" placeholder="Enter amount..." />
-        </div>
-        <button class="btn">Add transaction</button>
-      </form>
-    </div>
-    <!-- Notification -->
-    <div class="notification-container" id="notification">
-      <p>Please add a description and amount</p>
-    </div>
-    <!-- <script src="script.js"></script> -->
-     <script>
-      const balance = document.getElementById("balance");
-const moneyPlus = document.getElementById("money-plus");
-const moneyMinus = document.getElementById("money-minus");
-const list = document.getElementById("list");
-const form = document.getElementById("form");
-const text = document.getElementById("text");
-const amount = document.getElementById("amount");
-const notification = document.getElementById("notification");
-
-// const dummyTransactions = [
-//   { id: 1, text: "Flower", amount: -20 },
-//   { id: 2, text: "Salary", amount: 300 },
-//   { id: 3, text: "Book", amount: -10 },
-//   { id: 4, text: "Camera", amount: 150 },
-// ];
-
-// let transactions = dummyTransactions;
-
-const localStorageTransactions = JSON.parse(
-  localStorage.getItem("transactions")
-);
-let transactions =
-  localStorageTransactions !== null ? localStorageTransactions : [];
-
-function updateLocaleStorage() {
-  localStorage.setItem("transactions", JSON.stringify(transactions));
+function save(){
+localStorage.setItem("transactions",JSON.stringify(transactions));
 }
 
-function showNotification() {
-  notification.classList.add("show");
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 2000);
+/* RENDER */
+
+function render(){
+
+let container=document.getElementById("transactions");
+container.innerHTML="";
+
+let cash=0,bank=0,income=0,expense=0;
+
+transactions.forEach((t,i)=>{
+
+let amt=parseFloat(t.amount);
+
+let color=amt>0?"green":"red";
+
+let div=document.createElement("div");
+
+div.className="transaction";
+
+div.innerHTML=`
+
+<div class="row1">
+
+<span>${t.desc}</span>
+
+<span>
+   <span class="${color}"> ${t.amount}</span>
+
+<span class="actions">
+
+<span style="color:orange"> <i class="fa fa-edit" onclick="edit(${i})"></i></yellow>
+
+<span style="color:red"> <i class="fa fa-trash" onclick="del(${i})"></i></span>
+
+</span>
+
+</span>
+
+</div>
+
+<div class="row2">
+
+<span>${t.date}</span>
+
+<span>${t.mode}</span>
+
+</div>
+
+`;
+
+container.appendChild(div);
+
+if(t.mode=="Cash") cash+=amt;
+if(t.mode=="Bank") bank+=amt;
+
+if(amt>0) income+=amt;
+else expense+=amt;
+
+});
+
+document.getElementById("cash").innerText="₹"+cash;
+document.getElementById("bank").innerText="₹"+bank;
+document.getElementById("income").innerText="₹"+income;
+document.getElementById("expense").innerText="₹"+expense;
+
 }
 
-function generateID() {
-  return Math.floor(Math.random() * 100000000);
+/* ADD */
+
+function addTransaction(){
+
+let desc=document.getElementById("desc").value;
+let amount=document.getElementById("amount").value;
+let mode=document.getElementById("mode").value;
+
+if(desc==""||amount=="")return;
+
+if(editIndex===null){
+
+transactions.push({
+desc,
+amount,
+mode,
+date:new Date().toLocaleDateString()
+});
+
+}else{
+
+transactions[editIndex]={desc,amount,mode,date:new Date().toLocaleDateString()};
+editIndex=null;
+
 }
 
-function addTransaction(e) {
-  e.preventDefault();
-  const amountValue = Number(amount.value);
-  if (
-    text.value.trim() === "" ||
-    isNaN(amountValue) ||
-    amount.value.trim() === ""
-  ) {
-    showNotification();
-    return;
-  } else {
-    const transaction = {
-      id: generateID(),
-      text: text.value,
-      amount: amountValue,
-    };
-    transactions.push(transaction);
-    addTransactionDOM(transaction);
-    updateValues();
-    updateLocaleStorage();
-    text.value = "";
-    amount.value = "";
-  }
+save();
+render();
+
+desc.value="";
+amount.value="";
+
 }
 
-function addTransactionDOM(transaction) {
-  const sign = transaction.amount < 0 ? "-" : "+";
-  const item = document.createElement("li");
-  item.classList.add(sign === "+" ? "plus" : "minus");
-  item.innerHTML = `
-          ${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span
-          ><button class="delete-btn" onclick="removeTransaction(${
-            transaction.id
-          })"><i class="fa fa-times"></i></button>
-    `;
-  list.appendChild(item);
+/* DELETE */
+
+function del(i){
+
+transactions.splice(i,1);
+
+save();
+render();
+
 }
 
-function updateValues() {
-  const amounts = transactions.map((transaction) => transaction.amount);
-  const total = amounts
-    .reduce((accumulator, value) => (accumulator += value), 0)
-    .toFixed(2);
-  const income = amounts
-    .filter((value) => value > 0)
-    .reduce((accumulator, value) => (accumulator += value), 0)
-    .toFixed(2);
-  const expense = (
-    amounts
-      .filter((value) => value < 0)
-      .reduce((accumulator, value) => (accumulator += value), 0) * -1
-  ).toFixed(2);
-  balance.innerText = `₹${total}`;
-  moneyPlus.innerText = `₹${income}`;
-  moneyMinus.innerText = `₹${expense}`;
+/* EDIT */
+
+function edit(i){
+
+let t=transactions[i];
+
+document.getElementById("desc").value=t.desc;
+document.getElementById("amount").value=t.amount;
+document.getElementById("mode").value=t.mode;
+
+editIndex=i;
+
 }
 
-function removeTransaction(id) {
-  transactions = transactions.filter((transaction) => transaction.id !== id);
-  updateLocaleStorage();
-  init();
+/* CHARTS */
+
+function drawCharts(){
+
+let income=0,expense=0;
+
+let cash=0,bank=0,upi=0;
+
+let months=[0,0,0,0,0,0,0,0,0,0,0,0];
+
+transactions.forEach(t=>{
+
+let amt=parseFloat(t.amount);
+
+if(amt>0)income+=amt;
+else expense+=Math.abs(amt);
+
+if(t.mode=="Cash")cash++;
+if(t.mode=="Bank")bank++;
+if(t.mode=="UPI")upi++;
+
+let m=new Date(t.date).getMonth();
+
+months[m]+=amt;
+
+});
+
+if(incomeChart)incomeChart.destroy();
+if(modeChart)modeChart.destroy();
+if(monthChart)monthChart.destroy();
+
+incomeChart=new Chart(document.getElementById("incomeChart"),{
+type:"bar",
+data:{labels:["Income","Expense"],datasets:[{data:[income,expense]}]}
+});
+
+modeChart=new Chart(document.getElementById("modeChart"),{
+type:"doughnut",
+data:{labels:["Cash","Bank","UPI"],datasets:[{data:[cash,bank,upi]}]}
+});
+
+monthChart=new Chart(document.getElementById("monthChart"),{
+type:"line",
+data:{
+labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+datasets:[{label:"Balance",data:months}]
+}
+});
+
 }
 
-// Init
-function init() {
-  list.innerHTML = "";
-  transactions.forEach(addTransactionDOM);
-  updateValues();
-}
+render();
 
-init();
+</script>
 
-form.addEventListener("submit", addTransaction);
-
-     </script>
-  </body>
+</body>
 </html>
