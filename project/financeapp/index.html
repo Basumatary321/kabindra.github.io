@@ -1,286 +1,356 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f172a">
 
-<title>Ultimate Finance Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Finance App</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="manifest" href="manifest.json">
+
 <style>
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI}
-
-body{
-display:flex;
-background:#eef2f7;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-/* SIDEBAR */
-
-.sidebar{
-width:240px;
+body{
+margin:0;
 background:#0f172a;
 color:white;
-height:100vh;
-padding:20px;
-position:fixed;
-transition:.3s;
+font-family:Segoe UI;
 }
 
-.sidebar h2{
-margin-bottom:25px;
-}
+/* HEADER */
 
-.menu div{
-padding:12px;
-border-radius:6px;
-margin-bottom:8px;
-cursor:pointer;
-}
-
-.menu div:hover{
-background:#1e293b;
-}
-
-/* MOBILE */
-
-.toggle{
-display:none;
-font-size:22px;
-cursor:pointer;
-margin-bottom:15px;
-}
-
-@media(max-width:768px){
-
-.sidebar{
-left:-240px;
-}
-
-.sidebar.show{
-left:0;
-}
-
-.toggle{
-display:block;
-}
-
-}
-
-/* MAIN */
-
-.main{
-margin-left:240px;
-flex:1;
-padding:25px;
-}
-
-@media(max-width:768px){
-.main{margin-left:0}
-}
-
-/* CARDS */
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,2fr));
-gap:15px;
-margin-bottom:20px;
-}
-
-.card{
-background:white;
-padding:18px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
+header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-}
-
-.card p{
-font-size:20px;
-font-weight:bold;
-}
-
-.green{color:#16a34a}
-.red{color:#dc2626}
-
-/* ADD BOX */
-
-.addBox{
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin-bottom:20px;
-}
-
-input,select{
-padding:10px;
-border:1px solid #ccc;
-border-radius:6px;
-flex:1;
-}
-
-button{
-background:#2563eb;
-color:white;
-border:none;
-padding:10px 18px;
-border-radius:6px;
-cursor:pointer;
-}
-
-/* HISTORY */
-
-.history{
-background:white;
 padding:20px;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-margin-bottom:20px;
 }
 
-.transactions{
-max-height:500px;
-overflow-y:auto;
+header h2{
+margin:0;
 }
 
+/* BALANCE CARD */
+
+.balance{
+
+background:linear-gradient(135deg,#1e293b,#020617);
+margin:15px;
+padding:20px;
+border-radius:20px;
+
+}
+
+.balance h1{
+font-size:38px;
+margin:10px 0;
+}
+
+/* STAT GRID */
+
+.stats{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+padding:15px;
+
+}
+
+.stat{
+
+background:#1e293b;
+padding:15px;
+border-radius:15px;
+
+}
+
+.stat i{
+font-size:22px;
+margin-bottom:5px;
+}
+
+.income{color:#22c55e}
+.expense{color:#ef4444}
+
+/* TRANSACTIONS */
+
+.section{
+
+padding:15px;
+
+}
+.history{
+    margin-bottom: 50px;
+}
+#transactions{
+    margin-bottom: 150px;
+    max-height: 600px;
+    overflow: auto;
+}
 .transaction{
-border-bottom:1px solid #eee;
-padding:10px 0;
-}
 
-.row1{
+background:#1e293b;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+
 display:flex;
 justify-content:space-between;
-font-weight:bold;
+align-items:center;
+
 }
 
-.row2{
-display:flex;
-justify-content:space-between;
-font-size:13px;
-color:#666;
-}
+.amountGreen{color:#22c55e}
+.amountRed{color:#ef4444}
 
 .actions i{
 margin-left:10px;
 cursor:pointer;
 }
 
+/* ADD FORM */
+
+.form{
+position:fixed;
+top: 50%;
+left:50%;
+transform: translate(-50%,-50%);
+background:#020617;
+width:100%;
+padding:80px 20px;
+display:none;
+height: 100vh;
+
+}
+
+input,select{
+width:100%;
+color: white;
+padding:10px;
+margin-bottom:10px;
+background:#1e293b;
+ border-radius:8px;
+border:none;
+
+}
+#desc{
+ background:#1e293b;
+border: none;
+    color: white;
+    border-radius: 8px;
+    margin-bottom:8px;
+    width: 100%;
+    resize:vertical;
+    padding: 10px;
+    outline: none;
+    min-height: 60px;
+}
+textarea:focus{
+    outline: 1px solid white;
+}
+input::placeholder,textarea::placeholder{
+    color: white;
+}
+.form button{
+    background-color: blue;
+    min-width: 70px;
+    border: none;margin-right: 10px;
+color: white;
+padding: 8px;
+}
+#closeT{
+    background-color: red;
+}
+/* FLOAT BUTTON */
+
+.fab{
+
+position:fixed;
+bottom:80px;
+right:20px;
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+
+border:none;
+
+background:#2563eb;
+
+color:white;
+
+font-size:24px;
+
+}
+
+/* BOTTOM NAV */
+
+nav{
+
+position:fixed;
+bottom:0;
+width:100%;
+
+background:#020617;
+
+display:flex;
+justify-content:space-around;
+
+padding:10px;
+
+}
+
+nav div{
+
+text-align:center;
+font-size:12px;
+
+cursor:pointer;
+
+}
+
 /* REPORTS */
 
-.reports{
+#reports{
 display:none;
+padding:15px;
+margin-bottom: 150px;
 }
 
-.charts{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+canvas{
+background:#1e293b;
+border-radius:15px;
+margin-bottom:10px;
+padding:10px;
+}
+#transactions::-webkit-scrollbar{
+width:4px;
 }
 
-.chartBox{
-background:white;
-padding:20px;
+#transactions::-webkit-scrollbar-thumb{
+background:#475569;
 border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
-}
-
-@media(max-width:768px){
-.charts{grid-template-columns:1fr}
-}
-.card i{
-    font-size: 25px;
-}
-.card i:hover{
-    cursor: pointer;
-    transform: scale(1.5);
-    transition: 0.3s ease;
 }
 </style>
-</head>
 
+</head>
 
 <body>
 
-<div class="sidebar" id="sidebar">
+<header>
 
-<h2 onclick="showDashboard()"><i class="fa fa-wallet"></i> Finance</h2>
+<h2>Dashboard</h2>
 
-<div class="menu">
-
-<div onclick="showDashboard()"><i class="fa fa-home"></i> Dashboard</div>
-<div onclick="showReports()"><i class="fa fa-chart-line"></i> Reports</div>
-<div onclick="showDashboard()"><i class="fa fa-clock"></i> History</div>
-<div onclick="alert('New features coming soon!')"><i class="fa fa-gear"></i> Settings</div>
-<button id="installBtn" style="display:none">Install App</button>
-</div>
-
-</div>
-
-
-<div class="main">
-
-<div class="toggle" onclick="toggleMenu()">
-<i class="fa fa-bars"></i>
-</div>
-
-<h1 style="margin-bottom:20px">Finance Dashboard</h1>
-
-<!-- CARDS -->
-
-<div class="cards">
-
-<div class="card">
 <div>
-<h4>Cash</h4>
-<p id="cash">₹0</p>
+
+<button id="installBtn" style="
+background:#2563eb;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:8px;
+display:none;
+margin-right:10px;
+">
+Install
+</button>
+
+<i class="fa fa-bell"></i>
+
 </div>
+
+</header>
+
+
+<!-- BALANCE -->
+
+<div class="balance">
+
+<p>Total Balance</p>
+
+<h1 id="balance">₹0</h1>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
 <i class="fa fa-wallet" style="color: orange;"></i>
+<p>Cash</p>
+<h3 id="cash">₹0</h3>
 </div>
 
-<div class="card">
-<div>
-<h4>Bank</h4>
-<p id="bank">₹0</p>
-</div>
-<i class="fa fa-building-columns" style="color: rgb(6, 6, 168);"></i>
+<div class="stat">
+<i class="fa fa-building-columns" style="color: darkcyan;"></i>
+<p>Bank</p>
+<h3 id="bank">₹0</h3>
 </div>
 
-<div class="card">
-<div>
-<h4>Income</h4>
-<p class="green" id="income">₹0</p>
-</div>
-<i class="fa fa-arrow-trend-up" style="color: green;"></i>
+<div class="stat income">
+<i class="fa fa-arrow-trend-up"></i>
+<p>Income</p>
+<h3 id="income">₹0</h3>
 </div>
 
-<div class="card">
-<div>
-<h4>Expense</h4>
-<p class="red" id="expense">₹0</p>
-</div>
-<i class="fa fa-arrow-trend-down" style="color: red;"></i>
+<div class="stat expense">
+<i class="fa fa-arrow-trend-down"></i>
+<p>Expense</p>
+<h3 id="expense">₹0</h3>
 </div>
 
 </div>
 
 
-<!-- ADD TRANSACTION -->
+<!-- TRANSACTIONS -->
 
-<div class="addBox">
+<div class="section" id="history">
 
-<input id="desc" placeholder="Description">
+<h3 style="margin-bottom: 10px;">Recent Transactions</h3>
+
+<div id="transactions"></div>
+
+</div>
+
+
+<!-- REPORTS -->
+
+<div id="reports">
+
+<h3 style="margin-bottom: 10px;">Analytics</h3>
+
+<canvas id="chart1"></canvas>
+<canvas id="chart2"></canvas>
+
+</div>
+
+
+<!-- FLOAT BUTTON -->
+
+<button class="fab" onclick="openForm()">
+<i class="fa fa-plus"></i>
+</button>
+
+
+<!-- FORM -->
+
+<div class="form" id="form">
+
+<input id="desc" name="desc" placeholder="Description">
+<!-- <textarea name="desc" id="desc" placeholder="Description" value="Expenses"></textarea> -->
 
 <input id="amount" type="number" placeholder="+income / -expense">
 
@@ -289,101 +359,98 @@ box-shadow:0 3px 10px rgba(0,0,0,0.08);
 <option>Bank</option>
 <option>UPI</option>
 </select>
-
-<button onclick="addTransaction()">Add</button>
-
-</div>
-
-
-<!-- HISTORY -->
-
-<div class="history" id="historySection">
-
-<h2>Transactions</h2>
-
-<div class="transactions" id="transactions"></div>
-
-</div>
-
-
-<!-- REPORTS -->
-
-<div class="reports" id="reportsSection">
-
-<h2 style="margin-bottom:15px">Analytics</h2>
-
-<div class="charts">
-
-<div class="chartBox">
-<canvas id="incomeChart"></canvas>
-</div>
-
-<div class="chartBox">
-<canvas id="modeChart"></canvas>
-</div>
-
-<div class="chartBox">
-<canvas id="monthChart"></canvas>
+<div class="actions" style="float: right;">
+<button onclick="closeT()" id="closeT">Close</button>
+<button onclick="addTransaction()">Save</button>
 </div>
 
 </div>
 
+<!-- DELETE POPUP -->
+
+<div id="deletePopup" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+align-items:center;
+justify-content:center;
+">
+
+<div style="
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+width:260px;
+text-align:center;
+">
+
+<h3>Delete Transaction?</h3>
+<p>This action cannot be undone</p>
+
+<div style="display:flex;gap:10px;margin-top:15px;">
+
+<button onclick="closeDelete()" style="flex:1;padding:8px;border:none;border-radius:8px;">
+Cancel
+</button>
+
+<button onclick="confirmDelete()" style="flex:1;padding:8px;border:none;border-radius:8px;background:#ef4444;color:white;">
+Delete
+</button>
+
 </div>
 
 </div>
+</div>
+<!-- BOTTOM NAV -->
+
+<nav>
+
+<div onclick="showDashboard()">
+<i class="fa fa-home"></i>
+<p>Home</p>
+</div>
+
+<div onclick="showHistory()">
+<i class="fa fa-clock"></i>
+<p>History</p>
+</div>
+
+<div onclick="showReports()">
+<i class="fa fa-chart-line"></i>
+<p>Reports</p>
+</div>
+
+<div onclick="alert('Settings soon')">
+<i class="fa fa-gear"></i>
+<p>Settings</p>
+</div>
+
+</nav>
 
 
 <script>
 
 let transactions=JSON.parse(localStorage.getItem("transactions"))||[];
-
+// let deleteIndex=null;
 let editIndex=null;
-
-let incomeChart,modeChart,monthChart;
-
-/* MOBILE MENU */
-
-function toggleMenu(){
-document.getElementById("sidebar").classList.toggle("show");
-}
-
-function closeMenu(){
-document.getElementById("sidebar").classList.remove("show");
-}
-
-/* PAGE SWITCH */
-
-function showReports(){
-
-closeMenu();
-
-document.getElementById("historySection").style.display="none";
-document.getElementById("reportsSection").style.display="block";
-
-drawCharts();
-
-}
-
-function showDashboard(){
-
-closeMenu();
-
-document.getElementById("historySection").style.display="block";
-document.getElementById("reportsSection").style.display="none";
-
-}
-
-/* SAVE */
+let chart1=null;
+let chart2=null;
+let deleteIndex=null;
 
 function save(){
-localStorage.setItem("transactions",JSON.stringify(transactions));
-}
 
-/* RENDER */
+localStorage.setItem("transactions",JSON.stringify(transactions));
+
+}
 
 function render(){
 
 let container=document.getElementById("transactions");
+
 container.innerHTML="";
 
 let cash=0,bank=0,income=0,expense=0;
@@ -392,7 +459,7 @@ transactions.forEach((t,i)=>{
 
 let amt=parseFloat(t.amount);
 
-let color=amt>0?"green":"red";
+let color=amt>0?"amountGreen":"amountRed";
 
 let div=document.createElement("div");
 
@@ -400,30 +467,25 @@ div.className="transaction";
 
 div.innerHTML=`
 
-<div class="row1">
+<div>
 
-<span>${t.desc}</span>
+<p>${t.desc}</p>
 
-<span>
-   <span class="${color}"> ${t.amount}</span>
-
-<span class="actions">
-
-<span style="color:orange"> <i class="fa fa-edit" onclick="edit(${i})"></i></span>
-
-<span style="color:red"> <i class="fa fa-trash" onclick="del(${i})"></i></span>
-
-</span>
-
-</span>
+ <small>${t.date || ""} • ${t.mode}</small>
 
 </div>
 
-<div class="row2">
+<div>
 
-<span>${t.date}</span>
+<span class="${color}">${t.amount}</span>
 
-<span>${t.mode}</span>
+<span class="actions">
+
+<i class="fa fa-edit" onclick="edit(${i})" style="color:orange;"></i>
+
+<i class="fa fa-trash" onclick="del(${i})" style="color:red;"></i>
+
+</span>
 
 </div>
 
@@ -432,9 +494,9 @@ div.innerHTML=`
 container.appendChild(div);
 
 if(t.mode=="Cash") cash+=amt;
-if(t.mode=="Bank") bank+=amt;
+if(t.mode=="Bank" || t.mode=="UPI") bank+=amt;
 
-if(amt>0) income+=amt;
+if(amt>0)income+=amt;
 else expense+=amt;
 
 });
@@ -444,14 +506,16 @@ document.getElementById("bank").innerText="₹"+bank;
 document.getElementById("income").innerText="₹"+income;
 document.getElementById("expense").innerText="₹"+expense;
 
-}
+document.getElementById("balance").innerText="₹"+(cash+bank);
 
-/* ADD */
+}
 
 function addTransaction(){
 
 let desc=document.getElementById("desc").value;
+
 let amount=document.getElementById("amount").value;
+
 let mode=document.getElementById("mode").value;
 
 if(desc==""||amount=="")return;
@@ -467,31 +531,37 @@ date:new Date().toLocaleDateString()
 
 }else{
 
-transactions[editIndex]={desc,amount,mode,date:new Date().toLocaleDateString()};
+transactions[editIndex]={
+desc,
+amount,
+mode,
+date:transactions[editIndex].date
+};
+
 editIndex=null;
 
 }
 
 save();
+
 render();
 
-desc.value="";
-amount.value="";
+closeForm();
+document.getElementById("desc").value="";
+document.getElementById("amount").value="";
 
 }
-
-/* DELETE */
+function closeT(){
+    document.getElementById("form").style.display="none"; 
+}
 
 function del(i){
 
-transactions.splice(i,1);
+deleteIndex=i;
 
-save();
-render();
+document.getElementById("deletePopup").style.display="flex";
 
 }
-
-/* EDIT */
 
 function edit(i){
 
@@ -503,82 +573,174 @@ document.getElementById("mode").value=t.mode;
 
 editIndex=i;
 
+openForm();
+
 }
 
-/* CHARTS */
+function openForm(){
+
+document.getElementById("form").style.display="block";
+
+}
+
+function closeForm(){
+
+document.getElementById("form").style.display="none";
+
+}
+
+function showReports(){
+
+document.getElementById("history").style.display="none";
+
+document.getElementById("reports").style.display="block";
+
+drawCharts();
+
+}
+
+function showDashboard(){
+
+document.getElementById("history").style.display="block";
+
+document.getElementById("reports").style.display="none";
+
+}
+
+function showHistory(){
+
+showDashboard();
+
+}
+
+
 
 function drawCharts(){
 
-let income=0,expense=0;
+let income=0;
+let expense=0;
 
-let cash=0,bank=0,upi=0;
-
-let months=[0,0,0,0,0,0,0,0,0,0,0,0];
+let monthly={};
 
 transactions.forEach(t=>{
 
 let amt=parseFloat(t.amount);
 
-if(amt>0)income+=amt;
+if(amt>0) income+=amt;
 else expense+=Math.abs(amt);
 
-if(t.mode=="Cash")cash++;
-if(t.mode=="Bank")bank++;
-if(t.mode=="UPI")upi++;
+let date=t.date || new Date().toLocaleDateString();
 
-let m=new Date(t.date).getMonth();
+let parts=date.split("/");
 
-months[m]+=amt;
+let key=parts[1]+"-"+parts[2];
+
+if(!monthly[key]) monthly[key]=0;
+
+monthly[key]+=amt;
 
 });
 
-if(incomeChart)incomeChart.destroy();
-if(modeChart)modeChart.destroy();
-if(monthChart)monthChart.destroy();
+/* destroy old charts */
 
-incomeChart=new Chart(document.getElementById("incomeChart"),{
-type:"bar",
-data:{labels:["Income","Expense"],datasets:[{data:[income,expense]}]}
-});
+if(chart1) chart1.destroy();
+if(chart2) chart2.destroy();
 
-modeChart=new Chart(document.getElementById("modeChart"),{
-type:"doughnut",
-data:{labels:["Cash","Bank","UPI"],datasets:[{data:[cash,bank,upi]}]}
-});
+/* PIE CHART */
 
-monthChart=new Chart(document.getElementById("monthChart"),{
-type:"line",
+chart1=new Chart(document.getElementById("chart1"),{
+
+type:"pie",
+
 data:{
-labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-datasets:[{label:"Balance",data:months}]
+labels:["Income","Expense"],
+datasets:[{
+data:[income,expense]
+}]
 }
+
+});
+
+/* LINE CHART */
+
+chart2=new Chart(document.getElementById("chart2"),{
+
+type:"line",
+
+data:{
+labels:Object.keys(monthly),
+datasets:[{
+label:"Monthly Balance",
+data:Object.values(monthly),
+tension:0.3
+}]
+}
+
 });
 
 }
+// chart end
 
 render();
+
 if("serviceWorker" in navigator){
 
-navigator.serviceWorker.register("sw.js")
-.then(()=>{
-console.log("Service Worker Registered");
-});
+navigator.serviceWorker.register("sw.js");
 
 }
+function closeDelete(){
+
+document.getElementById("deletePopup").style.display="none";
+
+}
+
+function confirmDelete(){
+
+transactions.splice(deleteIndex,1);
+
+save();
+
+render();
+
+closeDelete();
+
+}
+
+
+// install app
 let deferredPrompt;
+
+const installBtn=document.getElementById("installBtn");
 
 window.addEventListener("beforeinstallprompt",(e)=>{
 
 e.preventDefault();
+
 deferredPrompt=e;
 
-document.getElementById("installBtn").style.display="block";
+installBtn.style.display="inline-block";
 
 });
 
-installBtn.addEventListener("click",()=>{
+installBtn.addEventListener("click",async()=>{
+
+installBtn.style.display="none";
 
 deferredPrompt.prompt();
+
+const choice=await deferredPrompt.userChoice;
+
+if(choice.outcome==="accepted"){
+
+console.log("App installed");
+
+}else{
+
+console.log("Install cancelled");
+
+}
+
+deferredPrompt=null;
 
 });
 </script>
