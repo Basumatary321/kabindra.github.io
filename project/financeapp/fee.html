@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Transaction Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     <link rel="stylesheet" href="fee.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+
+        <h2>
+            <i class="fas fa-file-invoice-dollar"></i> Student Fee Tracker
+        </h2>
+    </div>
+
+    <div class="dashboard">
+        <div class="stat-card">
+            <i class="fas fa-wallet" style="color: #2ecc71;"></i>
+            <h3>Total Collected</h3>
+            <p id="totalCollected">₹0</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-hand-holding-usd" style="color: #3498db;"></i>
+            <h3>Submitted to Owners</h3>
+            <p id="totalSubmitted">₹0</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-vault" style="color: var(--sketch-red);"></i>
+            <h3>Balance in Hand</h3>
+            <p id="pendingAmount">₹0</p>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="input-group">
+            <input type="hidden" id="editIndex" value="-1">
+
+            <div class="date-icon-wrapper" title="Select Date">
+                <i class="fas fa-calendar-alt calendar-trigger"></i>
+                <input type="date" id="date">
+            </div>
+
+            <input type="text" id="giverName" placeholder="Giver Name (Student)">
+            <input type="number" id="amount" placeholder="Amount">
+            <input type="text" id="purpose" placeholder="Purpose (e.g. DCA Fee)">
+            <input type="text" id="receiver" placeholder="Receiver">
+
+            <select id="submittedTo">
+                <option value="Not Yet">Not Yet</option>
+                <option value="Sir Bapan">Sir Bapan</option>
+                <option value="Mam SG">Mam SG</option>
+            </select>
+
+            <button class="btn-add" onclick="saveTransaction()" id="saveBtn" style="float: right;">Save Entry</button>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table id="transTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Giver Name</th>
+                    <th>Amount</th>
+                    <th>Purpose</th>
+                    <th>Receiver</th>
+                    <th>Submitted To</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <script src="fee.js"></script>
+</body>
+
+</html>

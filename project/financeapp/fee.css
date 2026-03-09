@@ -1,0 +1,223 @@
+   :root {
+            --sketch-red: #b33a3a;
+            --paper-bg: #fdfdfd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            font-size: 22px;
+            color: var(--sketch-red);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #f3f3f3;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: var(--sketch-red);
+        }
+
+        /* --- Dashboard Styles --- */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .stat-card p {
+            margin: 10px 0 0;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- Form Styles --- */
+        .form-container {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        /* --- Compact Date Icon Wrapper --- */
+        .date-icon-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 45px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            flex-shrink: 0;
+            /* Prevents shrinking */
+        }
+
+        .calendar-trigger {
+            font-size: 1.2rem;
+            color: var(--sketch-red);
+        }
+
+        .date-icon-wrapper input[type="date"] {
+            position: absolute;
+            opacity: 0;
+            /* Invisible but clickable */
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            left: 0;
+            top: 0;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-width: 120px;
+        }
+
+        /* Give more room to Name and Purpose */
+        #giverName,
+        #purpose {
+            flex: 2;
+            min-width: 180px;
+        }
+
+        #amount,
+        #receiver,
+        #submittedTo {
+            flex: 1;
+        }
+
+        .btn-add {
+            background: var(--sketch-red);
+            color: white;
+            font-weight: bold;
+            justify-self: end;
+            align-self: flex-end;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* --- Hand-Drawn Table Styles --- */
+        .table-wrapper {
+            background: var(--paper-bg);
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+
+        th {
+            border: 1px solid black;
+            background-color: rgb(52, 30, 73);
+            padding: 12px;
+            color: white;
+            text-transform: capitalize;
+        }
+
+        td {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 5px;
+            position: relative;
+            color: #444;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+
+        .action-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .action-btns button {
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-edit {
+            background: #ffcc00;
+            color: #333;
+        }
+
+        .btn-delete {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .action-btns button:hover {
+            transform: translateY(-2px);
+        }

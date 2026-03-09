@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+margin:0;
+background:#0f172a;
+color:white;
+font-family:Segoe UI;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+}
+
+header h2{
+margin:0;
+}
+
+/* BALANCE CARD */
+
+.balance{
+
+background:linear-gradient(135deg,#1e293b,#020617);
+margin:15px;
+padding:20px;
+border-radius:20px;
+
+}
+
+.balance h1{
+font-size:38px;
+margin:10px 0;
+}
+
+/* STAT GRID */
+
+.stats{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+padding:15px;
+
+}
+
+.stat{
+
+background:#1e293b;
+padding:15px;
+border-radius:15px;
+
+}
+
+.stat i{
+font-size:22px;
+margin-bottom:5px;
+}
+
+.income{color:#22c55e}
+.expense{color:#ef4444}
+
+/* TRANSACTIONS */
+
+.section{
+
+padding:15px;
+
+}
+.history{
+    margin-bottom: 50px;
+}
+#transactions{
+    margin-bottom: 150px;
+    max-height: 600px;
+    overflow: auto;
+}
+.transaction{
+
+background:#1e293b;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.amountGreen{color:#22c55e}
+.amountRed{color:#ef4444}
+
+.actions i{
+margin-left:10px;
+cursor:pointer;
+}
+
+/* ADD FORM */
+
+.form{
+position:fixed;
+top: 50%;
+left:50%;
+transform: translate(-50%,-50%);
+background:#020617;
+width:100%;
+padding:80px 20px;
+display:none;
+height: 100vh;
+
+}
+
+input,select{
+width:100%;
+color: white;
+padding:10px;
+margin-bottom:10px;
+background:#1e293b;
+ border-radius:8px;
+border:none;
+
+}
+#desc{
+ background:#1e293b;
+border: none;
+    color: white;
+    border-radius: 8px;
+    margin-bottom:8px;
+    width: 100%;
+    resize:vertical;
+    padding: 10px;
+    outline: none;
+    min-height: 60px;
+}
+textarea:focus{
+    outline: 1px solid white;
+}
+input::placeholder,textarea::placeholder{
+    color: white;
+}
+.form button{
+    background-color: blue;
+    min-width: 70px;
+    border: none;margin-right: 10px;
+color: white;
+padding: 8px;
+}
+#closeT{
+    background-color: red;
+}
+/* FLOAT BUTTON */
+
+.fab{
+position:fixed;
+bottom:80px;
+right:20px;
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+border:none;
+
+background:#2563eb;
+color:white;
+
+font-size:26px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+cursor:pointer;
+}
+
+/* BOTTOM NAV */
+
+nav{
+
+position:fixed;
+bottom:0;
+width:100%;
+
+background:#020617;
+
+display:flex;
+justify-content:space-around;
+
+padding:10px;
+
+}
+
+nav div{
+
+text-align:center;
+font-size:12px;
+
+cursor:pointer;
+
+}
+
+/* REPORTS */
+
+#reports{
+display:none;
+padding:15px;
+margin-bottom: 150px;
+}
+
+canvas{
+background:#1e293b;
+border-radius:15px;
+margin-bottom:10px;
+padding:10px;
+}
+#transactions::-webkit-scrollbar{
+width:4px;
+}
+
+#transactions::-webkit-scrollbar-thumb{
+background:#475569;
+border-radius:10px;
+}
+nav a{
+text-decoration:none;
+color:white;
+text-align:center;
+font-size:12px;
+}
