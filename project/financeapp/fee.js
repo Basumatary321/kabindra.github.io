@@ -27,39 +27,50 @@
         }
 
         function render() {
-            const body = document.getElementById('tableBody');
-            body.innerHTML = '';
-            let total = 0, submitted = 0;
+    const body = document.getElementById('tableBody');
+    body.innerHTML = '';
+    let total = 0, submitted = 0;
 
-            transactions.forEach((item, index) => {
-                total += item.amount;
-                if (item.submitted !== "Not Yet") submitted += item.amount;
+    // Sort by latest date first
+    transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                body.innerHTML += `
-                    <tr>
-                        <td>${item.date}</td>
-                        <td title="${item.name}">${item.name}</td>
-                        <td>₹${item.amount}</td>
-                        <td title="${item.purpose}">${item.purpose}</td>
-                        <td>${item.receiver}</td>
-                        <td style="font-weight:bold; color:${item.submitted === 'Not Yet' ? 'red' : 'green'}">
-                            ${item.submitted}
-                        </td>
-                        <td class="action-btns">
-                            <button class="btn-edit" title="Edit" onclick="editEntry(${index})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-delete" title="Delete" onclick="deleteEntry(${index})">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
+    transactions.forEach((item, index) => {
 
-            document.getElementById('totalCollected').innerText = `₹${total}`;
-            document.getElementById('totalSubmitted').innerText = `₹${submitted}`;
-            document.getElementById('pendingAmount').innerText = `₹${total - submitted}`;
+        total += item.amount;
+        if (item.submitted !== "Not Yet") submitted += item.amount;
+
+        // Format date (DD Month YYYY)
+        const formattedDate = new Date(item.date).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        body.innerHTML += `
+            <tr>
+                <td>${formattedDate}</td>
+                <td title="${item.name}">${item.name}</td>
+                <td>₹${item.amount}</td>
+                <td title="${item.purpose}">${item.purpose}</td>
+                <td>${item.receiver}</td>
+                <td style="font-weight:bold; color:${item.submitted === 'Not Yet' ? 'red' : 'green'}">
+                    ${item.submitted}
+                </td>
+                <td class="action-btns">
+                    <button class="btn-edit" title="Edit" onclick="editEntry(${index})">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-delete" title="Delete" onclick="deleteEntry(${index})">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+
+    document.getElementById('totalCollected').innerText = `₹${total}`;
+    document.getElementById('totalSubmitted').innerText = `₹${submitted}`;
+    document.getElementById('pendingAmount').innerText = `₹${total - submitted}`;
         }
 
         function deleteEntry(index) {
@@ -93,4 +104,5 @@
         }
 
         // Initial Load
+
         render();
