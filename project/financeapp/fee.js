@@ -29,16 +29,21 @@
         function render() {
     const body = document.getElementById('tableBody');
     body.innerHTML = '';
-    let total = 0, submitted = 0;
+    let total = 0;
+let submitted = 0;
+let keptByMe = 0;
 
-    // Sort by latest date first
-    transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+transactions.forEach((item, index) => {
 
-    transactions.forEach((item, index) => {
+total += item.amount;
 
-        total += item.amount;
-        if (item.submitted !== "Not Yet") submitted += item.amount;
+if (item.submitted === "Sir Bapan" || item.submitted === "Mam SG") {
+    submitted += item.amount;
+}
 
+if (item.submitted === "Myself") {
+    keptByMe += item.amount;
+}
         // Format date (DD Month YYYY)
         const formattedDate = new Date(item.date).toLocaleDateString('en-GB', {
             day: '2-digit',
@@ -69,8 +74,8 @@
     });
 
     document.getElementById('totalCollected').innerText = `₹${total}`;
-    document.getElementById('totalSubmitted').innerText = `₹${submitted}`;
-    document.getElementById('pendingAmount').innerText = `₹${total - submitted}`;
+document.getElementById('totalSubmitted').innerText = `₹${submitted}`;
+document.getElementById('pendingAmount').innerText = `₹${total - submitted - keptByMe}`;
         }
 
         function deleteEntry(index) {
@@ -106,3 +111,4 @@
         // Initial Load
 
         render();
+
