@@ -21,7 +21,8 @@ let container=document.getElementById("transactions");
 container.innerHTML="";
 
 let cash=0,bank=0,income=0,expense=0;
-
+ 
+transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
 transactions.forEach((t,i)=>{
 
 let amt=parseFloat(t.amount);
@@ -486,5 +487,6 @@ fees.splice(i,1);
 
 saveFees();
 renderFees();
+
 
 }
