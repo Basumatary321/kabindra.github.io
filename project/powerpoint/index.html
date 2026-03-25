@@ -1,1 +1,327 @@
-f
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerPoint Animation Practice</title>
+
+    <style>
+        :root {
+            --primary: #00c6ff;
+            --success: #28a745;
+            --download: #4906e6;
+            --dark-bg: #0b0b0b;
+            --gradient-header: linear-gradient(135deg, #ff4e50, #f9d423);
+        }
+
+        /* Essential Layout Fix: Use Flex column to fill screen */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+           height: 100dvh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--gradient-header);
+            padding: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .progress-section {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            gap: 12px;
+            background: #111;
+            flex-shrink: 0;
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 6px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--primary);
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: var(--primary);
+            min-width: 45px;
+            text-align: right;
+        }
+
+        /* THE CENTERED VIDEO VIEWER */
+        .viewer {
+            flex: 1; /* Takes all remaining middle space */
+            position: relative;
+            /* background: #000; */
+             background: url("videos/background.svg");
+            background-size: cover;
+            display: flex;
+            align-items: center; /* Vertical Center */
+            justify-content: center; /* Horizontal Center */
+            margin: 0; 
+            overflow: hidden;
+        }
+
+        .viewer video {
+            width: 100%;
+            height: 100%;
+            max-width: 100vw;
+            object-fit: contain; /* Keeps video aspect ratio centered */
+        }
+
+        /* Floating Action Buttons */
+        .action-group {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .Btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            pointer-events: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+         .stats-subtext {
+            text-align: right;
+            margin: 0 15px 5px 0;
+            font-size: 10px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .download-btn { background: var(--download); }
+        .complete-btn { background: var(--success); }
+        .Btn:disabled { background: #444; opacity: 0.7; }
+        .Btn:active { transform: scale(0.9); }
+        
+        .svgIcon { fill: white; width: 1.2em; height: 1.2em; }
+        .icon2 { width: 18px; height: 4px; border: 2px solid white; border-top: none; margin-top: -2px; }
+
+        /* THE BOTTOM THUMBNAILS */
+        .bottom-section {
+            background: #000;
+            border-top: 1px solid #222;
+            flex-shrink: 0; /* Prevents thumbnails from being squished */
+            padding-bottom: env(safe-area-inset-bottom); /* iOS Notch support */
+        }
+
+        .instruction {
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            padding: 5px 0 0 0;
+        }
+
+        .thumbnails {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px;
+            gap: 10px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .thumb { position: relative; flex-shrink: 0; }
+        .thumb video {
+            width: 85px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .thumb video.active {
+            opacity: 1;
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .tick {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--success);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 10px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: 1px solid black;
+        }
+
+        /* Swipe Animation */
+        .fade-slide { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">PPT Animation Practice</div>
+
+<div class="progress-section">
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-text" id="progressText">0 / 0</div>
+</div>
+<div class="stats-subtext">Completed / Total</div>
+<div class="viewer" id="viewer">
+    <video id="videoPlayer" controls playsinline muted></video>
+
+    <div class="action-group">
+        <button class="Btn download-btn" onclick="downloadVideo()" title="Download">
+            <svg class="svgIcon" viewBox="0 0 384 512"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg>
+            <span class="icon2"></span>
+        </button>
+
+        <button id="completeBtn" class="Btn complete-btn" onclick="markComplete()" title="Mark Done">
+            <svg class="svgIcon" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg>
+        </button>
+    </div>
+</div>
+
+<div class="bottom-section">
+     <div class="instruction">
+        &lt; Swipe left/right on video to change &gt; or &lt; Select below &gt;
+    </div>
+    <div class="thumbnails" id="thumbs"></div>
+</div>
+
+<script>
+const videos = [
+    "videos/indian.mp4",
+    "videos/clock.mp4",
+    "videos/fan.mp4",
+    "videos/rocket.mp4",
+    "videos/star.mp4",
+    "videos/fan.mp4",
+    "videos/solarplanet.mp4",
+    "videos/boat.mp4",
+    "videos/village road.mp4",
+    "videos/helicopter.mp4",
+    "videos/word.mp4",
+];
+
+let current = 1;
+const total = videos.length;
+const thumbsContainer = document.getElementById("thumbs");
+
+// Create Thumbnails
+videos.forEach((src, i) => {
+    let div = document.createElement("div");
+    div.className = "thumb";
+    let vid = document.createElement("video");
+    vid.src = src;
+    vid.muted = true;
+    vid.preload = "metadata";
+    let tick = document.createElement("div");
+    tick.className = "tick";
+    tick.innerHTML = "✔";
+    div.appendChild(vid);
+    div.appendChild(tick);
+    vid.onclick = () => { current = i + 1; loadVideo(); };
+    thumbsContainer.appendChild(div);
+});
+
+function loadVideo() {
+    const player = document.getElementById("videoPlayer");
+    const btn = document.getElementById("completeBtn");
+
+    player.classList.remove("fade-slide");
+    setTimeout(() => {
+        player.src = videos[current - 1];
+        player.classList.add("fade-slide");
+        player.play().catch(() => {});
+    }, 50);
+
+    // Update Thumbs
+    document.querySelectorAll(".thumb").forEach((el, i) => {
+        const thumbVid = el.querySelector("video");
+        thumbVid.classList.toggle("active", i + 1 === current);
+        const isDone = localStorage.getItem("ppt_v2_" + (i+1)) === "true";
+        el.querySelector(".tick").style.display = isDone ? "flex" : "none";
+        
+        // Auto-scroll thumbnails
+        if(i + 1 === current) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    });
+
+    // Update Progress
+    let completed = 0;
+    for (let i = 1; i <= total; i++) {
+        if (localStorage.getItem("ppt_v2_" + i) === "true") completed++;
+    }
+    document.getElementById("progressBar").style.width = (completed / total * 100) + "%";
+    document.getElementById("progressText").innerText = `${completed}/${total}`;
+    
+    btn.disabled = localStorage.getItem("ppt_v2_" + current) === "true";
+}
+
+function markComplete() {
+    localStorage.setItem("ppt_v2_" + current, "true");
+    loadVideo();
+}
+
+function downloadVideo() {
+    const a = document.createElement("a");
+    a.href = videos[current - 1];
+    a.download = `Animation_${current}.mp4`;
+    a.click();
+}
+
+// Swipe Support
+let startX = 0;
+document.getElementById("viewer").addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, {passive: true});
+document.getElementById("viewer").addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50 && current < total) { current++; loadVideo(); }
+    else if (endX - startX > 50 && current > 1) { current--; loadVideo(); }
+}, {passive: true});
+
+loadVideo();
+</script>
+
+</body>
+</html>
