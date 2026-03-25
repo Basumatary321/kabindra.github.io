@@ -1,172 +1,216 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MS Word Practice App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Word Practice App</title>
 
-<style>
-:root {
-    --primary: #00c6ff;
-    --success: #28a745;
-    --download: #4a5568;
-    --dark-bg: #0b0b0b;
-}
+    <style>
+        :root {
+            --primary: #00c6ff;
+            --success: #28a745;
+            --download: #4906e6;
+            --dark-bg: #0b0b0b;
+            --header-gradient: linear-gradient(135deg, #07376b, #6612ec);
+        }
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--dark-bg);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-}
+        /* Full Height Layout */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+           height: 100dvh;
+            overflow: hidden;
+        }
 
-/* Header */
-.header {
-    background: linear-gradient(135deg, #07376b, #6612ec);
-    padding: 15px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-}
+        /* Header */
+        .header {
+            background: var(--header-gradient);
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
 
-/* Progress */
-.progress-section {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    gap: 12px;
-    background: #111;
-}
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            gap: 12px;
+            background: #111;
+            flex-shrink: 0;
+        }
 
-.progress-container {
-    flex: 1;
-    height: 8px;
-    background: #333;
-    border-radius: 10px;
-    overflow: hidden;
-}
+        .progress-container {
+            flex: 1;
+            height: 8px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: var(--primary);
-    transition: width 0.4s ease;
-}
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--primary);
+            transition: width 0.4s ease;
+        }
 
-.progress-text {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--primary);
-    min-width: 50px;
-    text-align: right;
-}
+        .progress-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 50px;
+            text-align: right;
+        }
 
-/* Viewer */
-.viewer {
-    flex: 1;
-    position: relative;
-    /* background: #000; */
-    background: url("images/background.svg");
-    background-size: cover;
-    max-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5px 10px;
-    border-radius: 12px;
-    overflow: hidden;
-}
+        .stats-subtext {
+            text-align: right;
+            margin: 0 15px 5px 0;
+            font-size: 10px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
 
-.viewer img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
+        /* Centered Viewer Area */
+        .viewer {
+            flex: 1; /* Takes all available middle space */
+            position: relative;
+            background: url("images/background.svg") center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            overflow: hidden;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
 
-/* Action Buttons */
-.action-group {
-    position: absolute;
-    bottom: 8px;
-    right: 15px;
-    display: flex;
-    gap: 8px;
-}
+        .viewer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
 
-.btn-style {
-    border: none;
-    padding: 5px 14px;
-    border-radius: 30px;
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        /* Action Buttons */
+        .action-group {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 10;
+        }
 
-.download-btn {
-    background: var(--download);
-}
+        .Btn {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            pointer-events: auto;
+        }
 
-.complete-btn {
-    background: var(--success);
-}
+        .download-btn { background-color: var(--download); }
+        .complete-btn { background-color: var(--success); }
 
-.complete-btn:disabled {
-    background: #444;
-    color: #aaa;
-}
+        .svgIcon { fill: white; width: 1.2em; height: 1.2em; }
+        
+        .icon2 {
+            width: 18px;
+            height: 4px;
+            border: 2px solid white;
+            border-top: none;
+            margin-top: -2px;
+        }
 
-/* Instruction */
-.instruction {
-    text-align: center;
-    font-size: 13px;
-    color: #aaa;
-    padding: 2px;
-}
+        .Btn:disabled {
+            background-color: #444;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
 
-/* Thumbnails */
-.thumbnails {
-    display: flex;
-    overflow-x: auto;
-    padding: 10px;
-    gap: 10px;
-}
+        /* Thumbnails Bottom Section */
+        .bottom-section {
+            background: #000;
+            flex-shrink: 0;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
 
-.thumb {
-    position: relative;
-}
+        .instruction {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding: 8px 0 0 0;
+        }
 
-.thumb img {
-    width: 80px;
-    height: 55px;
-    border-radius: 6px;
-    object-fit: cover;
-    opacity: 0.7;
-}
+        .thumbnails {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px;
+            gap: 10px;
+            scroll-behavior: smooth; /* Enables smooth sliding */
+            -webkit-overflow-scrolling: touch;
+        }
 
-.thumb img.active {
-    opacity: 1;
-    border: 2px solid var(--primary);
-}
+        .thumb { position: relative; flex-shrink: 0; }
+        
+        .thumb img {
+            width: 85px;
+            height: 55px;
+            border-radius: 6px;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
 
-/* Tick */
-.tick {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: var(--success);
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    font-size: 11px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-</style>
+        .thumb img.active {
+            opacity: 1;
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .tick {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--success);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 11px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: 1px solid black;
+            z-index: 2;
+        }
+
+        /* Animations */
+        .fade-slide {
+            animation: fadeSlide 0.3s ease-out;
+        }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
 </head>
 
 <body>
@@ -179,72 +223,45 @@ body {
     </div>
     <div class="progress-text" id="progressText">0 / 0</div>
 </div>
-<div class="instruction">
-    👉 Slide left or right to continue
-</div>
-<div class="viewer" id="viewer">
-    
-    <img id="slide">
+<div class="stats-subtext">Completed / Total</div>
 
+<div class="viewer" id="viewer">
+    <img id="slide">
+    
     <div class="action-group">
-        <button class="btn-style download-btn" onclick="downloadImage()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 15">
-        <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm-7 4h14v-2H5v2z"/>
-    </svg>
-    Download
-</button>
-         <button id="completeBtn" class="btn-style complete-btn" onclick="markComplete()">Mark Completed</button>
+        <button class="Btn download-btn" onclick="downloadImage()">
+            <svg class="svgIcon" viewBox="0 0 384 512"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg>
+            <span class="icon2"></span>
+        </button>
+
+        <button id="completeBtn" class="Btn complete-btn" onclick="markComplete()">
+            <svg class="svgIcon" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg>
+        </button>
     </div>
 </div>
 
-
-
-<div class="thumbnails" id="thumbs"></div>
+<div class="bottom-section">
+    <div class="instruction">
+        &lt; Swipe left/right on image to change &gt; or &lt; Select below &gt;
+    </div>
+    <div class="thumbnails" id="thumbs"></div>
+</div>
 
 <script>
-
-const images = [
-    "images/1.jpg",
-    "images/2.jpg",
-    "images/3.jpg",
-    "images/4.jpg",
-    "images/5.jpg",
-    "images/6.jpg",
-    "images/7.jpg",
-    "images/8.jpg",
-    "images/9.jpg",
-    "images/10.jpg",
-    "images/11.jpg",
-    "images/12.jpg",
-    "images/13.jpg",
-    "images/14.jpg",
-    "images/15.jpg",
-    "images/16.jpg",
-    "images/17.jpg",
-    "images/18.jpg",
-    "images/19.jpg",
-    "images/20.jpg",
-    "images/21.jpg",
-    "images/22.jpg",
-    "images/23.jpg",
-    "images/24.jpg",
-    "images/25.jpg",
-    "images/26.jpg"
-    // "images/27.jpg",
-];
-
+// Configuration
+const images = Array.from({length: 26}, (_, i) => `images/${i+1}.jpg`);
 let current = 1;
 const total = images.length;
+const thumbsContainer = document.getElementById("thumbs");
 
-/* Thumbnails */
-const thumbs = document.getElementById("thumbs");
-
+// Initialize Thumbnails
 images.forEach((src, i) => {
     let div = document.createElement("div");
     div.className = "thumb";
 
     let img = document.createElement("img");
     img.src = src;
+    img.loading = "lazy";
 
     let tick = document.createElement("div");
     tick.className = "tick";
@@ -258,76 +275,89 @@ images.forEach((src, i) => {
         loadSlide();
     };
 
-    thumbs.appendChild(div);
+    thumbsContainer.appendChild(div);
 });
 
-/* Load Slide */
 function loadSlide() {
-    let img = document.getElementById("slide");
-    let btn = document.getElementById("completeBtn");
+    const slideImg = document.getElementById("slide");
+    const completeBtn = document.getElementById("completeBtn");
 
-    img.src = images[current - 1];
+    // Animation reset
+    slideImg.classList.remove("fade-slide");
+    setTimeout(() => {
+        slideImg.src = images[current - 1];
+        slideImg.classList.add("fade-slide");
+    }, 50);
 
+    // Update Thumbnails (Active state + Ticks + Auto-Scroll)
     document.querySelectorAll(".thumb").forEach((el, i) => {
-        el.querySelector("img").classList.toggle("active", i + 1 === current);
-        el.querySelector(".tick").style.display =
-            localStorage.getItem("slide_" + (i+1)) === "true" ? "flex" : "none";
+        const isCurrent = (i + 1 === current);
+        const thumbImg = el.querySelector("img");
+        
+        thumbImg.classList.toggle("active", isCurrent);
+        
+        const isDone = localStorage.getItem("slide_" + (i+1)) === "true";
+        el.querySelector(".tick").style.display = isDone ? "flex" : "none";
+
+        // AUTO-SCROLL LOGIC: Slides the thumbnail bar to keep active item centered
+        if (isCurrent) {
+            el.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest', 
+                inline: 'center' 
+            });
+        }
     });
 
-    let completed = 0;
+    // Update Progress Bar
+    let completedCount = 0;
     for (let i = 1; i <= total; i++) {
-        if (localStorage.getItem("slide_" + i) === "true") completed++;
+        if (localStorage.getItem("slide_" + i) === "true") completedCount++;
     }
 
-    document.getElementById("progressBar").style.width = (completed / total * 100) + "%";
-    document.getElementById("progressText").innerText = completed + " / " + total;
+    document.getElementById("progressBar").style.width = (completedCount / total * 100) + "%";
+    document.getElementById("progressText").innerText = `${completedCount} / ${total}`;
 
-    if (localStorage.getItem("slide_" + current) === "true") {
-        btn.innerText = "✔ Completed";
-        btn.disabled = true;
-    } else {
-        btn.innerText = "Mark Completed";
-        btn.disabled = false;
-    }
+    // Update Complete Button state
+    const currentIsDone = localStorage.getItem("slide_" + current) === "true";
+    completeBtn.disabled = currentIsDone;
 }
 
-/* Mark Complete */
 function markComplete() {
     localStorage.setItem("slide_" + current, "true");
     loadSlide();
 }
 
-/* Download */
 function downloadImage() {
     const link = document.createElement("a");
     link.href = images[current - 1];
-    link.download = "MS_Word_" + current + ".jpg";
+    link.download = `MS_Word_Practice_${current}.jpg`;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 }
 
-/* Swipe */
+// Mobile Swipe Support
 let startX = 0;
+const viewer = document.getElementById("viewer");
 
-document.getElementById("viewer").addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-});
+viewer.addEventListener("touchstart", e => { 
+    startX = e.touches[0].clientX; 
+}, {passive: true});
 
-document.getElementById("viewer").addEventListener("touchend", e => {
+viewer.addEventListener("touchend", e => {
     let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
 
-    if (startX - endX > 50 && current < total) {
-        current++;
+    if (Math.abs(diff) > 50) {
+        if (diff > 0 && current < total) current++;
+        else if (diff < 0 && current > 1) current--;
         loadSlide();
     }
+}, {passive: true});
 
-    if (endX - startX > 50 && current > 1) {
-        current--;
-        loadSlide();
-    }
-});
-
+// Initial load
 loadSlide();
-
 </script>
 
 </body>
