@@ -1,9 +1,17 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <head>
     <title>Document</title>
     <style>
+        body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  height: 100vh;
+  background: #1e1e1e;
+  color: #fff;
+}
         :root {
             --bg-color: #e90505;
             --pattern-color: rgb(255, 255, 255);
@@ -42,14 +50,7 @@
 
 
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  height: 100vh;
-  background: #1e1e1e;
-  color: #fff;
-}
+
 
 /* Sidebar */
 .sidebar {
@@ -94,8 +95,9 @@ button {
   border: none;
   border-radius: 8px;
   background: #333;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
+  font-size: 22px;
 }
 
 /* Preview */
@@ -113,26 +115,44 @@ button {
   transition: transform 0.2s ease;
 }
 
-/* Mobile */
 @media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
 
-  .sidebar {
+  /* Bigger buttons */
+  button {
+    padding: 14px 18px;
+    font-size: 28px;
+    font-weight: 900px;
+    border-radius: 12px;
     width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
   }
 
-  .preview svg {
-    max-width: 120%;
+  /* Toolbar buttons spacing */
+  .toolbar {
+    gap: 12px;
+    justify-content: center;
   }
 
-  /* Auto rotate vertical */
-  .preview svg {
-    transform: rotate(90deg) scale(0.8);
+  /* Sidebar controls bigger */
+  .control label {
+    font-size: 22px;
   }
+
+  input[type="color"] {
+    height: 45px;
+  }
+
+  /* Make sidebar scroll nicely */
+  .sidebar {
+    padding: 10px;
+    gap: 10px;
+  }
+  button {
+  transition: all 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+}
 }
 
 
@@ -141,21 +161,21 @@ button {
 
 <body>
   <div class="sidebar">
-  <h2>🎨 Controls</h2>
+  <h2>आरनाय</h2>
 
   <div class="control">
-    <label>Background</label>
+    <label>Background-color</label>
     <input type="color" id="bgPicker" value="red">
   </div>
 
   <div class="control">
-    <label>Pattern</label>
+    <label>Pattern-color</label>
     <input type="color" id="patternPicker" value="white">
   </div>
 
-  <button onclick="downloadSVG()">⬇ Export SVG</button>
-  <button onclick="downloadPNG()">⬇ Export JPG</button>
-  <button onclick="downloadPDF()">⬇ Export PDF</button>
+  <button onclick="downloadSVG()">🔗 Export SVG</button>
+  <button onclick="downloadPNG()">🖼Export JPG</button>
+  <button onclick="downloadPDF()">📑 Export PDF</button>
 </div>
 
 <div class="main">
