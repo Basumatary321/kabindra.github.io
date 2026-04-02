@@ -2,192 +2,74 @@
 <html>
 
 <head>
-    <title>Document</title>
-    <style>
-        body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  height: 100vh;
-  background: #1e1e1e;
-  color: #fff;
-}
-        :root {
-            --bg-color: #e90505;
-            --pattern-color: rgb(255, 255, 255);
-        }
+   <title>SVG Designer PRO</title>
 
-        .circle {
-            stroke: var(--pattern-color);
-        }
-
-        .bg {
-            fill: var(--bg-color);
-        }
-
-        .border {
-            fill: var(--bg-color);
-            stroke: var(--pattern-color);
-        }
-
-        .pattern {
-            stroke: var(--pattern-color);
-             stroke-linecap: round;
-  stroke-linejoin: round;
-        }
-
-        .leaf {
-            fill: var(--pattern-color);
-            stroke: var(--bg-color);
-        }
-
-        .pattern2 {
-            fill: var(--pattern-color);
-             stroke-linecap: round;
-  stroke-linejoin: round;
-        }
-
-
-
-
-
-
-/* Sidebar */
-.sidebar {
-  width: 260px;
-  background: #111;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.control {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-input[type="color"] {
-  width: 100%;
-  height: 40px;
-  border: none;
-  border-radius: 8px;
-}
-
-/* Main */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.toolbar {
-  background: #222;
-  padding: 10px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background: #333;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 22px;
-}
-
-/* Preview */
-.preview {
-     position: relative;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  touch-action: none;
-}
-
-.preview svg {
-  max-width: 90%;
-  transition: transform 0.2s ease;
-   transform-origin: center center;
-}
-
-@media (max-width: 768px) {
-
-  /* Bigger buttons */
-  button {
-    padding: 14px 18px;
-    font-size: 28px;
-    font-weight: 900px;
-    border-radius: 12px;
-    width: 100%;
-  }
-
-  /* Toolbar buttons spacing */
-  .toolbar {
-    gap: 12px;
-    justify-content: center;
-  }
-
-  /* Sidebar controls bigger */
-  .control label {
-    font-size: 22px;
-  }
-
-  input[type="color"] {
-    height: 45px;
-  }
-
-  /* Make sidebar scroll nicely */
-  .sidebar {
-    padding: 10px;
-    gap: 10px;
-  }
-  button {
-  transition: all 0.2s ease;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-}
-
-
-    </style>
+<link rel="stylesheet" href="style.css">
+   
 </head>
 
 <body>
-  <div class="sidebar">
-  <h2>आरनाय</h2>
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+  <h1>आरनाय</h1>
 
   <div class="control">
-    <label>Background-color</label>
-    <input type="color" id="bgPicker" value="red">
+    <label>Background</label>
+    <input type="color" id="bgPicker" value="#e90505">
   </div>
 
   <div class="control">
-    <label>Pattern-color</label>
-    <input type="color" id="patternPicker" value="white">
+    <label>Pattern</label>
+    <input type="color" id="patternPicker" value="#ffffff">
   </div>
 
-  <button onclick="downloadSVG()">🔗 Export SVG</button>
-  <button onclick="downloadPNG()">🖼Export JPG</button>
-  <button onclick="downloadPDF()">📑 Export PDF</button>
+<!-- <button onclick="downloadSVG()">Export SVG</button> <button onclick="downloadPNG()">Export JPG</button> <button onclick="downloadPDF()">Export PDF</button> -->
+
+
+  <!-- From Uiverse.io by adamgiebl --> 
+<button class="cssbuttons-io-button export-btn" onclick="toggleExportMenu(event)">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+  >
+    <path fill="none" d="M0 0h24v24H0z"></path>
+    <path
+      fill="currentColor"
+      d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
+    ></path>
+  </svg>
+  <span>Download</span>
+</button>
+
+
+  <div class="export-menu" id="exportMenu">
+    <button onclick="downloadPDF()">📄 PDF</button>
+    <button onclick="downloadPNG()">🖼 JPG</button>
+    <button onclick="downloadSVG()">🔷 SVG</button>
+  </div>
+</div>
 </div>
 
+<!-- MAIN -->
+
 <div class="main">
+
+  <!-- DESKTOP TOOLBAR -->
+
   <div class="toolbar">
-    <button onclick="zoomIn()">🔍 Zoom In</button>
-    <button onclick="zoomOut()">🔎 Zoom Out</button>
-    <button onclick="resetZoom()">♻ Reset</button>
-    <button onclick="rotate()">🔄 Rotate</button>
+    <button onclick="zoomIn()">Zoom +</button>
+    <button onclick="zoomOut()">Zoom -</button>
+    <button onclick="resetZoom()">Reset</button>
+    <button onclick="rotate()">Rotate</button>
   </div>
-    <div class="preview">
+
+  <!-- PREVIEW -->
+
+  <div class="preview">
+
 
     <!-- Creator: CorelDRAW 2018 (64-Bit) -->
     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="510mm" height="97mm" version="1.1"
@@ -11963,247 +11845,20 @@ button:active {
                 d="M46483.57 1771.53c0,-26.29 -8.18,-42.24 -19.41,-49.37 -11.22,7.13 -19.41,23.08 -19.41,49.37 0,26.3 10.19,72.76 19.42,81.91 9.05,-8.76 19.4,-55.61 19.4,-81.91z" />
         </g>
     </svg>
+ </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- MOBILE FLOATING BAR -->
+
+<div class="mobile-bar">
+  <button onclick="zoomIn()">+</button>
+  <button onclick="zoomOut()">-</button>
+  <button onclick="rotate()">⟳</button>
+  <button onclick="resetZoom()">⟲</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script>
-const root = document.documentElement;
-const svg = document.getElementById("svg");
-
-let scale = 1;
-let rotated = false;
-
-/* 🎨 COLOR CONTROL */
-document.getElementById("bgPicker").oninput = e => {
-  root.style.setProperty('--bg-color', e.target.value);
-};
-
-document.getElementById("patternPicker").oninput = e => {
-  root.style.setProperty('--pattern-color', e.target.value);
-};
-
-/* 🔍 ZOOM + ROTATE */
-function zoomIn(){ scale += 0.2; updateTransform(); }
-function zoomOut(){ scale -= 0.2; updateTransform(); }
-function resetZoom(){ scale = 1; rotated = false; updateTransform(); }
-
-function rotate(){
-  rotated = !rotated;
-  updateTransform();
-}
-
-function updateTransform(){
-  let rotateValue = rotated ? 90 : 0;
-
-  svg.style.transform = `
-    translate(-50%, -50%)
-    rotate(${rotateValue}deg)
-    scale(${scale})
-  `;
-
-  svg.style.position = "absolute";
-  svg.style.top = "50%";
-  svg.style.left = "50%";
-}
-
-/* 📱 PINCH ZOOM (SMOOTH) */
-let initialDistance = 0;
-
-function getDistance(touches){
-  const dx = touches[0].clientX - touches[1].clientX;
-  const dy = touches[0].clientY - touches[1].clientY;
-  return Math.sqrt(dx*dx + dy*dy);
-}
-
-svg.addEventListener("touchstart", e => {
-  if(e.touches.length === 2){
-    initialDistance = getDistance(e.touches);
-  }
-});
-
-svg.addEventListener("touchmove", e => {
-  if(e.touches.length === 2){
-    e.preventDefault();
-
-    let newDistance = getDistance(e.touches);
-    let zoomFactor = newDistance / initialDistance;
-
-    // smooth zoom
-    scale = scale * (1 + (zoomFactor - 1) * 0.2);
-    scale = Math.min(Math.max(0.5, scale), 5);
-
-    updateTransform();
-    initialDistance = newDistance;
-  }
-});
-
-/* 🎯 PREPARE SVG (CRITICAL FIX) */
-function prepareSVG(){
-  const clone = svg.cloneNode(true);
-
-  const styles = getComputedStyle(document.documentElement);
-  const bg = styles.getPropertyValue('--bg-color').trim();
-  const pattern = styles.getPropertyValue('--pattern-color').trim();
-
-  clone.querySelectorAll('.bg').forEach(el => {
-    el.setAttribute('fill', bg);
-  });
-
-  clone.querySelectorAll('.pattern').forEach(el => {
-    el.setAttribute('stroke', pattern);
-    el.setAttribute('fill', 'none');
-    el.setAttribute('stroke-linecap', 'round');
-    el.setAttribute('stroke-linejoin', 'round');
-  });
-
-  clone.querySelectorAll('.leaf').forEach(el => {
-    el.setAttribute('fill', pattern);
-    el.setAttribute('stroke', bg);
-  });
-
-  clone.querySelectorAll('.pattern2').forEach(el => {
-    el.setAttribute('fill', pattern);
-    el.setAttribute('stroke-linecap', 'round');
-    el.setAttribute('stroke-linejoin', 'round');
-  });
-
-  clone.setAttribute("width", "5000");
-  clone.setAttribute("height", "1000");
-  clone.setAttribute("viewBox", "0 0 51000 9700");
-
-  return clone;
-}
-
-/* ⬇ SVG EXPORT */
-function downloadSVG(){
-  const svgData = new XMLSerializer().serializeToString(prepareSVG());
-  const blob = new Blob([svgData], {type: "image/svg+xml"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "design.svg";
-  a.click();
-}
-
-/* ⬇ JPG EXPORT (HD) */
-function downloadPNG(){
-  const svgData = new XMLSerializer().serializeToString(prepareSVG());
-
-  const img = new Image();
-  const blob = new Blob([svgData], {type: 'image/svg+xml'});
-  const url = URL.createObjectURL(blob);
-
-  img.onload = function(){
-    const canvas = document.createElement("canvas");
-
-    const exportScale = 3;
-    canvas.width = img.width * exportScale;
-    canvas.height = img.height * exportScale;
-
-    const ctx = canvas.getContext("2d");
-
-    ctx.scale(exportScale, exportScale);
-    ctx.imageSmoothingQuality = "high";
-
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    ctx.drawImage(img,0,0);
-
-    const a = document.createElement("a");
-    a.download = "design.jpg";
-    a.href = canvas.toDataURL("image/jpeg",1);
-    a.click();
-  };
-
-  img.src = url;
-}
-
-/* ⬇ PDF EXPORT (PRINT READY) */
-async function downloadPDF(){
-  const { jsPDF } = window.jspdf;
-
-  const svgClone = prepareSVG();
-  const svgData = new XMLSerializer().serializeToString(svgClone);
-
-  const img = new Image();
-  const blob = new Blob([svgData], {type: 'image/svg+xml'});
-  const url = URL.createObjectURL(blob);
-
-  img.onload = function(){
-
-    const widthCM = 200;
-    const ratio = 51000 / 9700;
-    const heightCM = widthCM / ratio;
-
-    const widthMM = widthCM * 10;
-    const heightMM = heightCM * 10;
-
-    const pdf = new jsPDF({
-      orientation: 'landscape',
-      unit: 'mm',
-      format: [widthMM, heightMM]
-    });
-
-    const canvas = document.createElement("canvas");
-    const exportScale = 3;
-
-    canvas.width = img.width * exportScale;
-    canvas.height = img.height * exportScale;
-
-    const ctx = canvas.getContext("2d");
-    ctx.scale(exportScale, exportScale);
-
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    ctx.drawImage(img,0,0);
-
-    const imgData = canvas.toDataURL("image/jpeg",1);
-
-    pdf.addImage(imgData, "JPEG", 0, 0, widthMM, heightMM);
-    pdf.save("scarf-design.pdf");
-  };
-
-  img.src = url;
-}
-
-// auto rotate on mobile for better fit (important for mobile users)
-function isMobile(){
-  return window.innerWidth <= 768;
-}
-
-function autoRotateMobile(){
-  if(!isMobile()) return;
-
-  // wait until SVG is rendered properly
-  setTimeout(() => {
-    rotated = true;
-
-    // better fit calculation
-    const preview = document.querySelector(".preview");
-    const svgRect = svg.getBoundingClientRect();
-
-    const scaleX = preview.clientWidth / svgRect.height;
-    const scaleY = preview.clientHeight / svgRect.width;
-
-    scale = Math.min(scaleX, scaleY) * 0.9;
-
-    updateTransform();
-  }, 300); // delay is IMPORTANT
-}
-
-// run on load
-window.addEventListener("load", autoRotateMobile);
-
-// run on resize (important for mobile orientation change)
-window.addEventListener("resize", autoRotateMobile);
-</script>
-
+<script src="script.js"></script>
 
 </body>
-
 </html>
