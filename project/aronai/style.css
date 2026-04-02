@@ -152,6 +152,7 @@ button {
 .pattern { stroke: var(--pattern-color); fill: none; }
 .leaf { fill: var(--pattern-color); stroke: var(--bg-color); }
 .pattern2 { fill: var(--pattern-color); }
+.circle{stroke:var(--pattern-color);}
 
 
 /* Container */
