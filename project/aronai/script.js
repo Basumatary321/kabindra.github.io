@@ -98,7 +98,10 @@ function prepareSVG(){
     el.setAttribute('stroke-linecap', 'round');
     el.setAttribute('stroke-linejoin', 'round');
   });
-
+ clone.querySelectorAll('.circle').forEach(el => {
+    el.setAttribute('stroke', pattern);
+  });
+  
   clone.setAttribute("width", "5000");
   clone.setAttribute("height", "1000");
   clone.setAttribute("viewBox", "0 0 51000 9700");
