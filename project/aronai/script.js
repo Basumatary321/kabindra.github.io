@@ -69,7 +69,7 @@ svg.addEventListener("touchmove", e => {
   }
 });
 
-/* 🎯 PREPARE SVG (CRITICAL FIX) */
+/* 🎯 PREPARE SVG  */
 function prepareSVG(){
   const clone = svg.cloneNode(true);
 
@@ -111,6 +111,48 @@ function prepareSVG(){
 
   return clone;
 }
+
+
+function prepareSVGTransparent(){
+  const clone = prepareSVG(); // use original first
+
+  //  ONLY remove background for this export
+  clone.querySelectorAll('.bg').forEach(el => {
+    el.setAttribute('fill', 'none');
+  });
+
+  return clone;
+}
+
+function downloadTransparentPNG(){
+  const svgData = new XMLSerializer().serializeToString(prepareSVGTransparent());
+
+  const img = new Image();
+  const blob = new Blob([svgData], {type: 'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+
+  img.onload = function(){
+    const canvas = document.createElement("canvas");
+
+    const scale = 3;
+    canvas.width = img.width * scale;
+    canvas.height = img.height * scale;
+
+    const ctx = canvas.getContext("2d");
+    ctx.scale(scale, scale);
+
+    // NO background fill here
+
+    ctx.drawImage(img,0,0);
+
+    const a = document.createElement("a");
+    a.download = "aronai-transparent.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  };
+
+  img.src = url;
+      }
 
 /* ⬇ SVG EXPORT */
 function downloadSVG(){
