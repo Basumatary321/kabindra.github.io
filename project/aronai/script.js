@@ -101,7 +101,10 @@ function prepareSVG(){
  clone.querySelectorAll('.circle').forEach(el => {
     el.setAttribute('stroke', pattern);
   });
-  
+   clone.querySelectorAll('.pattern3').forEach(el => {
+    el.setAttribute('stroke', pattern);
+     el.setAttribute('fill', pattern);
+  });
   clone.setAttribute("width", "5000");
   clone.setAttribute("height", "1000");
   clone.setAttribute("viewBox", "0 0 51000 9700");
