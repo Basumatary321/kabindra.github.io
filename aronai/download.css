@@ -1,4 +1,4 @@
- 
+   
       :root {
           --bg-color: #000000;
          --pattern-color: #4800ce;
@@ -143,9 +143,7 @@ h1{
   font-size: 24px;
 }
 
-.export-menu button:hover {
-  background: rgba(255,255,255,0.1);
-}
+
 
 /* Ripple effect */
 .export-btn:active {
@@ -263,6 +261,7 @@ flex-wrap: wrap;
 .color-header h2 {
   margin: 0;
   font-size: 26px;
+  color: #8b5cf6;
   border-bottom: 2px solid #8b5cf6;
 }
 
@@ -277,7 +276,7 @@ flex-wrap: wrap;
 /* DESCRIPTION */
 .color-desc {
   font-size: 18px;
-  color: #e2dcdc;
+  color: #0bb0f1;
   margin: 10px 0 20px;
 }
 
@@ -302,15 +301,16 @@ flex-wrap: wrap;
 .color-box label {
   font-weight: 600;
   font-size: 16px;
+  color: #f65ce9;
 }
 
 .color-box p {
   font-size: 16px;
-  color: #aaa;
+  color: #0df3a6;
   margin: 4px 0 10px;
 }
 .color-btn span{
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0em;
   padding: 0;
   margin: 0;
@@ -435,7 +435,8 @@ width: 100px;
 
 /* CARD */
 .offer-card {
-  width: 520px;
+  /* width: 520px; */
+  width: 550px;
   padding: 25px;
   height: max-content;
   border-radius: 22px;
@@ -545,7 +546,7 @@ width: 100px;
   position: absolute;
   top: 8px;
   right: 10px;
-  font-size: 10px;
+  font-size: 14px;
   padding: 3px 8px;
   border-radius: 10px;
   background: linear-gradient(90deg,#06b6d4,#6366f1);
@@ -555,10 +556,10 @@ width: 100px;
 .loader {
   width: 18px;
   height: 18px;
-  border: 2px solid transparent;
-  border-top: 2px solid #06b6d4;
+  border: 4px solid transparent;
+  border-top: 4px solid #06b6d4;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 2s linear infinite;
   display: none;
 }
 
@@ -600,7 +601,7 @@ width: 100px;
   border: none;
   background: rgba(255,255,255,0.08);
   color: #fff;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 900;
   cursor: pointer;
   position: relative;
@@ -628,9 +629,9 @@ width: 100px;
 .action-bar button::after {
   content: attr(data-tip);
   position: absolute;
-  bottom: 65px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* bottom: 65px; */
+  left: 80px;
+  /* transform: translateX(-50%); */
 
   background: rgba(0,0,0,0.8);
   color: #fff;
@@ -663,14 +664,20 @@ width: 100px;
     background-color: transparent;
     border: 2px solid #8b5cf6;
     cursor: pointer;
-    color: #af93f1;
-    border-radius: 15px;
+    border-radius: 50px;
     display: flex;
-
+  box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
     padding: 8px 14px;
     align-items: center;
-    gap: 8px;
+    gap: 2px;
 
+}
+.color-btn:active {
+      transform: scale(0.9);
+}
+.color-btn:hover {
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 .color-btn svg{
     width: 25px;
@@ -692,6 +699,7 @@ color: #ae91f0;
 .offer-card__icon-container {
   display: flex;
   width: 50%;
+  height: 150px;
   margin: 0 auto;
   justify-content: center;
   margin-bottom: 1em;
@@ -701,26 +709,26 @@ color: #ae91f0;
   margin: 0 0 0.3em 0;
   font-size: 1.35em;
   font-weight: 600;
-  color: #c2aff0;
+  color: #f31ac4;
 }
 
 .offer-card__subtitle {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-secondary);
   line-height: 1.4;
   padding: 0 0.5em;
   color: aqua;
 }
 .left div p{
-    color: #ffffff;
-    font-size: 14px;
+    color: #eebcd7;
+    font-size: 16px;
 }
 .left div h4{
     color: #0dec20;
 }
 .left div span{
-    color: rgb(250, 11, 218);
+    color: #fa0bda;
     font-weight: 600;
     font-size: 14px;
 }
@@ -728,9 +736,15 @@ color: #ae91f0;
     position: absolute;
     top: 10px;
     right: 20px;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 100;
     cursor: pointer;
     color: #ffffff;
 z-index: 999;
+}
+.group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
