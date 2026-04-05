@@ -1,4 +1,4 @@
- 
+  
 const root = document.documentElement;
 const svg = document.getElementById("svg");
 
@@ -281,20 +281,22 @@ window.addEventListener("resize", autoRotateMobile);
 
 
 
-function toggleExportMenu(e){
-  e.stopPropagation();
-  const menu = document.getElementById("exportMenu");
-  menu.classList.toggle("show");
-}
+// function toggleExportMenu(e){
+//   e.stopPropagation();
+//   const menu = document.getElementById("exportMenu");
+//   menu.classList.toggle("show");
+// }
 
-function openColorPopup(){
-  document.getElementById("colorPopup").classList.add("show");
-}
+// function openColorPopup(){
+//   document.getElementById("colorPopup").classList.add("show");
+// }
 
 function closeColorPopup(){
   document.getElementById("colorPopup").classList.remove("show");
 }
-
+function closeDownloadPopup(){
+  document.getElementById("exportMenu").classList.remove("show");
+}
 // close on outside click
 document.getElementById("colorPopup").addEventListener("click", function(e){
   if(e.target === this){
@@ -345,3 +347,24 @@ document.querySelectorAll(".size").forEach(el => {
 // document.addEventListener("click", () => {
 //   document.getElementById("exportMenu").classList.remove("show");
 // });
+
+function closeAllPopups() {
+  // close color popup
+  document.getElementById("colorPopup")?.classList.remove("show");
+
+  // close download popup
+  document.getElementById("downloadPopup")?.classList.remove("show");
+
+  // close export menu (if used)
+  document.getElementById("exportMenu")?.classList.remove("show");
+}
+
+function openColorPopup() {
+  closeAllPopups(); // 🔥 important
+  document.getElementById("colorPopup").classList.add("show");
+}
+
+function toggleExportMenu(event) {
+  closeAllPopups(); // 🔥 important
+  document.getElementById("exportMenu").classList.add("show");
+}
