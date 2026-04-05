@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+     <!DOCTYPE html>
 <html>
 
 <head>
@@ -23,7 +23,7 @@
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2.5"
+            stroke-width="3"
             stroke-linecap="round"
             stroke-linejoin="round"
           >
@@ -31,7 +31,13 @@
               d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
             ></path>
           </svg>
-    Customize Colors
+    <span style="color: red;">C</span>
+    <span style="color: #069df5;">O</span>
+    <span style="color: #04cc2f;">L</span>
+    <span style="color: #f8b600;">O</span>
+    <span style="color: #f80099;">R</span>
+    <span style="color: #e7eee7;">S</span>
+
   </button>
 </div>
 
@@ -40,10 +46,10 @@
   <div class="color-card">
 
     <div class="color-header">
-      <h2>🎨 Customize Your Design</h2>
-      <span onclick="closeColorPopup()">✖</span>
+      <h2>Customize Your Design</h2>
+      
     </div>
-
+<span onclick="closeColorPopup()" id="close">✖</span>
     <p class="color-desc">
       Adjust background and pattern colors to create your own unique Aronai design.
     </p>
@@ -65,7 +71,7 @@
     </div>
 
     <div class="theme-section">
-  <h3>🎯 Preset Themes</h3>
+  <h3> Preset Themes</h3>
 
   <div class="theme-grid">
 
@@ -85,36 +91,36 @@
       <p>Neon Dark</p>
     </div>
 
-    <div class="theme-card" onclick="applyTheme('#1e3a8a','#facc15')">
+    <div class="theme-card" onclick="applyTheme('#0044ff','#facc15')">
       <div class="colors">
-        <span style="background:#1e3a8a"></span>
+        <span style="background:#0044ff"></span>
         <span style="background:#facc15"></span>
       </div>
       <p>Royal Blue</p>
     </div>
 
-    <div class="theme-card" onclick="applyTheme('#065f46','#ecfeff')">
+    <div class="theme-card" onclick="applyTheme('#008000','#ecfeff')">
       <div class="colors">
-        <span style="background:#065f46"></span>
+        <span style="background:#008000"></span>
         <span style="background:#ecfeff"></span>
       </div>
       <p>Nature Green</p>
     </div>
 
-    <div class="theme-card" onclick="applyTheme('#111827','#fb7185')">
+    <div class="theme-card" onclick="applyTheme('#000000','#fb7185')">
       <div class="colors">
-        <span style="background:#111827"></span>
+        <span style="background:#000000"></span>
         <span style="background:#fb7185"></span>
       </div>
       <p>Dark Pink</p>
     </div>
 
-    <div class="theme-card" onclick="applyTheme('#f97316','#1e293b')">
+    <div class="theme-card" onclick="applyTheme('#000000','#0060fa')">
       <div class="colors">
         <span style="background:#000000"></span>
         <span style="background:#0060fa"></span>
       </div>
-      <p>Sunset</p>
+      <p>Dark Blue</p>
     </div>
     <div class="theme-card" onclick="applyTheme('#f97316','#1e293b')">
       <div class="colors">
@@ -123,19 +129,19 @@
       </div>
       <p>Sunset</p>
     </div>
-    <div class="theme-card" onclick="applyTheme('#f97316','#1e293b')">
+    <div class="theme-card" onclick="applyTheme('#00f800','#0046b8')">
       <div class="colors">
         <span style="background:#00f800"></span>
         <span style="background:#0046b8"></span>
       </div>
-      <p>Sunset</p>
+      <p>Emerald</p>
     </div>
-    <div class="theme-card" onclick="applyTheme('#f97316','#1e293b')">
+    <div class="theme-card" onclick="applyTheme('#ffffff','#0227f3')">
       <div class="colors">
-        <span style="background:#fa0303"></span>
-        <span style="background:#aa8200"></span>
+        <span style="background:#ffffff"></span>
+        <span style="background:#0227f3"></span>
       </div>
-      <p>Sunset</p>
+      <p>Blue</p>
     </div>
     <div class="theme-card" onclick="applyTheme('#f97316','#1e293b')">
       <div class="colors">
@@ -144,12 +150,12 @@
       </div>
       <p>Sunset</p>
     </div>
-    <div class="theme-card" onclick="applyTheme('#f97316','#1e293b')">
+    <div class="theme-card" onclick="applyTheme('#000000','#ffe600')">
       <div class="colors">
-        <span style="background:#007a37"></span>
-        <span style="background:#ee0000"></span>
+        <span style="background:#000000"></span>
+        <span style="background:#ffe600"></span>
       </div>
-      <p>Sunset</p>
+      <p>Dark Blue</p>
     </div>
 
   </div>
@@ -181,6 +187,7 @@
 </button>
 
 <div class="export-menu" id="exportMenu">
+  <span onclick="closeDownloadPopup()" id="close">✖</span>
 
   <div class="offer-card">
 
@@ -306,265 +313,7 @@
   </div>
 
 </div>
- <!-- <div class="export-menu" id="exportMenu">
-<div class="offer-card">
-  <div class="offer-card__progress">
-    <div
-      class="offer-card__progress-step offer-card__progress-step--active"
-    ></div>
-    <div class="offer-card__progress-step"></div>
-    <div class="offer-card__progress-step"></div>
-    <div class="offer-card__progress-step"></div>
-    <div class="offer-card__progress-step"></div>
-    <div class="offer-card__progress-step"></div>
-  </div>
-
-  <div class="offer-card__header">
-    <div class="offer-card__icon-container">
-      <svg class="folder-svg" viewBox="0 0 100 100" fill="none">
-        <path
-          d="M15 35 C15 30 20 25 25 25 L40 25 C45 25 48 28 50 32 L53 36 C55 39 58 40 62 40 L75 40 C80 40 85 45 85 50 L85 80 C85 88 78 92 75 92 L25 92 C18 92 15 88 15 80 Z"
-          fill="#303035"
-        ></path>
-
-        <g transform="translate(0, -2)">
-          <path
-            d="M30 25 L65 25 C68 25 70 27 70 30 L70 50 C70 53 68 55 65 55 L30 55 C27 55 25 53 25 50 L25 30 C25 27 27 25 30 25 Z"
-            fill="#cccccc"
-            transform="rotate(-12 50 50)"
-          ></path>
-
-          <path
-            d="M35 30 L70 30 C73 30 75 32 75 35 L75 55 C75 58 73 60 70 60 L35 60 C32 60 30 58 30 55 L30 35 C30 32 32 30 35 30 Z"
-            fill="#ffffff"
-            transform="rotate(-4 50 50)"
-          ></path>
-          <text
-            x="38"
-            y="44"
-            font-family="'Inter', sans-serif"
-            font-size="6"
-            fill="#333"
-            font-weight="600"
-            transform="rotate(-4 50 50)"
-          >
-            Contracts
-          </text>
-        </g>
-
-        <path
-          d="M10 48 C10 43 15 40 22 40 L78 40 C85 40 90 43 90 48 L88 80 C87 88 80 94 75 94 L25 94 C20 94 13 88 12 80 Z"
-          fill="url(#folderFront)"
-        ></path>
-
-        <path
-          d="M10 48 C10 43 15 40 22 40 L78 40 C85 40 90 43 90 48 L89 54 L11 54 Z"
-          fill="rgba(255,255,255,0.05)"
-        ></path>
-
-        <defs>
-          <linearGradient id="folderFront" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#4e4e56"></stop>
-            <stop offset="100%" stop-color="#2a2a2f"></stop>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    <div class="offer-card__title">Choose file type</div>
-    <div class="offer-card__subtitle">
-      What type of file do you want to download?
-    </div>
-  </div>
-
-  <div class="offer-card__options">
-    <label class="offer-card__option">
-      <input
-        type="radio"
-        name="offer-type"
-        value="collaboration"
-        class="offer-card__option-input"
-        checked=""
-      />
-      <div class="offer-card__option-content">
-        <div class="offer-card__option-icon-wrapper">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
-            ></path>
-          </svg>
-        </div>
-        <div class="offer-card__option-text">
-          <span class="offer-card__option-title">PNG</span>
-          <span class="offer-card__option-desc">High resolution, Transparent Background</span>
-        </div>
-        
-          <button onclick="downloadTransparentPNG()" style="background-color: transparent;border: none; cursor: pointer;">
-        <div class="offer-card__option-arrow">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </div>
-</button>
-
-      </div>
-    </label>
-
-    <label class="offer-card__option">
-      <input
-        type="radio"
-        name="offer-type"
-        value="paid"
-        class="offer-card__option-input"
-      />
-      <div class="offer-card__option-content">
-        <div class="offer-card__option-icon-wrapper">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-          </svg>
-        </div>
-        <div class="offer-card__option-text">
-          <span class="offer-card__option-title">JPG</span>
-          <span class="offer-card__option-desc"
-            >Compressed format,best for web and social media.</span
-          >
-        </div>
-
-<button onclick="downloadJPG()" style="background-color: transparent;border: none; cursor: pointer;">
-        <div class="offer-card__option-arrow">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </div>
-</button>
-
-      </div>
-    </label>
-
-    <label class="offer-card__option">
-      <input
-        type="radio"
-        name="offer-type"
-        value="unpaid"
-        class="offer-card__option-input"
-      />
-      <div class="offer-card__option-content">
-        <div class="offer-card__option-icon-wrapper">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M19 4H5c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2s-.9 2-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2V6c0-1.1-.9-2-2-2z"
-            ></path>
-          </svg>
-        </div>
-        <div class="offer-card__option-text">
-          <span class="offer-card__option-title">PDF</span>
-          <span class="offer-card__option-desc">Portable Document Format</span>
-        </div>
-        <button onclick="downloadPDF()" style="background-color: transparent;border: none; cursor: pointer;">
-        <div class="offer-card__option-arrow">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </div>
-</button>
-      </div>
-    </label>
-
-    <label class="offer-card__option">
-      <input
-        type="radio"
-        name="offer-type"
-        value="unpaid"
-        class="offer-card__option-input"
-      />
-      <div class="offer-card__option-content">
-        <div class="offer-card__option-icon-wrapper">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M19 4H5c-1.1 0-2 .9-2 2v4c1.1 0 2 .9 2 2s-.9 2-2 2v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2V6c0-1.1-.9-2-2-2z"
-            ></path>
-          </svg>
-        </div>
-        <div class="offer-card__option-text">
-          <span class="offer-card__option-title">SVG</span>
-          <span class="offer-card__option-desc">Scalable Vector Graphics, unlimited scalability.</span>
-        </div>
-        
-        <button onclick="downloadSVG()" style="background-color: transparent;border: none; cursor: pointer;">
-        <div class="offer-card__option-arrow">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </div>
-</button>
-
-      </div>
-    </label>
-  </div>
-
-  
-</div>
-</div> -->
+ 
 </div>
 </div>
 
@@ -6783,6 +6532,7 @@ viewBox="0 0 51000 9700"
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
+<script src="closeopen.js"></script>
 
 </body>
 </html>
