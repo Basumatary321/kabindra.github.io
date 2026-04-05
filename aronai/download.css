@@ -1,4 +1,4 @@
-
+ 
       :root {
           --bg-color: #000000;
          --pattern-color: #4800ce;
@@ -45,6 +45,7 @@ h1{
     font-size: 2.5rem;
     font-weight: 900;
     margin: 0;
+    color: #8b5cf6;
 }
 /* SIDEBAR (DESKTOP) */
 .sidebar {
@@ -178,14 +179,14 @@ h1{
   font-weight: 500;
   font-size: 17px;
   padding: 6px 20px;
-  color: white;
-  background: #ad5389;
-  background: linear-gradient(
+  color: #af93f1;
+  background: transparent;
+  /* background: linear-gradient(
     0deg,
     rgba(77, 54, 208, 1) 0%,
     rgba(132, 116, 254, 1) 100%
-  );
-  border: none;
+  ); */
+  border: 2px solid #8b5cf6;
   box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
   letter-spacing: 0.05em;
   border-radius: 20em;
@@ -205,7 +206,7 @@ h1{
 /* POPUP BACKDROP */
 .color-popup {
   position: fixed;
-  top: 100px;
+  top: 110px;
   left: 0;
   width: 100%;
   display: flex;
@@ -261,21 +262,22 @@ flex-wrap: wrap;
 
 .color-header h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 26px;
+  border-bottom: 2px solid #8b5cf6;
 }
 
-.color-header span {
+.color-card #close {
   cursor: pointer;
   font-size: 26px;
   position: absolute;
-  right: 10px;
-  top: 2px;
+  right: 20px;
+  top: 10PX;
 }
 
 /* DESCRIPTION */
 .color-desc {
   font-size: 18px;
-  color: #aaa;
+  color: #e2dcdc;
   margin: 10px 0 20px;
 }
 
@@ -307,13 +309,20 @@ flex-wrap: wrap;
   color: #aaa;
   margin: 4px 0 10px;
 }
-
+.color-btn span{
+  font-weight: 900;
+  letter-spacing: 0em;
+  padding: 0;
+  margin: 0;
+}
 .color-box input[type="color"] {
   width: 100%;
   height: 50px;
   border: none;
   /* border-radius: 10px; */
+  outline: none;
   cursor: pointer;
+  opacity: 0.8;
 }
 
 /* APPLY BUTTON */
@@ -347,6 +356,8 @@ flex-wrap: wrap;
 .theme-section h3 {
   margin-bottom: 10px;
   font-size: 16px;
+  border-left: 4px solid #8b5cf6;
+  padding-left: 10px;
 }
 
 /* GRID */
@@ -372,6 +383,10 @@ width: 100px;
   transform: scale(1.05);
   box-shadow: 0 0 12px rgba(0,255,255,0.4);
 }
+
+
+
+
 
 /* COLOR PREVIEW */
 .theme-card .colors {
@@ -399,8 +414,9 @@ width: 100px;
 .export-menu {
   position: fixed;
   /* inset: 0; */
-  top: 150px;
-  right: 15px;
+  top: 110px;
+  right: 50%;
+  transform: translateX(50%);
   /* background: rgba(0,0,0,0.6);
   backdrop-filter: blur(15px); */
   display: flex;
@@ -419,7 +435,7 @@ width: 100px;
 
 /* CARD */
 .offer-card {
-  width: 420px;
+  width: 520px;
   padding: 25px;
   height: max-content;
   border-radius: 22px;
@@ -446,13 +462,13 @@ width: 100px;
 }
 
 .offer-header .title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .offer-header p {
-  color: #aaa;
-  font-size: 13px;
+  color: #ff0000;
+  font-size: 16px;
 }
 
 /* OPTIONS */
@@ -558,22 +574,22 @@ width: 100px;
 /* 🌌 FLOATING BAR */
 .action-bar {
   position: fixed;
-  top: 110px;
-  left: 200px;
+  top: 120px;
+  left: 60px;
   transform: translateX(-50%);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 12px;
   padding: 10px 14px;
   border-radius: 20px;
 
   background: rgba(20,20,20,0.7);
   backdrop-filter: blur(15px);
-  box-shadow:
+  /* box-shadow:
     0 0 20px rgba(0,255,255,0.2),
-    0 0 40px rgba(99,102,241,0.2);
+    0 0 40px rgba(99,102,241,0.2); */
 
-  z-index: 99;
+  z-index: 998;
 }
 
 /* BUTTON */
@@ -657,17 +673,17 @@ width: 100px;
 
 }
 .color-btn svg{
-    width: 20px;
-    height: 20px;
-color: #8b5cf6;
+    width: 25px;
+    height: 25px;
+color: #ae91f0;
 }
 
 
 /* Header */
 .offer-card__header {
   text-align: center;
-  margin-bottom: 2em;
-  width: 50%;
+  margin-bottom: 1em;
+  width: 100%;
   position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -675,6 +691,8 @@ color: #8b5cf6;
 
 .offer-card__icon-container {
   display: flex;
+  width: 50%;
+  margin: 0 auto;
   justify-content: center;
   margin-bottom: 1em;
 }
@@ -683,12 +701,36 @@ color: #8b5cf6;
   margin: 0 0 0.3em 0;
   font-size: 1.35em;
   font-weight: 600;
+  color: #c2aff0;
 }
 
 .offer-card__subtitle {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.4;
   padding: 0 0.5em;
+  color: aqua;
+}
+.left div p{
+    color: #ffffff;
+    font-size: 14px;
+}
+.left div h4{
+    color: #0dec20;
+}
+.left div span{
+    color: rgb(250, 11, 218);
+    font-weight: 600;
+    font-size: 14px;
+}
+#exportMenu #close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: 100;
+    cursor: pointer;
+    color: #ffffff;
+z-index: 999;
 }
