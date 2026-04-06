@@ -1,11 +1,11 @@
-  
+   
 const root = document.documentElement;
 const svg = document.getElementById("svg");
 
 let scale = 1;
 let rotated = false;
 
-/* 🎨 COLOR CONTROL */
+/*  COLOR CONTROL */
 document.getElementById("bgPicker").oninput = e => {
   root.style.setProperty('--bg-color', e.target.value);
 };
@@ -14,9 +14,9 @@ document.getElementById("patternPicker").oninput = e => {
   root.style.setProperty('--pattern-color', e.target.value);
 };
 
-/* 🔍 ZOOM + ROTATE */
-function zoomIn(){ scale += 0.2; updateTransform(); }
-function zoomOut(){ scale -= 0.2; updateTransform(); }
+/*  ZOOM + ROTATE */
+function zoomIn(){ scale += 0.8; updateTransform(); }
+function zoomOut(){ scale -= 0.5; updateTransform(); }
 function resetZoom(){ scale = 1; rotated = false; updateTransform(); }
 
 function rotate(){
@@ -38,7 +38,7 @@ function updateTransform(){
   svg.style.left = "50%";
 }
 
-/* 📱 PINCH ZOOM (SMOOTH) */
+/* PINCH ZOOM (SMOOTH) */
 let initialDistance = 0;
 
 function getDistance(touches){
@@ -69,7 +69,7 @@ svg.addEventListener("touchmove", e => {
   }
 });
 
-/* 🎯 PREPARE SVG  */
+/*  PREPARE SVG  */
 function prepareSVG(){
   const clone = svg.cloneNode(true);
 
@@ -114,9 +114,9 @@ function prepareSVG(){
 
 
 function prepareSVGTransparent(){
-  const clone = prepareSVG(); // use original first
+  const clone = prepareSVG(); 
 
-  //  ONLY remove background for this export
+ 
   clone.querySelectorAll('.bg').forEach(el => {
     el.setAttribute('fill', 'none');
   });
@@ -198,7 +198,7 @@ function downloadPNG(){
   img.src = url;
 }
 
-/* ⬇ PDF EXPORT (PRINT READY) */
+/* ⬇ PDF EXPORT  */
 async function downloadPDF(){
   const { jsPDF } = window.jspdf;
 
@@ -247,49 +247,9 @@ async function downloadPDF(){
   img.src = url;
 }
 
-// auto rotate on mobile for better fit (important for mobile users)
-function isMobile(){
-  return window.innerWidth <= 768;
-}
-
-function autoRotateMobile(){
-  if(!isMobile()) return;
-
-  // wait until SVG is rendered properly
-  setTimeout(() => {
-    rotated = true;
-
-    // better fit calculation
-    const preview = document.querySelector(".preview");
-    const svgRect = svg.getBoundingClientRect();
-
-    const scaleX = preview.clientWidth / svgRect.height;
-    const scaleY = preview.clientHeight / svgRect.width;
-
-    scale = Math.min(scaleX, scaleY) * 0.9;
-
-    updateTransform();
-  }, 300); // delay is IMPORTANT
-}
-
-// run on load
-window.addEventListener("load", autoRotateMobile);
-
-// run on resize (important for mobile orientation change)
-window.addEventListener("resize", autoRotateMobile);
 
 
 
-
-// function toggleExportMenu(e){
-//   e.stopPropagation();
-//   const menu = document.getElementById("exportMenu");
-//   menu.classList.toggle("show");
-// }
-
-// function openColorPopup(){
-//   document.getElementById("colorPopup").classList.add("show");
-// }
 
 function closeColorPopup(){
   document.getElementById("colorPopup").classList.remove("show");
@@ -337,16 +297,13 @@ function handleDownload(el, fn){
 }
 
 document.querySelectorAll(".size").forEach(el => {
-  const sizes = ["~20.2 MB","~15 MB","~21.5 MB","~12 MB","~18.7 MB","~14.3 MB","~19.8 MB","~17.6 MB"];
+  const sizes = ["~25.2 MB","~26 MB","~21.5 MB","~27 MB","~30.7 MB","~24.3 MB","~25.8 MB","~32.6 MB"];
   el.innerText = sizes[Math.floor(Math.random()*sizes.length)];
 });
 
 
 
-/* Close when clicking outside */
-// document.addEventListener("click", () => {
-//   document.getElementById("exportMenu").classList.remove("show");
-// });
+
 
 function closeAllPopups() {
   // close color popup
