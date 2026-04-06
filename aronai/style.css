@@ -1,4 +1,4 @@
-    
+   
       :root {
           --bg-color: #000000;
          --pattern-color: #4800ce;
@@ -51,7 +51,7 @@ body {
         font-weight: 900;
         /* -webkit-text-stroke:2px red; */
         text-transform: uppercase;
-        background-image: url("images/aronai1.png");
+        background-image: url("./images/aronai1.png");
         background-size: cover;
         background-position: center;
         --webkit-background-clip:text;
@@ -562,19 +562,19 @@ width: 100px;
   height: 40px;
 }
 .left .png{
-  background: url("images/png-file.png");
+  background: url("./images/png-file.png");
   background-size: cover;
 }
 .left .jpg{
-  background: url("images/jpg.png");
+  background: url("./images/jpg.png");
   background-size: cover;
 }
 .left .svg{
-  background: url("images/svg.png");
+  background: url("./images/svg.png");
   background-size: cover;
 }
 .left .pdf{
-  background: url("images/pdf-file-format.png");
+  background: url("./images/pdf-file-format.png");
   background-size: cover;
 }
 /* ICON GLOW */
