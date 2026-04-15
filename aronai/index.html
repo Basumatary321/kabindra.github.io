@@ -1,12 +1,24 @@
-  
-     <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-
 <head>
    <title>आरनाय | ARONAI</title>
+<title>Aronai Pattern Maker Online | Free PDF, PNG, SVG Download | Bwisagu Offer</title>
 
+<meta name="description" content="Create beautiful Aronai patterns online with unlimited color customization. Download in PDF, PNG, JPG, SVG formats. Bodo traditional Aronai design maker from Assam. Premium free for Bwisagu offer.">
+
+<meta name="keywords" content="aronai pattern maker, aronai design online, bodo aronai design, aronai generator, aronai pattern free download, aronai design pdf png svg, assam aronai design">
+
+<meta name="author" content="Techno IT Computer Institute">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="robots" content="index, follow">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="coloranimation.css">
+<link rel="stylesheet" href="popup.css">
+<link rel="stylesheet" href="premium.css">
+<link rel="stylesheet" href="responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    
 </head>
@@ -20,24 +32,12 @@
 <!-- 🎨 COLOR POPUP TRIGGER -->
 <div class="color-container">
   <button class="color-btn" onclick="openColorPopup()">
-    <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
-            ></path>
-          </svg>
-    <span style="color: red;">C</span>
+    <span style="color: rgb(255, 196, 0);">C</span>
     <span style="color: #069df5;">O</span>
     <span style="color: #04cc2f;">L</span>
-    <span style="color: #f8b600;">O</span>
-    <span style="color: #f80099;">R</span>
-    <span style="color: #e7eee7;">S</span>
+    <span style="color: #f31aa0;">O</span>
+    <span style="color: #1ef8e6;">R</span>
+    <span style="color: #f58c8c;">S</span>
 
   </button>
 </div>
@@ -204,7 +204,7 @@
         <span style="background:#000000"></span>
         <span style="background:#ffe600"></span>
       </div>
-      <p>Dark Blue</p>
+      <p>Dark Golden</p>
     </div>
     <div class="theme-card" onclick="applyTheme('#008000','#ffffff')">
       <div class="colors">
@@ -222,36 +222,18 @@
 
 </div>
 
-<!-- <button onclick="downloadSVG()">Export SVG</button> <button onclick="downloadPNG()">Export JPG</button> <button onclick="downloadPDF()">Export PDF</button> -->
 
 
   <!-- From Uiverse.io by adamgiebl --> 
-<button class="cssbuttons-io-button export-btn" onclick="toggleExportMenu(event)">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-  >
-    <path fill="none" d="M0 0h24v24H0z"></path>
-    <path
-      fill="currentColor"
-      d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"
-    ></path>
-  </svg>
-  <span>DOWNLOAD</span>
+<button class="download-btn1 export-btn" onclick="toggleExportMenu(event)">
+ 
+  DOWNLOAD
 </button>
 
 <div class="export-menu" id="exportMenu">
   <span onclick="closeDownloadPopup()" id="close">✖</span>
 
   <div class="offer-card">
-
-    <!-- HEADER -->
-    <!-- <div class="offer-header">
-      <div class="title">Download Design</div>
-      <p>Select format for export</p>
-    </div> -->
 <div class="offer-card__header">
     <div class="offer-card__icon-container">
       <svg class="folder-svg" viewBox="0 0 100 100" fill="none">
@@ -322,7 +304,7 @@
           </div>
           <div>
             <h4>PNG</h4>
-            <p>Transparent background, high quality</p>
+            <p class="o-desc">Transparent background, high quality, best for web use & graphic design.</p>
             <span class="size">~ calculating...</span>
           </div>
         </div>
@@ -336,7 +318,7 @@
           <div class="icon jpg"></div>
           <div>
             <h4>JPG</h4>
-            <p>Compressed, fast sharing, best for social media</p>
+            <p class="o-desc">Compressed, fast sharing, best for social media</p>
             <span class="size">~ calculating...</span>
           </div>
         </div>
@@ -349,7 +331,7 @@
           <div class="icon pdf"></div>
           <div>
             <h4>PDF</h4>
-            <p>Printable format, suitable for printing and sharing</p>
+            <p class="o-desc">Printable format, suitable for printing and sharing</p>
             <span class="size">~ calculating...</span>
           </div>
         </div>
@@ -362,7 +344,7 @@
           <div class="icon svg"></div>
           <div>
             <h4>SVG</h4>
-            <p>Vector, infinite scale , best for scalable graphics & web designers</p>
+            <p class="o-desc">Vector, infinite scale , best for scalable graphics & web designers</p>
             <span class="size">~ calculating...</span>
           </div>
         </div>
@@ -375,6 +357,18 @@
 
 </div>
  </div>
+<!-- pre -->
+ <!-- 💎 PREMIUM USER ICON -->
+<div class="premium-badge" onclick="openPremiumModal()">
+  
+   <!-- <span class="crown">👑</span> -->
+    <i class="fa-solid fa-crown"></i>
+   <!-- <span class="premium-text">Premium</span>  -->
+   <!-- <span class="premium-status">✔</span> -->
+ 
+</div>
+
+
 </div>
 <!-- sidebar end -->
 </div>
@@ -6592,9 +6586,45 @@ viewBox="0 0 51000 9700"
   </button>
 
 </div>
+<div id="festivePopup" class="festive-offer-overlay">
+
+  <div class="festive-offer-box">
+
+    <span class="festive-close" onclick="closeOffer()">✖</span>
+
+    <h2 class="festive-title">🎉 Bwisagu Special Offer</h2>
+
+    <div class="festive-price-wrap">
+      <span class="festive-old-price">₹99/month</span>
+      <span class="festive-new-price">₹0</span>
+    </div>
+
+    <p class="festive-highlight">100% FREE ACCESS</p>
+
+    <p class="festive-claimed">🔥 500+ users claimed today</p>
+
+    <div class="festive-features">
+      <p>✔ Unlimited customizable colors</p>
+      <p>✔ Beautiful preset color themes</p>
+      <p>✔ Free download: PDF, PNG, JPG, SVG</p>
+    </div>
+
+    <div class="festive-timer" id="timer"></div>
+   
+
+    <button class="festive-btn" onclick="closeOffer()">Start Now 🚀</button>
+
+  </div>
+</div>
+
+
+<footer>
+  <p>@ 2026 <a href="https://basumatary321.github.io/kabindra.github.io/portfolio/index.html">Basumatary Y Kabind</a>. All rights reserved.</p>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
 <script src="closeopen.js"></script>
+<script src="pop.js"></script>
 
 </body>
 </html>

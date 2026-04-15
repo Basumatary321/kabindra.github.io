@@ -1,0 +1,176 @@
+ /* 🎉 FESTIVE OFFER POPUP */
+.festive-offer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* transform: translate(-50%, -50%); */
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.festive-offer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* BOX */
+.festive-offer-box {
+  background: linear-gradient(135deg,#ff512f,#dd2476);
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: festivePop 0.5s ease;
+}
+
+/* ANIMATION */
+@keyframes festivePop {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.festive-title {
+  margin-bottom: 10px;
+}
+
+.festive-highlight {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffe600;
+  margin: 10px 0;
+}
+
+/* 💰 PRICE */
+.festive-price-wrap {
+  margin: 10px 0;
+}
+
+.festive-old-price {
+  display: block;
+  font-size: 32px;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.festive-new-price {
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffe600;
+}
+
+/* 🔥 CLAIM TEXT */
+.festive-claimed {
+  background: rgba(255,255,255,0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 8px 0;
+  font-size: 14px;
+  animation: festivePulse 1.5s infinite;
+}
+
+@keyframes festivePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ⭐ FEATURES */
+.festive-features {
+  margin: 12px 0;
+  text-align: left;
+  font-size: 14px;
+}
+
+.festive-features p {
+  margin: 4px 0;
+  opacity: 0.95;
+}
+
+/* ⏳ TIMER */
+.festive-timer {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0;
+  letter-spacing: 2px;
+}
+
+/* BUTTON */
+.festive-btn {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 30px;
+  background: #fff;
+  color: #dd2476;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* CLOSE */
+.festive-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 📱 MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+
+  .festive-offer-box {
+    width: 75%;
+    max-width: 320px;
+    padding: 30px 20px;
+    border-radius: 25px;
+  }
+
+  .festive-title {
+    font-size: 26px;
+  }
+
+  .festive-new-price {
+    font-size: 60px;
+  }
+
+  .festive-highlight {
+    font-size: 22px;
+  }
+
+  .festive-timer {
+    font-size: 26px;
+  }
+
+  .festive-btn {
+    font-size: 18px;
+    padding: 12px 22px;
+  }
+
+  .festive-features {
+    font-size: 16px;
+  }
+
+  .festive-claimed {
+    font-size: 15px;
+  }
+}

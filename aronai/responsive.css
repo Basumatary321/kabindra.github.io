@@ -1,0 +1,55 @@
+@media (max-width: 768px) {
+   .color-btn{
+    padding: 5px 10px;
+   }
+.color-popup {
+    width: 80%;
+    max-width: 490px;
+   }
+   .color-card{
+    width:100%;
+    flex-direction: row;
+    justify-content: space-around;
+   }
+   .color-box label{
+    font-size: 10px;
+   }
+   .color-box p{
+    font-size: 7px;
+   }
+   .color-box input[type="color"]{
+    height: 25px;
+   }
+   .svg-frame{
+   display: none;
+   }
+   .theme-card{
+    width: 70px;
+    height: 40px;
+   }
+   .theme-card p{
+    font-size: 10px;
+   }
+   .color-desc{
+     width: 80%;
+   }
+   .offer-card{
+    width: 340px;
+   }
+   .alert{
+    font-size: 12px;
+   }
+   .options{
+    gap: 5px;
+   }
+   .option{
+    padding: 5px;
+   }
+   .option .o-desc{
+    font-size: 14px;
+   }
+   .option .size{
+    font-size: 10px;
+   }
+  
+}
