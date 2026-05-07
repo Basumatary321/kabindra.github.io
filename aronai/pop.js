@@ -1,9 +1,3 @@
- /* 🎉 SHOW POPUP ON LOAD */
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("festivePopup").classList.add("active");
-  }, 800);
-});
 
 /* ❌ CLOSE POPUP */
 function closeOffer(){
@@ -59,4 +53,24 @@ setInterval(updateUsers, 5000);
 
 function openPremiumModal(){
   document.getElementById("festivePopup").classList.add("active");
+}
+
+
+
+
+
+function openColorPopup() {
+    document.getElementById('colorPopup').classList.add('show');
+}
+
+function closeColorPopup() {
+    document.getElementById('colorPopup').classList.remove('show');
+}
+
+function openExportMenu() {
+    document.getElementById('exportMenu').classList.add('show');
+}
+
+function closeDownloadPopup() {
+    document.getElementById('exportMenu').classList.remove('show');
 }

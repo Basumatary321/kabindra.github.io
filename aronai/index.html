@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
    <title>आरनाय | ARONAI</title>
@@ -13,327 +13,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta name="robots" content="index, follow">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="coloranimation.css">
-<link rel="stylesheet" href="popup.css">
-<link rel="stylesheet" href="premium.css">
-<link rel="stylesheet" href="responsive.css">
+<!-- <link rel="stylesheet" href="./css/style.css"> -->
+<link rel="stylesheet" href="css/styleb.css">
+<link rel="stylesheet" href="./css/coloranimation.css">
+<link rel="stylesheet" href="./css/popup.css">
+<link rel="stylesheet" href="./css/premium.css">
+<link rel="stylesheet" href="./css/downloadpopup.css">
+<link rel="stylesheet" href="./css/colorpopup.css">
+<link rel="stylesheet" href="./css/responsive.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    
 </head>
 
 <body>
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-  <h1 id="brand">ARONAI</h1>
-<div class="group">
-<!-- 🎨 COLOR POPUP TRIGGER -->
-<div class="color-container">
-  <button class="color-btn" onclick="openColorPopup()">
-    <span style="color: rgb(255, 196, 0);">C</span>
-    <span style="color: #069df5;">O</span>
-    <span style="color: #04cc2f;">L</span>
-    <span style="color: #f31aa0;">O</span>
-    <span style="color: #1ef8e6;">R</span>
-    <span style="color: #f58c8c;">S</span>
-
-  </button>
-</div>
-
-<!-- 🌈 COLOR POPUP -->
-<div class="color-popup" id="colorPopup">
-  <div class="color-card">
-    
-    <div class="color-header">
-      <h2>Customize Your Design</h2>
-      
-    </div>
-<span onclick="closeColorPopup()" id="close">✖</span>
-    <p class="color-desc">
-      Adjust background and pattern colors to create your own unique Aronai design.
-    </p>
-
-    <div class="color-controls">
-
-      <div class="color-box">
-        <label>Choose Background Color</label>
-        <p>Main base color of your design</p>
-        <input type="color" id="bgPicker" value="#e90505">
-      </div>
-
-      <div class="color-box">
-        <label>Choose Pattern Color</label>
-        <p>Design lines & decorative elements</p>
-        <input type="color" id="patternPicker" value="#ffffff">
-      </div>
-
-    </div>
-
-    <div class="theme-section">
-  <h3> Preset Themes</h3>
-
-  <div class="theme-grid">
-
-    <div class="theme-card" onclick="applyTheme('#e90505','#ffffff')">
-      <div class="colors">
-        <span style="background:#e90505"></span>
-        <span style="background:#ffffff"></span>
-      </div>
-      <p>Classic Red</p>
-    </div>
-
-    <div class="theme-card" onclick="applyTheme('#000000','#00ffff')">
-      <div class="colors">
-        <span style="background:#000000"></span>
-        <span style="background:#00ffff"></span>
-      </div>
-      <p>Neon Dark</p>
-    </div>
-
-    <div class="theme-card" onclick="applyTheme('#0044ff','#facc15')">
-      <div class="colors">
-        <span style="background:#0044ff"></span>
-        <span style="background:#facc15"></span>
-      </div>
-      <p>Royal Blue</p>
-    </div>
-
-    <div class="theme-card" onclick="applyTheme('#0000ff','#ffffff')">
-      <div class="colors">
-        <span style="background:#0000ff"></span>
-        <span style="background:#ffffff"></span>
-      </div>
-      <p>Nature blue</p>
-    </div>
-
-    <div class="theme-card" onclick="applyTheme('#ffffff','#000000')">
-      <div class="colors">
-        <span style="background:#ffffff"></span>
-        <span style="background:#000000"></span>
-      </div>
-      <p>Light black</p>
-    </div>
-
-    <div class="theme-card" onclick="applyTheme('#000000','#0060fa')">
-      <div class="colors">
-        <span style="background:#000000"></span>
-        <span style="background:#0060fa"></span>
-      </div>
-      <p>Dark Blue</p>
-    </div>
-    <div class="theme-card" onclick="applyTheme('#f97316','#ffee04')">
-      <div class="colors">
-        <span style="background:#f97316"></span>
-        <span style="background:#ffee04"></span>
-      </div>
-      <p>Golden</p>
-    </div>
-    <div class="theme-card" onclick="applyTheme('#00f800','#0046b8')">
-      <div class="colors">
-        <span style="background:#00f800"></span>
-        <span style="background:#0046b8"></span>
-      </div>
-      <p>Emerald</p>
-    </div>
-    <div class="theme-card" onclick="applyTheme('#ffffff','#0227f3')">
-      <div class="colors">
-        <span style="background:#ffffff"></span>
-        <span style="background:#0227f3"></span>
-      </div>
-      <p>Blue</p>
-    </div>
-    <div class="theme-card" onclick="applyTheme('#f97316','#1e293b')">
-      <div class="colors">
-        <span style="background:#f97316"></span>
-        <span style="background:#1e293b"></span>
-      </div>
-      <p>Sunset</p>
-    </div>
-    <div class="theme-card" onclick="applyTheme('#000000','#ffe600')">
-      <div class="colors">
-        <span style="background:#000000"></span>
-        <span style="background:#ffe600"></span>
-      </div>
-      <p>Dark Golden</p>
-    </div>
-    <div class="theme-card" onclick="applyTheme('#008000','#ffffff')">
-      <div class="colors">
-        <span style="background:#008000"></span>
-        <span style="background:#ffffff"></span>
-      </div>
-      <p>Nature Green</p>
-    </div>
-
-  </div>
-</div>
-  </div>
-  <!-- preset -->
-
-
-</div>
-
-
-
-  <!-- From Uiverse.io by adamgiebl --> 
-<button class="download-btn1 export-btn" onclick="toggleExportMenu(event)">
- 
-  DOWNLOAD
-</button>
-
-<div class="export-menu" id="exportMenu">
-  <span onclick="closeDownloadPopup()" id="close">✖</span>
-
-  <div class="offer-card">
-<div class="offer-card__header">
-    <div class="offer-card__icon-container">
-      <svg class="folder-svg" viewBox="0 0 100 100" fill="none">
-        <path
-          d="M15 35 C15 30 20 25 25 25 L40 25 C45 25 48 28 50 32 L53 36 C55 39 58 40 62 40 L75 40 C80 40 85 45 85 50 L85 80 C85 88 78 92 75 92 L25 92 C18 92 15 88 15 80 Z"
-          fill="#303035"
-        ></path>
-
-        <g transform="translate(0, -2)">
-          <path
-            d="M30 25 L65 25 C68 25 70 27 70 30 L70 50 C70 53 68 55 65 55 L30 55 C27 55 25 53 25 50 L25 30 C25 27 27 25 30 25 Z"
-            fill="#cccccc"
-            transform="rotate(-12 50 50)"
-          ></path>
-
-          <path
-            d="M35 30 L70 30 C73 30 75 32 75 35 L75 55 C75 58 73 60 70 60 L35 60 C32 60 30 58 30 55 L30 35 C30 32 32 30 35 30 Z"
-            fill="#ffffff"
-            transform="rotate(-4 50 50)"
-          ></path>
-          <text
-            x="38"
-            y="44"
-            font-family="'Inter', sans-serif"
-            font-size="6"
-            fill="#333"
-            font-weight="600"
-            transform="rotate(-4 50 50)"
-          >
-            Contracts
-          </text>
-        </g>
-
-        <path
-          d="M10 48 C10 43 15 40 22 40 L78 40 C85 40 90 43 90 48 L88 80 C87 88 80 94 75 94 L25 94 C20 94 13 88 12 80 Z"
-          fill="url(#folderFront)"
-        ></path>
-
-        <path
-          d="M10 48 C10 43 15 40 22 40 L78 40 C85 40 90 43 90 48 L89 54 L11 54 Z"
-          fill="rgba(255,255,255,0.05)"
-        ></path>
-
-        <defs>
-          <linearGradient id="folderFront" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#4e4e56"></stop>
-            <stop offset="100%" stop-color="#2a2a2f"></stop>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    <div class="offer-card__title">Choose file type</div>
-    <!-- <div class="offer-card__subtitle">
-      What type of file do you want to download?
-    </div> -->
-    <div class="alert">
-    <p>❌Do not  rotate or scale the design while downloading</p>
-    <p> <span style="color: green;">✔</span> Do reset once if you have rotated or scaled the design</p>
-  </div>
-</div>
-    <!-- OPTIONS -->
-    <div class="options">
-
-      <!-- PNG (Recommended) -->
-      <div class="option recommended" onclick="handleDownload(this, downloadTransparentPNG)">
-        <div class="left">
-          <div class="icon png">
-          </div>
-          <div>
-            <h4>PNG</h4>
-            <p class="o-desc">Transparent background, high quality, best for web use & graphic design.</p>
-            <span class="size">~ calculating...</span>
-          </div>
-        </div>
-        <div class="badge">Best</div>
-        <div class="loader"></div>
-      </div>
-
-      <!-- JPG -->
-      <div class="option" onclick="handleDownload(this, downloadPNG)">
-        <div class="left">
-          <div class="icon jpg"></div>
-          <div>
-            <h4>JPG</h4>
-            <p class="o-desc">Compressed, fast sharing, best for social media</p>
-            <span class="size">~ calculating...</span>
-          </div>
-        </div>
-        <div class="loader"></div>
-      </div>
-
-      <!-- PDF -->
-      <div class="option" onclick="handleDownload(this, downloadPDF)">
-        <div class="left">
-          <div class="icon pdf"></div>
-          <div>
-            <h4>PDF</h4>
-            <p class="o-desc">Printable format, suitable for printing and sharing</p>
-            <span class="size">~ calculating...</span>
-          </div>
-        </div>
-        <div class="loader"></div>
-      </div>
-
-      <!-- SVG -->
-      <div class="option" onclick="handleDownload(this, downloadSVG)">
-        <div class="left">
-          <div class="icon svg"></div>
-          <div>
-            <h4>SVG</h4>
-            <p class="o-desc">Vector, infinite scale , best for scalable graphics & web designers</p>
-            <span class="size">~ calculating...</span>
-          </div>
-        </div>
-        <div class="loader"></div>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
- </div>
-<!-- pre -->
- <!-- 💎 PREMIUM USER ICON -->
-<div class="premium-badge" onclick="openPremiumModal()">
+<!-- SIDEBAR (Acting as Header) -->
+<nav class="sidebar">
+  <div id="brand">Aronai</div>
   
-   <!-- <span class="crown">👑</span> -->
-    <i class="fa-solid fa-crown"></i>
-   <!-- <span class="premium-text">Premium</span>  -->
-   <!-- <span class="premium-status">✔</span> -->
- 
-</div>
-
-
-</div>
+  <div class="header-actions">
+    <!-- Trigger for Color/Theme Popup -->
+    <button class="color-btn" onclick="openColorPopup()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+      </svg>
+      <span>Theme</span>
+    </button>
+    
+    <!-- Trigger for Export Menu -->
+    <button class="download-btn1" onclick="openExportMenu()">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+    </svg>
+      <span>Export</span>
+    </button>
+  </div>
+</nav>
 <!-- sidebar end -->
 </div>
 
 <!-- MAIN -->
 
 <div class="main">
-
-  
-
   <!-- PREVIEW -->
 
-  <div class="preview">
+  <div class="preview" id="captureArea">
 
 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="510mm" height="97mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
 viewBox="0 0 51000 9700"
@@ -6511,14 +6235,7 @@ viewBox="0 0 51000 9700"
  </div>
 </div>
 
-<!-- MOBILE FLOATING BAR -->
 
-<!-- <div class="mobile-bar">
-  <button onclick="zoomIn()">+</button>
-  <button onclick="zoomOut()">-</button>
-  <button onclick="rotate()">⟳</button>
-  <button onclick="resetZoom()">⟲</button>
-</div> -->
 <div class="action-bar">
 
   <button onclick="zoomIn()" data-tip="Zoom In" id="zoomin">
@@ -6571,8 +6288,166 @@ viewBox="0 0 51000 9700"
 
 
 <footer>
-  <p>@ 2026 <a href="https://basumatary321.github.io/kabindra.github.io/portfolio/index.html">Basumatary Y Kabind</a>. All rights reserved.</p>
+  <p>@ 2026 <a href="https://basumatary321.github.io/kabindra.github.io/portfolio/index.html">Made with ❤️  By Basumatary Y Kabind</a>. All rights reserved.</p>
 </footer>
+
+
+<!-- 🌈 COLOR POPUP -->
+<div class="color-popup" id="colorPopup">
+  <div class="color-card">
+    <button onclick="closeColorPopup()" id="close" aria-label="Close">&times;</button>
+    
+    <div class="color-header">
+      <h2><span style="color: yellow;">Customize</span>  Design</h2>
+      <p class="color-desc">Adjust colors or pick a theme to personalize your Aronai design.</p>
+    </div>
+
+    <div class="color-section">
+      <div class="color-controls">
+        <div class="color-box">
+          <div class="color-info">
+            <label>Background</label>
+            <span>Base color</span>
+          </div>
+          <input type="color" id="bgPicker" value="#e90505">
+        </div>
+
+        <div class="color-box">
+          <div class="color-info">
+            <label>Pattern</label>
+            <span>Accent color</span>
+          </div>
+          <input type="color" id="patternPicker" value="#ffffff">
+        </div>
+      </div>
+    </div>
+
+    <div class="theme-section">
+      <h3>Preset Themes</h3>
+      <div class="theme-grid">
+        <!-- Reusable Theme Card Template -->
+        <div class="theme-card" onclick="applyTheme('#e90505','#ffffff')">
+          <div class="colors">
+            <span style="background:#e90505"></span>
+            <span style="background:#ffffff"></span>
+          </div>
+          <p>Classic Red</p>
+        </div>
+
+        <div class="theme-card" onclick="applyTheme('#000000','#00ffff')">
+          <div class="colors">
+            <span style="background:#000000"></span>
+            <span style="background:#00ffff"></span>
+          </div>
+          <p>Neon Dark</p>
+        </div>
+
+        <div class="theme-card" onclick="applyTheme('#0044ff','#facc15')">
+          <div class="colors">
+            <span style="background:#0044ff"></span>
+            <span style="background:#facc15"></span>
+          </div>
+          <p>Royal Blue</p>
+        </div>
+
+        <div class="theme-card" onclick="applyTheme('#000000','#ffe600')">
+          <div class="colors">
+            <span style="background:#000000"></span>
+            <span style="background:#ffe600"></span>
+          </div>
+          <p>Gold</p>
+        </div>
+
+        <div class="theme-card" onclick="applyTheme('#008000','#ffffff')">
+          <div class="colors">
+            <span style="background:#008000"></span>
+            <span style="background:#ffffff"></span>
+          </div>
+          <p>Nature</p>
+        </div>
+
+        <div class="theme-card" onclick="applyTheme('#ffffff','#0227f3')">
+          <div class="colors">
+            <span style="background:#ffffff"></span>
+            <span style="background:#0227f3"></span>
+          </div>
+          <p>Ocean</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ex -->
+ <div class="export-menu" id="exportMenu">
+  <div class="offer-card">
+    <span onclick="closeDownloadPopup()" id="close">×</span>
+
+    <div class="offer-card__header">
+      <h3 class="offer-card__title">Export <span style="color:rgb(251, 255, 1);"">Design</span> </h3>
+      <div class="alert">
+        <p><span>⚠️</span> Reset scale/rotation before download for best results.</p>
+      </div>
+    </div>
+
+    <div class="options">
+      <!-- PNG -->
+      <div class="option recommended" onclick="handleDownload(this, downloadTransparentPNG)">
+        <div class="left">
+          <div class="icon png"></div>
+          <div class="details">
+            <div class="h-group">
+              <h4>PNG</h4>
+              <span class="badge">Best</span>
+            </div>
+            <p class="o-desc">High quality, transparent background.</p>
+            <span class="size">Calculating...</span>
+          </div>
+        </div>
+        <div class="loader"></div>
+      </div>
+
+      <!-- JPG -->
+      <div class="option" onclick="handleDownload(this, downloadPNG)">
+        <div class="left">
+          <div class="icon jpg"></div>
+          <div class="details">
+            <h4>JPG</h4>
+            <p class="o-desc">Small file size, best for sharing.</p>
+            <span class="size">Calculating...</span>
+          </div>
+        </div>
+        <div class="loader"></div>
+      </div>
+
+      <!-- SVG -->
+      <div class="option" onclick="handleDownload(this, downloadSVG)">
+        <div class="left">
+          <div class="icon svg"></div>
+          <div class="details">
+            <h4>SVG</h4>
+            <p class="o-desc">Infinite scale, vector format.</p>
+            <span class="size">Calculating...</span>
+          </div>
+        </div>
+        <div class="loader"></div>
+      </div>
+
+      <!-- PDF -->
+      <div class="option" onclick="handleDownload(this, downloadPDF)">
+        <div class="left">
+          <div class="icon pdf"></div>
+          <div class="details">
+            <h4>PDF</h4>
+            <p class="o-desc">Ready for professional printing.</p>
+            <span class="size">Calculating...</span>
+          </div>
+        </div>
+        <div class="loader"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
 <script src="closeopen.js"></script>
