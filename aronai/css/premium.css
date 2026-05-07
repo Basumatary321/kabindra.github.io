@@ -1,0 +1,64 @@
+/* 💎 PREMIUM BADGE */
+.premium-badge {
+  background: linear-gradient(135deg,#ffd700,#ff9f00);
+  color: #000;
+  padding: 5px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(255,215,0,0.5);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.premium-badge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(255,215,0,0.8);
+}
+.premium-badge i{
+    font-size: 30px;
+}
+/* ICON */
+.crown {
+  font-size: 26px;
+}
+
+/* TEXT */
+.premium-text {
+  font-size: 26px;
+}
+
+
+.premium-badge {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(255,215,0,0.5); }
+  to { box-shadow: 0 0 25px rgba(255,215,0,1); }
+}
+.premium-status {
+  font-size: 16px;
+  color: #000000;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000000;
+  text-align: center;
+}
+@media (max-width: 768px) {
+   .premium-badge {
+    width: 30px;
+    height: 30px;
+   }
+    .premium-badge i {
+     font-size: 18px;
+    }
+}

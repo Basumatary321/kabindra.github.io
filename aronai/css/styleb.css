@@ -1,0 +1,228 @@
+ /* 🎨 SYSTEM VARIABLES */
+:root {
+  --bg-main: #0a0a0c;
+  --bg-card: rgba(20, 20, 22, 0.85);
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #06b6d4;
+  --text-main: #ffffff;
+  --text-dim: #94a3b8;
+  
+  /* Pattern Variables (Dynamic) */
+  --bg-color: #e90505;
+  --pattern-color: #ffffff;
+}
+
+/* 🧱 BASE RESET */
+* { box-sizing: border-box; }
+/* --- LAYOUT RESET --- */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: #050505;
+  font-family: 'Inter', sans-serif;
+  touch-action: none;
+
+}
+/* 🖼️ SVG PATTERN CLASSES */
+.bg { fill: var(--bg-color); transition: fill 0.3s ease; }
+.pattern { 
+  stroke: var(--pattern-color); 
+  fill: none; 
+  stroke-linecap: round; 
+  stroke-linejoin: round; 
+  transition: stroke 0.3s ease;
+}
+.pattern2, .pattern3 { 
+  fill: var(--pattern-color); 
+  transition: fill 0.3s ease; 
+}
+
+#brand {
+  margin: 0;
+  font-size: clamp(1.5rem, 8vw, 4rem);
+  font-weight: 900;
+  color:white;
+  text-transform: uppercase;
+  background: url("../images/aronai1.png") center/cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: bgMove 15s linear infinite alternate;
+  filter: drop-shadow(0 5px 15px rgba(139, 92, 246, 0.3));
+}
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+/* --- SIDEBAR / HEADER --- */
+.sidebar {
+  height: 70px;
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Sidebar Buttons */
+.color-btn, .download-btn1 {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #06b6d4;
+  color: #06b6d4;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.color-btn:hover, .download-btn1:hover {
+  background: #06b6d4;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+}
+
+
+.main {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.preview svg {
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  display: block; /* Removes baseline spacing */
+}
+.action-bar {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(15px);
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 500;
+}
+
+.action-bar button {
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 26px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.action-bar button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.action-bar .divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 5px;
+}
+
+/* --- PINNED FOOTER --- */
+footer {
+  position:fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: 45px;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+footer p { font-size: 12px; color: #555; margin: 0; }
+footer a { color: #06b6d4; text-decoration: none; }
+
+/* --- POPUP OVERLAYS (Theme & Export) --- */
+.color-popup, .export-menu {
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 2000; /* Above sidebar */
+}
+
+.color-popup.show, .export-menu.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Card Transitions */
+.color-card, .offer-card {
+  transform: translateY(20px);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.color-popup.show .color-card, 
+.export-menu.show .offer-card {
+  transform: translateY(0);
+}
+
+/* --- MOBILE TWEAKS --- */
+@media (max-width: 600px) {
+  .sidebar { padding: 0 15px; height: 60px; }
+  .header-actions span { display: none; } /* Show icons only on mobile */
+  .action-bar { 
+    left: auto; 
+    right: 15px; 
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    top: auto; 
+    bottom: 70px; 
+    transform: none; 
+  }
+  .download-btn1, .color-btn { padding: 6px 12px; font-size: 14px; width: 40px;}
+}

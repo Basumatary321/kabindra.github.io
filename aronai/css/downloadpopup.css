@@ -1,0 +1,171 @@
+ /* CONTAINER & BACKDROP */
+.export-menu {
+  position: fixed;
+  inset: 0; /* Cover full screen for centering on mobile */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.export-menu.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* CARD */
+.offer-card {
+  position: relative;
+  width: 92%;
+  max-width: 400px; /* Slimmer for better desktop aesthetics */
+  background: rgba(26, 26, 28, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  animation: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* CLOSE BUTTON */
+#close {
+  position: absolute;
+  top: 5px;
+  right: 16px;
+display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #888;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#close:hover { color: #fff; }
+
+/* HEADER SECTION */
+.offer-card__header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.offer-card__icon-container {
+  height: 60px; /* Reduced height */
+  margin-bottom: 8px;
+}
+
+.offer-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.alert {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  margin-top: 30px;
+}
+.alert p {
+  margin: 0;
+  font-size: 11px;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+/* OPTIONS LIST */
+.options {
+  display: grid;
+  gap: 10px; /* Reduced gap */
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: #06b6d4;
+  transform: translateY(-2px);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  width: 40px; /* Smaller icons */
+  height: 40px;
+  flex-shrink: 0;
+}
+.png{
+  background:url("../images/png-file.png") no-repeat center center;
+  background-size: contain;
+}
+.jpg{
+  background: url("../images/jpg.png") no-repeat center center;
+  background-size: contain;
+}
+.svg{
+  background: url("../images/svg.png") no-repeat center center;
+  background-size: contain;
+}
+.pdf{
+  background: url("../images/pdf-file-format.png") no-repeat center center;
+  background-size: contain;
+}
+.details h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #0dec20; /* Keep your branding */
+}
+
+.details .o-desc {
+  margin: 2px 0;
+  font-size: 11px;
+  color: #aaa;
+}
+
+.details .size {
+  font-size: 10px;
+  color: #888;
+}
+
+/* BADGE */
+.h-group { display: flex; align-items: center; gap: 8px; }
+.badge {
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #06b6d4, #6366f1);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+/* DESKTOP SPECIFIC */
+@media (min-width: 1024px) {
+  .export-menu {
+    padding-right: 40px;
+    background:rgba(0, 0, 0, 0.788); /* No backdrop on desktop sidebar mode */
+  }
+}
