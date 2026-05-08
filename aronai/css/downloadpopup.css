@@ -61,10 +61,14 @@ display: flex;
 }
 
 .offer-card__title {
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #ffffff;
   margin: 0 0 8px 0;
+}
+.offer-card__title .ul{
+  width:10px;height:10px;background-color:yellow;
+  border-radius:50%;
 }
 
 .alert {
