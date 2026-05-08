@@ -1,8 +1,8 @@
- 
+  
   :root {
             --bg-dark: #000000;
             --card-bg: #161b22;
-            --accent: #d81b60;
+            --accent: #cecdcd;
             --text-white: #ffffff;
             --text-gray: #a0a0a0;
         }
@@ -39,7 +39,7 @@
             font-size: 2.5rem;
             margin-bottom: 40px;
             position: relative;
-            display: inline-block;
+            play: inline-block;
         }
 
         .section-title::after {
@@ -146,10 +146,11 @@
             color: var(--text-gray);
             font-size: 1.1rem;
             margin-bottom: 35px;
+            text-align:justify;
         }
 
         .btn-main, .btn-send {
-            background-color: var(--accent);
+            background-color: rgb(28, 27, 27);
             color: white;
             padding: 10px 35px;
             border-radius: 5px;
@@ -226,7 +227,7 @@
         /* --- Skills Section --- */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
             gap: 40px;
         }
 
@@ -369,10 +370,16 @@ textarea{
                 font-size: 12px;
                 margin-bottom: 0px;
             }
-            .contact-item p,.contact-item span,.contact-item i{
-                font-size: 10px;
+            .contact-item p,.contact-item span{
+                font-size: 12px;
             }
-            .btn-main{display: none;}
+            .contact-item i{
+                font-size: 1.4rem;
+            }
+            .btn-main{ margin-top:10px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
 
             .section-title {
                 font-size: 2rem;
@@ -381,6 +388,10 @@ textarea{
             .container {
                 padding: 60px 5%;
             }
+            .stat-card{
+                padding: 10px;
+            }
+          
         }
 
         /* Extra small screens */
