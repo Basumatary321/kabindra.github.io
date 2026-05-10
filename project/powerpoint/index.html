@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,8 @@
             --primary: #00c6ff;
             --success: #28a745;
             --download: #4906e6;
-            --dark-bg: #0b0b0b;
-            --gradient-header: linear-gradient(135deg, #ff4e50, #f9d423);
+            --dark-bg: #ffffff;
+            --gradient-header: linear-gradient(135deg, #181818, #23b2f9);
         }
 
         /* Essential Layout Fix: Use Flex column to fill screen */
@@ -40,14 +40,14 @@
             align-items: center;
             padding: 8px 15px;
             gap: 12px;
-            background: #111;
+            background: #050138;
             flex-shrink: 0;
         }
 
         .progress-container {
             flex: 1;
             height: 6px;
-            background: #333;
+            background: var(--dark-bg);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -71,7 +71,7 @@
             flex: 1; /* Takes all remaining middle space */
             position: relative;
             /* background: #000; */
-             background: url("videos/background.svg");
+             /* background: url("videos/background.svg"); */
             background-size: cover;
             display: flex;
             align-items: center; /* Vertical Center */
@@ -131,7 +131,7 @@
 
         /* THE BOTTOM THUMBNAILS */
         .bottom-section {
-            background: #000;
+            background: #020f25;
             border-top: 1px solid #222;
             flex-shrink: 0; /* Prevents thumbnails from being squished */
             padding-bottom: env(safe-area-inset-bottom); /* iOS Notch support */
@@ -140,7 +140,7 @@
         .instruction {
             text-align: center;
             font-size: 11px;
-            color: #666;
+            color: #ffffff;
             padding: 5px 0 0 0;
         }
 
@@ -197,7 +197,7 @@
 
 <body>
 
-<div class="header">PPT Animation Practice</div>
+<div class="header">PowerPoint Animation Videos</div>
 
 <div class="progress-section">
     <div class="progress-container">
