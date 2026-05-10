@@ -39,7 +39,9 @@
             font-size: 2.5rem;
             margin-bottom: 40px;
             position: relative;
-            play: inline-block;
+            display: inline-block;
+            text-align: left;
+             color: var(--accent);
         }
 
         .section-title::after {
@@ -150,12 +152,12 @@
         }
 
         .btn-main, .btn-send {
-            background-color: rgb(28, 27, 27);
+            background-color: rgb(19, 18, 18);
             color: white;
             padding: 10px 35px;
             border-radius: 5px;
             text-decoration: none;
-            font-weight: 600;
+            /* font-weight: 600; */
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -427,3 +429,71 @@ textarea{
             50% { opacity: 0; }
             100% { opacity: 1; }
         }
+
+        /* what i do */
+.what-i-do {
+    padding: 10px 10px;
+    /* background: #0f172a; */
+    color: #ffffff;
+    text-align: center;
+     /* border: 1px solid #cbd5e1; */
+    border-radius: 12px;
+  margin: 10px 10px;
+
+  
+}
+
+
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    background: var(--card-bg);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+    /* box-shadow: 0 5px 18px 0px rgba(192, 191, 191, 0.2); */
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    /* background: #334155; */
+}
+
+.icon {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 3px;
+}
+
+.service-card h3 {
+    margin-bottom: 0;
+    font-size: clamp(0.9rem, 2vw, 1.5rem);
+    color: white;
+    font-weight: 600;
+}
+
+.service-card p {
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    color: #bcbbbb;
+    text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .section-title {
+        font-size: 26px;
+    }
+   
+    .services-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+.service-card {
+    padding: 8px;
+}
+}
