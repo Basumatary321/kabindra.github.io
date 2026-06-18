@@ -71,8 +71,8 @@
      display: inline-block;
      transition: 0.3s transform ease, 0.3s color ease;
      cursor: pointer;
-    font-family: "Press Start 2P", system-ui;
-  font-weight: 400;
+    font-family: "Archivo Black", sans-serif;
+  font-weight: 800;
   font-style: normal;
 
  }
