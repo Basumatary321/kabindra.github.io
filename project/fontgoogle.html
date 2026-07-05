@@ -22,7 +22,8 @@
             border: 2px solid rgb(207, 206, 206);
             padding: 10px;
             max-width: 600px;
-            border-radius: 10px;
+            /* border-radius: 10px; */
+            position: relative;
         }
         .blue{
             color: blue;
@@ -40,6 +41,16 @@
             color: rgb(84, 83, 84);
             font-weight: bold;
         }
+        .instruction .top{
+           margin:0;padding:2px;
+           font-weight: 100;
+           border-bottom: 1px solid rgb(207, 206, 206);
+           position: absolute;
+            top:0;
+            left: 0;
+            background-color: rgb(200, 191, 191);
+            color: white;
+        }
     </style>
 </head>
 <body bgcolor="white">
@@ -53,8 +64,8 @@
 
 </h1> 
 <div class="instruction">
-    <p>This is a simple instruction for the Google 
-    font display.</p>
+    <span class="top">Instruction:</span>
+    <!-- <p>This is a simple instruction for the Google font display.</p> -->
     <ol>
     <li>Use <span class="imp"> &lt;span&gt;</span> elements to apply the CSS classes to each letter.</li>
     <li>add different CSS <span class="imp">Classes</span> classes for each color.</li>
