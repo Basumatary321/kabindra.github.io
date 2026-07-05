@@ -11,6 +11,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
         h1{
             font-size: 60px;
@@ -24,6 +25,8 @@
             max-width: 600px;
             /* border-radius: 10px; */
             position: relative;
+            display: none;
+            margin-top: 60px;
         }
         .blue{
             color: blue;
@@ -51,6 +54,15 @@
             background-color: rgb(200, 191, 191);
             color: white;
         }
+        #showInstruction{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body bgcolor="white">
@@ -62,7 +74,11 @@
 <span class="green">l</span>
 <span class="red">e</span>
 
+
+
 </h1> 
+<button onclick="showInstruction()" id="showInstruction">❓</button>
+
 <div class="instruction">
     <span class="top">Instruction:</span>
     <!-- <p>This is a simple instruction for the Google font display.</p> -->
@@ -76,5 +92,16 @@
 
 
 </div>
+
+<script>
+    function showInstruction() {
+        var instructionDiv = document.querySelector('.instruction');
+        if (instructionDiv.style.display === 'none') {
+            instructionDiv.style.display = 'block';
+        } else {
+            instructionDiv.style.display = 'none';
+        }
+    }
+</script>
 </body>
 </html>
