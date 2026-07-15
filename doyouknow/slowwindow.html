@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC Running Slow - Quick Fix Guide</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#eef4ff;
+padding:30px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:10px;
+color:#1b4fd6;
+}
+
+.subtitle{
+text-align:center;
+margin-bottom:35px;
+color:#555;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+gap:20px;
+}
+
+.card{
+
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h2{
+font-size:20px;
+margin-bottom:15px;
+color:#005eff;
+}
+
+.step{
+margin-bottom:12px;
+font-weight:500;
+}
+
+.command{
+background:#111827;
+color:#00ff95;
+padding:12px;
+border-radius:8px;
+font-family:Consolas;
+margin:10px 0;
+position:relative;
+}
+
+button{
+padding:8px 18px;
+border:none;
+background:#005eff;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0046c5;
+}
+
+.tip{
+
+background:#ecfff3;
+padding:12px;
+border-left:5px solid green;
+margin-top:15px;
+border-radius:8px;
+font-size:14px;
+
+}
+
+footer{
+margin-top:40px;
+text-align:center;
+color:#666;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚡ Windows PC Running Slow?</h1>
+<p class="subtitle">Follow these quick troubleshooting steps one by one.</p>
+
+<div class="grid">
+
+<!-- Temp -->
+
+<div class="card">
+
+<h2>🗑 Delete Temporary Files</h2>
+
+<div class="step">
+Press <b>Windows + R</b>
+</div>
+
+<div class="command" id="c1">%temp%</div>
+
+<button onclick="copy('c1')">Copy</button>
+
+<p>Delete everything inside.</p>
+
+<hr><br>
+
+<div class="command" id="c2">temp</div>
+
+<button onclick="copy('c2')">Copy</button>
+
+<p>Delete files.</p>
+
+<hr><br>
+
+<div class="command" id="c3">prefetch</div>
+
+<button onclick="copy('c3')">Copy</button>
+
+<p>Delete files (Click Continue if prompted).</p>
+
+</div>
+
+<!-- Cleanmgr -->
+
+<div class="card">
+
+<h2>🧹 Disk Cleanup</h2>
+
+<p>Open Run</p>
+
+<div class="command" id="c4">cleanmgr</div>
+
+<button onclick="copy('c4')">Copy</button>
+
+<div class="tip">
+✔ Delete Temporary Files<br>
+✔ Recycle Bin<br>
+✔ Windows Update Cleanup
+</div>
+
+</div>
+
+<!-- SFC -->
+
+<div class="card">
+
+<h2>🛠 Repair Windows Files</h2>
+
+<p>Open CMD as Administrator</p>
+
+<div class="command" id="c5">sfc /scannow</div>
+
+<button onclick="copy('c5')">Copy</button>
+
+<div class="tip">
+Wait until 100%.
+Restart PC afterwards.
+</div>
+
+</div>
+
+<!-- DISM -->
+
+<div class="card">
+
+<h2>💻 Repair Windows Image</h2>
+
+<div class="command" id="c6">DISM /Online /Cleanup-Image /RestoreHealth</div>
+
+<button onclick="copy('c6')">Copy</button>
+
+<div class="tip">
+Run this only if SFC cannot fix errors.
+</div>
+
+</div>
+
+<!-- CHKDSK -->
+
+<div class="card">
+
+<h2>💾 Check Hard Disk</h2>
+
+<div class="command" id="c7">chkdsk C: /f</div>
+
+<button onclick="copy('c7')">Copy</button>
+
+<div class="tip">
+Press Y then Restart PC.
+</div>
+
+</div>
+
+<!-- Startup -->
+
+<div class="card">
+
+<h2>🚀 Disable Startup Apps</h2>
+
+<div class="command" id="c8">taskmgr</div>
+
+<button onclick="copy('c8')">Copy</button>
+
+<p>
+Startup Tab → Disable unnecessary apps.
+</p>
+
+</div>
+
+<!-- Update -->
+
+<div class="card">
+
+<h2>⬆ Windows Update</h2>
+
+<div class="command" id="c9">ms-settings:windowsupdate</div>
+
+<button onclick="copy('c9')">Copy</button>
+
+<p>
+Install all updates and restart.
+</p>
+
+</div>
+
+<!-- Storage -->
+
+<div class="card">
+
+<h2>📦 Storage Settings</h2>
+
+<div class="command" id="c10">ms-settings:storagesense</div>
+
+<button onclick="copy('c10')">Copy</button>
+
+<p>
+Enable Storage Sense.
+</p>
+
+</div>
+
+<!-- Performance -->
+
+<div class="card">
+
+<h2>⚡ Best Performance Mode</h2>
+
+<div class="command">
+sysdm.cpl
+</div>
+
+<p>
+Advanced → Performance → Settings → Adjust for Best Performance.
+</p>
+
+</div>
+
+<!-- Scan -->
+
+<div class="card">
+
+<h2>🛡 Virus Scan</h2>
+
+<div class="command" id="c11">windowsdefender:</div>
+
+<button onclick="copy('c11')">Copy</button>
+
+<p>
+Run Full Scan.
+</p>
+
+</div>
+
+<!-- RAM -->
+
+<div class="card">
+
+<h2>🧠 Memory Diagnostic</h2>
+
+<div class="command" id="c12">mdsched.exe</div>
+
+<button onclick="copy('c12')">Copy</button>
+
+<p>
+Restart and check RAM.
+</p>
+
+</div>
+
+<!-- Power -->
+
+<div class="card">
+
+<h2>🔋 High Performance</h2>
+
+<div class="command" id="c13">powercfg.cpl</div>
+
+<button onclick="copy('c13')">Copy</button>
+
+<p>
+Choose High Performance Power Plan.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+Made for Quick Windows Troubleshooting
+
+</footer>
+
+</div>
+
+<script>
+
+function copy(id){
+
+navigator.clipboard.writeText(document.getElementById(id).innerText);
+
+alert("Command Copied!");
+
+}
+
+</script>
+
+</body>
+</html>
