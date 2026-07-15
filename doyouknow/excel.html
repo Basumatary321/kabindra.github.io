@@ -1,0 +1,1331 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Microsoft Excel Formula Guide</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#eef4f2;
+color:#333;
+}
+
+header{
+background:#107C41;
+color:white;
+padding:40px 20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+header h1{
+font-size:38px;
+}
+
+header p{
+margin-top:10px;
+opacity:.9;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px 20px;
+}
+
+.search{
+width:100%;
+padding:15px;
+font-size:16px;
+border:2px solid #107C41;
+border-radius:10px;
+margin-bottom:30px;
+outline:none;
+}
+
+.section{
+background:#fff;
+margin-bottom:25px;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.section-title{
+background:#3c3f46;
+color:#fff;
+padding:16px 20px;
+font-size:22px;
+font-weight:600;
+cursor:pointer;
+user-select:none;
+}
+
+.content{
+display:none;
+padding:20px;
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:750px;
+}
+
+th{
+background:#198754;
+color:white;
+padding:14px;
+}
+
+td{
+padding:12px;
+border:1px solid #ddd;
+vertical-align:top;
+}
+
+tr:nth-child(even){
+background:#f8f8f8;
+}
+
+.syntax{
+font-family:Consolas;
+background:#1f2937;
+color:#00ff88;
+padding:6px 10px;
+border-radius:5px;
+display:inline-block;
+}
+
+footer{
+background:#107C41;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:28px;
+}
+
+.section-title{
+font-size:18px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>📊 Microsoft Excel Formula Guide</h1>
+
+<p>
+Learn Excel formulas with syntax, uses and practical examples.
+</p>
+
+</header>
+
+<div class="container">
+
+<input
+type="text"
+class="search"
+placeholder="Search Formula..."
+onkeyup="searchFormula(this.value)"
+>
+
+<!-- SUM -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+➕ SUM Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+
+<td>SUM()</td>
+
+<td>Adds numbers together.</td>
+
+<td>
+<span class="syntax">
+=SUM(A1:A10)
+</span>
+</td>
+
+<td>
+Adds all values from A1 to A10.
+</td>
+
+</tr>
+
+<tr>
+
+<td>SUMIF()</td>
+
+<td>Sum with one condition.</td>
+
+<td>
+<span class="syntax">
+=SUMIF(A:A,"Apple",B:B)
+</span>
+</td>
+
+<td>
+Adds sales where product is Apple.
+</td>
+
+</tr>
+
+<tr>
+
+<td>SUMIFS()</td>
+
+<td>Sum with multiple conditions.</td>
+
+<td>
+
+<span class="syntax">
+=SUMIFS(C:C,A:A,"Apple",B:B,"East")
+</span>
+
+</td>
+
+<td>
+Adds Apple sales only from East region.
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- COUNT -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+🔢 COUNT Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+
+<td>COUNT()</td>
+
+<td>Counts numeric cells.</td>
+
+<td>
+<span class="syntax">
+=COUNT(A1:A20)
+</span>
+</td>
+
+<td>
+Counts only numbers.
+</td>
+
+</tr>
+
+<tr>
+
+<td>COUNTA()</td>
+
+<td>Counts all non-empty cells.</td>
+
+<td>
+
+<span class="syntax">
+=COUNTA(A1:A20)
+</span>
+
+</td>
+
+<td>
+Counts text, numbers and dates.
+</td>
+
+</tr>
+
+<tr>
+
+<td>COUNTBLANK()</td>
+
+<td>Counts blank cells.</td>
+
+<td>
+
+<span class="syntax">
+=COUNTBLANK(A1:A20)
+</span>
+
+</td>
+
+<td>
+Returns number of empty cells.
+</td>
+
+</tr>
+
+<tr>
+
+<td>COUNTIF()</td>
+
+<td>Count with one condition.</td>
+
+<td>
+
+<span class="syntax">
+=COUNTIF(B:B,"Male")
+</span>
+
+</td>
+
+<td>
+Counts Male entries.
+</td>
+
+</tr>
+
+<tr>
+
+<td>COUNTIFS()</td>
+
+<td>Count with multiple conditions.</td>
+
+<td>
+
+<span class="syntax">
+=COUNTIFS(B:B,"Male",C:C,"Pass")
+</span>
+
+</td>
+
+<td>
+Counts Male students who passed.
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- AVERAGE -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+📈 AVERAGE Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+
+<td>AVERAGE()</td>
+
+<td>Calculates average.</td>
+
+<td>
+
+<span class="syntax">
+=AVERAGE(B2:B20)
+</span>
+
+</td>
+
+<td>
+Average marks of students.
+</td>
+
+</tr>
+
+<tr>
+
+<td>AVERAGEIF()</td>
+
+<td>Average with one condition.</td>
+
+<td>
+
+<span class="syntax">
+=AVERAGEIF(A:A,"Apple",B:B)
+</span>
+
+</td>
+
+<td>
+Average Apple sales.
+</td>
+
+</tr>
+
+<tr>
+
+<td>AVERAGEIFS()</td>
+
+<td>Average with multiple conditions.</td>
+
+<td>
+
+<span class="syntax">
+=AVERAGEIFS(C:C,A:A,"Apple",B:B,">100")
+</span>
+
+</td>
+
+<td>
+Average sales greater than 100.
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- LOGICAL -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+🧠 Logical Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+
+<td>IF()</td>
+
+<td>Checks one condition.</td>
+
+<td>
+
+<span class="syntax">
+=IF(B2>=40,"Pass","Fail")
+</span>
+
+</td>
+
+<td>
+Returns Pass or Fail.
+</td>
+
+</tr>
+
+<tr>
+
+<td>IFS()</td>
+
+<td>Checks multiple conditions.</td>
+
+<td>
+
+<span class="syntax">
+=IFS(B2>=90,"A+",B2>=80,"A")
+</span>
+
+</td>
+
+<td>
+Assigns grades.
+</td>
+
+</tr>
+
+<tr>
+
+<td>AND()</td>
+
+<td>Returns TRUE if all conditions are TRUE.</td>
+
+<td>
+
+<span class="syntax">
+=AND(A1>0,B1<100)
+</span>
+
+</td>
+
+<td>
+Checks two conditions together.
+</td>
+
+</tr>
+
+<tr>
+
+<td>OR()</td>
+
+<td>Returns TRUE if any condition is TRUE.</td>
+
+<td>
+
+<span class="syntax">
+=OR(A1>50,B1>50)
+</span>
+
+</td>
+
+<td>
+Returns TRUE if either value is above 50.
+</td>
+
+</tr>
+
+<tr>
+
+<td>NOT()</td>
+
+<td>Reverses TRUE/FALSE.</td>
+
+<td>
+
+<span class="syntax">
+=NOT(A1>50)
+</span>
+
+</td>
+
+<td>
+Opposite result.
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- part 2 -->
+ <!-- ===================================== -->
+<!-- LOOKUP FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+🔍 Lookup Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>VLOOKUP()</td>
+<td>Searches vertically in the first column and returns a value.</td>
+<td><span class="syntax">=VLOOKUP(101,A2:D20,2,FALSE)</span></td>
+<td>Returns the student's name for ID 101.</td>
+</tr>
+
+<tr>
+<td>HLOOKUP()</td>
+<td>Searches horizontally across the first row.</td>
+<td><span class="syntax">=HLOOKUP("Jan",A1:M5,3,FALSE)</span></td>
+<td>Returns January sales.</td>
+</tr>
+
+<tr>
+<td>XLOOKUP()</td>
+<td>Modern replacement for VLOOKUP and HLOOKUP.</td>
+<td><span class="syntax">=XLOOKUP(101,A:A,B:B)</span></td>
+<td>Looks up ID 101 and returns the matching name.</td>
+</tr>
+
+<tr>
+<td>LOOKUP()</td>
+<td>Finds the closest matching value.</td>
+<td><span class="syntax">=LOOKUP(90,A2:A20,B2:B20)</span></td>
+<td>Returns the corresponding value for 90.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- INDEX & MATCH -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+📍 INDEX & MATCH Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>INDEX()</td>
+<td>Returns a value from a specified position.</td>
+<td><span class="syntax">=INDEX(B2:B10,4)</span></td>
+<td>Returns the 4th value.</td>
+</tr>
+
+<tr>
+<td>MATCH()</td>
+<td>Returns the position of a value.</td>
+<td><span class="syntax">=MATCH("Apple",A2:A10,0)</span></td>
+<td>Returns the row number where Apple is found.</td>
+</tr>
+
+<tr>
+<td>INDEX + MATCH</td>
+<td>Flexible alternative to VLOOKUP.</td>
+<td><span class="syntax">=INDEX(B:B,MATCH(101,A:A,0))</span></td>
+<td>Returns student name using Student ID.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- TEXT FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+🔤 Text Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>LEFT()</td>
+<td>Returns left characters.</td>
+<td><span class="syntax">=LEFT(A1,3)</span></td>
+<td>Excel → Exc</td>
+</tr>
+
+<tr>
+<td>RIGHT()</td>
+<td>Returns right characters.</td>
+<td><span class="syntax">=RIGHT(A1,2)</span></td>
+<td>Excel → el</td>
+</tr>
+
+<tr>
+<td>MID()</td>
+<td>Returns characters from the middle.</td>
+<td><span class="syntax">=MID(A1,2,4)</span></td>
+<td>Excel → xcel</td>
+</tr>
+
+<tr>
+<td>LEN()</td>
+<td>Counts the number of characters.</td>
+<td><span class="syntax">=LEN(A1)</span></td>
+<td>Excel → 5</td>
+</tr>
+
+<tr>
+<td>TRIM()</td>
+<td>Removes extra spaces.</td>
+<td><span class="syntax">=TRIM(A1)</span></td>
+<td>Removes unnecessary spaces.</td>
+</tr>
+
+<tr>
+<td>UPPER()</td>
+<td>Converts text to uppercase.</td>
+<td><span class="syntax">=UPPER(A1)</span></td>
+<td>excel → EXCEL</td>
+</tr>
+
+<tr>
+<td>LOWER()</td>
+<td>Converts text to lowercase.</td>
+<td><span class="syntax">=LOWER(A1)</span></td>
+<td>EXCEL → excel</td>
+</tr>
+
+<tr>
+<td>PROPER()</td>
+<td>Capitalizes the first letter of each word.</td>
+<td><span class="syntax">=PROPER(A1)</span></td>
+<td>microsoft excel → Microsoft Excel</td>
+</tr>
+
+<tr>
+<td>CONCAT()</td>
+<td>Joins text together.</td>
+<td><span class="syntax">=CONCAT(A1," ",B1)</span></td>
+<td>John + Doe → John Doe</td>
+</tr>
+
+<tr>
+<td>TEXTJOIN()</td>
+<td>Joins text using a separator.</td>
+<td><span class="syntax">=TEXTJOIN(", ",TRUE,A1:A5)</span></td>
+<td>Apple, Mango, Orange</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- DATE & TIME -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+📅 Date & Time Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>TODAY()</td>
+<td>Returns today's date.</td>
+<td><span class="syntax">=TODAY()</span></td>
+<td>15-Jul-2026</td>
+</tr>
+
+<tr>
+<td>NOW()</td>
+<td>Returns current date and time.</td>
+<td><span class="syntax">=NOW()</span></td>
+<td>15-Jul-2026 10:30 AM</td>
+</tr>
+
+<tr>
+<td>DATE()</td>
+<td>Creates a date.</td>
+<td><span class="syntax">=DATE(2026,7,15)</span></td>
+<td>15-Jul-2026</td>
+</tr>
+
+<tr>
+<td>YEAR()</td>
+<td>Extracts the year.</td>
+<td><span class="syntax">=YEAR(A1)</span></td>
+<td>2026</td>
+</tr>
+
+<tr>
+<td>MONTH()</td>
+<td>Extracts the month.</td>
+<td><span class="syntax">=MONTH(A1)</span></td>
+<td>7</td>
+</tr>
+
+<tr>
+<td>DAY()</td>
+<td>Extracts the day.</td>
+<td><span class="syntax">=DAY(A1)</span></td>
+<td>15</td>
+</tr>
+
+<tr>
+<td>WEEKDAY()</td>
+<td>Returns the weekday number.</td>
+<td><span class="syntax">=WEEKDAY(A1)</span></td>
+<td>Thursday → 5</td>
+</tr>
+
+<tr>
+<td>EDATE()</td>
+<td>Adds or subtracts months.</td>
+<td><span class="syntax">=EDATE(A1,6)</span></td>
+<td>Adds six months.</td>
+</tr>
+
+<tr>
+<td>EOMONTH()</td>
+<td>Returns the last day of a month.</td>
+<td><span class="syntax">=EOMONTH(A1,0)</span></td>
+<td>31-Jul-2026</td>
+</tr>
+
+<tr>
+<td>DATEDIF()</td>
+<td>Calculates the difference between two dates.</td>
+<td><span class="syntax">=DATEDIF(A1,B1,"Y")</span></td>
+<td>Calculates age in years.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- part 3 -->
+ <!-- ===================================== -->
+<!-- MATH FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+➗ Math Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>ROUND()</td>
+<td>Rounds a number.</td>
+<td><span class="syntax">=ROUND(A1,2)</span></td>
+<td>25.567 → 25.57</td>
+</tr>
+
+<tr>
+<td>ROUNDUP()</td>
+<td>Rounds upward.</td>
+<td><span class="syntax">=ROUNDUP(A1,0)</span></td>
+<td>25.1 → 26</td>
+</tr>
+
+<tr>
+<td>ROUNDDOWN()</td>
+<td>Rounds downward.</td>
+<td><span class="syntax">=ROUNDDOWN(A1,0)</span></td>
+<td>25.9 → 25</td>
+</tr>
+
+<tr>
+<td>ABS()</td>
+<td>Returns absolute value.</td>
+<td><span class="syntax">=ABS(-50)</span></td>
+<td>50</td>
+</tr>
+
+<tr>
+<td>SQRT()</td>
+<td>Square root.</td>
+<td><span class="syntax">=SQRT(81)</span></td>
+<td>9</td>
+</tr>
+
+<tr>
+<td>POWER()</td>
+<td>Raises a number to a power.</td>
+<td><span class="syntax">=POWER(5,2)</span></td>
+<td>25</td>
+</tr>
+
+<tr>
+<td>MOD()</td>
+<td>Returns remainder.</td>
+<td><span class="syntax">=MOD(10,3)</span></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>RAND()</td>
+<td>Random number.</td>
+<td><span class="syntax">=RAND()</span></td>
+<td>0.4578</td>
+</tr>
+
+<tr>
+<td>RANDBETWEEN()</td>
+<td>Random number in range.</td>
+<td><span class="syntax">=RANDBETWEEN(1,100)</span></td>
+<td>57</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- STATISTICAL FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+📊 Statistical Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>MAX()</td>
+<td>Largest value.</td>
+<td><span class="syntax">=MAX(A1:A10)</span></td>
+<td>Returns highest score.</td>
+</tr>
+
+<tr>
+<td>MIN()</td>
+<td>Smallest value.</td>
+<td><span class="syntax">=MIN(A1:A10)</span></td>
+<td>Returns lowest score.</td>
+</tr>
+
+<tr>
+<td>MEDIAN()</td>
+<td>Middle value.</td>
+<td><span class="syntax">=MEDIAN(A1:A10)</span></td>
+<td>Middle score.</td>
+</tr>
+
+<tr>
+<td>MODE()</td>
+<td>Most repeated value.</td>
+<td><span class="syntax">=MODE(A1:A10)</span></td>
+<td>Most common number.</td>
+</tr>
+
+<tr>
+<td>LARGE()</td>
+<td>Nth largest value.</td>
+<td><span class="syntax">=LARGE(A1:A10,2)</span></td>
+<td>2nd largest value.</td>
+</tr>
+
+<tr>
+<td>SMALL()</td>
+<td>Nth smallest value.</td>
+<td><span class="syntax">=SMALL(A1:A10,2)</span></td>
+<td>2nd smallest value.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- FINANCIAL FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+💰 Financial Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>PMT()</td>
+<td>Loan EMI calculation.</td>
+<td><span class="syntax">=PMT(8%/12,60,-500000)</span></td>
+<td>Monthly EMI.</td>
+</tr>
+
+<tr>
+<td>FV()</td>
+<td>Future value.</td>
+<td><span class="syntax">=FV(8%,10,-10000)</span></td>
+<td>Investment growth.</td>
+</tr>
+
+<tr>
+<td>PV()</td>
+<td>Present value.</td>
+<td><span class="syntax">=PV(8%,10,-10000)</span></td>
+<td>Current value.</td>
+</tr>
+
+<tr>
+<td>RATE()</td>
+<td>Interest rate.</td>
+<td><span class="syntax">=RATE(60,-5000,250000)</span></td>
+<td>Loan rate.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- DYNAMIC ARRAY FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+📋 Dynamic Array Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>FILTER()</td>
+<td>Filters data.</td>
+<td><span class="syntax">=FILTER(A2:C20,C2:C20>50)</span></td>
+<td>Show records above 50.</td>
+</tr>
+
+<tr>
+<td>SORT()</td>
+<td>Sorts data.</td>
+<td><span class="syntax">=SORT(A2:C20)</span></td>
+<td>Ascending order.</td>
+</tr>
+
+<tr>
+<td>SORTBY()</td>
+<td>Sort by another column.</td>
+<td><span class="syntax">=SORTBY(A2:C20,C2:C20)</span></td>
+<td>Sort using marks.</td>
+</tr>
+
+<tr>
+<td>UNIQUE()</td>
+<td>Unique values.</td>
+<td><span class="syntax">=UNIQUE(A2:A50)</span></td>
+<td>Removes duplicates.</td>
+</tr>
+
+<tr>
+<td>SEQUENCE()</td>
+<td>Creates number series.</td>
+<td><span class="syntax">=SEQUENCE(10)</span></td>
+<td>1 to 10.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- INFORMATION FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+ℹ️ Information Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>ISBLANK()</td>
+<td>Checks blank cell.</td>
+<td><span class="syntax">=ISBLANK(A1)</span></td>
+<td>TRUE/FALSE</td>
+</tr>
+
+<tr>
+<td>ISNUMBER()</td>
+<td>Checks number.</td>
+<td><span class="syntax">=ISNUMBER(A1)</span></td>
+<td>TRUE/FALSE</td>
+</tr>
+
+<tr>
+<td>ISTEXT()</td>
+<td>Checks text.</td>
+<td><span class="syntax">=ISTEXT(A1)</span></td>
+<td>TRUE/FALSE</td>
+</tr>
+
+<tr>
+<td>ISERROR()</td>
+<td>Checks errors.</td>
+<td><span class="syntax">=ISERROR(A1)</span></td>
+<td>TRUE/FALSE</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- ERROR HANDLING -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+❌ Error Handling Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>IFERROR()</td>
+<td>Replace errors with custom text.</td>
+<td><span class="syntax">=IFERROR(A1/B1,"Error")</span></td>
+<td>Avoid #DIV/0!</td>
+</tr>
+
+<tr>
+<td>IFNA()</td>
+<td>Handles #N/A errors.</td>
+<td><span class="syntax">=IFNA(VLOOKUP(...),"Not Found")</span></td>
+<td>Lookup protection.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ===================================== -->
+<!-- DATABASE FUNCTIONS -->
+<!-- ===================================== -->
+
+<div class="section">
+
+<div class="section-title" onclick="toggle(this)">
+🗂️ Database Functions
+</div>
+
+<div class="content">
+
+<table>
+
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+<th>Syntax</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>DSUM()</td>
+<td>Database sum.</td>
+<td><span class="syntax">=DSUM(A1:F100,"Sales",H1:H2)</span></td>
+<td>Conditional total sales.</td>
+</tr>
+
+<tr>
+<td>DCOUNT()</td>
+<td>Database count.</td>
+<td><span class="syntax">=DCOUNT(A1:F100,"Marks",H1:H2)</span></td>
+<td>Count records.</td>
+</tr>
+
+<tr>
+<td>DAVERAGE()</td>
+<td>Database average.</td>
+<td><span class="syntax">=DAVERAGE(A1:F100,"Marks",H1:H2)</span></td>
+<td>Average marks.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<footer>
+
+Microsoft Excel Formula Guide • Part 1
+
+</footer>
+
+<script>
+
+function toggle(element){
+
+let content = element.nextElementSibling;
+
+if(content.style.display==="block"){
+content.style.display="none";
+}
+else{
+content.style.display="block";
+}
+
+}
+
+function searchFormula(value){
+
+value=value.toLowerCase();
+
+let sections=document.querySelectorAll(".section");
+
+sections.forEach(section=>{
+
+let text=section.innerText.toLowerCase();
+
+section.style.display=text.includes(value)?"block":"none";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
